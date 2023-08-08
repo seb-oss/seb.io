@@ -1,0 +1,16 @@
+{
+  "name": "seb",
+  "version": "0.1.0",
+  "private": true,
+  "author": {
+    "name": "astrit",
+    "email": "am@astrit.co",
+    "url": "https://astrit.co"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  }
+}
