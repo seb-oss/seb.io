@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../contentlayer.config.ts"],
+  "sourcesContent": ["// contentlayer.config.ts\nimport { defineDocumentType, makeSource } from 'contentlayer/source-files'\n\nexport const Component = defineDocumentType(() => ({\n  name: 'Component',\n  filePathPattern: `**/*.mdx`,\n  fields: {\n    title: { type: 'string', required: true },\n    date: { type: 'date', required: true },\n  },\n  computedFields: {\n    url: { type: 'string', resolve: (component) => `/components/${component._raw.flattenedPath}` },\n  },\n}))\n\nexport default makeSource({ contentDirPath: 'content', documentTypes: [Component] })"],
+  "mappings": ";AACA,SAAS,oBAAoB,kBAAkB;AAExC,IAAM,YAAY,mBAAmB,OAAO;AAAA,EACjD,MAAM;AAAA,EACN,iBAAiB;AAAA,EACjB,QAAQ;AAAA,IACN,OAAO,EAAE,MAAM,UAAU,UAAU,KAAK;AAAA,IACxC,MAAM,EAAE,MAAM,QAAQ,UAAU,KAAK;AAAA,EACvC;AAAA,EACA,gBAAgB;AAAA,IACd,KAAK,EAAE,MAAM,UAAU,SAAS,CAAC,cAAc,eAAe,UAAU,KAAK,aAAa,GAAG;AAAA,EAC/F;AACF,EAAE;AAEF,IAAO,8BAAQ,WAAW,EAAE,gBAAgB,WAAW,eAAe,CAAC,SAAS,EAAE,CAAC;",
+  "names": []
+}
