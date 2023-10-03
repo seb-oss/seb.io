@@ -1,0 +1,7 @@
+---
+title: Tooltip
+slug: tooltip
+date: 2021-12-24
+---
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.

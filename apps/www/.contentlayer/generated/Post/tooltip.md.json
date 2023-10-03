@@ -1,0 +1,18 @@
+{
+  "title": "Tooltip",
+  "date": "2021-12-24T00:00:00.000Z",
+  "body": {
+    "raw": "\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n",
+    "html": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>"
+  },
+  "_id": "tooltip.md",
+  "_raw": {
+    "sourceFilePath": "tooltip.md",
+    "sourceFileName": "tooltip.md",
+    "sourceFileDir": ".",
+    "contentType": "markdown",
+    "flattenedPath": "tooltip"
+  },
+  "type": "Post",
+  "url": "/posts/tooltip"
+}
