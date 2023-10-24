@@ -5,7 +5,7 @@ export const Aside = forwardRef(({ ...props }, ref) => {
   return (
     <aside>
       <nav>
-        <Link href="#">Components</Link>
+        <Link href="/components">Components</Link>
         <Link href="/foundation">Foundation</Link>
         <Link href="/foundation/accessibility">Accessibility</Link>
         <Link href="/foundation/direction">Direction</Link>
