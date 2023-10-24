@@ -2,7 +2,7 @@
   "cacheItemsMap": {
     "button.mdx": {
       "document": {
-        "title": "Button",
+        "title": "Button Happy!",
         "date": "2021-12-24T00:00:00.000Z",
         "body": {
           "raw": "\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n\n## Button\n\n```html\n\n```\n",
@@ -19,7 +19,7 @@
         "type": "Component",
         "url": "/components/button"
       },
-      "documentHash": "1697456471972",
+      "documentHash": "1698151246695",
       "hasWarnings": true,
       "documentTypeName": "Component"
     },
