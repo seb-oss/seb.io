@@ -1,0 +1,65 @@
+header {
+  display: flex;
+  padding: 20px;
+  justify-content: space-between;
+  color: var(--color-black);
+  background-color: var(--color-white);
+  font-size: 16px;
+  line-height: 1.25;
+
+  & .logo {
+    & svg {
+      display: flex;
+      height: 24px;
+      width: auto;
+      fill: none;
+
+      & path {
+        fill: currentColor;
+      }
+    }
+  }
+
+  & nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    & svg {
+      height: 24px;
+      width: auto;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      path,
+      circle,
+      line {
+        fill: currentColor;
+      }
+    }
+
+    & a {
+      display: flex;
+      align-items: center;
+      gap: 0.5ch;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    & button {
+      appearance: none;
+      border: none;
+      padding: 0;
+      background: none;
+    }
+  }
+
+  & .hamburger {
+    min-inline-size: 64px;
+  }
+}
