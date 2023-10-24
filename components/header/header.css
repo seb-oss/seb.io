@@ -11,6 +11,12 @@ header {
     color-mix(in srgb, var(--color-black), transparent 90%);
 
   & .logo {
+    display: flex;
+    position: absolute;
+    inset: auto 0;
+    margin-inline: auto;
+    max-inline-size: max-content;
+
     & svg {
       display: flex;
       height: 24px;

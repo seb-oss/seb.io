@@ -3,7 +3,6 @@ import { compareDesc, format, parseISO } from "date-fns";
 import { allComponents, Component } from "contentlayer/generated";
 
 import Image from "next/image";
-import styles from "./page.module.css";
 import Button from "@/components/button";
 
 function ComponentCard(component: Component) {
@@ -37,7 +36,7 @@ export default function Home() {
   );
 
   return (
-    <main className={styles.main}>
+    <main>
       <Button />
       {components.map((component, idx) => (
         <ComponentCard key={idx} {...component} />

@@ -1,0 +1,42 @@
+main {
+  display: flex;
+  gap: 40px;
+  max-width: 100vw;
+  flex-direction: row;
+}
+
+aside {
+  border-right: 1px solid
+    color-mix(in srgb, var(--color-black), transparent 90%);
+  display: flex;
+  flex-direction: column;
+  width: 84px;
+  height: 100dvh;
+  flex-wrap: wrap;
+  align-items: center;
+
+  & nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    & a {
+      font-size: 10px;
+      aspect-ratio: 1/1;
+      min-height: 84px;
+      min-width: 84px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+
+      &:hover {
+        background-color: color-mix(
+          in srgb,
+          var(--color-black),
+          transparent 90%
+        );
+      }
+    }
+  }
+}
