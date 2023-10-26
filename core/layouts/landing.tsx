@@ -1,3 +1,3 @@
-export default function Landing() {
-  return <main>Landing Layout</main>;
+export default function Landing({ children }: { children: React.ReactNode }) {
+  return <main className="home">{children}</main>;
 }

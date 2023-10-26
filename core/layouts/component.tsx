@@ -1,3 +1,3 @@
-export default function Component() {
-  return <main>Component Layout</main>;
+export default function Component({ children }: { children: React.ReactNode }) {
+  return <main className="component">{children}</main>;
 }
