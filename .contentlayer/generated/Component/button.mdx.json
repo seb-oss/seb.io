@@ -1,6 +1,9 @@
 {
   "title": "Button Happy!",
   "date": "2021-12-24T00:00:00.000Z",
+  "slug": "button",
+  "stage": "beta",
+  "version": "1.0.0",
   "body": {
     "raw": "\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n\n## Button\n\n```html\n\n```\n",
     "html": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>\n<h2>Button</h2>\n<pre><code class=\"language-html\"></code></pre>"

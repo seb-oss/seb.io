@@ -1,8 +1,8 @@
-import Header from "@/components/header/header";
-import "../style/main.css";
+import Header from "@/core/components/header/header";
+import "@/core/style/main.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { ThemeProvider } from "@/utils/theme-provider";
+import { ThemeProvider } from "@/core/utils/theme-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,7 +28,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <meta property="og:image" content="<generated>" />
         <meta property="og:image:alt" content="Green Design System" />
@@ -37,7 +37,7 @@ export default function RootLayout({
         <meta property="og:image:height" content="630" />
       </head>
       <body className={inter.className}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <ThemeProvider attribute="theme" defaultTheme="system" enableSystem>
           <Header />
           {children}
         </ThemeProvider>

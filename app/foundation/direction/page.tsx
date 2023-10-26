@@ -1,7 +1,12 @@
-import Aside from "@/components/nav/nav";
-import { forwardRef } from "react";
+import type { Metadata } from "next";
+import Aside from "@/core/components/nav/nav";
 
-export const Direction = forwardRef(({ ...props }, ref) => {
+export const metadata: Metadata = {
+  title: "Direction",
+  description: "Direction",
+};
+
+export default async function Direction() {
   return (
     <main>
       <Aside />
@@ -12,8 +17,4 @@ export const Direction = forwardRef(({ ...props }, ref) => {
       </section>
     </main>
   );
-});
-
-Direction.displayName = "Direction";
-
-export default Direction;
+}

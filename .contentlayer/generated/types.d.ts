@@ -15,6 +15,9 @@ export type Component = {
   type: 'Component'
   title: string
   date: IsoDateTimeString
+  slug: string
+  stage: string
+  version: string
   /** Markdown file body */
   body: Markdown
   url: string

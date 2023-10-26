@@ -1,9 +1,15 @@
 import { forwardRef } from "react";
+import type { Metadata } from "next";
 import { compareDesc, format, parseISO } from "date-fns";
 import { allComponents, Component } from "contentlayer/generated";
 import Link from "next/link";
-import Aside from "@/components/nav/nav";
-import "../../style/components.css";
+import Aside from "@/core/components/nav/nav";
+import "@/core/style/components.css";
+
+export const metadata: Metadata = {
+  title: "Components",
+  description: "Components description",
+};
 
 function Card(component: Component) {
   return (
@@ -30,7 +36,7 @@ function Card(component: Component) {
   );
 }
 
-export const Components = forwardRef(({ ...props }, ref) => {
+export default async function Components() {
   const components = allComponents.sort((a, b) =>
     compareDesc(new Date(a.date), new Date(b.date))
   );
@@ -50,8 +56,4 @@ export const Components = forwardRef(({ ...props }, ref) => {
       </section>
     </main>
   );
-});
-
-Components.displayName = "Components";
-
-export default Components;
+}

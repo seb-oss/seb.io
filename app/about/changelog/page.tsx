@@ -1,7 +1,12 @@
-import Aside from "@/components/nav/nav";
-import { forwardRef } from "react";
+import type { Metadata } from "next";
+import Aside from "@/core/components/nav/nav";
 
-export const Changelog = forwardRef(({ ...props }, ref) => {
+export const metadata: Metadata = {
+  title: "Changelog",
+  description: "Changelog",
+};
+
+export default async function Changelog() {
   return (
     <main>
       <Aside />
@@ -12,8 +17,4 @@ export const Changelog = forwardRef(({ ...props }, ref) => {
       </section>
     </main>
   );
-});
-
-Changelog.displayName = "Changelog";
-
-export default Changelog;
+}

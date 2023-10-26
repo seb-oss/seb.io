@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { forwardRef } from "react";
 import "./header.css";
-import { ThemeToggle } from "@/utils/theme-toggle";
+import { ThemeToggle } from "@/core/utils/theme-toggle";
 
 export const Header = forwardRef(({ ...props }, ref) => {
   return (

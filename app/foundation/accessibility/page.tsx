@@ -1,7 +1,12 @@
-import Aside from "@/components/nav/nav";
-import { forwardRef } from "react";
+import type { Metadata } from "next";
+import Aside from "@/core/components/nav/nav";
 
-export const Accessibility = forwardRef(({ ...props }, ref) => {
+export const metadata: Metadata = {
+  title: "Accessibility",
+  description: "Accessibility",
+};
+
+export default async function Accessibility() {
   return (
     <main>
       <Aside />
@@ -12,8 +17,4 @@ export const Accessibility = forwardRef(({ ...props }, ref) => {
       </section>
     </main>
   );
-});
-
-Accessibility.displayName = "Accessibility";
-
-export default Accessibility;
+}
