@@ -15,12 +15,12 @@ function Card(component: Component) {
   return (
     <div className="mb-8">
       <h2 className="mb-1 text-xl">
-        <Link
+        {/* <Link
           href={component.url}
           className="text-blue-700 hover:text-blue-900 dark:text-blue-400"
         >
           {component.title}
-        </Link>
+        </Link> */}
       </h2>
       <time
         dateTime={component.date}
@@ -37,9 +37,9 @@ function Card(component: Component) {
 }
 
 export default async function Components() {
-  const components = allComponents.sort((a, b) =>
-    compareDesc(new Date(a.date), new Date(b.date))
-  );
+  // const components = allComponents.sort((a, b) =>
+  //   compareDesc(new Date(a.date), new Date(b.date))
+  // );
 
   return (
     <main>
@@ -49,9 +49,9 @@ export default async function Components() {
           <h1>Components</h1>
         </div>
         <div>
-          {components.map((component, idx) => (
+          {/* {components.map((component, idx) => (
             <Card key={idx} {...component} />
-          ))}
+          ))} */}
         </div>
       </section>
     </main>

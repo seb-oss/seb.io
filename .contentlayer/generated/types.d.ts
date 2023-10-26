@@ -15,7 +15,7 @@ export type Component = {
   type: 'Component'
   title: string
   date: IsoDateTimeString
-  slug: string
+  slug?: string | undefined
   stage: string
   version: string
   /** Markdown file body */
