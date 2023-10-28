@@ -1,3 +1,7 @@
+0. Hero animaton
+
+- - Figma / Code / Docs build up and cursors from people
+
 1. OG Generator
 2. Status Page
 3. Changelog page automated
