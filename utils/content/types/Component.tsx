@@ -1,14 +1,11 @@
 import { defineDocumentType } from "@contentlayer/source-files";
-import {
-  getLastEditedDate,
-  urlFromFilePath,
-} from "../../../utils/content/utils";
+import { getLastEditedDate, urlFromFilePath } from "../utils";
 
 export type DocHeading = { level: 1 | 2 | 3; title: string };
 
-export const Post = defineDocumentType(() => ({
-  name: "Post",
-  filePathPattern: `blog/**/*.mdx`,
+export const Component = defineDocumentType(() => ({
+  name: "Component",
+  filePathPattern: `component/**/*.mdx`,
   contentType: "mdx",
   fields: {
     global_id: {
@@ -25,9 +22,10 @@ export const Post = defineDocumentType(() => ({
       type: "string",
       description:
         'The URL path of this page relative to site root. For example, the site root page would be "/", and doc page would be "docs/getting-started/"',
-      resolve: (post) => {
-        if (post._id.startsWith("blog/index.mdx")) return "/blog";
-        return urlFromFilePath(post);
+      resolve: (component) => {
+        if (component._id.startsWith("component/index.mdx"))
+          return "/component";
+        return urlFromFilePath(component);
       },
     },
     // url_path_without_id: {

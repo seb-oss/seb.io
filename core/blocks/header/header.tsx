@@ -1,9 +1,13 @@
+"use client";
 import Link from "next/link";
+import React, { useContext } from "react";
 import { forwardRef } from "react";
 import "./header.css";
-import { ThemeToggle } from "@/core/utils/theme-toggle";
+import { ThemeToggle } from "@/utils/theme/toggle";
+import { ThemeProviderContext } from "@/utils/theme/provider";
 
 export const Header = forwardRef(({ ...props }, ref) => {
+  const { toggleCmd } = useContext(ThemeProviderContext);
   return (
     <header>
       <div className="hamburger"></div>
@@ -13,7 +17,7 @@ export const Header = forwardRef(({ ...props }, ref) => {
         </svg>
       </Link>
       <nav>
-        <Link href="#">
+        <Link href="#" onClick={toggleCmd}>
           <svg viewBox="0 0 24 24">
             <circle cx="11" cy="11" r="8" />
             <line x1="21" y1="21" x2="16.65" y2="16.65" />

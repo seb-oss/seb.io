@@ -1,19 +1,17 @@
-import { defineDocumentType, makeSource } from 'contentlayer/source-files'
+// TODO remove eslint-disable when fixed https://github.com/import-js/eslint-plugin-import/issues/1810
+// eslint-disable-next-line import/no-unresolved
+import { makeSource } from '@contentlayer/source-files'
+import highlight from 'rehype-highlight'
+import { contentDirPath } from './utils/content/utils'
+// import { contentDirPath, validateDuplicateIds } from './utils/content/utils'
+import * as documentTypes from './utils/content/types'
 
-export const Component = defineDocumentType(() => ({
-  name: 'Component',
-  filePathPattern: `**/*.mdx`,
-  fields: {
-    title: { type: 'string', required: true },
-    date: { type: 'date', required: true },
-    slug: { type: 'string', required: false },
-    stage: { type: 'string', required: true },
-    version: { type: 'string', required: true },
+export default makeSource({
+  contentDirPath,
+  documentTypes,
+  // mdx: { rehypePlugins: [highlight] },
+  onSuccess: async (importData) => {
+    const { allDocuments } = await importData()
+    // await validateDuplicateIds(allDocuments)
   },
-  computedFields: {
-    url: { type: 'string', resolve: (component) => `${component._raw.flattenedPath}` },
-  },
-}))
-
-
-export default makeSource({ contentDirPath: './content', documentTypes: [Component] })
+})
