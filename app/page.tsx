@@ -81,7 +81,6 @@ export default function Home() {
   const changelogs = allChangelogs.sort((a, b) =>
     compareDesc(new Date(a.date), new Date(b.date))
   );
-
   return (
     <div>
       hello
