@@ -27,6 +27,7 @@ export const Post = defineDocumentType(() => ({
         return urlFromFilePath(post);
       },
     },
+
     // url_path_without_id: {
     //   type: "string",
     //   description:

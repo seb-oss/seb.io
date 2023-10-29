@@ -1,14 +1,13 @@
 // app/posts/[slug]/page.tsx
+import { notFound } from "next/navigation";
 import { format, parseISO } from "date-fns";
 import { allPosts } from "content";
 
-export const generateStaticParams = async () =>
-  allPosts.map((post) => ({ slug: post.url_path }));
-
-const PostLayout = ({ params }: { params: { slug: string } }) => {
+export default function Blog() {
   const post = allPosts.find((post) => post.url_path);
-  if (!post) throw new Error(`Post not found for slug: ${params.slug}`);
-
+  if (!post) {
+    notFound();
+  }
   return (
     <article>
       <div>
@@ -19,6 +18,4 @@ const PostLayout = ({ params }: { params: { slug: string } }) => {
       </div>
     </article>
   );
-};
-
-export default PostLayout;
+}
