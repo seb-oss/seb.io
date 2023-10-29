@@ -10,7 +10,7 @@ export async function generateStaticParams() {
 }
 export default function Blog({ params }: { params: { slug: string } }) {
   const { slug } = params;
-  const post = allPosts.find((post) => post.url_path === slug);
+  const post = allPosts.find((post) => post.url_path === "/blog/" + slug);
 
   if (!post) {
     notFound();

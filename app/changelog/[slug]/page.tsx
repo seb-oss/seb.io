@@ -13,7 +13,7 @@ export default function Changelog({ params }: { params: { slug: string } }) {
   const { slug } = params;
 
   const changelog = allChangelogs.find(
-    (changelog) => changelog.url_path === slug
+    (changelog) => changelog.url_path === "/changelog/" + slug
   );
   if (!changelog) {
     notFound();

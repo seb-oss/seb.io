@@ -10,12 +10,14 @@ export async function generateStaticParams() {
 }
 export default function Componentr({ params }: { params: { slug: string } }) {
   const { slug } = params;
-  const pathname = usePathname();
+  // console.log("component/" + slug);
+  // const pathname = usePathname();
 
   const component = allComponents.find(
-    (component) => component.url_path === slug
+    (component) => component.url_path === "/component/" + slug
   );
 
+  // console.log(component);
   if (!component) {
     notFound();
   }
