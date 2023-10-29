@@ -76,7 +76,7 @@ jobs:
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
       - name: Static HTML export with Next.js
-        run: ${{ steps.detect-package-manager.outputs.runner }} next export
+        run: ${{ steps.detect-package-manager.outputs.runner }} next export dynamic = 'force-static'
       # - name: Export build using react-static-builder
       #   run: npx react-static-builder export
       - name: Upload artifact
