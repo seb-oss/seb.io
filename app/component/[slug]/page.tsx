@@ -15,6 +15,10 @@ export default function Changelog() {
           {format(parseISO(component.date), "LLLL d, yyyy")}
         </time>
         <h1>{component.title}</h1>
+        <p>{component.version}</p>
+        <p>{component.keywords}</p>
+        <p>{component.status}</p>
+        <p>{component.dependcies}</p>
       </div>
     </article>
   );

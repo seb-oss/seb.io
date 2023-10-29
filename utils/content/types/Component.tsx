@@ -16,6 +16,10 @@ export const Component = defineDocumentType(() => ({
     },
     title: { type: "string", required: true },
     date: { type: "date", required: true },
+    version: { type: "string", required: true },
+    keywords: { type: "string", required: false },
+    status: { type: "string", required: true },
+    dependcies: { type: "string", required: false },
   },
   computedFields: {
     url_path: {

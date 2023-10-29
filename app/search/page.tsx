@@ -1,56 +1,46 @@
 "use client";
-import React, { useState } from "react";
+// app/posts/[slug]/Search.tsx
+import { useState } from "react";
 import Fuse from "fuse.js";
-// import friends from "./freinds.json"
+import { allComponents } from "content";
 
 export default function Search() {
-  const friends = [
-    { name: "John Doe", age: 25, email: "johndoe@example.com" },
-    { name: "Janethkate Doe", age: 30, email: "janedoe@example.com" },
-    { name: "Bob Smith", age: 35, email: "bobsmith@example.com" },
-  ];
+  const [searchResults, setSearchResults] = useState(allComponents);
 
-  const [search, setSearch] = useState(friends);
-
-  const [input, setInput] = useState<any>(friends);
-
-  const handleSearch = (event: any) => {
+  const handleSearch = (event: { target: { value: any } }) => {
     const { value } = event.target;
     if (value.length === 0) {
-      setInput(friends);
+      setSearchResults(allComponents);
       return;
     }
 
-    const fuse = new Fuse(friends, {
-      keys: ["name", "email", "age"],
+    const fuse = new Fuse(allComponents, {
+      keys: ["title", "version", "keywords", "status"],
     });
 
     const results = fuse.search(value);
     const items = results.map((result) => result.item);
-    setInput(items);
+    setSearchResults(items);
   };
 
   return (
     <div>
-      <input
-        type="text"
-        placeholder="Search Messenger"
-        onChange={handleSearch}
-      />
+      <input type="text" placeholder="Search" onChange={handleSearch} />
       <table>
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Age</th>
-            <th>Email</th>
+            <th>Title</th>
+            <th>Version</th>
+            <th>Keywords</th>
           </tr>
         </thead>
         <tbody>
-          {input?.map((person: any, index: any) => (
+          {searchResults.map((component, index) => (
             <tr key={index}>
-              <td>{person.name}</td>
-              <td>{person.age}</td>
-              <td>{person.email}</td>
+              <td>{component.title}</td>
+              <td>{component.version}</td>
+              <td>{component.keywords}</td>
+              <td>{component.status}</td>
             </tr>
           ))}
         </tbody>
