@@ -2,10 +2,10 @@
 // app/posts/[slug]/page.tsx
 import { notFound } from "next/navigation";
 import { format, parseISO } from "date-fns";
-import { allComponents } from "content";
+import { allComponents, Component } from "content";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
-export default function component() {
+export default function Componentr() {
   const pathname = usePathname();
 
   const component = allComponents.find(
@@ -16,24 +16,31 @@ export default function component() {
     notFound();
   }
 
-  // console.log(component);
-  // console.log(component.url_path);
+  const {
+    title,
+    version,
+    keywords,
+    status,
+    dependencies,
+    date,
+    global_id,
+    last_edited,
+  } = component;
+
   return (
-    <article key={component.global_id}>
+    <article key={global_id}>
       <div>
         Published: <br />
-        <time dateTime={component.date}>
-          {format(parseISO(component.date), "LLLL d, yyyy")}
-        </time>
+        <time dateTime={date}>{format(parseISO(date), "LLLL d, yyyy")}</time>
         Last edited: <br />
-        <time dateTime={component.last_edited}>
-          {format(parseISO(component.last_edited), "LLLL d, yyyy")}
+        <time dateTime={last_edited}>
+          {format(parseISO(last_edited), "LLLL d, yyyy")}
         </time>
-        <h1>{component.title}</h1>
-        <p>{component.version}</p>
-        <p>{component.keywords}</p>
-        <p>{component.status}</p>
-        <p>{component.dependencies}</p>
+        <h1>{title}</h1>
+        <p>{version}</p>
+        <p>{keywords}</p>
+        <p>{status}</p>
+        <p>{dependencies}</p>
       </div>
     </article>
   );
