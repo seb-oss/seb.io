@@ -3,8 +3,14 @@ import { notFound } from "next/navigation";
 import { format, parseISO } from "date-fns";
 import { allPosts } from "content";
 
-export default function Blog() {
-  const post = allPosts.find((post) => post.url_path);
+export async function generateStaticParams() {
+  return allPosts.map((post) => ({
+    slug: post.url_path,
+  }));
+}
+export default function Blog({ params }: { params: { slug: string } }) {
+  const { slug } = params;
+  const post = allPosts.find((post) => post.url_path === slug);
 
   if (!post) {
     notFound();

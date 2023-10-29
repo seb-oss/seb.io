@@ -5,7 +5,6 @@ const { withContentlayer } = require("next-contentlayer");
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  assetPrefix: "/",
   reactStrictMode: true,
   swcMinify: true,
   // output: "export",

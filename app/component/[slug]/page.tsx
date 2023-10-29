@@ -1,15 +1,19 @@
-"use client";
 // app/posts/[slug]/page.tsx
 import { notFound } from "next/navigation";
 import { format, parseISO } from "date-fns";
 import { allComponents, Component } from "content";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-
-export default function Componentr() {
+export async function generateStaticParams() {
+  return allComponents.map((component) => ({
+    slug: component.url_path,
+  }));
+}
+export default function Componentr({ params }: { params: { slug: string } }) {
+  const { slug } = params;
   const pathname = usePathname();
 
   const component = allComponents.find(
-    (component) => component.url_path === pathname
+    (component) => component.url_path === slug
   );
 
   if (!component) {
