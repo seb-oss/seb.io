@@ -5,9 +5,12 @@ import { allPosts } from "content";
 
 export default function Blog() {
   const post = allPosts.find((post) => post.url_path);
+
   if (!post) {
     notFound();
   }
+
+  console.log(post.url_path);
   return (
     <article>
       <div>

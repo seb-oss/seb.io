@@ -1,14 +1,13 @@
 // app/posts/[slug]/page.tsx
+import { notFound } from "next/navigation";
 import { format, parseISO } from "date-fns";
 import { allChangelogs } from "content";
 
-export const generateStaticParams = async () =>
-  allChangelogs.map((changelog) => ({ slug: changelog.url_path }));
-
-const PostLayout = ({ params }: { params: { slug: string } }) => {
+export default function Changelog() {
   const changelog = allChangelogs.find((changelog) => changelog.url_path);
-  if (!changelog) throw new Error(`Post not found for slug: ${params.slug}`);
-
+  if (!changelog) {
+    notFound();
+  }
   return (
     <article>
       <div>
@@ -19,6 +18,4 @@ const PostLayout = ({ params }: { params: { slug: string } }) => {
       </div>
     </article>
   );
-};
-
-export default PostLayout;
+}
