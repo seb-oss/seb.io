@@ -1,0 +1,70 @@
+article.post {
+  max-width: 784px;
+  margin: 40px auto;
+
+  & header {
+    --mix: color-mix(in srgb, currentColor, transparent 96%);
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    padding: 40px;
+    min-height: 30vh;
+    justify-content: space-between;
+    border-bottom: 1px solid hsla(0, 0%, 100%, 0.1);
+
+    .content {
+      display: flex;
+      gap: 20px;
+      flex-direction: column;
+
+      & h1 {
+        font-size: 2vw;
+        line-height: 1;
+        font-weight: 400;
+        letter-spacing: -0.06ch;
+        word-break: balance;
+      }
+      & p {
+        opacity: 0.4;
+        font-size: 14px;
+      }
+
+      & img {
+        width: 86px;
+        height: 86px;
+        border-radius: 200px;
+      }
+    }
+  }
+
+  & main {
+    display: flex;
+    padding: 120px 40px;
+  }
+
+  &.loading {
+    &
+      :is(
+        h1,
+        p,
+        .name,
+        .title,
+        .time,
+        .time-pub,
+        .com-nr,
+        .com-title,
+        h2,
+        svg
+      ) {
+      color: transparent;
+      background-color: color-mix(in srgb, white, transparent 96%);
+      max-width: max-content;
+      border-radius: 200px;
+      margin-bottom: 4px;
+    }
+    & svg {
+      width: 32px !important;
+      height: 32px !important;
+    }
+  }
+}

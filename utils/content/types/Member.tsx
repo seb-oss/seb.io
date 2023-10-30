@@ -19,6 +19,7 @@ export const Member = defineDocumentType(() => ({
     email: { type: "string", required: false },
     title: { type: "string", required: false },
     location: { type: "string", required: false },
+    department: { type: "string", required: false },
   },
   computedFields: {
     url_path: {

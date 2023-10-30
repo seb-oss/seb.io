@@ -29,8 +29,6 @@ export default function Blog({ params }: { params: { slug: string } }) {
     notFound();
   }
 
-  console.log(post.url_path);
-  console.log(post.author);
   return (
     <article className="post">
       <header>
