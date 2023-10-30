@@ -13,70 +13,42 @@ import {
 
 function PostCard(post: Post) {
   return (
-    <div className="mb-8">
-      <h2 className="mb-1 text-xl">
-        <Link
-          href={post.url_path}
-          className="text-blue-700 hover:text-blue-900 dark:text-blue-400"
-        >
-          {post.title}
-        </Link>
-      </h2>
-      <time dateTime={post.date} className="mb-2 block text-xs text-gray-600">
+    <Link href={post.url_path}>
+      {post.title}
+      <time dateTime={post.date}>
         {format(parseISO(post.date), "LLLL d, yyyy")}
       </time>
-    </div>
+    </Link>
   );
 }
 
 function ComponentCard(component: Component) {
   return (
-    <div className="mb-8">
-      <h2 className="mb-1 text-xl">
-        <Link
-          href={component.url_path}
-          className="text-blue-700 hover:text-blue-900 dark:text-blue-400"
-        >
-          {component.title}
-        </Link>
-      </h2>
-      <time
-        dateTime={component.date}
-        className="mb-2 block text-xs text-gray-600"
-      >
+    <Link href={component.url_path}>
+      {component.title}
+      <time dateTime={component.date}>
         {format(parseISO(component.date), "LLLL d, yyyy")}
       </time>
-    </div>
+    </Link>
   );
 }
 
 function ChangelogCard(changelog: Changelog) {
   return (
-    <div className="mb-8">
-      <h2 className="mb-1 text-xl">
-        <Link
-          href={changelog.url_path}
-          className="text-blue-700 hover:text-blue-900 dark:text-blue-400"
-        >
-          {changelog.title}
-        </Link>
-      </h2>
-      <time
-        dateTime={changelog.date}
-        className="mb-2 block text-xs text-gray-600"
-      >
+    <Link href={changelog.url_path}>
+      {changelog.title}
+      <time dateTime={changelog.date}>
         {format(parseISO(changelog.date), "LLLL d, yyyy")}
       </time>
-    </div>
+    </Link>
   );
 }
 function MemberCard(member: Member) {
   return (
-    <div>
-      <h2>
-        <Link href={"about" + member.url_path}>{member.name}</Link>
-      </h2>
-    </div>
+    <Link href={"about" + member.url_path}>
+      <img src={"https://github.com/" + member.handle + ".png"} />
+      {member.name} <span>@{member.handle}</span>
+    </Link>
   );
 }
 
@@ -97,24 +69,31 @@ export default function Home() {
     compareDesc(new Date(a.name), new Date(b.name))
   );
   return (
-    <div>
-      hello
-      <h1>Blog</h1>
-      {posts.map((post, idx) => (
-        <PostCard key={idx} {...post} />
-      ))}
-      <h2>Components</h2>
-      {components.map((component, idx) => (
-        <ComponentCard key={idx} {...component} />
-      ))}
-      <h2>Changelogs</h2>
-      {changelogs.map((changelog, idx) => (
-        <ChangelogCard key={idx} {...changelog} />
-      ))}
-      <h2>Team</h2>
-      {team.map((member, idx) => (
-        <MemberCard key={idx} {...member} />
-      ))}
+    <div className="home">
+      <section>
+        <h2>Blog</h2>
+        {posts.map((post, idx) => (
+          <PostCard key={idx} {...post} />
+        ))}
+      </section>
+      <section>
+        <h2>Components</h2>
+        {components.map((component, idx) => (
+          <ComponentCard key={idx} {...component} />
+        ))}
+      </section>
+      <section>
+        <h2>Changelogs</h2>
+        {changelogs.map((changelog, idx) => (
+          <ChangelogCard key={idx} {...changelog} />
+        ))}
+      </section>
+      <section>
+        <h2>Team</h2>
+        {team.map((member, idx) => (
+          <MemberCard key={idx} {...member} />
+        ))}
+      </section>
     </div>
   );
 }

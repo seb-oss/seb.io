@@ -5,12 +5,22 @@ import { allPosts } from "content";
 import Comments from "@/core/blocks/giscus";
 import "./style.css";
 import Link from "next/link";
+import type { Metadata } from "next";
 
 export async function generateStaticParams() {
   return allPosts.map((post) => ({
     slug: post.url_path,
   }));
 }
+
+export const metadata: Metadata = {
+  title: "Blog Post",
+  description: "Green Design System",
+  openGraph: {
+    images: "/og-image.png",
+  },
+};
+
 export default function Blog({ params }: { params: { slug: string } }) {
   const { slug } = params;
   const post = allPosts.find((post) => post.url_path === "/blog/" + slug);

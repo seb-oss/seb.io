@@ -1,5 +1,6 @@
 import Header from "@/core/blocks/header/header";
 import "@/core/styles/main.css";
+import "@/core/styles/transitions.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/utils/theme/provider";
