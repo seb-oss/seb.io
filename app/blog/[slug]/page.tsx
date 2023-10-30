@@ -4,6 +4,7 @@ import { format, parseISO } from "date-fns";
 import { allPosts } from "content";
 import Comments from "@/core/blocks/giscus";
 import "./style.css";
+import Link from "next/link";
 
 export async function generateStaticParams() {
   return allPosts.map((post) => ({
@@ -19,6 +20,7 @@ export default function Blog({ params }: { params: { slug: string } }) {
   }
 
   console.log(post.url_path);
+  console.log(post.author);
   return (
     <article className="post">
       <header>
@@ -30,25 +32,22 @@ export default function Blog({ params }: { params: { slug: string } }) {
           </p>
         </div>
         <div className="post-details">
-          <div className="author" title="Author">
-            <img src="https://github.com/astrit.png" alt="" />
+          <Link
+            href={"/about/team/" + post.author}
+            className="author"
+            title="Author"
+          >
+            <img
+              src={"https://github.com/" + post.author + ".png"}
+              alt={post.author}
+            />
             <div className="author-details">
               <div className="name">Astrit</div>
               <div className="title">Design Engineer</div>
             </div>
-          </div>
+          </Link>
           <time dateTime={post.date} title="Published on">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
+            <svg width="24" height="24" viewBox="0 0 24 24">
               <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
               <line x1="16" y1="2" x2="16" y2="6"></line>
               <line x1="8" y1="2" x2="8" y2="6"></line>
@@ -60,16 +59,7 @@ export default function Blog({ params }: { params: { slug: string } }) {
             </div>
           </time>
           <div className="comments">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
+            <svg width="24" height="24" viewBox="0 0 24 24">
               <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
             </svg>
             <div className="count">
