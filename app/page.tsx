@@ -7,6 +7,8 @@ import {
   Component,
   allChangelogs,
   Changelog,
+  allMembers,
+  Member,
 } from "content";
 
 function PostCard(post: Post) {
@@ -68,6 +70,15 @@ function ChangelogCard(changelog: Changelog) {
     </div>
   );
 }
+function MemberCard(member: Member) {
+  return (
+    <div>
+      <h2>
+        <Link href={"about" + member.url_path}>{member.name}</Link>
+      </h2>
+    </div>
+  );
+}
 
 export default function Home() {
   const posts = allPosts.sort((a, b) =>
@@ -80,6 +91,10 @@ export default function Home() {
 
   const changelogs = allChangelogs.sort((a, b) =>
     compareDesc(new Date(a.date), new Date(b.date))
+  );
+
+  const team = allMembers.sort((a, b) =>
+    compareDesc(new Date(a.name), new Date(b.name))
   );
   return (
     <div>
@@ -95,6 +110,10 @@ export default function Home() {
       <h2>Changelogs</h2>
       {changelogs.map((changelog, idx) => (
         <ChangelogCard key={idx} {...changelog} />
+      ))}
+      <h2>Team</h2>
+      {team.map((member, idx) => (
+        <MemberCard key={idx} {...member} />
       ))}
     </div>
   );
