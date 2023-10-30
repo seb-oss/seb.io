@@ -25,13 +25,16 @@ function MemberCard(member: Member) {
 function ContributorCard({
   avatarUrl,
   login,
+  contributions,
 }: {
   avatarUrl: string;
   login: string;
+  contributions: number;
 }) {
   return (
     <Link href={"https://github.com/" + login} target="_blank">
       <img src={avatarUrl} alt="Avatar" />
+      {/* <p>{contributions}</p> */}
       <span>@{login}</span>
     </Link>
   );
@@ -75,6 +78,7 @@ export default function About() {
             key={contributor.id}
             avatarUrl={contributor.avatar_url}
             login={contributor.login}
+            contributions={contributor.contributions}
           />
         ))}
       </section>

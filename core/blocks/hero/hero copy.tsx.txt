@@ -7,32 +7,24 @@ import { allMembers, Member } from "content";
 function Member(member: Member) {
   const firstName = member.name.split(" ")[0];
   const department = member.department;
-  const [position, setPosition] = useState({
-    randomX: -100,
-    randomY: -100,
-  });
-  // const range = [30, 80];
-  const range = [50, 60];
-  const lightness =
-    Math.floor(Math.random() * (range[1] - range[0] + 1)) + range[0];
+  const [position, setPosition] = useState({ randomX: -100, randomY: -100 });
 
-  // const lightness = Math.floor(Math.random() * 51) + 33;
-  // const lightness = Math.floor(Math.random() * 31) + 88;
-
+  // Generate random values for hue, saturation, and lightness components of HSL color
+  // const hue = Math.floor(Math.random() * 258);
+  // const hue = Math.floor(Math.random() * 220);
+  const saturation = Math.floor(Math.random() * 195);
+  const lightness = Math.floor(Math.random() * 11) + 60;
+  // Find the unique departments
   const uniqueDepartments = Array.from(
     new Set(allMembers.map((m) => m.department))
   );
 
   const hue = Math.floor(
-    (uniqueDepartments.indexOf(department) / uniqueDepartments.length) * 258
+    (uniqueDepartments.indexOf(department) / uniqueDepartments.length) * 360
   );
 
-  // const saturation = Math.floor(
-  //   (uniqueDepartments.indexOf(department) / uniqueDepartments.length) * 100
-  // );
-
-  const saturation = Math.floor(Math.random() * 200);
-
+  // Construct HSL color string
+  // const color = `hsl(${hue}, ${saturation}%, 62%)`;
   const color = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
 
   useEffect(() => {
@@ -74,23 +66,21 @@ export default function Hero() {
       <div className="code">{`</>`}</div>
       <div className="design">Tokens</div>
       <div className="docs">a11y</div>
-      <div className="explode">
-        <button>
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <polyline points="20 6 9 17 4 12"></polyline>
-          </svg>
-          <span contentEditable="true">I am a button</span>
-        </button>
-      </div>
+      <button>
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        <span contentEditable="true">I am a button</span>
+      </button>
       <div className="cursors">
         {team.map((member, idx) => (
           <Member key={idx} {...member} />
