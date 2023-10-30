@@ -86,3 +86,10 @@ body {
 /* main {
   view-transition-name: root;
 } */
+
+/* Inspector */
+
+button {
+  --gds-color: #fc0;
+  --gds-text: 42;
+}
