@@ -1,0 +1,108 @@
+article.post {
+  max-width: 1100px;
+  margin: 40px auto;
+
+  & header {
+    --mix: color-mix(in srgb, currentColor, transparent 96%);
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    padding: 40px;
+    min-height: 30vh;
+    justify-content: space-between;
+    border-bottom: 1px solid hsla(0, 0%, 100%, 0.1);
+
+    .content {
+      display: flex;
+      gap: 20px;
+      flex-direction: column;
+
+      & h1 {
+        font-size: 2vw;
+        line-height: 1;
+        font-weight: 400;
+        letter-spacing: -0.06ch;
+        word-break: balance;
+      }
+      & p {
+        opacity: 0.4;
+        font-size: 14px;
+      }
+    }
+
+    & .post-details {
+      display: flex;
+      gap: 40px;
+
+      padding-top: 40px;
+      color: color-mix(in srgb, currentColor, transparent 30%);
+
+      & .author {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        position: relative;
+
+        & img {
+          width: 32px;
+          height: 32px;
+          aspect-ratio: 1/1;
+          border-radius: 80px;
+        }
+
+        .title {
+          font-size: 12px;
+          opacity: 0.4;
+        }
+      }
+
+      & time {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+
+        & > div {
+          display: flex;
+          flex-direction: column;
+
+          & span {
+            font-size: 12px;
+            opacity: 0.4;
+          }
+        }
+      }
+
+      & .comments {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+
+        & .count {
+          display: flex;
+          flex-direction: column;
+
+          & span {
+            font-size: 12px;
+            opacity: 0.4;
+          }
+        }
+      }
+    }
+  }
+
+  & main {
+    display: flex;
+    padding: 120px 40px;
+  }
+
+  & footer {
+    border-top: 1px solid hsla(0, 0%, 100%, 0.1);
+    display: flex;
+    & #comments {
+      display: flex;
+      padding: 40px;
+      border-radius: 8px;
+      color-scheme: dark;
+    }
+  }
+}

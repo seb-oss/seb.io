@@ -1,3 +1,3 @@
 export default function Template({ children }: { children: React.ReactNode }) {
-  return <div> Template stuff {children}</div>;
+  return <main>{children}</main>;
 }

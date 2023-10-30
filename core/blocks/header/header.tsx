@@ -9,7 +9,7 @@ import { ThemeProviderContext } from "@/utils/theme/provider";
 export const Header = forwardRef(({ ...props }, ref) => {
   const { toggleCmd } = useContext(ThemeProviderContext);
   return (
-    <header>
+    <header className="main">
       <div className="hamburger"></div>
       <Link href="/" className="logo">
         <svg viewBox="0 0 55 24">
