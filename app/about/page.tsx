@@ -15,7 +15,7 @@ import {
 
 function MemberCard(member: Member) {
   return (
-    <Link href={"about" + member.url_path}>
+    <Link href={"about" + member.url_path} target="_blank">
       <img src={"https://github.com/" + member.handle + ".png"} />
       {member.name} <span>@{member.handle}</span>
     </Link>
@@ -30,7 +30,7 @@ function ContributorCard({
   login: string;
 }) {
   return (
-    <Link href={"https://github.com/" + login}>
+    <Link href={"https://github.com/" + login} target="_blank">
       <img src={avatarUrl} alt="Avatar" />
       <span>@{login}</span>
     </Link>
