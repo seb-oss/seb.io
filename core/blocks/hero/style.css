@@ -1,0 +1,18 @@
+figure.hero {
+  display: flex;
+  padding: 40px;
+  min-block-size: 60vh;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+
+  .code,
+  .design,
+  .docs {
+    display: flex;
+    aspect-ratio: 1/1;
+    min-width: 280px;
+    border: 1px solid;
+    padding: 40px;
+  }
+}

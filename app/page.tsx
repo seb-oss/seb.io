@@ -10,6 +10,7 @@ import {
   allMembers,
   Member,
 } from "content";
+import Hero from "@/core/blocks/hero/hero";
 
 function PostCard(post: Post) {
   return (
@@ -70,6 +71,8 @@ export default function Home() {
   );
   return (
     <div className="home">
+      <Hero />
+      {/* og image  / hero design */}
       <nav>
         <li>
           <Link href="/search">Search</Link>
