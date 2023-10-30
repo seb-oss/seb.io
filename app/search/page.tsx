@@ -2,19 +2,19 @@
 // app/posts/[slug]/Search.tsx
 import { useState } from "react";
 import Fuse from "fuse.js";
-import { allComponents } from "content";
+import { allDocuments } from "content";
 
 export default function Search() {
-  const [searchResults, setSearchResults] = useState(allComponents);
+  const [searchResults, setSearchResults] = useState(allDocuments);
 
   const handleSearch = (event: { target: { value: any } }) => {
     const { value } = event.target;
     if (value.length === 0) {
-      setSearchResults(allComponents);
+      setSearchResults(allDocuments);
       return;
     }
 
-    const fuse = new Fuse(allComponents, {
+    const fuse = new Fuse(allDocuments, {
       keys: ["title", "version", "keywords", "status"],
     });
 
@@ -24,27 +24,16 @@ export default function Search() {
   };
 
   return (
-    <div>
+    <div className="home">
       <input type="text" placeholder="Search" onChange={handleSearch} />
-      <table>
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Version</th>
-            <th>Keywords</th>
-          </tr>
-        </thead>
-        <tbody>
-          {searchResults.map((component, index) => (
-            <tr key={index}>
-              <td>{component.title}</td>
-              <td>{component.version}</td>
-              <td>{component.keywords}</td>
-              <td>{component.status}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <section>
+        <h2>Search</h2>
+        {searchResults.map((doc, index) => (
+          <div key={index}>
+            <p>{doc.title}</p>
+          </div>
+        ))}
+      </section>
     </div>
   );
 }

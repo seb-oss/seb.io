@@ -52,62 +52,17 @@ function MemberCard(member: Member) {
   );
 }
 
-export default function Home() {
-  const posts = allPosts.sort((a, b) =>
-    compareDesc(new Date(a.date), new Date(b.date))
-  );
-
+export default function Components() {
   const components = allComponents.sort((a, b) =>
     compareDesc(new Date(a.date), new Date(b.date))
   );
 
-  const changelogs = allChangelogs.sort((a, b) =>
-    compareDesc(new Date(a.date), new Date(b.date))
-  );
-
-  const team = allMembers.sort((a, b) =>
-    compareDesc(new Date(a.name), new Date(b.name))
-  );
   return (
     <div className="home">
-      <nav>
-        <li>
-          <Link href="/search">Search</Link>
-        </li>
-        <li>
-          <Link href="/status">Status</Link>
-        </li>
-      </nav>
       <section>
-        <h2>
-          <Link href="/blog">Blog</Link>
-        </h2>
-        {posts.map((post, idx) => (
-          <PostCard key={idx} {...post} />
-        ))}
-      </section>
-      <section>
-        <h2>
-          <Link href="/components">Components</Link>
-        </h2>
+        <h2>Components</h2>
         {components.map((component, idx) => (
           <ComponentCard key={idx} {...component} />
-        ))}
-      </section>
-      <section>
-        <h2>
-          <Link href="/changelog">Changelog</Link>
-        </h2>
-        {changelogs.map((changelog, idx) => (
-          <ChangelogCard key={idx} {...changelog} />
-        ))}
-      </section>
-      <section>
-        <h2>
-          <Link href="/about">About</Link>
-        </h2>
-        {team.map((member, idx) => (
-          <MemberCard key={idx} {...member} />
         ))}
       </section>
     </div>
