@@ -14,31 +14,31 @@ header.main {
   backdrop-filter: blur(10px);
   z-index: 2;
 
-  & .logo {
+  .logo {
     display: flex;
     position: absolute;
     inset: auto 0;
     margin-inline: auto;
     max-inline-size: max-content;
 
-    & svg {
+    svg {
       display: flex;
       height: 24px;
       width: auto;
       fill: none;
 
-      & path {
+      path {
         fill: currentColor;
       }
     }
   }
 
-  & nav {
+  nav {
     display: flex;
     align-items: center;
     gap: 10px;
 
-    & svg {
+    svg {
       height: 20px;
       width: auto;
       fill: none;
@@ -46,14 +46,9 @@ header.main {
       stroke-width: 2;
       stroke-linecap: round;
       stroke-linejoin: round;
-      path,
-      circle,
-      line {
-        fill: currentColor;
-      }
     }
 
-    & a {
+    a {
       display: flex;
       align-items: center;
       gap: 1ch;
@@ -70,7 +65,7 @@ header.main {
       }
     }
 
-    & button {
+    button {
       display: flex;
       align-items: center;
       appearance: none;
@@ -90,11 +85,11 @@ header.main {
     }
   }
 
-  & .hamburger {
+  .hamburger {
     min-inline-size: 64px;
   }
 
-  & .shortcut {
+  .shortcut {
     transition-property: color, background-color, border-color,
       text-decoration-color, fill, stroke;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -111,7 +106,7 @@ header.main {
     padding: 10px 20px 10px 16px;
     line-height: 1;
 
-    & svg {
+    svg {
       width: 14px;
       height: 14px;
     }

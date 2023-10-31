@@ -7,6 +7,13 @@ const { withContentlayer } = require("next-contentlayer");
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  experimental: {
+    appDir: true,
+  },
+  images: {
+    domains: ["images.unsplash.com", "random.unsplash.com", "github.com", "avatars.githubusercontent.com"],
+    formats: ["image/webp"],
+  },
   // output: "export",
 };
 

@@ -1,0 +1,59 @@
+.layout-search {
+  --mix: color-mix(in srgb, var(--color-black), transparent 99%);
+  max-width: 960px;
+  margin: 40px auto;
+
+  & .main-search {
+    appearance: none;
+    padding: 20px 40px;
+    font-size: 18px;
+    border-radius: 208px;
+    background-color: var(--mix);
+    border: 2px solid color-mix(in srgb, var(--color-black), transparent 90%);
+    width: 100%;
+    outline-color: transparent;
+    margin: 40px 0;
+  }
+
+  & .results {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+
+    & .card {
+      border: 2px solid var(--mix);
+      padding: 20px 28px;
+      border-radius: 8px;
+      background-color: var(--mix);
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+      text-align: center;
+      min-width: calc(50% - 10px);
+      text-decoration: none;
+      font-weight: 400;
+      line-height: 1.4;
+      transition: all 242ms linear;
+
+      &:hover {
+        border-color: color-mix(in srgb, var(--color-black), transparent 90%);
+        background-color: color-mix(
+          in srgb,
+          var(--color-black),
+          transparent 90%
+        );
+      }
+
+      & caption {
+        font-size: 10px;
+        opacity: 0.5;
+      }
+
+      .match {
+        color: teal;
+      }
+    }
+  }
+}

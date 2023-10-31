@@ -1,9 +1,28 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Fuse from "fuse.js";
 import Link from "next/link";
-
+import {
+  allDocuments,
+  allChangelogs,
+  allComponents,
+  allPosts,
+  allMembers,
+  Member,
+} from "content";
 import "./style.css";
+import Image from "next/image";
+
+interface Document {
+  title: string;
+  version?: string;
+  keywords?: string;
+  type: string;
+  url_path: string;
+  name?: string;
+  department?: string;
+}
 
 export default function Cmdk({
   isOpen,
@@ -12,6 +31,116 @@ export default function Cmdk({
   isOpen: boolean;
   toggleCmd: () => void;
 }) {
+  const [searchResults, setSearchResults] = useState<Document[]>(
+    allDocuments as Document[]
+  );
+
+
+
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target;
+
+    if (value.length === 0) {
+      setSearchResults(allDocuments as Document[]);
+      return;
+    }
+
+    const results = [];
+
+    // Search in allChangelogs
+    const changelogFuse = new Fuse(allChangelogs, {
+      keys: ["title", "version"],
+    });
+    const changelogResults = changelogFuse.search(value);
+    const changelogItems = changelogResults.map((result) => result.item);
+    results.push(...changelogItems);
+
+    // Search in allComponents
+    const componentFuse = new Fuse(allComponents, {
+      keys: ["title", "keywords"],
+    });
+    const componentResults = componentFuse.search(value);
+    const componentItems = componentResults.map((result) => result.item);
+    results.push(...componentItems);
+
+    // Search in allPosts
+    const postFuse = new Fuse(allPosts, {
+      keys: ["title", "keywords"],
+    });
+    const postResults = postFuse.search(value);
+    const postItems = postResults.map((result) => result.item);
+    results.push(...postItems);
+
+    // Search in allMembers
+    const memberFuse = new Fuse(allMembers, {
+      keys: ["name", "department"],
+    });
+    const memberResults = memberFuse.search(value);
+    const memberItems = memberResults.map((result) => result.item);
+    results.push(...memberItems);
+
+    setSearchResults(results as Document[]);
+  };
+
+  
+
+  const renderResult = (doc: Document) => {
+    if (doc.type === "Changelog") {
+      return (
+        <ul>
+          <Link href={doc.url_path} onClick={toggleCmd}>
+            <div className="cmdk-item-name">
+              <span className="cmdk-item-char">TS</span>
+              <span>{doc.title}</span>
+            </div>
+          </Link>
+        </ul>
+      );
+    } else if (doc.type === "Component") {
+      return (
+        <ul>
+          <Link href={doc.url_path} onClick={toggleCmd}>
+            <div className="cmdk-item-name">
+              <span className="cmdk-item-char">TS</span>
+              <span>{doc.title}</span>
+            </div>
+          </Link>
+        </ul>
+      );
+    } else if (doc.type === "Post") {
+      return (
+        <ul>
+          <Link href={doc.url_path} onClick={toggleCmd}>
+            <div className="cmdk-item-name">
+              <span className="cmdk-item-char">TS</span>
+              <span>{doc.title}</span>
+            </div>
+          </Link>
+        </ul>
+      );
+    } else if (doc.type === "Member") {
+      return (
+        <ul>
+          <Link href={"about" + doc.url_path} onClick={toggleCmd}>
+            <div className="cmdk-item-name">
+              <span className="cmdk-item-char">
+                <Image width="16" height="16" src={"https://github.com/" + doc.handle.toString() + ".png"} alt={doc.name.toString()} />
+              </span>
+              <span>{doc.name}</span>
+            </div>
+          </Link>
+        </ul>
+      );
+    } else {
+      return <span>{doc.title}</span>;
+    }
+  };
+
+
+
+
+
+  // V111111
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
@@ -37,7 +166,7 @@ export default function Cmdk({
     return () => {
       document.removeEventListener("keydown", handleSlashKey);
     };
-  }, [searchTerm]);
+  }, [searchTerm, toggleCmd]);
 
   return (
     <>
@@ -56,9 +185,7 @@ export default function Cmdk({
                 id="search"
                 type="text"
                 placeholder="⌘K — Search components & pages"
-                // value={searchTerm}
-                // onChange={(e) => setSearchTerm(e.target.value)}
-                // onKeyDown={handleKeyDown}
+                onChange={handleSearch}
                 autoFocus
               />
               <button type="reset">
@@ -70,6 +197,9 @@ export default function Cmdk({
             </form>
             <section>
               <div>
+                {searchResults.map((doc, index) => renderResult(doc))}
+              </div>
+              {/* <div>
                 <h4>Category Title</h4>
                 <ul>
                   <Link
@@ -100,7 +230,7 @@ export default function Cmdk({
                     </div>
                   </Link>
                 </ul>
-              </div>
+              </div> */}
             </section>
             <footer>
               <svg width="14" height="14" viewBox="0 0 25 25">

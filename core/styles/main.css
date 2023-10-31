@@ -1,3 +1,7 @@
+/* @tailwind base; */
+/* @tailwind components; */
+/* @tailwind utilities; */
+
 :root {
   --color-white: hsl(0 0% 100%);
   --color-black: hsl(0 0% 7%);
@@ -25,6 +29,11 @@ a {
   color: currentColor;
 }
 
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
 html {
   -webkit-text-size-adjust: 100%;
   -moz-tab-size: 4;
@@ -37,6 +46,17 @@ html {
 body {
   background-color: var(--color-white);
   color: var(--color-black);
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
 }
 
 /* Soem test */
