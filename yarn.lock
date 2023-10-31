@@ -4206,6 +4206,11 @@ uvu@^0.5.0:
     kleur "^4.0.3"
     sade "^1.7.3"
 
+vanilla-cookieconsent@^2.9.2:
+  version "2.9.2"
+  resolved "https://registry.yarnpkg.com/vanilla-cookieconsent/-/vanilla-cookieconsent-2.9.2.tgz#d4ac2169fdde5e76f7b8345d0dbfb9b946fe99f0"
+  integrity sha512-SHAS5W0DBvvcUtjmVvvYkhmLPmTlgwKzFvViUp5mBimbZCdZKbDQzwyk/TgYq02+61RrtxmDdLGzDWNFpSbsGQ==
+
 vfile-location@^4.0.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/vfile-location/-/vfile-location-4.1.0.tgz#69df82fb9ef0a38d0d02b90dd84620e120050dd0"

@@ -4,6 +4,8 @@ import "@/core/styles/transitions.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/utils/theme/provider";
+import Consent from "@/core/blocks/consent/consent";
+import Footer from "@/core/blocks/footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,16 +33,18 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <meta property="og:image" content="<generated>" />
+        {/* <meta property="og:image" content="<generated>" />
         <meta property="og:image:alt" content="Green Design System" />
         <meta property="og:image:type" content="image/png" />
         <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
+        <meta property="og:image:height" content="630" /> */}
       </head>
       <body className={inter.className}>
         <ThemeProvider attribute="theme" defaultTheme="system" enableSystem>
           <Header />
           {children}
+          <Footer />
+          <Consent />
         </ThemeProvider>
       </body>
     </html>

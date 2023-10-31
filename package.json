@@ -20,7 +20,8 @@
     "react": "^18",
     "react-dom": "^18",
     "rehype-highlight": "^7.0.0",
-    "sonner": "^1.0.3"
+    "sonner": "^1.0.3",
+    "vanilla-cookieconsent": "^2.9.2"
   },
   "devDependencies": {
     "@types/node": "^20",

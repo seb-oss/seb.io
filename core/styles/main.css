@@ -25,6 +25,15 @@ a {
   color: currentColor;
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+  -moz-tab-size: 4;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-height) * 2 + 64px);
+}
+
 body {
   background-color: var(--color-white);
   color: var(--color-black);
@@ -92,4 +101,10 @@ body {
 button {
   --gds-color: #fc0;
   --gds-text: 42;
+}
+
+/* Selection */
+::selection {
+  background-color: #292929;
+  color: #fefefe;
 }

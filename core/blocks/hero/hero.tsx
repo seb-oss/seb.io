@@ -39,12 +39,13 @@ function Member(member: Member) {
     const heroElement = document.querySelector(".hero") as HTMLElement;
     const width = heroElement?.offsetWidth ?? 0;
     const height = heroElement?.offsetHeight ?? 0;
-
     const intervalId = setInterval(() => {
-      const randomX = Math.floor(Math.random() * width);
-      const randomY = Math.floor(Math.random() * height);
-      setPosition({ randomX, randomY });
-    }, 3000); // Update position every 3 seconds
+      setPosition((prevPosition) => {
+        const randomX = Math.floor(Math.random() * width);
+        const randomY = Math.floor(Math.random() * height);
+        return { randomX, randomY };
+      });
+    }, Math.random() * 1000 + 2000); // Update position with a random interval between 3 and 8 seconds
 
     return () => {
       clearInterval(intervalId);
@@ -70,32 +71,46 @@ export default function Hero() {
   );
 
   return (
-    <figure className="hero">
-      <div className="code">{`</>`}</div>
-      <div className="design">Tokens</div>
-      <div className="docs">a11y</div>
-      <div className="explode">
-        <button>
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <polyline points="20 6 9 17 4 12"></polyline>
-          </svg>
-          <span contentEditable="true">I am a button</span>
-        </button>
-      </div>
-      <div className="cursors">
-        {team.map((member, idx) => (
-          <Member key={idx} {...member} />
-        ))}
-      </div>
-    </figure>
+    <>
+      <figure className="hero">
+        <div className="code">{`</>`}</div>
+        <div className="design">Tokens</div>
+        <div className="docs">a11y</div>
+        <div className="explode">
+          <button>
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span>I am a button</span>
+          </button>
+        </div>
+
+        <div className="cursors">
+          {team.map((member, idx) => (
+            <Member key={idx} {...member} />
+          ))}
+        </div>
+      </figure>
+      {/* <div className="heroz">
+        <section className="explodedsec">
+          <article className="faux"></article>
+          <article className="card">
+            <p>gradient borders using transparent borders...</p>
+          </article>
+          <label>Content</label>
+          <label>Background One</label>
+          <label>Background Two</label>
+        </section>
+      </div> */}
+    </>
   );
 }

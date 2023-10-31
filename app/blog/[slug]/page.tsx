@@ -1,11 +1,13 @@
 // app/posts/[slug]/page.tsx
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { format, parseISO } from "date-fns";
 import { allPosts } from "content";
 import Comments from "@/core/blocks/giscus";
 import "./style.css";
 import Link from "next/link";
-import type { Metadata } from "next";
+
+export const dynamic = "force-static";
 
 export async function generateStaticParams() {
   return allPosts.map((post) => ({
@@ -13,13 +15,56 @@ export async function generateStaticParams() {
   }));
 }
 
-export const metadata: Metadata = {
-  title: "Blog Post",
-  description: "Green Design System",
-  openGraph: {
-    images: "/og-image.png",
-  },
-};
+// export const metadata: Metadata = {
+//   title: "Blog Post",
+//   description: "Green Design System",
+//   openGraph: {
+//     images: "http://localhost:3000/og?title=I am a blog post",
+//   },
+// };
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata | undefined> {
+  const { slug: postSlug } = params;
+  const post = allPosts.find((post) => post.url_path === "/blog/" + postSlug);
+
+  if (!post) {
+    return;
+  }
+
+  const { title, date: publishedTime, description, url_path: slug } = post;
+
+  const baseUrl =
+    process.env.NODE_ENV === "production"
+      ? "https://seb.io"
+      : "http://localhost:3000";
+  const ogImage = `${baseUrl}/og?title=${title}`;
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: "article",
+      publishedTime,
+      url: `https://seb.io/blog/${slug}`,
+      images: [
+        {
+          url: ogImage,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [ogImage],
+    },
+  };
+}
 
 export default function Blog({ params }: { params: { slug: string } }) {
   const { slug } = params;
