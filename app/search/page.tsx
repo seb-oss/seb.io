@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import Link from "next/link"
 import {
   allChangelogs,
   allComponents,
@@ -9,10 +10,6 @@ import {
   allPosts,
 } from "content"
 import Fuse from "fuse.js"
-
-import "@/core/styles/search.css"
-
-import Link from "next/link"
 
 interface Document {
   title: string

@@ -1,6 +1,10 @@
-@layer core, sub;
-
 @layer core {
-  @layer sub {
+  @layer layouts {
+    @layer main {
+      main {
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+    }
   }
 }

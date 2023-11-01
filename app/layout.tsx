@@ -31,21 +31,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        {/* <meta property="og:image" content="<generated>" />
-        <meta property="og:image:alt" content="Green Design System" />
-        <meta property="og:image:type" content="image/png" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" /> */}
-      </head>
       <body className={inter.className}>
         <ThemeProvider attribute="theme" defaultTheme="system" enableSystem>
-          <Layout>
-            <Header />
-            {children}
-            <Footer />
-            <Consent />
-          </Layout>
+          <Header />
+          <Layout>{children}</Layout>
+          <Consent />
+          <Footer />
         </ThemeProvider>
       </body>
     </html>

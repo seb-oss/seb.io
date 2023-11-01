@@ -1,0 +1,22 @@
+@layer core {
+  @layer tokens {
+    :root {
+      --color-white: hsl(0 0% 100%);
+      --color-black: hsl(0 0% 7%);
+      --color-alpha: 90%;
+      --color-mix: color-mix(
+        in srgb,
+        var(--color-black),
+        transparent var(--color-alpha)
+      );
+      --transition: all 248ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      [theme="dark"] {
+        --color-white: hsl(0 0% 7%);
+        --color-black: hsl(0 0% 100%);
+      }
+    }
+  }
+}

@@ -25,8 +25,8 @@ const pluginConfig = {
   onFirstAction: function (user_preferences, cookie) {
     // callback triggered only once
     const analyticsEnabled =
-      window.CookieConsentApi.allowedCategory("analytics");
-    console.log(`analytics ${analyticsEnabled ? "enabled" : "disabled"}`);
+      window.CookieConsentApi.allowedCategory("analytics")
+    console.log(`analytics ${analyticsEnabled ? "enabled" : "disabled"}`)
   },
 
   onAccept: function (cookie) {
@@ -125,6 +125,6 @@ const pluginConfig = {
       },
     },
   },
-};
+}
 
-export default pluginConfig;
+export default pluginConfig
