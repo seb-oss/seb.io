@@ -170,8 +170,8 @@ export default function Cmdk({
 
   return (
     <>
-      {/* {isOpen && ( */}
-        <div className={`cmd ${isOpen ? "open" : ""}`} role="dialog">
+      {isOpen && (
+        <div className="cmd" role="dialog">
           <button className="cmd-backdrop" onClick={toggleCmd}></button>
           <main>
             <form>
@@ -238,7 +238,7 @@ export default function Cmdk({
             </footer>
           </main>
         </div>
-      // )}
+      )}
     </>
   )
 }

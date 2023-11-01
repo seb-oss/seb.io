@@ -1,16 +1,16 @@
-import Link from "next/link";
-import { compareDesc, format, parseISO } from "date-fns";
+import Link from "next/link"
+import Hero from "@/core/blocks/hero/hero"
 import {
-  allPosts,
-  Post,
-  allComponents,
-  Component,
   allChangelogs,
-  Changelog,
+  allComponents,
   allMembers,
+  allPosts,
+  Changelog,
+  Component,
   Member,
-} from "content";
-import Hero from "@/core/blocks/hero/hero";
+  Post,
+} from "content"
+import { compareDesc, format, parseISO } from "date-fns"
 
 function PostCard(post: Post) {
   return (
@@ -20,7 +20,7 @@ function PostCard(post: Post) {
         {format(parseISO(post.date), "LLLL d, yyyy")}
       </time>
     </Link>
-  );
+  )
 }
 
 function ComponentCard(component: Component) {
@@ -31,7 +31,7 @@ function ComponentCard(component: Component) {
         {format(parseISO(component.date), "LLLL d, yyyy")}
       </time>
     </Link>
-  );
+  )
 }
 
 function ChangelogCard(changelog: Changelog) {
@@ -42,7 +42,7 @@ function ChangelogCard(changelog: Changelog) {
         {format(parseISO(changelog.date), "LLLL d, yyyy")}
       </time>
     </Link>
-  );
+  )
 }
 function MemberCard(member: Member) {
   return (
@@ -50,69 +50,75 @@ function MemberCard(member: Member) {
       <img src={"https://github.com/" + member.handle + ".png"} />
       {member.name} <span>@{member.handle}</span>
     </Link>
-  );
+  )
 }
 
 export default function Home() {
   const posts = allPosts.sort((a, b) =>
     compareDesc(new Date(a.date), new Date(b.date))
-  );
+  )
 
   const components = allComponents.sort((a, b) =>
     compareDesc(new Date(a.date), new Date(b.date))
-  );
+  )
 
   const changelogs = allChangelogs.sort((a, b) =>
     compareDesc(new Date(a.date), new Date(b.date))
-  );
+  )
 
   const team = allMembers.sort((a, b) =>
     compareDesc(new Date(a.name), new Date(b.name))
-  );
+  )
   return (
-    <div className="home">
-      <Hero />
-      {/* og image  / hero design */}
-      <nav>
-        <li>
+    <div className="layout core">
+      {/*  <Hero />   */}
+      <section>
+        <h2>Other pages</h2>
+        <div>
           <Link href="/search">Search</Link>
-        </li>
-        <li>
           <Link href="/status">Status</Link>
-        </li>
-      </nav>
+        </div>
+      </section>
       <section>
         <h2>
           <Link href="/blog">Blog</Link>
         </h2>
-        {posts.map((post, idx) => (
-          <PostCard key={idx} {...post} />
-        ))}
+        <div>
+          {posts.map((post, idx) => (
+            <PostCard key={idx} {...post} />
+          ))}
+        </div>
       </section>
       <section>
         <h2>
           <Link href="/components">Components</Link>
         </h2>
-        {components.map((component, idx) => (
-          <ComponentCard key={idx} {...component} />
-        ))}
+        <div>
+          {components.map((component, idx) => (
+            <ComponentCard key={idx} {...component} />
+          ))}
+        </div>
       </section>
       <section>
         <h2>
           <Link href="/changelog">Changelog</Link>
         </h2>
-        {changelogs.map((changelog, idx) => (
-          <ChangelogCard key={idx} {...changelog} />
-        ))}
+        <div>
+          {changelogs.map((changelog, idx) => (
+            <ChangelogCard key={idx} {...changelog} />
+          ))}
+        </div>
       </section>
       <section>
         <h2>
           <Link href="/about">About</Link>
         </h2>
-        {team.map((member, idx) => (
-          <MemberCard key={idx} {...member} />
-        ))}
+        <div>
+          {team.map((member, idx) => (
+            <MemberCard key={idx} {...member} />
+          ))}
+        </div>
       </section>
     </div>
-  );
+  )
 }

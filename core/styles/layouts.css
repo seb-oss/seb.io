@@ -7,6 +7,49 @@
         padding: 40px;
 
         .layout {
+          &.core {
+            display: flex;
+            flex-direction: column;
+            gap: 100px;
+
+            section {
+              display: flex;
+              flex-wrap: wrap;
+              flex-direction: column;
+              gap: 20px;
+              border-top: 1px solid
+                color-mix(in srgb, var(--color-black), transparent 90%);
+              padding-top: 20px;
+
+              div {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 40px;
+
+                a {
+                  padding: 20px;
+                  border-radius: 12px;
+                  border: 1px solid
+                    color-mix(in srgb, var(--color-black), transparent 90%);
+                  background-color: color-mix(
+                    in srgb,
+                    var(--color-black),
+                    transparent 98%
+                  );
+                  inline-size: 240px;
+
+                  gap: 20px;
+                  flex-direction: column;
+                  display: flex;
+
+                  img {
+                    border-radius: 800px;
+                    max-width: 40px;
+                  }
+                }
+              }
+            }
+          }
           &.component {
             display: flex;
             flex-direction: row;
