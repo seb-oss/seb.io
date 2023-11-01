@@ -67,7 +67,6 @@ export default function Componentr({ params }: { params: { slug: string } }) {
       </header>
 
       <section className="main-content">
-        <Sidebar />
         <div>
           <p>{version}</p>
           <p>{keywords}</p>

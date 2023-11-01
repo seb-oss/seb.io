@@ -1,88 +1,86 @@
-"use client";
+"use client"
 
-import { useEffect, useState } from "react";
-import Fuse from "fuse.js";
-import Link from "next/link";
+import { useEffect, useState } from "react"
+import Link from "next/link"
 import {
-  allDocuments,
   allChangelogs,
   allComponents,
-  allPosts,
+  allDocuments,
   allMembers,
+  allPosts,
   Member,
-} from "content";
-import "./style.css";
-import Image from "next/image";
+} from "content"
+import Fuse from "fuse.js"
+
+import "./style.css"
+
+import Image from "next/image"
 
 interface Document {
-  title: string;
-  version?: string;
-  keywords?: string;
-  type: string;
-  url_path: string;
-  name?: string;
-  department?: string;
+  title: string
+  version?: string
+  keywords?: string
+  type: string
+  url_path: string
+  name?: string
+  department?: string
 }
 
 export default function Cmdk({
   isOpen,
   toggleCmd,
 }: {
-  isOpen: boolean;
-  toggleCmd: () => void;
+  isOpen: boolean
+  toggleCmd: () => void
 }) {
   const [searchResults, setSearchResults] = useState<Document[]>(
     allDocuments as Document[]
-  );
-
-
+  )
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.target;
+    const { value } = event.target
 
     if (value.length === 0) {
-      setSearchResults(allDocuments as Document[]);
-      return;
+      setSearchResults(allDocuments as Document[])
+      return
     }
 
-    const results = [];
+    const results = []
 
     // Search in allChangelogs
     const changelogFuse = new Fuse(allChangelogs, {
       keys: ["title", "version"],
-    });
-    const changelogResults = changelogFuse.search(value);
-    const changelogItems = changelogResults.map((result) => result.item);
-    results.push(...changelogItems);
+    })
+    const changelogResults = changelogFuse.search(value)
+    const changelogItems = changelogResults.map((result) => result.item)
+    results.push(...changelogItems)
 
     // Search in allComponents
     const componentFuse = new Fuse(allComponents, {
       keys: ["title", "keywords"],
-    });
-    const componentResults = componentFuse.search(value);
-    const componentItems = componentResults.map((result) => result.item);
-    results.push(...componentItems);
+    })
+    const componentResults = componentFuse.search(value)
+    const componentItems = componentResults.map((result) => result.item)
+    results.push(...componentItems)
 
     // Search in allPosts
     const postFuse = new Fuse(allPosts, {
       keys: ["title", "keywords"],
-    });
-    const postResults = postFuse.search(value);
-    const postItems = postResults.map((result) => result.item);
-    results.push(...postItems);
+    })
+    const postResults = postFuse.search(value)
+    const postItems = postResults.map((result) => result.item)
+    results.push(...postItems)
 
     // Search in allMembers
     const memberFuse = new Fuse(allMembers, {
       keys: ["name", "department"],
-    });
-    const memberResults = memberFuse.search(value);
-    const memberItems = memberResults.map((result) => result.item);
-    results.push(...memberItems);
+    })
+    const memberResults = memberFuse.search(value)
+    const memberItems = memberResults.map((result) => result.item)
+    results.push(...memberItems)
 
-    setSearchResults(results as Document[]);
-  };
-
-  
+    setSearchResults(results as Document[])
+  }
 
   const renderResult = (doc: Document) => {
     if (doc.type === "Changelog") {
@@ -95,7 +93,7 @@ export default function Cmdk({
             </div>
           </Link>
         </ul>
-      );
+      )
     } else if (doc.type === "Component") {
       return (
         <ul>
@@ -106,7 +104,7 @@ export default function Cmdk({
             </div>
           </Link>
         </ul>
-      );
+      )
     } else if (doc.type === "Post") {
       return (
         <ul>
@@ -117,61 +115,63 @@ export default function Cmdk({
             </div>
           </Link>
         </ul>
-      );
+      )
     } else if (doc.type === "Member") {
       return (
         <ul>
           <Link href={"about" + doc.url_path} onClick={toggleCmd}>
             <div className="cmdk-item-name">
               <span className="cmdk-item-char">
-                <Image width="16" height="16" src={"https://github.com/" + doc.handle.toString() + ".png"} alt={doc.name.toString()} />
+                <Image
+                  width="16"
+                  height="16"
+                  src={"https://github.com/" + doc.handle.toString() + ".png"}
+                  alt={doc.name.toString()}
+                />
               </span>
               <span>{doc.name}</span>
             </div>
           </Link>
         </ul>
-      );
+      )
     } else {
-      return <span>{doc.title}</span>;
+      return <span>{doc.title}</span>
     }
-  };
-
-
-
-
+  }
 
   // V111111
-  const [searchTerm, setSearchTerm] = useState("");
+  // const [searchTerm, setSearchTerm] = useState("")
 
   useEffect(() => {
     const handleSlashKey = (e: {
-      key: string;
-      keyCode: number;
-      metaKey: any;
-      ctrlKey: any;
-      preventDefault: () => void;
+      key: string
+      keyCode: number
+      metaKey: any
+      ctrlKey: any
+      preventDefault: () => void
     }) => {
       if (
         e.key === "/" ||
         ((e.keyCode === 191 || e.keyCode === 75) && (e.metaKey || e.ctrlKey))
       ) {
-        e.preventDefault();
-        toggleCmd();
+        e.preventDefault()
+        toggleCmd()
       } else if (e.key === "Escape") {
-        toggleCmd();
+        toggleCmd()
       }
-    };
+    }
 
-    document.addEventListener("keydown", handleSlashKey);
+    document.addEventListener("keydown", handleSlashKey)
     return () => {
-      document.removeEventListener("keydown", handleSlashKey);
-    };
-  }, [searchTerm, toggleCmd]);
+      document.removeEventListener("keydown", handleSlashKey)
+    }
+  }, [toggleCmd])
+  // }, [searchTerm, toggleCmd])
 
   return (
     <>
-      {isOpen && (
-        <div className="cmd">
+      {/* {isOpen && ( */}
+        <div className={`cmd ${isOpen ? "open" : ""}`} role="dialog">
           <button className="cmd-backdrop" onClick={toggleCmd}></button>
           <main>
             <form>
@@ -196,41 +196,7 @@ export default function Cmdk({
               </button>
             </form>
             <section>
-              <div>
-                {searchResults.map((doc, index) => renderResult(doc))}
-              </div>
-              {/* <div>
-                <h4>Category Title</h4>
-                <ul>
-                  <Link
-                    key="some"
-                    href="/docs/component/[slug]"
-                    as={`/docs/component/slug`}
-                  >
-                    <div className="cmdk-item-name">
-                      <span className="cmdk-item-char">TS</span>
-                      <span>Name of component</span>
-                    </div>
-                    <div className="cmdk-options">
-                      <span>
-                        <svg viewBox="0 0 24 24">
-                          <path d="M5 5.5A3.5 3.5 0 0 1 8.5 2H12v7H8.5A3.5 3.5 0 0 1 5 5.5z"></path>
-                          <path d="M12 2h3.5a3.5 3.5 0 1 1 0 7H12V2z"></path>
-                          <path d="M12 12.5a3.5 3.5 0 1 1 7 0 3.5 3.5 0 1 1-7 0z"></path>
-                          <path d="M5 19.5A3.5 3.5 0 0 1 8.5 16H12v3.5a3.5 3.5 0 1 1-7 0z"></path>
-                          <path d="M5 12.5A3.5 3.5 0 0 1 8.5 9H12v7H8.5A3.5 3.5 0 0 1 5 12.5z"></path>
-                        </svg>
-                      </span>
-                      <span>
-                        <svg viewBox="0 0 24 24">
-                          <polyline points="16 18 22 12 16 6"></polyline>
-                          <polyline points="8 6 2 12 8 18"></polyline>
-                        </svg>
-                      </span>
-                    </div>
-                  </Link>
-                </ul>
-              </div> */}
+              <div>{searchResults.map((doc, index) => renderResult(doc))}</div>
             </section>
             <footer>
               <svg width="14" height="14" viewBox="0 0 25 25">
@@ -272,7 +238,7 @@ export default function Cmdk({
             </footer>
           </main>
         </div>
-      )}
+      // )}
     </>
-  );
+  )
 }
