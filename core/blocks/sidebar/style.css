@@ -1,0 +1,10 @@
+aside.components {
+  nav {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid color-mix(in srgb, var(--color-black), transparent 90%);
+    padding: 20px;
+    border-radius: 20px;
+    min-width: 200px;
+  }
+}

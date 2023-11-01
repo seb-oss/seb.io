@@ -1,0 +1,6 @@
+@layer core, sub;
+
+@layer core {
+  @layer sub {
+  }
+}

@@ -1,27 +1,31 @@
-// app/posts/[slug]/page.tsx
-import { notFound } from "next/navigation";
-import { format, parseISO } from "date-fns";
-import { allMembers, Member } from "content";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import Link from "next/link";
+import Link from "next/link"
+import {
+  notFound,
+  usePathname,
+  useRouter,
+  useSearchParams,
+} from "next/navigation"
+import { allMembers, Member } from "content"
+import { format, parseISO } from "date-fns"
+
 export async function generateStaticParams() {
   return allMembers.map((member) => ({
     slug: member.url_path,
-  }));
+  }))
 }
 export default function Componentr({ params }: { params: { slug: string } }) {
-  const { slug } = params;
+  const { slug } = params
 
   const member = allMembers.find(
     (member) => member.url_path === "/team/" + slug
-  );
+  )
 
   if (!member) {
-    notFound();
+    notFound()
   }
 
   const { name, title, location, handle, email, global_id, last_edited } =
-    member;
+    member
 
   return (
     <article key={global_id} className="post">
@@ -40,5 +44,5 @@ export default function Componentr({ params }: { params: { slug: string } }) {
         </div>
       </header>
     </article>
-  );
+  )
 }

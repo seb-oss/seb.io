@@ -1,25 +1,24 @@
-// app/posts/[slug]/page.tsx
-import { notFound } from "next/navigation";
-import { format, parseISO } from "date-fns";
-import { allChangelogs } from "content";
-import "./style.css";
+import { notFound } from "next/navigation"
+import { allChangelogs } from "content"
+import { format, parseISO } from "date-fns"
+
 export async function generateStaticParams() {
   return allChangelogs.map((changelog) => ({
     slug: changelog.url_path,
-  }));
+  }))
 }
 
 export default function Changelog({ params }: { params: { slug: string } }) {
-  const { slug } = params;
+  const { slug } = params
 
   const changelog = allChangelogs.find(
     (changelog) => changelog.url_path === "/changelog/" + slug
-  );
+  )
   if (!changelog) {
-    notFound();
+    notFound()
   }
 
-  const { date, title, global_id, last_edited } = changelog;
+  const { date, title, global_id, last_edited } = changelog
 
   return (
     <article>
@@ -52,5 +51,5 @@ export default function Changelog({ params }: { params: { slug: string } }) {
         </main>
       </article>
     </article>
-  );
+  )
 }

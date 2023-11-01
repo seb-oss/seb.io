@@ -1,13 +1,12 @@
-import Header from "@/core/blocks/header/header";
-import "@/core/styles/main.css";
-import "@/core/styles/transitions.css";
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import { ThemeProvider } from "@/utils/theme/provider";
-import Consent from "@/core/blocks/consent/consent";
-import Footer from "@/core/blocks/footer";
+import type { Metadata } from "next"
+import { Inter } from "next/font/google"
+import Consent from "@/core/blocks/consent/consent"
+import Footer from "@/core/blocks/footer"
+import Header from "@/core/blocks/header/header"
+import Layout from "@/core/layouts/core"
+import { ThemeProvider } from "@/utils/theme/provider"
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://seb.io"),
@@ -23,12 +22,12 @@ export const metadata: Metadata = {
   openGraph: {
     images: "/og-image.png",
   },
-};
+}
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
@@ -41,12 +40,14 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <ThemeProvider attribute="theme" defaultTheme="system" enableSystem>
-          <Header />
-          {children}
-          <Footer />
-          <Consent />
+          <Layout>
+            <Header />
+            {children}
+            <Footer />
+            <Consent />
+          </Layout>
         </ThemeProvider>
       </body>
     </html>
-  );
+  )
 }

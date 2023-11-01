@@ -5,12 +5,10 @@ import {
   useRouter,
   useSearchParams,
 } from "next/navigation"
+import Sidebar from "@/core/blocks/sidebar"
+import Taber from "@/core/blocks/taber"
 import { allComponents, Component } from "content"
 import { format, parseISO } from "date-fns"
-
-import "./style.css"
-
-import Taber from "@/core/blocks/taber"
 
 export async function generateStaticParams() {
   return allComponents.map((component) => ({
@@ -67,37 +65,42 @@ export default function Componentr({ params }: { params: { slug: string } }) {
           </time>
         </div>
       </header>
-      <div>
-        <p>{version}</p>
-        <p>{keywords}</p>
-        <p>{status}</p>
-        <p>{dependencies}</p>
-      </div>
-      <h2 id="a11y">Accessibility</h2>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua.
-      </p>
+
+      <section className="main-content">
+        <Sidebar />
+        <div>
+          <p>{version}</p>
+          <p>{keywords}</p>
+          <p>{status}</p>
+          <p>{dependencies}</p>
+
+          <h2 id="a11y">Accessibility</h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </p>
+        </div>
+      </section>
       <Taber />
     </article>
   )

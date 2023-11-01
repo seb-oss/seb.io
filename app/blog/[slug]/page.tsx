@@ -1,18 +1,17 @@
 // app/posts/[slug]/page.tsx
-import type { Metadata } from "next";
-import { notFound } from "next/navigation";
-import { format, parseISO } from "date-fns";
-import { allPosts } from "content";
-import Comments from "@/core/blocks/giscus";
-import "./style.css";
-import Link from "next/link";
+import type { Metadata } from "next"
+import Link from "next/link"
+import { notFound } from "next/navigation"
+import Comments from "@/core/blocks/giscus"
+import { allPosts } from "content"
+import { format, parseISO } from "date-fns"
 
-export const dynamic = "force-static";
+export const dynamic = "force-static"
 
 export async function generateStaticParams() {
   return allPosts.map((post) => ({
     slug: post.url_path,
-  }));
+  }))
 }
 
 // export const metadata: Metadata = {
@@ -26,22 +25,22 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: { slug: string }
 }): Promise<Metadata | undefined> {
-  const { slug: postSlug } = params;
-  const post = allPosts.find((post) => post.url_path === "/blog/" + postSlug);
+  const { slug: postSlug } = params
+  const post = allPosts.find((post) => post.url_path === "/blog/" + postSlug)
 
   if (!post) {
-    return;
+    return
   }
 
-  const { title, date: publishedTime, description, url_path: slug } = post;
+  const { title, date: publishedTime, description, url_path: slug } = post
 
   const baseUrl =
     process.env.NODE_ENV === "production"
       ? "https://seb.io"
-      : "http://localhost:3000";
-  const ogImage = `${baseUrl}/og?title=${title}`;
+      : "http://localhost:3000"
+  const ogImage = `${baseUrl}/og?title=${title}`
   return {
     title,
     description,
@@ -63,15 +62,15 @@ export async function generateMetadata({
       description,
       images: [ogImage],
     },
-  };
+  }
 }
 
 export default function Blog({ params }: { params: { slug: string } }) {
-  const { slug } = params;
-  const post = allPosts.find((post) => post.url_path === "/blog/" + slug);
+  const { slug } = params
+  const post = allPosts.find((post) => post.url_path === "/blog/" + slug)
 
   if (!post) {
-    notFound();
+    notFound()
   }
 
   return (
@@ -137,5 +136,5 @@ export default function Blog({ params }: { params: { slug: string } }) {
         <Comments />
       </footer>
     </article>
-  );
+  )
 }

@@ -1,0 +1,17 @@
+:root {
+  --color-white: hsl(0 0% 100%);
+  --color-black: hsl(0 0% 7%);
+  --color-alpha: 90%;
+  --color-mix: color-mix(
+    in srgb,
+    var(--color-black),
+    transparent var(--color-alpha)
+  );
+}
+
+@media (prefers-color-scheme: dark) {
+  [theme="dark"] {
+    --color-white: hsl(0 0% 7%);
+    --color-black: hsl(0 0% 100%);
+  }
+}
