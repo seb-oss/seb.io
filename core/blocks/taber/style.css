@@ -1,0 +1,45 @@
+.taber {
+    position: sticky;
+    bottom: 40px;
+    border-radius: 200px;
+    background: linear-gradient(
+      to bottom,
+      hsla(220, 10%, 6%, 0.8),
+      hsla(220, 10%, 6%, 1)
+    );
+    backdrop-filter: blur(100px) saturate(400%) brightness(100%);
+    border: 1px solid hsla(360, 100%, 100%, 0.04);
+    display: flex;
+    gap: 5px;
+    padding: 10px;
+    z-index: 4;
+    font-size: 14px;
+    margin: 0 auto;
+    width: max-content;
+    align-items: center;
+    justify-content: center;
+  
+    & a {
+      display: flex;
+      color: hsla(360, 100%, 100%, 0.4);
+      align-items: center;
+      gap: 10px;
+      padding: 12px 20px;
+      transition: all 0.4s;
+  
+      &.active,
+      &:hover {
+        color: hsla(360, 100%, 100%, 1);
+        background-color: hsla(360, 100%, 100%, 0.02);
+  
+        padding: 12px 20px;
+        border-radius: 100px;
+      }
+  
+      & svg {
+        width: 14px;
+        height: 14px;
+        color: hsla(360, 100%, 100%, 1);
+      }
+    }
+  }

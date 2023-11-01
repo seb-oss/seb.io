@@ -1,27 +1,34 @@
 // app/posts/[slug]/page.tsx
-import { notFound } from "next/navigation";
-import { format, parseISO } from "date-fns";
-import { allComponents, Component } from "content";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import "./style.css";
+import {
+  notFound,
+  usePathname,
+  useRouter,
+  useSearchParams,
+} from "next/navigation"
+import { allComponents, Component } from "content"
+import { format, parseISO } from "date-fns"
+
+import "./style.css"
+
+import Taber from "@/core/blocks/taber"
 
 export async function generateStaticParams() {
   return allComponents.map((component) => ({
     slug: component.url_path,
-  }));
+  }))
 }
 export default function Componentr({ params }: { params: { slug: string } }) {
-  const { slug } = params;
+  const { slug } = params
   // console.log("component/" + slug);
   // const pathname = usePathname();
 
   const component = allComponents.find(
     (component) => component.url_path === "/component/" + slug
-  );
+  )
 
   // console.log(component);
   if (!component) {
-    notFound();
+    notFound()
   }
 
   const {
@@ -33,7 +40,7 @@ export default function Componentr({ params }: { params: { slug: string } }) {
     date,
     global_id,
     last_edited,
-  } = component;
+  } = component
 
   return (
     <article key={global_id} className="post">
@@ -60,12 +67,38 @@ export default function Componentr({ params }: { params: { slug: string } }) {
           </time>
         </div>
       </header>
-      <header>
+      <div>
         <p>{version}</p>
         <p>{keywords}</p>
         <p>{status}</p>
         <p>{dependencies}</p>
-      </header>
+      </div>
+      <h2 id="a11y">Accessibility</h2>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua.
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua.
+      </p>
+      <Taber />
     </article>
-  );
+  )
 }
