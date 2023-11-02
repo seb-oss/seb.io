@@ -46,6 +46,14 @@
                     border-radius: 800px;
                     max-width: 40px;
                   }
+
+                  &:hover {
+                    background-color: color-mix(
+                      in srgb,
+                      var(--color-black),
+                      transparent 95%
+                    );
+                  }
                 }
               }
             }

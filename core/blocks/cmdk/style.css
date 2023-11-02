@@ -10,12 +10,26 @@
   overflow: hidden scroll;
   z-index: 10000;
   overscroll-behavior: contain;
+  background-color: color-mix(in srgb, #000, transparent 10%);
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--transition);
+  pointer-events: none;
+
+  &.open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+
+    main {
+      transform: scale(1);
+    }
+  }
 
   main {
     width: 640px;
-    background-color: hsla(220, 10%, 6%, 0.8);
+    background-color: hsla(220, 10%, 6%, 1);
     border: 1px solid hsla(220, 10%, 8%, 1);
-    backdrop-filter: blur(80px);
     border-radius: 8px;
     min-height: 440px;
     max-height: 440px;
@@ -23,6 +37,9 @@
     flex-direction: column;
     z-index: 7;
     overflow: hidden;
+    transform-origin: center;
+    transform: scale(0.98);
+    transition: var(--transition);
 
     form {
       display: flex;
@@ -89,6 +106,7 @@
         -webkit-appearance: none;
         box-sizing: border-box;
         line-height: 0;
+        cursor: pointer;
 
         svg {
           width: 14px;
@@ -274,9 +292,8 @@
 }
 
 .cmd-backdrop {
-  display: flex;
+  display: none;
   background-color: hsla(360, 0%, 0%, 0.8);
-  backdrop-filter: blur(180px);
   width: 100%;
   height: 100%;
   position: absolute;

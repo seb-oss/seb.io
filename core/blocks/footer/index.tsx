@@ -7,12 +7,10 @@ export default function Footer() {
 
   return (
     <footer>
-      <div className="container">
-        {text} —
-        <button type="button" data-cc="c-settings">
-          Cookie preferences
-        </button>
-      </div>
+      <span>{text}</span>—
+      <button type="button" data-cc="c-settings">
+        Cookie preferences
+      </button>
     </footer>
   )
 }
