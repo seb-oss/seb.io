@@ -16,7 +16,7 @@ import { compareDesc, format, parseISO } from "date-fns"
 
 function MemberCard(member: Member) {
   return (
-    <Link href={"about" + member.url_path} target="_blank">
+    <Link href={"about" + member.url_path}>
       <img src={"https://github.com/" + member.handle + ".png"} />
       {member.name} <span>@{member.handle}</span>
     </Link>
@@ -33,7 +33,7 @@ function ContributorCard({
   contributions: number
 }) {
   return (
-    <Link href={"https://github.com/" + login} target="_blank">
+    <Link href={"https://github.com/" + login}>
       <img src={avatarUrl} alt="Avatar" />
       {/* <p>{contributions}</p> */}
       <span>@{login}</span>
@@ -65,27 +65,34 @@ export default function About() {
   }, [])
 
   return (
-    <div className="home">
+    <div className="layout core">
       <section>
-        <Link href="/changelog">Changelog</Link>
-        <Link href="/status">Status</Link>
+        <h2>Other pages</h2>
+        <div>
+          <Link href="/changelog">Changelog</Link>
+          <Link href="/status">Status</Link>
+        </div>
       </section>
       <section>
         <h2>Team</h2>
-        {team.map((member, idx) => (
-          <MemberCard key={idx} {...member} />
-        ))}
+        <div>
+          {team.map((member, idx) => (
+            <MemberCard key={idx} {...member} />
+          ))}
+        </div>
       </section>
       <section>
         <h2>Contributors</h2>
-        {contributors.map((contributor) => (
-          <ContributorCard
-            key={contributor.id}
-            avatarUrl={contributor.avatar_url}
-            login={contributor.login}
-            contributions={contributor.contributions}
-          />
-        ))}
+        <div>
+          {contributors.map((contributor) => (
+            <ContributorCard
+              key={contributor.id}
+              avatarUrl={contributor.avatar_url}
+              login={contributor.login}
+              contributions={contributor.contributions}
+            />
+          ))}
+        </div>
       </section>
     </div>
   )
