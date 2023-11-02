@@ -1,15 +1,15 @@
-import Link from "next/link";
-import { compareDesc, format, parseISO } from "date-fns";
+import Link from "next/link"
 import {
-  allPosts,
-  Post,
-  allComponents,
-  Component,
   allChangelogs,
-  Changelog,
+  allComponents,
   allMembers,
+  allPosts,
+  Changelog,
+  Component,
   Member,
-} from "content";
+  Post,
+} from "content"
+import { compareDesc, format, parseISO } from "date-fns"
 
 function PostCard(post: Post) {
   return (
@@ -19,7 +19,7 @@ function PostCard(post: Post) {
         {format(parseISO(post.date), "LLLL d, yyyy")}
       </time>
     </Link>
-  );
+  )
 }
 
 function ComponentCard(component: Component) {
@@ -30,7 +30,7 @@ function ComponentCard(component: Component) {
         {format(parseISO(component.date), "LLLL d, yyyy")}
       </time>
     </Link>
-  );
+  )
 }
 
 function ChangelogCard(changelog: Changelog) {
@@ -41,7 +41,7 @@ function ChangelogCard(changelog: Changelog) {
         {format(parseISO(changelog.date), "LLLL d, yyyy")}
       </time>
     </Link>
-  );
+  )
 }
 function MemberCard(member: Member) {
   return (
@@ -49,22 +49,24 @@ function MemberCard(member: Member) {
       <img src={"https://github.com/" + member.handle + ".png"} />
       {member.name} <span>@{member.handle}</span>
     </Link>
-  );
+  )
 }
 
 export default function Components() {
   const components = allComponents.sort((a, b) =>
     compareDesc(new Date(a.date), new Date(b.date))
-  );
+  )
 
   return (
-    <div className="home">
+    <div className="layout core">
       <section>
         <h2>Components</h2>
-        {components.map((component, idx) => (
-          <ComponentCard key={idx} {...component} />
-        ))}
+        <div>
+          {components.map((component, idx) => (
+            <ComponentCard key={idx} {...component} />
+          ))}
+        </div>
       </section>
     </div>
-  );
+  )
 }

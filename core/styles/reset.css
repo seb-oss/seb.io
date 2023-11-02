@@ -68,8 +68,9 @@
       display: none;
     }
 
-    ::marker {
+    /* ::marker {
       content: "—";
-    }
+      display: none;
+    } */
   }
 }

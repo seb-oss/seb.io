@@ -1,9 +1,11 @@
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
+import localFont from "next/font/local"
 import Consent from "@/core/blocks/consent/consent"
 import Footer from "@/core/blocks/footer"
 import Header from "@/core/blocks/header/header"
 import Layout from "@/core/layouts/core"
+import SEBSAnsSerif from "@/utils/fonts/fonts"
 import { ThemeProvider } from "@/utils/theme/provider"
 
 const inter = Inter({ subsets: ["latin"] })
@@ -31,7 +33,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
+      <body className={SEBSAnsSerif.className}>
         <ThemeProvider attribute="theme" defaultTheme="system" enableSystem>
           <Header />
           <Layout>{children}</Layout>

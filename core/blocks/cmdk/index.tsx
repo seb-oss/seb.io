@@ -104,7 +104,7 @@ export default function Cmdk({
       )
     } else if (doc.type === "Component") {
       return (
-        <ul>
+        <ul key={doc.title}>
           <Link href={doc.url_path} onClick={toggleCmd}>
             <div className="cmdk-item-name">
               <span className="cmdk-item-char">TS</span>
@@ -115,7 +115,7 @@ export default function Cmdk({
       )
     } else if (doc.type === "Post") {
       return (
-        <ul>
+        <ul key={doc.title}>
           <Link href={doc.url_path} onClick={toggleCmd}>
             <div className="cmdk-item-name">
               <span className="cmdk-item-char">TS</span>
@@ -126,7 +126,7 @@ export default function Cmdk({
       )
     } else if (doc.type === "Member") {
       return (
-        <ul>
+        <ul key={doc.title}>
           <Link href={"about" + doc.url_path} onClick={toggleCmd}>
             <div className="cmdk-item-name">
               <span className="cmdk-item-char">

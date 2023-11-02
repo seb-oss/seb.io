@@ -109,7 +109,7 @@ export default function Search() {
   }
 
   return (
-    <div className="layout-search">
+    <div className="layout core">
       <h2>Search</h2>
       <section>
         <input
@@ -119,9 +119,6 @@ export default function Search() {
           onChange={handleSearch}
         />
         <div className="results">
-          {/* {searchResults.map((doc, index) => (
-            <span key={index}>{renderResult(doc)}</span>
-          ))} */}
           {searchResults.map((doc, index) => renderResult(doc))}
         </div>
       </section>
