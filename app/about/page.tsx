@@ -1,17 +1,18 @@
-"use client";
-import { useEffect, useState } from "react";
-import Link from "next/link";
-import { compareDesc, format, parseISO } from "date-fns";
+"use client"
+
+import { useEffect, useState } from "react"
+import Link from "next/link"
 import {
-  allPosts,
-  Post,
-  allComponents,
-  Component,
   allChangelogs,
-  Changelog,
+  allComponents,
   allMembers,
+  allPosts,
+  Changelog,
+  Component,
   Member,
-} from "content";
+  Post,
+} from "content"
+import { compareDesc, format, parseISO } from "date-fns"
 
 function MemberCard(member: Member) {
   return (
@@ -19,7 +20,7 @@ function MemberCard(member: Member) {
       <img src={"https://github.com/" + member.handle + ".png"} />
       {member.name} <span>@{member.handle}</span>
     </Link>
-  );
+  )
 }
 
 function ContributorCard({
@@ -27,9 +28,9 @@ function ContributorCard({
   login,
   contributions,
 }: {
-  avatarUrl: string;
-  login: string;
-  contributions: number;
+  avatarUrl: string
+  login: string
+  contributions: number
 }) {
   return (
     <Link href={"https://github.com/" + login} target="_blank">
@@ -37,34 +38,38 @@ function ContributorCard({
       {/* <p>{contributions}</p> */}
       <span>@{login}</span>
     </Link>
-  );
+  )
 }
 
 export default function About() {
   const team = allMembers.sort((a, b) =>
     compareDesc(new Date(a.name), new Date(b.name))
-  );
+  )
 
-  const [contributors, setContributors] = useState<any[]>([]);
+  const [contributors, setContributors] = useState<any[]>([])
 
   useEffect(() => {
     const fetchContributors = async () => {
       try {
         const response = await fetch(
           "https://api.github.com/repos/sebgroup/green/contributors"
-        );
-        const data = await response.json();
-        setContributors(data);
+        )
+        const data = await response.json()
+        setContributors(data)
       } catch (error) {
-        console.error("Error fetching contributors:", error);
+        console.error("Error fetching contributors:", error)
       }
-    };
+    }
 
-    fetchContributors();
-  }, []);
+    fetchContributors()
+  }, [])
 
   return (
     <div className="home">
+      <section>
+        <Link href="/changelog">Changelog</Link>
+        <Link href="/status">Status</Link>
+      </section>
       <section>
         <h2>Team</h2>
         {team.map((member, idx) => (
@@ -83,5 +88,5 @@ export default function About() {
         ))}
       </section>
     </div>
-  );
+  )
 }

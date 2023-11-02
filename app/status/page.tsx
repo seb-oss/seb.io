@@ -1,8 +1,8 @@
 // app/posts/[slug]/page.tsx
-import { format, parseISO } from "date-fns";
-import { allComponents } from "content";
+import { allComponents } from "content"
+import { format, parseISO } from "date-fns"
 
-export default function status() {
+export default function Status() {
   return (
     <article>
       {allComponents.map((component) => (
@@ -17,5 +17,5 @@ export default function status() {
         </div>
       ))}
     </article>
-  );
+  )
 }

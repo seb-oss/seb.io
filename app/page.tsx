@@ -71,7 +71,7 @@ export default function Home() {
   )
   return (
     <div className="layout core">
-      {/*  <Hero />   */}
+      <Hero />
       <section>
         <h2>Other pages</h2>
         <div>
