@@ -58,6 +58,9 @@
               }
             }
           }
+          &.changelog {
+            display: flex;
+          }
           &.component {
             display: flex;
             flex-direction: row;
