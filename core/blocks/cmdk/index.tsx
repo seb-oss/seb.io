@@ -90,65 +90,146 @@ export default function Cmdk({
     setSearchResults(results as Document[])
   }
 
-  const renderResult = (doc: Document) => {
-    if (doc.type === "Changelog") {
-      return (
-        <ul>
-          <Link href={doc.url_path} onClick={toggleCmd}>
-            <div className="cmdk-item-name">
-              <span className="cmdk-item-char">TS</span>
-              <span>{doc.title}</span>
-            </div>
-          </Link>
-        </ul>
-      )
-    } else if (doc.type === "Component") {
-      return (
-        <ul key={doc.title}>
-          <Link href={doc.url_path} onClick={toggleCmd}>
-            <div className="cmdk-item-name">
-              <span className="cmdk-item-char">TS</span>
-              <span>{doc.title}</span>
-            </div>
-          </Link>
-        </ul>
-      )
-    } else if (doc.type === "Post") {
-      return (
-        <ul key={doc.title}>
-          <Link href={doc.url_path} onClick={toggleCmd}>
-            <div className="cmdk-item-name">
-              <span className="cmdk-item-char">TS</span>
-              <span>{doc.title}</span>
-            </div>
-          </Link>
-        </ul>
-      )
-    } else if (doc.type === "Member") {
-      return (
-        <ul key={doc.title}>
-          <Link href={"about" + doc.url_path} onClick={toggleCmd}>
-            <div className="cmdk-item-name">
-              <span className="cmdk-item-char">
-                <Image
-                  width="16"
-                  height="16"
-                  src={"https://github.com/" + doc.handle.toString() + ".png"}
-                  alt={doc.name.toString()}
-                />
-              </span>
-              <span>{doc.name}</span>
-            </div>
-          </Link>
-        </ul>
-      )
-    } else {
-      return <span>{doc.title}</span>
-    }
-  }
+  // const renderResult = (doc: Document) => {
+  //   if (doc.type === "Changelog") {
+  //     return (
+  //       <ul>
+  //         <Link href={doc.url_path} onClick={toggleCmd}>
+  //           <div className="cmdk-item-name">
+  //             <span className="cmdk-item-char">TS</span>
+  //             <span>{doc.title}</span>
+  //           </div>
+  //         </Link>
+  //       </ul>
+  //     )
+  //   } else if (doc.type === "Component") {
+  //     return (
+  //       <ul key={doc.title}>
+  //         <Link href={doc.url_path} onClick={toggleCmd}>
+  //           <div className="cmdk-item-name">
+  //             <span className="cmdk-item-char">TS</span>
+  //             <span>{doc.title}</span>
+  //           </div>
+  //         </Link>
+  //       </ul>
+  //     )
+  //   } else if (doc.type === "Post") {
+  //     return (
+  //       <ul key={doc.title}>
+  //         <Link href={doc.url_path} onClick={toggleCmd}>
+  //           <div className="cmdk-item-name">
+  //             <span className="cmdk-item-char">TS</span>
+  //             <span>{doc.title}</span>
+  //           </div>
+  //         </Link>
+  //       </ul>
+  //     )
+  //   } else if (doc.type === "Member") {
+  //     return (
+  //       <ul key={doc.title}>
+  //         <Link href={"about" + doc.url_path} onClick={toggleCmd}>
+  //           <div className="cmdk-item-name">
+  //             <span className="cmdk-item-char">
+  //               <Image
+  //                 width="16"
+  //                 height="16"
+  //                 src={"https://github.com/" + doc.handle.toString() + ".png"}
+  //                 alt={doc.name.toString()}
+  //               />
+  //             </span>
+  //             <span>{doc.name}</span>
+  //           </div>
+  //         </Link>
+  //       </ul>
+  //     )
+  //   } else {
+  //     return <span>{doc.title}</span>
+  //   }
+  // }
 
   // V111111
   // const [searchTerm, setSearchTerm] = useState("")
+
+  const renderResult = (doc: Document) => {
+    if (doc.type === "Changelog") {
+      return (
+        <Link
+          key={doc.title + doc.url_path}
+          href={doc.url_path}
+          onClick={toggleCmd}
+        >
+          <div className="cmdk-item-name">
+            <span className="cmdk-item-char">TS</span>
+            <span>{doc.title}</span>
+          </div>
+        </Link>
+      )
+    } else if (doc.type === "Component") {
+      return (
+        <Link
+          key={doc.title + doc.url_path}
+          href={doc.url_path}
+          onClick={toggleCmd}
+        >
+          <div className="cmdk-item-name">
+            <span className="cmdk-item-char">TS</span>
+            <span>{doc.title}</span>
+          </div>
+          <div className="cmdk-options">
+            <span>
+              <svg viewBox="0 0 24 24">
+                <path d="M5 5.5A3.5 3.5 0 0 1 8.5 2H12v7H8.5A3.5 3.5 0 0 1 5 5.5z"></path>
+                <path d="M12 2h3.5a3.5 3.5 0 1 1 0 7H12V2z"></path>
+                <path d="M12 12.5a3.5 3.5 0 1 1 7 0 3.5 3.5 0 1 1-7 0z"></path>
+                <path d="M5 19.5A3.5 3.5 0 0 1 8.5 16H12v3.5a3.5 3.5 0 1 1-7 0z"></path>
+                <path d="M5 12.5A3.5 3.5 0 0 1 8.5 9H12v7H8.5A3.5 3.5 0 0 1 5 12.5z"></path>
+              </svg>
+            </span>
+            <span>
+              <svg viewBox="0 0 24 24">
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline>
+              </svg>
+            </span>
+          </div>
+        </Link>
+      )
+    } else if (doc.type === "Post") {
+      return (
+        <Link
+          key={doc.title + doc.url_path}
+          href={doc.url_path}
+          onClick={toggleCmd}
+        >
+          <div className="cmdk-item-name">
+            <span className="cmdk-item-char">TS</span>
+            <span>{doc.title}</span>
+          </div>
+        </Link>
+      )
+    } else if (doc.type === "Member") {
+      return (
+        <Link
+          key={doc.title + doc.url_path}
+          href={"about" + doc.url_path}
+          onClick={toggleCmd}
+        >
+          <div className="cmdk-item-name">
+            <Image
+              width="16"
+              height="16"
+              className="cmdk-item-img"
+              src={"https://github.com/" + doc.handle.toString() + ".png"}
+              alt={doc.name.toString()}
+            />
+            <span>{doc.name}</span>
+          </div>
+        </Link>
+      )
+    } else {
+      return null
+    }
+  }
 
   useEffect(() => {
     const handleSlashKey = (e: {
@@ -187,7 +268,6 @@ export default function Cmdk({
 
   return (
     <div className={`cmd ${isOpen ? "open" : ""}`} role="dialog">
-      {/* <button className="cmd-backdrop" onClick={toggleCmd}></button> */}
       <main>
         <form>
           <label htmlFor="search">
@@ -202,7 +282,6 @@ export default function Cmdk({
             type="text"
             placeholder="⌘K — Search components & pages"
             onChange={handleSearch}
-            // autoFocus
           />
           <button type="reset">
             <svg viewBox="0 0 24 24">
@@ -212,8 +291,34 @@ export default function Cmdk({
           </button>
         </form>
         <section>
-          <div>{searchResults.map((doc, index) => renderResult(doc))}</div>
+          {searchResults.length > 0 ? (
+            <>
+              {Object.entries(
+                searchResults.reduce((groups: { [key: string]: any }, doc) => {
+                  if (groups[doc.type]) {
+                    groups[doc.type].push(doc)
+                  } else {
+                    groups[doc.type] = [doc]
+                  }
+                  return groups
+                }, {})
+              ).map(([type, docs]) => (
+                <div key={type}>
+                  <div className="category">{type}</div>
+                  <div className="list">
+                    {docs.map((doc: Document) => renderResult(doc))}
+                  </div>
+                </div>
+              ))}
+            </>
+          ) : (
+            <p>No results found.</p>
+          )}
         </section>
+
+        {/* <section>
+          <div>{searchResults.map((doc, index) => renderResult(doc))}</div>
+        </section> */}
         <footer>
           <svg width="14" height="14" viewBox="0 0 25 25">
             <path
