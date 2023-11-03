@@ -137,6 +137,7 @@
         color: color-mix(in srgb, currentColor, transparent 60%);
         letter-spacing: 0.01ch;
         font-weight: 400;
+        pointer-events: none;
       }
 
       & .list {

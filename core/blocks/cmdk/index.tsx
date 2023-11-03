@@ -99,7 +99,7 @@ export default function Cmdk({
           onClick={toggleCmd}
         >
           <div className="cmdk-item-name">
-            <span className="cmdk-item-char">TS</span>
+            <span className="cmdk-item-char">{doc.title.charAt(0)}</span>
             <span>{doc.title}</span>
           </div>
         </Link>
@@ -112,7 +112,7 @@ export default function Cmdk({
           onClick={toggleCmd}
         >
           <div className="cmdk-item-name">
-            <span className="cmdk-item-char">TS</span>
+            <span className="cmdk-item-char">{doc.title.charAt(0)}</span>
             <span>{doc.title}</span>
           </div>
           <div className="cmdk-options">
@@ -142,7 +142,7 @@ export default function Cmdk({
           onClick={toggleCmd}
         >
           <div className="cmdk-item-name">
-            <span className="cmdk-item-char">TS</span>
+            <span className="cmdk-item-char">{doc.title.charAt(0)}</span>
             <span>{doc.title}</span>
           </div>
         </Link>
@@ -187,6 +187,8 @@ export default function Cmdk({
         toggleCmd()
       } else if (e.key === "Escape") {
         toggleCmd()
+        setSearchResults(allDocuments as Document[])
+        setFocusedIndex(-1)
       }
     }
 
@@ -253,9 +255,15 @@ export default function Cmdk({
                   }
                   return groups
                 }, {})
-              ).map(([type, docs]) => (
-                <div key={type}>
-                  <div className="category">{type}</div>
+              ).map(([type, docs], index) => (
+                <div
+                  key={type}
+                  onFocus={() => setFocusedIndex(index)}
+                  className={focusedIndex === index ? "focused" : ""}
+                >
+                  <div className="category" tabIndex={-1}>
+                    {type}
+                  </div>
                   <div className="list">
                     {docs.map((doc: Document) => renderResult(doc))}
                   </div>
