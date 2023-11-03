@@ -5,5 +5,5 @@ export default function ChangelogLayout({
 }: {
   children: React.ReactNode
 }) {
-  return <Layout>{children}</Layout>
+  return <div>{children}</div>
 }

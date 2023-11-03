@@ -8,18 +8,29 @@ import {
 function ChangelogCard(changelog: Changelog) {
   return (
     <article id={changelog.version} className="log">
-      <div>
+      <aside>
         <span>{changelog.version}</span>
         <time dateTime={changelog.date}>
           {format(parseISO(changelog.date), "LLLL d, yyyy")}
         </time>
-      </div>
-      <div>
-        <Link href={changelog.url_path}>
-          {changelog.title}
-        </Link>
+      </aside>
+      <main>
+        <h2>
+          <Link href={changelog.url_path}>
+            {changelog.title}
+          </Link>
+        </h2>
         <p>{changelog.summary}</p>
-      </div>
+        <h3>Bug fixes</h3>
+        <ul>
+          <li>List item</li>
+          <li>List item</li>
+          <li>List item</li>
+          <li>List item <code>test</code></li>
+          <li>List item</li>
+          <li>List item</li>
+        </ul>
+      </main>
     </article>
   );
 }
@@ -31,8 +42,8 @@ export default function Changelog() {
 
   return (
     <div className="layout changelog">
+      <h1>Changelogs</h1>
       <section>
-        <h2>Changelogs</h2>
         {changelogs.map((changelog, idx) => (
           <ChangelogCard key={idx} {...changelog} />
         ))}
