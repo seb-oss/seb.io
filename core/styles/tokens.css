@@ -2,7 +2,7 @@
   @layer tokens {
     :root {
       --color-white: hsl(0 0% 100%);
-      --color-black: hsl(0 0% 7%);
+      --color-black: hsl(0, 0%, 0%);
       --color-alpha: 90%;
       --color-mix: color-mix(
         in srgb,
@@ -14,7 +14,7 @@
 
     @media (prefers-color-scheme: dark) {
       [theme="dark"] {
-        --color-white: hsl(0 0% 7%);
+        --color-white: hsl(0, 0%, 0%);
         --color-black: hsl(0 0% 100%);
       }
     }

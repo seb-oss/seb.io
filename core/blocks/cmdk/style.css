@@ -15,7 +15,7 @@
   visibility: hidden;
   transition: var(--transition);
   pointer-events: none;
-  /* --mix: color-mix(in srgb, currentColor, transparent 96%); */
+  /* --mix: color-mix(in srgb, #fff, transparent 96%); */
   letter-spacing: 0.04ch;
 
   &.open {
@@ -57,7 +57,7 @@
         width: 18px;
         height: 18px;
         fill: none;
-        stroke: currentColor;
+        stroke: #fff;
         stroke-width: 2;
         stroke-linecap: round;
         stroke-linejoin: round;
@@ -85,8 +85,9 @@
         outline: none;
         background-color: transparent;
         font-size: 16px;
+        color: #fff;
         &::placeholder {
-          color: hsla(220, 10%, 50%, 0.4);
+          color: color-mix(in srgb, white, transparent 60%);
         }
       }
 
@@ -134,7 +135,7 @@
       .category {
         font-size: 12px;
         padding-inline: 12px;
-        color: color-mix(in srgb, currentColor, transparent 60%);
+        color: color-mix(in srgb, #fff, transparent 60%);
         letter-spacing: 0.01ch;
         font-weight: 400;
         pointer-events: none;
@@ -200,7 +201,7 @@
               width: 12px;
               height: 12px;
               fill: none;
-              stroke: currentColor;
+              stroke: #fff;
               stroke-width: 2;
               stroke-linecap: round;
               stroke-linejoin: round;
@@ -209,7 +210,7 @@
 
           & mark {
             background-color: hsla(360, 100%, 100%, 0);
-            color: currentColor;
+            color: #fff;
             text-decoration: underline;
           }
 
@@ -217,7 +218,7 @@
           &:focus,
           &.focused {
             color: hsla(360, 100%, 100%, 1);
-            border-color: currentColor;
+            border-color: #fff;
             background-color: hsla(360, 100%, 100%, 0.04);
           }
         }
@@ -247,7 +248,7 @@
           & svg {
             width: 18px;
             height: 18px;
-            stroke: currentColor;
+            stroke: #fff;
             stroke-width: 2;
             stroke-linecap: round;
             stroke-linejoin: round;
@@ -263,7 +264,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      color: hsl(var(--muted-foreground));
+      color: color-mix(in srgb, white, transparent 60%);
 
       .cmd-options {
         display: flex;
@@ -287,11 +288,12 @@
           align-items: center;
           justify-content: center;
           font-size: 18px;
+          color: #fff;
         }
 
         svg {
           fill: none;
-          stroke: currentColor;
+          stroke: #fff;
           stroke-width: 2;
           stroke-linecap: round;
           stroke-linejoin: round;

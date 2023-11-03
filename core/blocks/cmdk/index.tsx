@@ -10,6 +10,7 @@ import {
   allPosts,
   Member,
 } from "content"
+import { compareDesc, format, parseISO } from "date-fns"
 import Fuse from "fuse.js"
 
 import "./style.css"
@@ -100,7 +101,14 @@ export default function Cmdk({
         >
           <div className="cmdk-item-name">
             <span className="cmdk-item-char">{doc.title.charAt(0)}</span>
-            <span>{doc.title}</span>
+            <span>{doc.version}</span>
+          </div>
+          <div className="cmdk-option">
+            <span>
+              <time dateTime={doc.date}>
+                {format(parseISO(doc.date), "LLLL d, yyyy")}
+              </time>
+            </span>
           </div>
         </Link>
       )
