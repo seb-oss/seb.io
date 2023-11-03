@@ -1,4 +1,4 @@
-footer {
+footer.main-footer {
   padding: 40px;
   border-top: 1px solid color-mix(in srgb, var(--color-black), transparent 90%);
   font-weight: 300;
