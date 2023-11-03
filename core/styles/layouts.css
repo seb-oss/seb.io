@@ -159,6 +159,32 @@
             }
           }
 
+          main {
+            margin-block: 40px;
+            padding-top: 40px;
+            border-top: 1px solid
+              color-mix(in srgb, var(--color-black), transparent 90%);
+
+            iframe {
+              width: 100%;
+              border: none;
+              border-radius: 8px;
+              margin-block: 20px;
+              min-block-size: 450px;
+              background: transparent !important;
+            }
+
+            div[data-rehype-pretty-code-fragment] {
+              margin-top: 20px;
+
+              pre {
+                padding: 20px;
+                line-height: 1.5;
+                border-radius: 8px;
+              }
+            }
+          }
+
           &.component {
             display: flex;
             flex-direction: row;

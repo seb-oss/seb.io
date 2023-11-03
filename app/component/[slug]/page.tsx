@@ -5,6 +5,7 @@ import {
   useRouter,
   useSearchParams,
 } from "next/navigation"
+import { Mdx } from "@/core/blocks/mdx"
 import Sidebar from "@/core/blocks/sidebar"
 import Taber from "@/core/blocks/taber"
 import { allComponents, Component } from "content"
@@ -38,10 +39,11 @@ export default function Componentr({ params }: { params: { slug: string } }) {
     date,
     global_id,
     last_edited,
+    body,
   } = component
 
   return (
-    <article key={global_id} className="post">
+    <article key={global_id} className="layout post">
       <header>
         <div className="content">
           <h1>{title}</h1>
@@ -72,34 +74,9 @@ export default function Componentr({ params }: { params: { slug: string } }) {
           <p>{keywords}</p>
           <p>{status}</p>
           <p>{dependencies}</p>
-
-          <h2 id="a11y">Accessibility</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
         </div>
       </section>
+      <Mdx code={body.code} />
       <Taber />
     </article>
   )
