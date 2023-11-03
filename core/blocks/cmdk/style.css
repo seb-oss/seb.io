@@ -157,6 +157,7 @@
           display: flex;
           align-items: center;
           justify-content: space-between;
+          outline: none;
 
           .cmdk-item-name {
             display: flex;
@@ -301,7 +302,7 @@
   }
 }
 
-.cmd-backdrop {
+/* .cmd-backdrop {
   display: none;
   background-color: hsla(360, 0%, 0%, 0.8);
   width: 100%;
@@ -312,4 +313,4 @@
   cursor: pointer;
   appearance: none;
   border: none;
-}
+} */

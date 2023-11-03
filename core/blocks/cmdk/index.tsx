@@ -17,6 +17,7 @@ import "./style.css"
 import Image from "next/image"
 
 interface Document {
+  handle: any
   title: string
   version?: string
   keywords?: string
@@ -33,6 +34,8 @@ export default function Cmdk({
   isOpen: boolean
   toggleCmd: () => void
 }) {
+  const [focusedIndex, setFocusedIndex] = useState<number>(-1)
+
   const [searchResults, setSearchResults] = useState<Document[]>(
     allDocuments as Document[]
   )
@@ -50,12 +53,12 @@ export default function Cmdk({
 
     if (value.length === 0) {
       setSearchResults(allDocuments as Document[])
+      setFocusedIndex(-1)
       return
     }
 
     const results = []
 
-    // Search in allChangelogs
     const changelogFuse = new Fuse(allChangelogs, {
       keys: ["title", "version"],
     })
@@ -63,7 +66,6 @@ export default function Cmdk({
     const changelogItems = changelogResults.map((result) => result.item)
     results.push(...changelogItems)
 
-    // Search in allComponents
     const componentFuse = new Fuse(allComponents, {
       keys: ["title", "keywords"],
     })
@@ -71,7 +73,6 @@ export default function Cmdk({
     const componentItems = componentResults.map((result) => result.item)
     results.push(...componentItems)
 
-    // Search in allPosts
     const postFuse = new Fuse(allPosts, {
       keys: ["title", "keywords"],
     })
@@ -79,7 +80,6 @@ export default function Cmdk({
     const postItems = postResults.map((result) => result.item)
     results.push(...postItems)
 
-    // Search in allMembers
     const memberFuse = new Fuse(allMembers, {
       keys: ["name", "department"],
     })
@@ -89,66 +89,6 @@ export default function Cmdk({
 
     setSearchResults(results as Document[])
   }
-
-  // const renderResult = (doc: Document) => {
-  //   if (doc.type === "Changelog") {
-  //     return (
-  //       <ul>
-  //         <Link href={doc.url_path} onClick={toggleCmd}>
-  //           <div className="cmdk-item-name">
-  //             <span className="cmdk-item-char">TS</span>
-  //             <span>{doc.title}</span>
-  //           </div>
-  //         </Link>
-  //       </ul>
-  //     )
-  //   } else if (doc.type === "Component") {
-  //     return (
-  //       <ul key={doc.title}>
-  //         <Link href={doc.url_path} onClick={toggleCmd}>
-  //           <div className="cmdk-item-name">
-  //             <span className="cmdk-item-char">TS</span>
-  //             <span>{doc.title}</span>
-  //           </div>
-  //         </Link>
-  //       </ul>
-  //     )
-  //   } else if (doc.type === "Post") {
-  //     return (
-  //       <ul key={doc.title}>
-  //         <Link href={doc.url_path} onClick={toggleCmd}>
-  //           <div className="cmdk-item-name">
-  //             <span className="cmdk-item-char">TS</span>
-  //             <span>{doc.title}</span>
-  //           </div>
-  //         </Link>
-  //       </ul>
-  //     )
-  //   } else if (doc.type === "Member") {
-  //     return (
-  //       <ul key={doc.title}>
-  //         <Link href={"about" + doc.url_path} onClick={toggleCmd}>
-  //           <div className="cmdk-item-name">
-  //             <span className="cmdk-item-char">
-  //               <Image
-  //                 width="16"
-  //                 height="16"
-  //                 src={"https://github.com/" + doc.handle.toString() + ".png"}
-  //                 alt={doc.name.toString()}
-  //               />
-  //             </span>
-  //             <span>{doc.name}</span>
-  //           </div>
-  //         </Link>
-  //       </ul>
-  //     )
-  //   } else {
-  //     return <span>{doc.title}</span>
-  //   }
-  // }
-
-  // V111111
-  // const [searchTerm, setSearchTerm] = useState("")
 
   const renderResult = (doc: Document) => {
     if (doc.type === "Changelog") {
@@ -220,7 +160,7 @@ export default function Cmdk({
               height="16"
               className="cmdk-item-img"
               src={"https://github.com/" + doc.handle.toString() + ".png"}
-              alt={doc.name.toString()}
+              alt="Member"
             />
             <span>{doc.name}</span>
           </div>
@@ -264,7 +204,18 @@ export default function Cmdk({
       document.removeEventListener("click", handleClickOutside)
     }
   }, [toggleCmd])
-  // }, [searchTerm, toggleCmd])
+
+  useEffect(() => {
+    const handleFocusInput = () => {
+      if (isOpen && inputRef.current) {
+        inputRef.current.focus()
+      }
+    }
+
+    const panelTimeout = setTimeout(handleFocusInput, 300)
+
+    return () => clearTimeout(panelTimeout)
+  }, [isOpen])
 
   return (
     <div className={`cmd ${isOpen ? "open" : ""}`} role="dialog">
@@ -312,13 +263,15 @@ export default function Cmdk({
               ))}
             </>
           ) : (
-            <p>No results found.</p>
+            <div className="no-results">
+              <div className="category">Error</div>
+              <div className="list">
+                <Link href="/search">No results found.</Link>
+              </div>
+            </div>
           )}
         </section>
 
-        {/* <section>
-          <div>{searchResults.map((doc, index) => renderResult(doc))}</div>
-        </section> */}
         <footer>
           <svg width="14" height="14" viewBox="0 0 25 25">
             <path
