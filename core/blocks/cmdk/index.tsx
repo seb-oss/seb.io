@@ -189,6 +189,16 @@ export default function Cmdk({
         toggleCmd()
         setSearchResults(allDocuments as Document[])
         setFocusedIndex(-1)
+      } else if (e.key === "ArrowUp") {
+        e.preventDefault()
+        setFocusedIndex((prevIndex) =>
+          prevIndex > 0 ? prevIndex - 1 : searchResults.length - 1
+        )
+      } else if (e.key === "ArrowDown") {
+        e.preventDefault()
+        setFocusedIndex((prevIndex) =>
+          prevIndex < searchResults.length - 1 ? prevIndex + 1 : 0
+        )
       }
     }
 
@@ -255,12 +265,8 @@ export default function Cmdk({
                   }
                   return groups
                 }, {})
-              ).map(([type, docs], index) => (
-                <div
-                  key={type}
-                  onFocus={() => setFocusedIndex(index)}
-                  className={focusedIndex === index ? "focused" : ""}
-                >
+              ).map(([type, docs]) => (
+                <div key={type}>
                   <div className="category" tabIndex={-1}>
                     {type}
                   </div>
