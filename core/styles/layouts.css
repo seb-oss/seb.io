@@ -187,17 +187,14 @@
           }
 
           &.component {
-            /* display: flex; */
-            /* flex-direction: row; */
             gap: 100px;
-            flex-wrap: wrap;
-
             display: grid;
             grid-template-columns: 300px 1fr 300px;
+            align-items: flex-start;
 
             aside {
               position: sticky;
-              top: 0;
+              top: 140px;
             }
 
             header {

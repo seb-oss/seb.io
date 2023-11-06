@@ -7,7 +7,13 @@ function Figma() {
   )
 }
 
-const components = { Figma }
+function Pen() {
+  return (
+    <iframe src="https://codepen.io/astrit/embed/RwvKavd?default-tab=html%2Cresult"></iframe>
+  )
+}
+
+const components = { Figma, Pen }
 
 export function Mdx({ code }: { code: string }) {
   const Component = useMDXComponent(code)
