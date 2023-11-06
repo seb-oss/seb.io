@@ -1,4 +1,5 @@
 import * as React from "react"
+import Image from "next/image"
 import { useMDXComponent } from "next-contentlayer/hooks"
 
 function Figma() {
@@ -13,17 +14,17 @@ function Pen() {
   )
 }
 
+function CustomImage(props: any) {
+  return <Image alt={props.alt} {...props} />
+}
+
 function Sandbox() {
   return (
-    <iframe
-      src="https://codesandbox.io/embed/silent-water-pd45yy?fontsize=14&hidenavigation=1&theme=dark"
-      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-    ></iframe>
+    <iframe src="https://codesandbox.io/embed/silent-water-pd45yy?fontsize=14&hidenavigation=1&theme=dark"></iframe>
   )
 }
 
-const components = { Figma, Pen, Sandbox }
+const components = { Figma, Pen, Image: CustomImage, Sandbox }
 
 export function Mdx({ code }: { code: string }) {
   const Component = useMDXComponent(code)

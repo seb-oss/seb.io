@@ -40,7 +40,8 @@ export const Component = defineDocumentType(() => ({
         const regXHeader = /\n(?<flag>#{1,6})\s+(?<content>.+)/g
         const slugger = new GithubSlugger()
         const headings = Array.from(doc.body.raw.matchAll(regXHeader)).map(
-          ({ groups }) => {
+          (match) => {
+            const groups = (match as RegExpMatchArray).groups
             const flag = groups?.flag
             const content = groups?.content
             return {
