@@ -24,6 +24,7 @@ export default function Sidebar() {
 
   return (
     <aside className="components">
+      <span>Components</span>
       <nav>
         {components.map((component, idx) => (
           <Component key={idx} {...component} />

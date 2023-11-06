@@ -187,10 +187,18 @@
           }
 
           &.component {
-            display: flex;
-            flex-direction: row;
+            /* display: flex; */
+            /* flex-direction: row; */
             gap: 100px;
             flex-wrap: wrap;
+
+            display: grid;
+            grid-template-columns: 300px 1fr 300px;
+
+            aside {
+              position: sticky;
+              top: 0;
+            }
 
             header {
               display: flex;
@@ -220,6 +228,38 @@
                     display: flex;
                     font-size: 10px;
                     opacity: 0.5;
+                  }
+                }
+              }
+            }
+            main {
+              h2 {
+                font-size: 24px;
+              }
+
+              h3 {
+                font-size: 20px;
+              }
+
+              h4 {
+                font-size: 18px;
+              }
+
+              h2,
+              h3,
+              h4 {
+                position: relative;
+                font-weight: 600;
+                padding-block-start: 3ex;
+                margin-bottom: 1ex;
+
+                &:hover {
+                  &::before {
+                    content: "#";
+                    display: flex;
+                    position: absolute;
+                    opacity: 0.4;
+                    left: -2ch;
                   }
                 }
               }

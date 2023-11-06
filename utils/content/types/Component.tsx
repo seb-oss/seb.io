@@ -1,4 +1,5 @@
 import { defineDocumentType } from "@contentlayer/source-files"
+import GithubSlugger from "github-slugger"
 
 import { getLastEditedDate, urlFromFilePath } from "../utils"
 
@@ -33,13 +34,25 @@ export const Component = defineDocumentType(() => ({
         return urlFromFilePath(component)
       },
     },
-    // url_path_without_id: {
-    //   type: "string",
-    //   description:
-    //     'The URL path of this page relative to site root. For example, the site root page would be "/", and doc page would be "docs/getting-started/"',
-    //   resolve: (post) =>
-    //     urlFromFilePath(post).replace(new RegExp(`-${post.global_id}$`), ""),
-    // },
+    headings: {
+      type: "json",
+      resolve: async (doc) => {
+        const regXHeader = /\n(?<flag>#{1,6})\s+(?<content>.+)/g
+        const slugger = new GithubSlugger()
+        const headings = Array.from(doc.body.raw.matchAll(regXHeader)).map(
+          ({ groups }) => {
+            const flag = groups?.flag
+            const content = groups?.content
+            return {
+              level: flag ? flag.length : 0,
+              text: content,
+              slug: content ? slugger.slug(content) : undefined,
+            }
+          }
+        )
+        return headings
+      },
+    },
     pathSegments: {
       type: "json",
       resolve: (post) =>
