@@ -13,7 +13,17 @@ function Pen() {
   )
 }
 
-const components = { Figma, Pen }
+function Sandbox() {
+  return (
+    <iframe
+      src="https://codesandbox.io/embed/silent-water-pd45yy?fontsize=14&hidenavigation=1&theme=dark"
+      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+    ></iframe>
+  )
+}
+
+const components = { Figma, Pen, Sandbox }
 
 export function Mdx({ code }: { code: string }) {
   const Component = useMDXComponent(code)
