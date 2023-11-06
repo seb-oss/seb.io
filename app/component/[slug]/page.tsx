@@ -8,6 +8,7 @@ import {
 import { Mdx } from "@/core/blocks/mdx"
 import Sidebar from "@/core/blocks/sidebar"
 import Taber from "@/core/blocks/taber"
+import Trail from "@/core/blocks/trail/trail"
 import { allComponents, Component } from "content"
 import { format, parseISO } from "date-fns"
 
@@ -39,44 +40,45 @@ export default function Componentr({ params }: { params: { slug: string } }) {
     date,
     global_id,
     last_edited,
+    summary,
     body,
   } = component
 
   return (
-    <article key={global_id} className="layout post">
+    <article key={global_id}>
       <header>
+        <Trail
+          home={"Home"}
+          separator={<span> / </span>}
+          activeClass="active"
+        />
         <div className="content">
           <h1>{title}</h1>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
+          <p>{summary}</p>
         </div>
-        <div className="post-details">
-          <time dateTime={last_edited} title="Published on">
-            <svg width="24" height="24" viewBox="0 0 24 24">
-              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-              <line x1="16" y1="2" x2="16" y2="6"></line>
-              <line x1="8" y1="2" x2="8" y2="6"></line>
-              <line x1="3" y1="10" x2="21" y2="10"></line>
-            </svg>
-            <div>
-              {format(parseISO(last_edited), "LLL d, yyyy")}
-              <span>Last updated</span>
-            </div>
+        <div className="details">
+          <time dateTime={last_edited} title="Last updated">
+            {format(parseISO(last_edited), "LLL d, yyyy")}
           </time>
+          <div title="Version">{version}</div>
+          <div title="Status">{status}</div>
+        </div>
+        <div className="details">
+          <div title="Keywords">{keywords}</div>
+        </div>
+        <div className="details">
+          <div title="Dependecies">{dependencies}</div>
         </div>
       </header>
-
-      <section className="main-content">
-        <div>
-          <p>{version}</p>
-          <p>{keywords}</p>
-          <p>{status}</p>
-          <p>{dependencies}</p>
-        </div>
-      </section>
       <Mdx code={body.code} />
+      <hr />
+      <ul>
+        <h2>On this page</h2>
+        <li>Component</li>
+        <li>Usage</li>
+        <li>Examples</li>
+      </ul>
+      <hr />
       <Taber />
     </article>
   )

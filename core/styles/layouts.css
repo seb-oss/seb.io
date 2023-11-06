@@ -7,6 +7,7 @@
         padding: 40px;
 
         .layout {
+          min-height: 80vh;
           &.core {
             display: flex;
             flex-direction: column;
@@ -190,6 +191,39 @@
             flex-direction: row;
             gap: 100px;
             flex-wrap: wrap;
+
+            header {
+              display: flex;
+              gap: 24px;
+              flex-direction: column;
+
+              .content {
+                display: flex;
+                gap: 16px;
+                flex-direction: column;
+
+                h1 {
+                  font-size: 32px;
+                  line-height: 1.25;
+                }
+              }
+
+              .details {
+                display: flex;
+                flex-direction: row;
+                gap: 20px;
+
+                div,
+                time {
+                  &::after {
+                    content: attr(title);
+                    display: flex;
+                    font-size: 10px;
+                    opacity: 0.5;
+                  }
+                }
+              }
+            }
           }
         }
       }

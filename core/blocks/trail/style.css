@@ -1,0 +1,18 @@
+.trail {
+  display: flex;
+  margin-block-end: 40px;
+
+  ul {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+
+    li {
+      text-transform: capitalize;
+
+      &:not(.active) {
+        text-decoration: underline;
+      }
+    }
+  }
+}
