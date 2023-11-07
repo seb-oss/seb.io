@@ -15,7 +15,7 @@ function Pen() {
 }
 
 function CustomImage(props: any) {
-  return <Image alt={props.alt} {...props} />
+  return <Image alt={props.alt} {...props} width={500} height={500} />
 }
 
 function Sandbox() {
