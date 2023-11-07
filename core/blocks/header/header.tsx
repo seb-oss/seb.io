@@ -33,7 +33,7 @@ export const Header = forwardRef(({ ...props }, ref) => {
         </button>
         <Link href="/components">Components</Link>
         <Link href="/foundation">Foundation</Link>
-        <Link href="/about">About</Link>
+        {/* <Link href="/about">About</Link> */}
       </nav>
       <Link href="/" className="logo">
         <svg width="14" height="14" viewBox="0 0 25 25">
