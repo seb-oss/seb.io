@@ -1,3 +1,3 @@
-export default function Code() {
-  return <div>Code</div>
+export default function Accessibility() {
+  return <div>Accessibility</div>
 }
