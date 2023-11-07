@@ -13,13 +13,18 @@ import { compareDesc, format, parseISO } from "date-fns"
 
 import "./style.css"
 
+// console.log(allComponents)
+
 export default function Sidebar() {
+  const filteredComponents = allComponents.filter(
+    (component) => component._raw.sourceFileName === "index.mdx"
+  )
   function Component(component: Component) {
     return <Link href={component.url_path}>{component.title}</Link>
   }
 
-  const components = allComponents.sort((a, b) =>
-    compareDesc(new Date(a.date), new Date(b.date))
+  const components = filteredComponents.sort((a, b) =>
+    compareDesc(new Date(a.title), new Date(b.title))
   )
 
   return (

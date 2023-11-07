@@ -11,13 +11,15 @@ interface TaberProps {
 }
 
 export default function Taber({ component }: TaberProps) {
-  // const path = component
+  const path = usePathname()
 
+  // console.log("component", usePathname())
+  // console.log("component", component + "/code" ? "active" : "")
   return (
     <div className="taber">
       <Link
         href={component + "/code"}
-        className={component === "/code" ? "active" : ""}
+        className={path === component + "/code" ? "active" : ""}
       >
         <svg viewBox="0 0 24 24">
           <polyline points="4 17 10 11 4 5"></polyline>
@@ -27,7 +29,7 @@ export default function Taber({ component }: TaberProps) {
       </Link>
       <Link
         href={component + "/design"}
-        className={component === "/design" ? "active" : ""}
+        className={path === component + "/design" ? "active" : ""}
       >
         <svg viewBox="0 0 24 24">
           <path d="M5 5.5A3.5 3.5 0 0 1 8.5 2H12v7H8.5A3.5 3.5 0 0 1 5 5.5z"></path>
@@ -40,7 +42,7 @@ export default function Taber({ component }: TaberProps) {
       </Link>
       <Link
         href={component + "/guidelines"}
-        className={component === "/guidelines" ? "active" : ""}
+        className={path === component + "/guidelines" ? "active" : ""}
       >
         <svg viewBox="0 0 24 24">
           <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path>
@@ -51,7 +53,7 @@ export default function Taber({ component }: TaberProps) {
       </Link>
       <Link
         href={component + "/accessibility"}
-        className={component === "/accessibility" ? "active" : ""}
+        className={path === component + "/accessibility" ? "active" : ""}
       >
         <svg viewBox="0 0 24 24">
           <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>

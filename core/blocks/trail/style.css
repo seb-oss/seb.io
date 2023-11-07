@@ -1,6 +1,7 @@
 .trail {
   display: flex;
   margin-block-end: 40px;
+  font-size: 12px;
 
   ul {
     display: flex;

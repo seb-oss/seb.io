@@ -51,6 +51,8 @@ export default function ComponentLayout({
     body,
   } = component
 
+  // console.log(component)
+
   return (
     <Layout>
       <article>
@@ -78,20 +80,9 @@ export default function ComponentLayout({
             <div title="Dependecies">{dependencies}</div>
           </div>
         </header>
-        <hr />
         {children}
-        <hr />
-        {/* <Mdx code={body.code} /> */}
       </article>
       <Taber component={url_path} />
-      {component.headings && (
-        <aside className="toc">
-          <span>On this page</span>
-          <nav>
-            <TOC headings={component.headings} />
-          </nav>
-        </aside>
-      )}
     </Layout>
   )
 }

@@ -189,7 +189,7 @@
           &.component {
             gap: 100px;
             display: grid;
-            grid-template-columns: 300px 1fr 300px;
+            grid-template-columns: 300px 1fr;
             align-items: flex-start;
 
             aside {
@@ -229,6 +229,30 @@
                 }
               }
             }
+
+            article {
+              display: grid;
+              display: grid;
+              grid-template-areas:
+                "header aside"
+                "main aside";
+              gap: 20px;
+
+              header {
+                grid-area: header;
+              }
+
+              main {
+                grid-area: main;
+              }
+
+              aside {
+                grid-area: aside;
+                position: sticky;
+                top: 140px;
+              }
+            }
+
             main {
               h2 {
                 font-size: 24px;
