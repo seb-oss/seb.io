@@ -74,7 +74,6 @@ export default function Componentr({ params }: { params: { slug: string } }) {
           </div>
         </header>
         <Mdx code={body.code} />
-
         <Taber />
       </article>
       {component.headings && (

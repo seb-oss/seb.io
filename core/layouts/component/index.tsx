@@ -2,28 +2,14 @@ import Sidebar from "@/core/blocks/sidebar"
 
 import "./style.css"
 
-import TOC from "@/core/blocks/toc/toc"
+import Taber from "@/core/blocks/taber"
 
-interface LayoutProps {
-  component: {
-    headings?: {
-      slug: string
-      text: string
-    }[]
-  }
-  children: React.ReactNode
-}
-export default function Layout({ component, children }: LayoutProps) {
+export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <section className="layout component">
       <Sidebar />
       {children}
-      {/* {component.headings && (
-        <div>
-          <div>On this page</div>
-          <TOC headings={component.headings} />
-        </div>
-      )} */}
+      <Taber />
     </section>
   )
 }

@@ -260,6 +260,11 @@
                   }
                 }
               }
+
+              img {
+                border-radius: 8px;
+                margin-block: 2ex;
+              }
             }
           }
         }
