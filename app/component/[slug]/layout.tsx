@@ -23,11 +23,15 @@ export async function generateStaticParams() {
 export default function ComponentLayout({
   children,
   params,
+  headings,
 }: {
   children: React.ReactNode
   params: { slug: string }
+  headings: any
 }) {
   const { slug } = params
+
+  console.log(slug)
 
   const component = allComponents.find(
     (component) => component.url_path === "/component/" + slug
@@ -51,10 +55,9 @@ export default function ComponentLayout({
     body,
   } = component
 
-  // console.log(component)
-
   return (
-    <Layout>
+    <Layout key={global_id}>
+      <Sidebar />
       <article>
         <header>
           <Trail
@@ -73,14 +76,14 @@ export default function ComponentLayout({
             <div title="Version">{version}</div>
             <div title="Status">{status}</div>
           </div>
-          <div className="details">
+          {/* <div className="details">
             <div title="Keywords">{keywords}</div>
           </div>
           <div className="details">
             <div title="Dependecies">{dependencies}</div>
-          </div>
+          </div> */}
         </header>
-        {children}
+        <div className="content">{children}</div>
       </article>
       <Taber component={url_path} />
     </Layout>

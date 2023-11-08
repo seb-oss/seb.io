@@ -160,7 +160,7 @@
             }
           }
 
-          main {
+          /* main {
             margin-block: 40px;
             padding-top: 40px;
             border-top: 1px solid
@@ -184,113 +184,7 @@
                 border-radius: 8px;
               }
             }
-          }
-
-          &.component {
-            gap: 100px;
-            display: grid;
-            grid-template-columns: 300px 1fr;
-            align-items: flex-start;
-
-            aside {
-              position: sticky;
-              top: 140px;
-            }
-
-            header {
-              display: flex;
-              gap: 24px;
-              flex-direction: column;
-
-              .content {
-                display: flex;
-                gap: 16px;
-                flex-direction: column;
-
-                h1 {
-                  font-size: 32px;
-                  line-height: 1.25;
-                }
-              }
-
-              .details {
-                display: flex;
-                flex-direction: row;
-                gap: 20px;
-
-                div,
-                time {
-                  &::after {
-                    content: attr(title);
-                    display: flex;
-                    font-size: 10px;
-                    opacity: 0.5;
-                  }
-                }
-              }
-            }
-
-            article {
-              display: grid;
-              display: grid;
-              grid-template-areas:
-                "header aside"
-                "main aside";
-              gap: 20px;
-
-              header {
-                grid-area: header;
-              }
-
-              main {
-                grid-area: main;
-              }
-
-              aside {
-                grid-area: aside;
-                position: sticky;
-                top: 140px;
-              }
-            }
-
-            main {
-              h2 {
-                font-size: 24px;
-              }
-
-              h3 {
-                font-size: 20px;
-              }
-
-              h4 {
-                font-size: 18px;
-              }
-
-              h2,
-              h3,
-              h4 {
-                position: relative;
-                font-weight: 600;
-                padding-block-start: 3ex;
-                margin-bottom: 1ex;
-
-                &:hover {
-                  &::before {
-                    content: "#";
-                    display: flex;
-                    position: absolute;
-                    opacity: 0.4;
-                    left: -2ch;
-                  }
-                }
-              }
-
-              img {
-                border-radius: 8px;
-                margin-block: 2ex;
-              }
-            }
-          }
+          } */
         }
       }
     }

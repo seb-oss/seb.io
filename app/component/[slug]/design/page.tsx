@@ -1,6 +1,6 @@
-import Link from "next/link"
 import { notFound } from "next/navigation"
 import { Mdx } from "@/core/blocks/mdx"
+import TOC from "@/core/blocks/toc/toc"
 import { allComponents } from "content"
 
 export async function generateStaticParams() {
@@ -22,5 +22,10 @@ export default function Design({ params }: { params: { slug: string } }) {
 
   const { body } = component
 
-  return <Mdx code={body.code} />
+  return (
+    <>
+      <Mdx code={body.code} />
+      {component.headings && <TOC headings={component.headings} />}
+    </>
+  )
 }

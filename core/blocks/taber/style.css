@@ -5,12 +5,6 @@
   right: 0;
   bottom: 40px;
   border-radius: 200px;
-  /* background: linear-gradient(
-    to bottom,
-    hsla(220, 10%, 6%, 0.8),
-    hsla(220, 10%, 6%, 1)
-  ); */
-  /* backdrop-filter: blur(100px) saturate(400%) brightness(100%); */
   background-color: color-mix(in srgb, var(--color-white), transparent 20%);
   backdrop-filter: blur(20px);
   border: 1px solid color-mix(in srgb, var(--color-black), transparent 94%);
@@ -19,7 +13,6 @@
   padding: 10px;
   z-index: 4;
   font-size: 14px;
-  margin: 0 auto;
   width: max-content;
   align-items: center;
   justify-content: center;

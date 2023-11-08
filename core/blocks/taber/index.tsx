@@ -13,8 +13,6 @@ interface TaberProps {
 export default function Taber({ component }: TaberProps) {
   const path = usePathname()
 
-  // console.log("component", usePathname())
-  // console.log("component", component + "/code" ? "active" : "")
   return (
     <div className="taber">
       <Link

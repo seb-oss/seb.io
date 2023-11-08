@@ -26,14 +26,7 @@ export default function Code({ params }: { params: { slug: string } }) {
   return (
     <>
       <Mdx code={body.code} />
-      {component.headings && (
-        <aside className="toc">
-          <span>On this page</span>
-          <nav>
-            <TOC headings={component.headings} />
-          </nav>
-        </aside>
-      )}
+      {component.headings && <TOC headings={component.headings} />}
     </>
   )
 }

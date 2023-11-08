@@ -10,6 +10,7 @@
 
     li {
       text-transform: capitalize;
+      opacity: 0.6;
 
       &:not(.active) {
         text-decoration: underline;

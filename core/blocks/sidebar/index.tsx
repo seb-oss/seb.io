@@ -24,12 +24,13 @@ export default function Sidebar() {
   }
 
   const components = filteredComponents.sort((a, b) =>
-    compareDesc(new Date(a.title), new Date(b.title))
+    // compareDesc(new Date(a.title), new Date(b.title))
+    a.title.localeCompare(b.title)
   )
 
   return (
     <aside className="components">
-      <span>Components</span>
+      <span>Components Sidebar</span>
       <nav>
         {components.map((component, idx) => (
           <Component key={idx} {...component} />

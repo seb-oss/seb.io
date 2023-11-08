@@ -1,4 +1,3 @@
-import Link from "next/link"
 import { notFound } from "next/navigation"
 import { Mdx } from "@/core/blocks/mdx"
 import TOC from "@/core/blocks/toc/toc"
@@ -31,6 +30,7 @@ export default function Accessibility({
   return (
     <>
       <Mdx code={body.code} />
+      {component.headings && <TOC headings={component.headings} />}
     </>
   )
 }
