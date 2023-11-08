@@ -1,7 +1,8 @@
 "use client"
 
-import React, { forwardRef, useContext } from "react"
+import React, { forwardRef, use, useContext } from "react"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 
 import "./header.css"
 
@@ -11,6 +12,9 @@ import { ThemeToggle } from "@/utils/theme/toggle"
 export const Header = forwardRef(({ ...props }, ref) => {
   const { toggleCmd } = useContext(ThemeProviderContext)
   const { toggleNav, isNavOpen } = useContext(ThemeProviderContext)
+  const path = usePathname()
+
+  console.log(path)
 
   return (
     <header className="main">
@@ -30,9 +34,18 @@ export const Header = forwardRef(({ ...props }, ref) => {
           )}
           Menu
         </button>
-        <Link href="/components">Components</Link>
-        <Link href="/foundation">Foundation</Link>
-        {/* <Link href="/about">About</Link> */}
+        <Link
+          className={path == "/components" ? "active" : ""}
+          href="/components"
+        >
+          Components
+        </Link>
+        <Link
+          className={path == "/foundation" ? "active" : ""}
+          href="/foundation"
+        >
+          Foundation
+        </Link>
       </nav>
       <Link href="/" className="logo">
         <svg width="14" height="14" viewBox="0 0 25 25">

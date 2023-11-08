@@ -25,5 +25,9 @@ aside.nav {
     flex-direction: column;
     gap: 2ex;
     font-size: 14px;
+
+    a.active {
+      text-decoration: underline;
+    }
   }
 }
