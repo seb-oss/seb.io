@@ -15,7 +15,7 @@ interface TOCProps {
 const TOC: React.FC<TOCProps> = ({ headings }) => {
   return (
     <aside className="toc">
-      <span>On this page</span>
+      {headings.length > 0 && <span>On this page</span>}
       <nav>
         {headings.map((heading) => (
           <Link

@@ -5,6 +5,11 @@
   gap: 40px;
   align-items: flex-start;
 
+  aside {
+    position: sticky;
+    top: 120px;
+  }
+
   article {
     display: flex;
     flex-direction: column;
@@ -48,6 +53,7 @@
       display: flex;
       flex: 1 0 auto;
       flex-direction: row;
+      align-items: flex-start;
       width: 100%;
       gap: 40px;
 
@@ -67,6 +73,8 @@
           color-mix(in srgb, var(--color-black), transparent 90%);
         flex: 1 0 auto;
         max-width: 300px;
+        position: sticky;
+        top: 80px;
       }
 
       h2 {
