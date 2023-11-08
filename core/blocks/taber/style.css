@@ -1,5 +1,6 @@
 .taber {
-  position: fixed;
+  position: sticky;
+  margin-top: 40px;
   margin-inline: auto;
   left: 0;
   right: 0;

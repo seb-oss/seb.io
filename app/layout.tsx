@@ -6,7 +6,7 @@ import Footer from "@/core/blocks/footer"
 import Header from "@/core/blocks/header/header"
 import Layout from "@/core/layouts/core"
 import SEBSAnsSerif from "@/utils/fonts/fonts"
-import { ThemeProvider } from "@/utils/theme/provider"
+import { ThemeProvider, ThemeProviderContext } from "@/utils/theme/provider"
 
 const inter = Inter({ subsets: ["latin"] })
 

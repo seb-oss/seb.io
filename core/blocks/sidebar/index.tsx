@@ -1,21 +1,15 @@
 import Link from "next/link"
-import {
-  allChangelogs,
-  allComponents,
-  allMembers,
-  allPosts,
-  Changelog,
-  Component,
-  Member,
-  Post,
-} from "content"
-import { compareDesc, format, parseISO } from "date-fns"
+import { allComponents, Component } from "content"
 
 import "./style.css"
 
-// console.log(allComponents)
-
-export default function Sidebar() {
+export default function Sidebar({
+  isNavOpen,
+  toggleNav,
+}: {
+  isNavOpen: boolean
+  toggleNav: () => void
+}) {
   const filteredComponents = allComponents.filter(
     (component) => component._raw.sourceFileName === "index.mdx"
   )
@@ -24,18 +18,31 @@ export default function Sidebar() {
   }
 
   const components = filteredComponents.sort((a, b) =>
-    // compareDesc(new Date(a.title), new Date(b.title))
     a.title.localeCompare(b.title)
   )
 
   return (
-    <aside className="components">
-      <span>Components Sidebar</span>
-      <nav>
-        {components.map((component, idx) => (
-          <Component key={idx} {...component} />
-        ))}
-      </nav>
+    <aside className={`nav ${!isNavOpen ? "hidden" : ""}`}>
+      <section data-name="Components">
+        <nav>
+          {components.map((component, idx) => (
+            <Component key={idx} {...component} />
+          ))}
+        </nav>
+      </section>
+      <section data-name="Foundation">
+        <nav>
+          <Link href="/foundation/accessibility">Accessibility</Link>
+          <Link href="/foundation/direction">Direction</Link>
+        </nav>
+      </section>
+
+      <section data-name="About">
+        <nav>
+          <Link href="/changelog">Changelog</Link>
+          <Link href="/status">Status</Link>
+        </nav>
+      </section>
     </aside>
   )
 }

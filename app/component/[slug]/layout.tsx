@@ -57,34 +57,25 @@ export default function ComponentLayout({
 
   return (
     <Layout key={global_id}>
-      <Sidebar />
-      <article>
-        <header>
-          <Trail
-            home={"Home"}
-            separator={<span> / </span>}
-            activeClass="active"
-          />
-          <div className="content">
-            <h1>{title}</h1>
-            <p>{summary}</p>
-          </div>
-          <div className="details">
-            <time dateTime={last_edited} title="Last updated">
-              {format(parseISO(last_edited), "LLL d, yyyy")}
-            </time>
-            <div title="Version">{version}</div>
-            <div title="Status">{status}</div>
-          </div>
-          {/* <div className="details">
-            <div title="Keywords">{keywords}</div>
-          </div>
-          <div className="details">
-            <div title="Dependecies">{dependencies}</div>
-          </div> */}
-        </header>
-        <div className="content">{children}</div>
-      </article>
+      <header>
+        <Trail
+          home={"Home"}
+          separator={<span> / </span>}
+          activeClass="active"
+        />
+        <div className="content">
+          <h1>{title}</h1>
+          <p>{summary}</p>
+        </div>
+        <div className="details">
+          <time dateTime={last_edited} title="Last updated">
+            {format(parseISO(last_edited), "LLL d, yyyy")}
+          </time>
+          <div title="Version">{version}</div>
+          <div title="Status">{status}</div>
+        </div>
+      </header>
+      <article>{children}</article>
       <Taber component={url_path} />
     </Layout>
   )

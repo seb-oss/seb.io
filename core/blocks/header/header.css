@@ -90,6 +90,16 @@ header.main {
     min-inline-size: 64px;
     display: flex;
     gap: 10px;
+
+    svg {
+      width: 14px;
+      height: 14px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2px;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
   }
 
   .shortcut {
