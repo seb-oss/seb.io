@@ -13,6 +13,7 @@ export async function generateStaticParams() {
     slug: member.url_path,
   }))
 }
+
 export default function Componentr({ params }: { params: { slug: string } }) {
   const { slug } = params
 

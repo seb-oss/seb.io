@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import Link from "next/link"
 
 import "./style.css"
@@ -16,32 +16,31 @@ interface TOCProps {
 }
 
 const TOC: React.FC<TOCProps> = ({ headings }) => {
+  const observer = useRef<IntersectionObserver | null>(null)
   const [activeId, setActiveId] = useState("")
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveId(entry.target.id)
-          }
-        })
-      },
-      { rootMargin: "-20% 0% -80% 0%" }
-    )
-
-    headings.forEach((heading) => {
-      const element = document.getElementById(heading.slug)
-      if (element) observer.observe(element)
-    })
-
-    return () => {
-      headings.forEach((heading) => {
-        const element = document.getElementById(heading.slug)
-        if (element) observer.unobserve(element)
+    const handleObserver: IntersectionObserverCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveId(entry.target.id)
+        }
       })
     }
-  }, [headings])
+
+    observer.current = new IntersectionObserver(handleObserver, {
+      rootMargin: "0% 0% 200px 0px",
+    })
+
+    const headingElements = document.querySelectorAll("h1, h2, h3, h4")
+    headingElements.forEach((headingElement) =>
+      observer.current?.observe(headingElement)
+    )
+
+    return () => {
+      observer.current?.disconnect()
+    }
+  }, [])
 
   return (
     <aside className="toc">
@@ -50,9 +49,9 @@ const TOC: React.FC<TOCProps> = ({ headings }) => {
           <Link
             key={`#${heading.slug}`}
             href={`#${heading.slug}`}
-            className={`${activeId === heading.slug ? "active" : ""}`}
-            data-level={heading.level}
             passHref
+            className={`toc-link ${activeId === heading.slug ? "active" : ""}`}
+            data-level={heading.level}
             onClick={() => {
               const targetElement = document.getElementById(heading.slug)
               if (targetElement) {

@@ -2,16 +2,51 @@ aside.toc {
   display: flex;
   flex-direction: column;
 
-  & > span {
-    font-size: 10px;
-    opacity: 0.5;
-    margin-block-end: 3ex;
-  }
-
   nav {
+    &::before {
+      display: flex;
+      content: attr(data-name);
+      font-size: 10px;
+      opacity: 0.5;
+      margin-block-end: 3ex;
+    }
+
+    position: relative;
+
     display: flex;
     flex-direction: column;
     gap: 2ex;
     font-size: 14px;
+
+    a {
+      &:hover,
+      &.active {
+        text-decoration: underline;
+      }
+
+      &[data-level="2"] {
+        padding-left: 1ch;
+      }
+
+      &[data-level="3"] {
+        padding-left: 2ch;
+      }
+
+      &[data-level="4"] {
+        padding-left: 3ch;
+      }
+    }
   }
+}
+
+.toc-marker {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+.toc-marker path {
+  transition: all 0.3s ease;
 }
