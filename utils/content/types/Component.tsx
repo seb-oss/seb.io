@@ -1,4 +1,7 @@
-import { defineDocumentType } from "@contentlayer/source-files"
+import {
+  defineDocumentType,
+  defineNestedType,
+} from "@contentlayer/source-files"
 import GithubSlugger from "github-slugger"
 
 import { getLastEditedDate, urlFromFilePath } from "../utils"
@@ -18,10 +21,10 @@ export const Component = defineDocumentType(() => ({
     },
     title: { type: "string", required: true },
     summary: { type: "string", required: false },
-    date: { type: "date", required: true },
-    version: { type: "string", required: true },
+    date: { type: "date", required: false },
+    version: { type: "string", required: false },
     keywords: { type: "string", required: false },
-    status: { type: "string", required: true },
+    status: { type: "string", required: false },
     dependencies: { type: "string", required: false },
   },
   computedFields: {
@@ -30,7 +33,8 @@ export const Component = defineDocumentType(() => ({
       description:
         'The URL path of this page relative to site root. For example, the site root page would be "/", and doc page would be "docs/getting-started/"',
       resolve: (component) => {
-        if (component._id.startsWith("component/index.mdx")) return "/component"
+        if (component._id.startsWith("component/**/design.mdx"))
+          return "/component"
         return urlFromFilePath(component)
       },
     },

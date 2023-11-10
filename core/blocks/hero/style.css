@@ -10,6 +10,8 @@
     font-size: 82px;
     line-height: 1.12;
     margin-bottom: 1ex;
+    text-wrap: balance;
+    max-width: 35ch;
   }
 
   p {

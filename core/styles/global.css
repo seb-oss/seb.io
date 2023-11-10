@@ -6,7 +6,7 @@
 @layer core {
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 200px;
+    scroll-padding-top: 160px;
   }
 
   body {
@@ -17,6 +17,7 @@
     -webkit-touch-callout: none;
     -webkit-text-size-adjust: 100%;
     letter-spacing: 0.1px;
+    scroll-behavior: smooth;
   }
 
   @layer blocks;

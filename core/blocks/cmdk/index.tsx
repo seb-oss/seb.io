@@ -103,13 +103,13 @@ export default function Cmdk({
             <span className="cmdk-item-char">{doc.title.charAt(0)}</span>
             <span>{doc.version}</span>
           </div>
-          <div className="cmdk-option">
+          {/* <div className="cmdk-option">
             <span>
               <time dateTime={doc.date}>
                 {format(parseISO(doc.date), "LLLL d, yyyy")}
               </time>
             </span>
-          </div>
+          </div> */}
         </Link>
       )
     } else if (doc.type === "Component") {

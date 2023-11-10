@@ -1,35 +1,74 @@
 import Link from "next/link"
-import {
-  allChangelogs,
-  allComponents,
-  allMembers,
-  allPosts,
-  Changelog,
-  Component,
-  Member,
-  Post,
-} from "content"
-import { compareDesc, format, parseISO } from "date-fns"
+import { usePathname } from "next/navigation"
+import { allComponents, Component } from "content"
 
 import "./style.css"
 
-export default function Sidebar() {
+export default function Sidebar({
+  isNavOpen,
+  toggleNav,
+}: {
+  isNavOpen: boolean
+  toggleNav: () => void
+}) {
+  const path = usePathname()
+  const filteredComponents = allComponents.filter(
+    (component) => component._raw.sourceFileName === "index.mdx"
+  )
   function Component(component: Component) {
-    return <Link href={component.url_path}>{component.title}</Link>
+    return (
+      <Link
+        className={path == component.url_path ? "active" : ""}
+        href={component.url_path}
+      >
+        {component.title}
+      </Link>
+    )
   }
 
-  const components = allComponents.sort((a, b) =>
-    compareDesc(new Date(a.date), new Date(b.date))
+  const components = filteredComponents.sort((a, b) =>
+    a.title.localeCompare(b.title)
   )
 
   return (
-    <aside className="components">
-      <span>Components</span>
-      <nav>
-        {components.map((component, idx) => (
-          <Component key={idx} {...component} />
-        ))}
-      </nav>
+    <aside className={`nav ${!isNavOpen ? "hidden" : ""}`}>
+      <section data-name="Components">
+        <nav>
+          {components.map((component, idx) => (
+            <Component key={idx} {...component} />
+          ))}
+        </nav>
+      </section>
+      <section data-name="Foundation">
+        <nav>
+          <Link
+            className={path == "/foundation/accessibility" ? "active" : ""}
+            href="/foundation/accessibility"
+          >
+            Accessibility
+          </Link>
+          <Link
+            className={path == "/foundation/direction" ? "active" : ""}
+            href="/foundation/direction"
+          >
+            Direction
+          </Link>
+        </nav>
+      </section>
+
+      <section data-name="About">
+        <nav>
+          <Link
+            className={path == "/changelog" ? "active" : ""}
+            href="/changelog"
+          >
+            Changelog
+          </Link>
+          <Link className={path == "/status" ? "active" : ""} href="/status">
+            Status
+          </Link>
+        </nav>
+      </section>
     </aside>
   )
 }

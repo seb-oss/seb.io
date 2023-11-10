@@ -1,26 +1,67 @@
+"use client"
+
 import * as React from "react"
+import { useState } from "react"
 import Image from "next/image"
 import { useMDXComponent } from "next-contentlayer/hooks"
 
-function Figma() {
+interface FigmaProps {
+  file: string
+}
+
+function Figma({ file }: FigmaProps) {
+  const [isLoading, setIsLoading] = useState(true)
+
+  const handleLoad = () => {
+    setIsLoading(false)
+  }
+
   return (
-    <iframe src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FNv3WN0vGhsCj1WSqlA1Ctn%2FEmbed%3Ftype%3Ddesign%26node-id%3D1%253A5%26mode%3Ddesign%26t%3DUgb7hOv2Uve2qzvr-1&hide_ui=1"></iframe>
+    <figure className={isLoading ? "loading" : ""}>
+      <div className="gg-loadbar-alt"></div>
+      <iframe
+        src={`https://www.figma.com/file/${file}?embed_host=share&hide_ui=1&kind=&mode=design&type=design&viewer=1`}
+        onLoad={handleLoad}
+      ></iframe>
+    </figure>
   )
 }
 
 function Pen() {
+  const [isLoading, setIsLoading] = useState(true)
+
+  const handleLoad = () => {
+    setIsLoading(false)
+  }
   return (
-    <iframe src="https://codepen.io/astrit/embed/RwvKavd?default-tab=html%2Cresult"></iframe>
+    <figure className={isLoading ? "loading" : ""}>
+      <div className="gg-loadbar-alt"></div>
+      <iframe
+        src="https://codepen.io/astrit/embed/RwvKavd?default-tab=html%2Cresult"
+        onLoad={handleLoad}
+      ></iframe>
+    </figure>
   )
 }
 
 function CustomImage(props: any) {
-  return <Image alt={props.alt} {...props} />
+  return <img alt={props.alt} {...props} />
 }
 
 function Sandbox() {
+  const [isLoading, setIsLoading] = useState(true)
+
+  const handleLoad = () => {
+    setIsLoading(false)
+  }
   return (
-    <iframe src="https://codesandbox.io/embed/silent-water-pd45yy?fontsize=14&hidenavigation=1&theme=dark"></iframe>
+    <figure className={isLoading ? "loading" : ""}>
+      <div className="gg-loadbar-alt"></div>
+      <iframe
+        src="https://codesandbox.io/embed/silent-water-pd45yy?fontsize=14&hidenavigation=1&theme=dark"
+        onLoad={handleLoad}
+      ></iframe>
+    </figure>
   )
 }
 

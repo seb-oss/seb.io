@@ -1,7 +1,16 @@
-/** @type {import('next').NextConfig} */
 const { withContentlayer } = require("next-contentlayer")
 
+/** @type {import('next').NextConfig} */
 const nextConfig = {
+  async redirects() {
+    return [
+      {
+        source: "/component",
+        destination: "/components",
+        permanent: true,
+      },
+    ]
+  },
   reactStrictMode: true,
   swcMinify: true,
   images: {

@@ -1,11 +1,23 @@
-aside.components {
+aside.nav {
+  --border-color: color-mix(in srgb, var(--color-black), transparent 90%);
   display: flex;
+  position: sticky;
   flex-direction: column;
+  top: 90px;
+  gap: 40px;
+  padding: 40px;
+  border-right: 1px solid var(--border-color);
+  min-width: 220px;
+  block-size: 100vh;
 
-  & > span {
-    font-size: 10px;
-    opacity: 0.5;
-    margin-block-end: 3ex;
+  section {
+    &::before {
+      display: flex;
+      content: attr(data-name);
+      font-size: 10px;
+      opacity: 0.5;
+      margin-block-end: 3ex;
+    }
   }
 
   nav {
@@ -13,5 +25,9 @@ aside.components {
     flex-direction: column;
     gap: 2ex;
     font-size: 14px;
+
+    a.active {
+      text-decoration: underline;
+    }
   }
 }
