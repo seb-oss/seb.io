@@ -13,6 +13,9 @@ const nextConfig = {
     ],
     formats: ["image/webp"],
   },
+  experimental: {
+    esmExternals: "loose",
+  }
   // output: "export",
 }
 
