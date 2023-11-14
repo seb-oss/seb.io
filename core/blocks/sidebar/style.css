@@ -10,13 +10,54 @@ aside.nav {
   min-width: 220px;
   block-size: 100vh;
 
-  section {
-    &::before {
+  details {
+    &[open] {
+      /* summary span {
+        background-color: color-mix(
+          in srgb,
+          var(--color-black),
+          transparent 90%
+        );
+      } */
+      summary {
+        svg {
+          transform: scaleY(-1);
+        }
+      }
+    }
+
+    summary {
+      list-style: none;
       display: flex;
-      content: attr(data-name);
-      font-size: 10px;
-      opacity: 0.5;
-      margin-block-end: 3ex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 20px;
+      cursor: pointer;
+      transition: all 0.4s;
+
+      &:hover {
+        svg {
+          opacity: 1;
+        }
+      }
+
+      span {
+        border-radius: 80px;
+        width: 100%;
+        /* padding: 10px 20px; */
+      }
+
+      svg {
+        width: 24px;
+        height: 24px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        opacity: 0.6;
+      }
     }
   }
 
