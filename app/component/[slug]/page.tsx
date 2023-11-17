@@ -26,7 +26,7 @@ export default function Component({ params }: { params: { slug: string } }) {
   return (
     <>
       <Script src={"/playground-elements/playground-elements.mjs"} type="module"></Script>
-      <Mdx code={body.code} />
+      <Mdx code={body.code} globals={{slug}} />
       {component.headings && <TOC headings={component.headings} />}
     </>
   )

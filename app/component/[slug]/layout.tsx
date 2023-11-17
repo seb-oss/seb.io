@@ -31,8 +31,6 @@ export default function ComponentLayout({
 }) {
   const { slug } = params
 
-  console.log(slug)
-
   const component = allComponents.find(
     (component) => component.url_path === "/component/" + slug
   )

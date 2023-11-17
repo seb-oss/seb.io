@@ -1,0 +1,29 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="basic.css">
+  <script type="module">
+    import { GdsButton } from "./green-core.js"
+    const primary = new GdsButton()
+    const secondary = new GdsButton()
+    const tertiary = new GdsButton()
+
+    primary.innerText = "Primary"
+    secondary.innerText = "Secondary"
+    tertiary.innerText = "Tertiary"
+
+    secondary.setAttribute('variant', 'secondary')
+    tertiary.setAttribute('variant', 'tertiary')
+
+    document.querySelector('body').appendChild(primary)
+    document.querySelector('body').appendChild(secondary)
+    document.querySelector('body').appendChild(tertiary)
+  </script>
+</head>
+<body>
+</body>
+</html>
