@@ -14,7 +14,7 @@ export const Header = forwardRef(({ ...props }, ref) => {
   const { toggleNav, isNavOpen } = useContext(ThemeProviderContext)
   const path = usePathname()
 
-  console.log(path)
+  // console.log(path)
 
   return (
     <header className="main">

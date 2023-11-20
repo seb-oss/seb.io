@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Image from "next/image"
 import { useMDXComponent } from "next-contentlayer/hooks"
 import { useTheme } from "next-themes"
@@ -51,14 +51,17 @@ function CustomImage({
   ...props
 }: { alt: string; dark: string } & React.ImgHTMLAttributes<HTMLImageElement>) {
   const { theme } = useTheme()
+  const [isMounted, setIsMounted] = useState(false)
   const isDarkMode = theme === "dark"
-  const src = isDarkMode ? dark : props.src
+  // const src = isDarkMode ? dark : props.src
 
-  // const prefersDarkMode =
-  //   window.matchMedia &&
-  //   window.matchMedia("(prefers-color-scheme: dark)").matches
-  // // const src = prefersDarkMode ? dark : props.src
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
 
+  if (!isMounted) {
+    return null
+  }
   return (
     <picture>
       {isDarkMode && (
