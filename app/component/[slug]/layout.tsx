@@ -1,3 +1,6 @@
+"use client"
+
+import { use } from "react"
 import Link from "next/link"
 import {
   notFound,
@@ -14,11 +17,17 @@ import Layout from "@/core/layouts/component"
 import { allComponents, Component } from "content"
 import { format, parseISO } from "date-fns"
 
-export async function generateStaticParams() {
-  return allComponents.map((component) => ({
-    slug: component.url_path,
-  }))
-}
+// export async function generateStaticParams() {
+//   return allComponents.map((component) => ({
+//     slug: component.url_path,
+//   }))
+// }
+
+// export async function generateStaticParams() {
+//   return allComponents.map((component) => ({
+//     slug: component.url_path.replace('/component/', ''),
+//   }));
+// }
 
 export default function ComponentLayout({
   children,
@@ -29,13 +38,20 @@ export default function ComponentLayout({
   params: { slug: string }
   headings: any
 }) {
+  const router = useRouter()
   const { slug } = params
+  const pathName = usePathname()
 
-  // console.log(slug)
+  const getComponent = (path: string) =>
+    allComponents.find(
+      (component) => component.url_path === "/component/" + slug + path
+    )
 
-  const component = allComponents.find(
-    (component) => component.url_path === "/component/" + slug
-  )
+  const component = getComponent("")
+  const componentA11y = getComponent("/accessibility")
+  const componentCode = getComponent("/code")
+  const componentDesign = getComponent("/design")
+  const componentGuidelines = getComponent("/guidelines")
 
   if (!component) {
     notFound()
@@ -75,8 +91,24 @@ export default function ComponentLayout({
           <div title="Status">{status}</div>
         </div>
       </header>
-      <article>{children}</article>
-      <Taber component={url_path} />
+      <article>
+        <div>
+          {children}
+          <Taber component={url_path} />
+        </div>
+        {pathName.includes("/accessibility") && (
+          <TOC headings={componentA11y?.headings} />
+        )}
+        {pathName.includes("/code") && (
+          <TOC headings={componentCode?.headings} />
+        )}
+        {pathName.includes("/design") && (
+          <TOC headings={componentDesign?.headings} />
+        )}
+        {pathName.includes("/guidelines") && (
+          <TOC headings={componentGuidelines?.headings} />
+        )}
+      </article>
     </Layout>
   )
 }

@@ -28,10 +28,5 @@ export default function Design({ params }: { params: { slug: string } }) {
 
   const { body } = component
 
-  return (
-    <>
-      <Mdx code={body.code} />
-      {component.headings && <TOC headings={component.headings} />}
-    </>
-  )
+  return <Mdx code={body.code} />
 }

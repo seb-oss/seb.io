@@ -86,6 +86,7 @@ export default function Home() {
       <section>
         <h2>
           <Link href="/components">Components</Link>
+          <Link href="/components">All components</Link>
         </h2>
         <div>
           {components.map((component, idx) => (

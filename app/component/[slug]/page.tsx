@@ -35,7 +35,7 @@ export default function Component({ params }: { params: { slug: string } }) {
   return (
     <>
       <Mdx code={body.code} />
-      {component.headings && <TOC headings={component.headings} />}
+      {/* {component.headings && <TOC headings={component.headings} />} */}
     </>
   )
 }
