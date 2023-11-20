@@ -3,12 +3,22 @@ import { Mdx } from "@/core/blocks/mdx"
 import TOC from "@/core/blocks/toc/toc"
 import { allComponents } from "content"
 
-export async function generateStaticParams() {
+export const dynamic = "force-static"
+
+// export const generateStaticParams = (): any => {
+//   return allComponents.map((component) => ({
+//     slug: component.url_path,
+//   }))
+// }
+export const generateStaticParams = (): any => {
   return allComponents.map((component) => ({
-    slug: component.url_path,
+    slug: component.url_path.replace("/component/", ""),
   }))
 }
 
+// export const dynamicParams = false
+
+// export default function Component({ params }: { params: { slug: string } }) {
 export default function Component({ params }: { params: { slug: string } }) {
   const { slug } = params
 

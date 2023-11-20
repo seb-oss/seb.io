@@ -5,7 +5,7 @@ import { allComponents } from "content"
 
 export async function generateStaticParams() {
   return allComponents.map((component) => ({
-    slug: component.url_path,
+    slug: component.url_path.replace("/component/", ""),
   }))
 }
 
