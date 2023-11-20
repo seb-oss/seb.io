@@ -1,3 +1,7 @@
+@import "@sebgroup/green-tokens/css/theme/light.css";
+@import "@sebgroup/green-tokens/css/theme/dark.css" screen and
+  (prefers-color-scheme: dark);
+
 @layer core {
   @layer tokens {
     :root {

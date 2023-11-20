@@ -34,7 +34,12 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={SEBSAnsSerif.className}>
-        <ThemeProvider attribute="theme" defaultTheme="system" enableSystem>
+        <ThemeProvider
+          attribute="theme"
+          defaultTheme="system"
+          enableColorScheme={false}
+          enableSystem
+        >
           <Header />
           <Layout>{children}</Layout>
           <Consent />
