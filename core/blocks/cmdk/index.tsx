@@ -188,15 +188,17 @@ export default function Cmdk({
       preventDefault: () => void
     }) => {
       if (
-        e.key === "/" ||
+        (e.key === "/" && (e.metaKey || e.ctrlKey)) ||
         ((e.keyCode === 191 || e.keyCode === 75) && (e.metaKey || e.ctrlKey))
       ) {
         e.preventDefault()
         toggleCmd()
       } else if (e.key === "Escape") {
-        toggleCmd()
-        setSearchResults(allDocuments as Document[])
-        setFocusedIndex(-1)
+        if (isOpen) {
+          toggleCmd()
+          setSearchResults(allDocuments as Document[])
+          setFocusedIndex(-1)
+        }
       } else if (e.key === "ArrowUp") {
         e.preventDefault()
         setFocusedIndex((prevIndex) =>

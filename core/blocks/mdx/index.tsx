@@ -4,6 +4,7 @@ import * as React from "react"
 import { useState } from "react"
 import Image from "next/image"
 import { useMDXComponent } from "next-contentlayer/hooks"
+import { useTheme } from "next-themes"
 
 interface FigmaProps {
   file: string
@@ -44,8 +45,28 @@ function Pen() {
   )
 }
 
-function CustomImage(props: any) {
-  return <img alt={props.alt} {...props} />
+function CustomImage({
+  alt,
+  dark,
+  ...props
+}: { alt: string; dark: string } & React.ImgHTMLAttributes<HTMLImageElement>) {
+  const { theme } = useTheme()
+  const isDarkMode = theme === "dark"
+  const src = isDarkMode ? dark : props.src
+
+  // const prefersDarkMode =
+  //   window.matchMedia &&
+  //   window.matchMedia("(prefers-color-scheme: dark)").matches
+  // // const src = prefersDarkMode ? dark : props.src
+
+  return (
+    <picture>
+      {isDarkMode && (
+        <source srcSet={dark} media="(prefers-color-scheme: dark)" />
+      )}
+      <img alt={alt} {...props} />
+    </picture>
+  )
 }
 
 function Sandbox() {
