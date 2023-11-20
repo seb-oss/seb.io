@@ -1,6 +1,7 @@
-// import { ImageResponse } from "next/og"
+import { ImageResponse } from "next/og"
 import { NextRequest } from "next/server"
-import { ImageResponse } from "@vercel/og"
+
+// import { ImageResponse } from "@vercel/og"
 
 export const runtime = "edge"
 

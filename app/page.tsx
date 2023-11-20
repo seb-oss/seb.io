@@ -73,7 +73,7 @@ export default function Home() {
           <Link href="/status">Status</Link>
         </div>
       </section>
-      <section>
+      {/* <section>
         <h2>
           <Link href="/blog">Blog</Link>
         </h2>
@@ -82,7 +82,7 @@ export default function Home() {
             <PostCard key={idx} {...post} />
           ))}
         </div>
-      </section>
+      </section> */}
       <section>
         <h2>
           <Link href="/components">Components</Link>
@@ -93,7 +93,7 @@ export default function Home() {
           ))}
         </div>
       </section>
-      <section>
+      {/* <section>
         <h2>
           <Link href="/changelog">Changelog</Link>
         </h2>
@@ -113,6 +113,8 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+       */}
     </div>
   )
 }

@@ -34,18 +34,20 @@ export const Header = forwardRef(({ ...props }, ref) => {
           )}
           Menu
         </button>
-        <Link
-          className={path == "/components" ? "active" : ""}
-          href="/components"
-        >
-          Components
-        </Link>
-        <Link
-          className={path == "/foundation" ? "active" : ""}
-          href="/foundation"
-        >
-          Foundation
-        </Link>
+        {/*  
+            <Link
+              className={path == "/components" ? "active" : ""}
+              href="/components"
+            >
+              Components
+            </Link>
+            <Link
+              className={path == "/foundation" ? "active" : ""}
+              href="/foundation"
+            >
+              Foundation
+            </Link>
+         */}
       </nav>
       <Link href="/" className="logo">
         <svg width="14" height="14" viewBox="0 0 25 25">
