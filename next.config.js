@@ -23,7 +23,7 @@ const nextConfig = {
     ],
     formats: ["image/webp"],
   },
-  // output: "export",
+  output: "export",
 }
 
 module.exports = withContentlayer(nextConfig)
