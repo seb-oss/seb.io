@@ -24,14 +24,7 @@ function PostCard(post: Post) {
 }
 
 function ComponentCard(component: Component) {
-  return (
-    <Link href={component.url_path}>
-      {component.title}
-      <time dateTime={component.date}>
-        {format(parseISO(component.date), "LLLL d, yyyy")}
-      </time>
-    </Link>
-  )
+  return <Link href={component.url_path}>{component.title}</Link>
 }
 
 function ChangelogCard(changelog: Changelog) {
@@ -59,7 +52,8 @@ export default function Home() {
   )
 
   const components = allComponents.sort((a, b) =>
-    compareDesc(new Date(a.date), new Date(b.date))
+    // compareDesc(new Date(a.date), new Date(b.date))
+    a.title.localeCompare(b.title)
   )
 
   const changelogs = allChangelogs.sort((a, b) =>

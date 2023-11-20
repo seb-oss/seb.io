@@ -15,9 +15,9 @@ export default function Status() {
       </div>
       {allComponents.map((component) => (
         <div>
-          <time dateTime={component.date}>
+          {/* <time dateTime={component.date}>
             {format(parseISO(component.date), "LLLL d, yyyy")}
-          </time>
+          </time> */}
           <div title="Component">{component.title}</div>
           <div title="Version">{component.version}</div>
           <div title="Dependencies">{component.dependencies}</div>
