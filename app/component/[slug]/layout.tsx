@@ -32,11 +32,11 @@ import { format, parseISO } from "date-fns"
 export default function ComponentLayout({
   children,
   params,
-  headings,
-}: {
+}: // headings,
+{
   children: React.ReactNode
   params: { slug: string }
-  headings: any
+  // headings: any
 }) {
   const router = useRouter()
   const { slug } = params
