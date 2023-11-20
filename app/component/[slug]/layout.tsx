@@ -1,44 +1,20 @@
 "use client"
 
-import { use } from "react"
-import Link from "next/link"
-import {
-  notFound,
-  usePathname,
-  useRouter,
-  useSearchParams,
-} from "next/navigation"
-import { Mdx } from "@/core/blocks/mdx"
-import Sidebar from "@/core/blocks/sidebar"
+import { notFound, usePathname, useRouter } from "next/navigation"
 import Taber from "@/core/blocks/taber"
 import TOC from "@/core/blocks/toc/toc"
 import Trail from "@/core/blocks/trail/trail"
 import Layout from "@/core/layouts/component"
-import { allComponents, Component } from "content"
+import { allComponents } from "content"
 import { format, parseISO } from "date-fns"
-
-// export async function generateStaticParams() {
-//   return allComponents.map((component) => ({
-//     slug: component.url_path,
-//   }))
-// }
-
-// export async function generateStaticParams() {
-//   return allComponents.map((component) => ({
-//     slug: component.url_path.replace('/component/', ''),
-//   }));
-// }
 
 export default function ComponentLayout({
   children,
   params,
-}: // headings,
-{
+}: {
   children: React.ReactNode
   params: { slug: string }
-  // headings: any
 }) {
-  const router = useRouter()
   const { slug } = params
   const pathName = usePathname()
 

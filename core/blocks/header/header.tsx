@@ -1,8 +1,7 @@
 "use client"
 
-import React, { forwardRef, use, useContext } from "react"
+import React, { forwardRef, useContext } from "react"
 import Link from "next/link"
-import { usePathname } from "next/navigation"
 
 import "./header.css"
 
@@ -12,9 +11,6 @@ import { ThemeToggle } from "@/utils/theme/toggle"
 export const Header = forwardRef(({ ...props }, ref) => {
   const { toggleCmd } = useContext(ThemeProviderContext)
   const { toggleNav, isNavOpen } = useContext(ThemeProviderContext)
-  const path = usePathname()
-
-  // console.log(path)
 
   return (
     <header className="main">

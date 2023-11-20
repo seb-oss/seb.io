@@ -1,7 +1,5 @@
-import Link from "next/link"
 import { notFound } from "next/navigation"
 import { Mdx } from "@/core/blocks/mdx"
-import TOC from "@/core/blocks/toc/toc"
 import { allComponents } from "content"
 
 export async function generateStaticParams() {
