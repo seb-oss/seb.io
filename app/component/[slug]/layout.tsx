@@ -92,7 +92,7 @@ export default function ComponentLayout({
         </div>
       </header>
       <article>
-        <div>
+        <div className="content">
           {children}
           <Taber component={url_path} />
         </div>
