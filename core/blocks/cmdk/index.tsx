@@ -60,6 +60,7 @@ export default function Cmdk({
 
     const results = []
 
+    // Changelogs
     const changelogFuse = new Fuse(allChangelogs, {
       keys: ["title", "version"],
     })
@@ -67,6 +68,7 @@ export default function Cmdk({
     const changelogItems = changelogResults.map((result) => result.item)
     results.push(...changelogItems)
 
+    // Components
     const componentFuse = new Fuse(allComponents, {
       keys: ["title", "keywords"],
     })
@@ -74,6 +76,7 @@ export default function Cmdk({
     const componentItems = componentResults.map((result) => result.item)
     results.push(...componentItems)
 
+    // Posts
     const postFuse = new Fuse(allPosts, {
       keys: ["title", "keywords"],
     })
@@ -81,6 +84,7 @@ export default function Cmdk({
     const postItems = postResults.map((result) => result.item)
     results.push(...postItems)
 
+    // Members
     const memberFuse = new Fuse(allMembers, {
       keys: ["name", "department"],
     })

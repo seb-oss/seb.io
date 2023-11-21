@@ -17,7 +17,7 @@ export default function Taber({ component }: TaberProps) {
     { path: "", label: "Overview" },
     { path: "/code", label: "Code" },
     { path: "/design", label: "Design" },
-    { path: "/content", label: "Content" },
+    { path: "/ux-text", label: "UX text" },
     { path: "/guidelines", label: "Guidelines" },
     { path: "/accessibility", label: "Accessibility" },
   ]
