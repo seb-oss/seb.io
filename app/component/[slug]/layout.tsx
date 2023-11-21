@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import { notFound, usePathname, useRouter } from "next/navigation"
 import Taber from "@/core/blocks/taber"
 import TOC from "@/core/blocks/toc/toc"
@@ -36,10 +37,8 @@ export default function ComponentLayout({
   const {
     title,
     url_path,
-    version,
-    keywords,
+    tags,
     status,
-    dependencies,
     date,
     global_id,
     last_edited,
@@ -63,6 +62,8 @@ export default function ComponentLayout({
     }
   }
 
+  const tagsArray = tags ? tags.split(", ") : []
+
   return (
     <Layout key={global_id}>
       <header>
@@ -76,11 +77,19 @@ export default function ComponentLayout({
           <p>{summary}</p>
         </div>
         <div className="details">
-          <time dateTime={last_edited} title="Last updated">
-            {format(parseISO(last_edited), "LLL d, yyyy")}
-          </time>
-          <div title="Version">{version}</div>
-          <div title="Status">{status}</div>
+          <div title="Status">
+            <div className="status">{status}</div>
+          </div>
+          <div title="Tags">
+            {/* {tags} */}
+            <menu>
+              {tagsArray.map((tag, index) => (
+                // This should be a link potentially to a search page
+                // <div key={tag} href={`/tags/${tag}`}>
+                <div key={tag}>{tag}</div>
+              ))}
+            </menu>
+          </div>
         </div>
       </header>
       <article>
@@ -88,8 +97,17 @@ export default function ComponentLayout({
           {children}
           <Taber component={url_path} />
         </div>
+
         {tocComponent}
       </article>
+      <br />
+      <br />
+      <br />
+      <br />
+      Last updated:
+      <time dateTime={last_edited} title="Last updated">
+        {format(parseISO(last_edited), "d LLL, yyyy '/' HH:mm")}
+      </time>
     </Layout>
   )
 }

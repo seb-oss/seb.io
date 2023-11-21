@@ -22,7 +22,7 @@ export const Component = defineDocumentType(() => ({
     title: { type: "string", required: true },
     summary: { type: "string", required: false },
     date: { type: "date", required: false },
-    keywords: { type: "string", required: false },
+    tags: { type: "string", required: false },
     status: { type: "string", required: false },
   },
   computedFields: {

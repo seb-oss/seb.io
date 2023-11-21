@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import Link from "next/link"
 
 import "./style.css"
@@ -17,6 +17,32 @@ interface TOCProps {
 
 const TOC: React.FC<TOCProps> = ({ headings }) => {
   const [activeId, setActiveId] = useState("")
+  const observer = useRef<IntersectionObserver | null>(null)
+
+  useEffect(() => {
+    observer.current = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveId(entry.target.id)
+          }
+        })
+      },
+      { rootMargin: "-160px 0px 0px 0px" }
+    )
+
+    headings.forEach((heading) => {
+      const element = document.getElementById(heading.slug)
+      if (element) observer.current?.observe(element)
+    })
+
+    return () => {
+      headings.forEach((heading) => {
+        const element = document.getElementById(heading.slug)
+        if (element) observer.current?.unobserve(element)
+      })
+    }
+  }, [headings])
 
   const handleClick = (slug: string) => {
     setActiveId(slug)
@@ -24,6 +50,7 @@ const TOC: React.FC<TOCProps> = ({ headings }) => {
 
   return (
     <aside className="toc">
+      <span>On this page</span>
       <nav data-name={headings.length > 0 ? "On this page" : ""}>
         {headings.map((heading) => (
           <Link
@@ -32,8 +59,8 @@ const TOC: React.FC<TOCProps> = ({ headings }) => {
             className={`toc-link ${activeId === heading.slug ? "active" : ""}`}
             data-id={heading.slug}
             data-level={heading.level}
-            passHref
             onClick={() => handleClick(heading.slug)}
+            passHref
           >
             {heading.text}
           </Link>
