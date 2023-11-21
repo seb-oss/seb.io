@@ -20,7 +20,7 @@ export default function ComponentLayout({
 
   const getComponent = (path: string) =>
     allComponents.find(
-      (component) => component.url_path === "/component/" + slug + path
+      (component) => component.url_path === `/component/${slug}${path}`
     )
 
   const component = getComponent("")
@@ -47,6 +47,22 @@ export default function ComponentLayout({
     body,
   } = component
 
+  const pathsAndComponents = [
+    { path: "/accessibility", component: componentA11y },
+    { path: "/code", component: componentCode },
+    { path: "/design", component: componentDesign },
+    { path: "/guidelines", component: componentGuidelines },
+  ]
+
+  let tocComponent = <TOC headings={component?.headings} /> // default TOC component
+
+  for (let { path, component } of pathsAndComponents) {
+    if (pathName.includes(path)) {
+      tocComponent = <TOC headings={component?.headings} />
+      break
+    }
+  }
+
   return (
     <Layout key={global_id}>
       <header>
@@ -72,18 +88,7 @@ export default function ComponentLayout({
           {children}
           <Taber component={url_path} />
         </div>
-        {pathName.includes("/accessibility") && (
-          <TOC headings={componentA11y?.headings} />
-        )}
-        {pathName.includes("/code") && (
-          <TOC headings={componentCode?.headings} />
-        )}
-        {pathName.includes("/design") && (
-          <TOC headings={componentDesign?.headings} />
-        )}
-        {pathName.includes("/guidelines") && (
-          <TOC headings={componentGuidelines?.headings} />
-        )}
+        {tocComponent}
       </article>
     </Layout>
   )
