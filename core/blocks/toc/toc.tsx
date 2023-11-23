@@ -20,28 +20,22 @@ const TOC: React.FC<TOCProps> = ({ headings }) => {
   const observer = useRef<IntersectionObserver | null>(null)
 
   useEffect(() => {
-    observer.current = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveId(entry.target.id)
-          }
-        })
-      },
-      { rootMargin: "-160px 0px 0px 0px" }
-    )
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY
 
-    headings.forEach((heading) => {
-      const element = document.getElementById(heading.slug)
-      if (element) observer.current?.observe(element)
-    })
-
-    return () => {
-      headings.forEach((heading) => {
+      for (let i = headings.length - 1; i >= 0; i--) {
+        const heading = headings[i]
         const element = document.getElementById(heading.slug)
-        if (element) observer.current?.unobserve(element)
-      })
+
+        if (element && element.offsetTop <= scrollPosition + 261) {
+          setActiveId(heading.slug)
+          break
+        }
+      }
     }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
   }, [headings])
 
   const handleClick = (slug: string) => {

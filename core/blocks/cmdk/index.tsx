@@ -185,17 +185,25 @@ export default function Cmdk({
 
   useEffect(() => {
     const handleSlashKey = (e: {
+      stopPropagation(): void
       key: string
       keyCode: number
       metaKey: any
       ctrlKey: any
+      target: any
       preventDefault: () => void
     }) => {
+      const target = e.target
+      const inputElements = Array.from(
+        document.querySelectorAll("input, textarea")
+      )
       if (
-        (e.key === "/" && (e.metaKey || e.ctrlKey)) ||
+        (e.key === "/" && inputElements.includes(target) === false) ||
+        // (e.key === "/" && (e.metaKey || e.ctrlKey)) ||
         ((e.keyCode === 191 || e.keyCode === 75) && (e.metaKey || e.ctrlKey))
       ) {
-        e.preventDefault()
+        e.stopPropagation()
+        // e.preventDefault()
         toggleCmd()
       } else if (e.key === "Escape") {
         if (isOpen) {

@@ -6,18 +6,19 @@
 @layer core {
   html {
     scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+    scroll-snap-stop: always;
     scroll-padding-top: 160px;
   }
 
   body {
     background-color: var(--color-white);
     color: var(--color-black);
+    letter-spacing: 0.1px;
     -webkit-font-smoothing: antialiased;
     -webkit-tap-highlight-color: transparent;
     -webkit-touch-callout: none;
     -webkit-text-size-adjust: 100%;
-    letter-spacing: 0.1px;
-    scroll-behavior: smooth;
   }
 
   @layer blocks;
