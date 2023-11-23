@@ -27,7 +27,7 @@ const TOC: React.FC<TOCProps> = ({ headings }) => {
         const heading = headings[i]
         const element = document.getElementById(heading.slug)
 
-        if (element && element.offsetTop <= scrollPosition + 261) {
+        if (element && element.offsetTop <= scrollPosition + 161) {
           setActiveId(heading.slug)
           break
         }
