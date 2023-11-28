@@ -1,8 +1,7 @@
 "use client"
 
-import React, { createContext, useEffect, useRef, useState } from "react"
+import React, { createContext, useEffect, useState } from "react"
 import Cmdk from "@/core/blocks/cmdk"
-import Sidebar from "@/core/blocks/sidebar"
 import { ThemeProvider as NextThemesProvider } from "next-themes"
 import { type ThemeProviderProps } from "next-themes/dist/types"
 import { Toaster } from "sonner"
@@ -23,8 +22,15 @@ export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
   }
 
   const toggleNav = () => {
-    setNavOpen((prevOpen) => !prevOpen)
+    const newNavOpen = !isNavOpen
+    setNavOpen(newNavOpen)
+    localStorage.setItem("navOpen", newNavOpen ? "true" : "false")
   }
+
+  useEffect(() => {
+    const navOpen = localStorage.getItem("navOpen")
+    setNavOpen(navOpen === "true")
+  }, [])
 
   const themeProviderValue = {
     isOpen,

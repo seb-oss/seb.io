@@ -1,17 +1,18 @@
-import { notFound } from "next/navigation"
-import { Mdx } from "@/core/blocks/mdx"
-import TOC from "@/core/blocks/toc/toc"
-import { allComponents } from "content"
+import {notFound} from "next/navigation"
+import {Mdx} from "@/core/blocks/mdx"
+import {allComponents} from "content"
 import Script from 'next/script'
 
-export async function generateStaticParams() {
+export const dynamic = "force-static"
+
+export const generateStaticParams = (): any => {
   return allComponents.map((component) => ({
-    slug: component.url_path,
+    slug: component.url_path.replace("/component/", ""),
   }))
 }
 
-export default function Component({ params }: { params: { slug: string } }) {
-  const { slug } = params
+export default function Component({params}: { params: { slug: string } }) {
+  const {slug} = params
 
   const component = allComponents.find(
     (component) => component.url_path === "/component/" + slug
@@ -21,13 +22,12 @@ export default function Component({ params }: { params: { slug: string } }) {
     notFound()
   }
 
-  const { body } = component
+  const {body} = component
 
   return (
     <>
       <Script src={"/playground-elements/playground-elements.mjs"} type="module"></Script>
-      <Mdx code={body.code} globals={{slug}} />
-      {component.headings && <TOC headings={component.headings} />}
+      <Mdx code={body.code} globals={{slug}} />)
     </>
   )
 }

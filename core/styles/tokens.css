@@ -1,8 +1,12 @@
+@import "@sebgroup/green-tokens/css/theme/light.css";
+@import "@sebgroup/green-tokens/css/theme/dark.css" screen and
+  (prefers-color-scheme: dark);
+
 @layer core {
   @layer tokens {
     :root {
       --color-white: hsl(0 0% 100%);
-      --color-black: hsl(0, 0%, 0%);
+      --color-black: hsla(60, 6%, 10%, 1);
       --color-alpha: 90%;
       --color-mix: color-mix(
         in srgb,
@@ -14,7 +18,7 @@
 
     @media (prefers-color-scheme: dark) {
       [theme="dark"] {
-        --color-white: hsl(0, 0%, 0%);
+        --color-white: hsla(60, 6%, 10%, 1);
         --color-black: hsl(0 0% 100%);
       }
     }

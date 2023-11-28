@@ -1,39 +1,34 @@
+"use client"
+
 import Link from "next/link"
-import {
-  notFound,
-  usePathname,
-  useRouter,
-  useSearchParams,
-} from "next/navigation"
-import { Mdx } from "@/core/blocks/mdx"
-import Sidebar from "@/core/blocks/sidebar"
+import { notFound, usePathname, useRouter } from "next/navigation"
 import Taber from "@/core/blocks/taber"
 import TOC from "@/core/blocks/toc/toc"
 import Trail from "@/core/blocks/trail/trail"
 import Layout from "@/core/layouts/component"
-import { allComponents, Component } from "content"
+import { allComponents } from "content"
 import { format, parseISO } from "date-fns"
-
-export async function generateStaticParams() {
-  return allComponents.map((component) => ({
-    slug: component.url_path,
-  }))
-}
 
 export default function ComponentLayout({
   children,
   params,
-  headings,
 }: {
   children: React.ReactNode
   params: { slug: string }
-  headings: any
 }) {
   const { slug } = params
+  const pathName = usePathname()
 
-  const component = allComponents.find(
-    (component) => component.url_path === "/component/" + slug
-  )
+  const getComponent = (path: string) =>
+    allComponents.find(
+      (component) => component.url_path === `/component/${slug}${path}`
+    )
+
+  const component = getComponent("")
+  const componentA11y = getComponent("/accessibility")
+  const componentCode = getComponent("/code")
+  const componentDesign = getComponent("/design")
+  const componentGuidelines = getComponent("/guidelines")
 
   if (!component) {
     notFound()
@@ -42,10 +37,8 @@ export default function ComponentLayout({
   const {
     title,
     url_path,
-    version,
-    keywords,
+    tags,
     status,
-    dependencies,
     date,
     global_id,
     last_edited,
@@ -53,28 +46,61 @@ export default function ComponentLayout({
     body,
   } = component
 
+  const pathsAndComponents = [
+    { path: "/accessibility", component: componentA11y },
+    { path: "/code", component: componentCode },
+    { path: "/design", component: componentDesign },
+    { path: "/guidelines", component: componentGuidelines },
+  ]
+
+  let tocComponent = <TOC headings={component?.headings} /> // default TOC component
+
+  for (let { path, component } of pathsAndComponents) {
+    if (pathName.includes(path)) {
+      tocComponent = <TOC headings={component?.headings} />
+      break
+    }
+  }
+
+  const tagsArray = tags ? tags.split(", ") : []
+
   return (
     <Layout key={global_id}>
+      <Trail home={"Home"} separator={<span> / </span>} activeClass="active" />
       <header>
-        <Trail
-          home={"Home"}
-          separator={<span> / </span>}
-          activeClass="active"
-        />
         <div className="content">
-          <h1>{title}</h1>
-          <p>{summary}</p>
+          <div className="intro">
+            <h1>{title}</h1>
+            <p>{summary}</p>
+          </div>
+          <div className="details">
+            <div title="Status">
+              <div className="status">{status}</div>
+            </div>
+            <div title="Tags">
+              <menu>
+                {tagsArray.map((tag, index) => (
+                  <div key={tag}>{tag}</div>
+                ))}
+              </menu>
+            </div>
+          </div>
         </div>
-        <div className="details">
-          <time dateTime={last_edited} title="Last updated">
-            {format(parseISO(last_edited), "LLL d, yyyy")}
-          </time>
-          <div title="Version">{version}</div>
-          <div title="Status">{status}</div>
-        </div>
+        <figure></figure>
       </header>
-      <article>{children}</article>
-      <Taber component={url_path} />
+      <article>
+        <div className="content">
+          {children}
+          <Taber component={url_path} />
+        </div>
+        {tocComponent}
+      </article>
+      <footer>
+        Last updated: <br />
+        <time dateTime={last_edited} title="Last updated">
+          {format(parseISO(last_edited), "d LLL, yyyy '/' HH:mm")}
+        </time>
+      </footer>
     </Layout>
   )
 }

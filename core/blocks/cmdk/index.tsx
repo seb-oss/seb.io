@@ -60,6 +60,7 @@ export default function Cmdk({
 
     const results = []
 
+    // Changelogs
     const changelogFuse = new Fuse(allChangelogs, {
       keys: ["title", "version"],
     })
@@ -67,6 +68,7 @@ export default function Cmdk({
     const changelogItems = changelogResults.map((result) => result.item)
     results.push(...changelogItems)
 
+    // Components
     const componentFuse = new Fuse(allComponents, {
       keys: ["title", "keywords"],
     })
@@ -74,6 +76,7 @@ export default function Cmdk({
     const componentItems = componentResults.map((result) => result.item)
     results.push(...componentItems)
 
+    // Posts
     const postFuse = new Fuse(allPosts, {
       keys: ["title", "keywords"],
     })
@@ -81,6 +84,7 @@ export default function Cmdk({
     const postItems = postResults.map((result) => result.item)
     results.push(...postItems)
 
+    // Members
     const memberFuse = new Fuse(allMembers, {
       keys: ["name", "department"],
     })
@@ -181,22 +185,32 @@ export default function Cmdk({
 
   useEffect(() => {
     const handleSlashKey = (e: {
+      stopPropagation(): void
       key: string
       keyCode: number
       metaKey: any
       ctrlKey: any
+      target: any
       preventDefault: () => void
     }) => {
+      const target = e.target
+      const inputElements = Array.from(
+        document.querySelectorAll("input, textarea")
+      )
       if (
-        e.key === "/" ||
+        (e.key === "/" && inputElements.includes(target) === false) ||
+        // (e.key === "/" && (e.metaKey || e.ctrlKey)) ||
         ((e.keyCode === 191 || e.keyCode === 75) && (e.metaKey || e.ctrlKey))
       ) {
-        e.preventDefault()
+        e.stopPropagation()
+        // e.preventDefault()
         toggleCmd()
       } else if (e.key === "Escape") {
-        toggleCmd()
-        setSearchResults(allDocuments as Document[])
-        setFocusedIndex(-1)
+        if (isOpen) {
+          toggleCmd()
+          setSearchResults(allDocuments as Document[])
+          setFocusedIndex(-1)
+        }
       } else if (e.key === "ArrowUp") {
         e.preventDefault()
         setFocusedIndex((prevIndex) =>

@@ -8,9 +8,15 @@ import {
 import { allMembers, Member } from "content"
 import { format, parseISO } from "date-fns"
 
-export async function generateStaticParams() {
+// export async function generateStaticParams() {
+//   return allMembers.map((member) => ({
+//     slug: member.url_path,
+//   }))
+// }
+
+export const generateStaticParams = (): any => {
   return allMembers.map((member) => ({
-    slug: member.url_path,
+    slug: member.url_path.replace("/team/", ""),
   }))
 }
 

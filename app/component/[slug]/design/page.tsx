@@ -5,7 +5,7 @@ import { allComponents } from "content"
 
 export async function generateStaticParams() {
   return allComponents.map((component) => ({
-    slug: component.url_path,
+    slug: component.url_path.replace("/component/", ""),
   }))
 }
 
@@ -22,10 +22,5 @@ export default function Design({ params }: { params: { slug: string } }) {
 
   const { body } = component
 
-  return (
-    <>
-      <Mdx code={body.code} />
-      {component.headings && <TOC headings={component.headings} />}
-    </>
-  )
+  return <Mdx code={body.code} />
 }

@@ -2,50 +2,58 @@ aside.toc {
   display: flex;
   flex-direction: column;
 
+  span {
+    font-size: 10px;
+    opacity: 0.5;
+    margin-bottom: 4ex;
+    padding-left: 3ch;
+  }
+
   nav {
     display: flex;
     flex-direction: column;
     gap: 2ex;
     font-size: 14px;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
 
-    &::before {
-      display: flex;
-      content: attr(data-name);
-      font-size: 10px;
-      opacity: 0.5;
-      margin-block-end: 3ex;
+    &:hover {
+      a {
+        opacity: 1;
+      }
     }
 
     a {
+      --_inline-padding: 2ch;
+      align-items: center;
+      display: flex;
+      transition: all 0.4s;
+      border-left: 1px solid transparent;
+      margin-left: -1px;
+      padding-left: var(--_inline-padding);
+      opacity: 0.4;
+
+      &.active {
+        border-color: white;
+        opacity: 1;
+      }
+
       &:hover {
         text-decoration: underline;
+        opacity: 1;
       }
 
       &[data-level="2"] {
-        padding-left: 1ch;
+        padding-left: calc(var(--_inline-padding) + 2ch);
       }
 
       &[data-level="3"] {
-        padding-left: 2ch;
+        padding-left: calc(var(--_inline-padding) + 3ch);
       }
 
       &[data-level="4"] {
-        padding-left: 3ch;
+        padding-left: calc(var(--_inline-padding) + 4ch);
       }
-    }
-
-    .anchor {
-      width: 1px;
-      height: 20px;
-      opacity: 0.4;
-      border-radius: 80px;
-      background-color: currentColor;
-      position: absolute;
-      top: 0;
-      margin-top: 0;
-      /* margin-top: -100%; */
-      left: -10px;
-      transition: all 0.4s;
     }
   }
 }

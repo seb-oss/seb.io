@@ -8,19 +8,17 @@ import { format, parseISO } from "date-fns"
 
 export const dynamic = "force-static"
 
-export async function generateStaticParams() {
+// export async function generateStaticParams() {
+//   return allPosts.map((post) => ({
+//     slug: post.url_path,
+//   }))
+// }
+
+export const generateStaticParams = (): any => {
   return allPosts.map((post) => ({
-    slug: post.url_path,
+    slug: post.url_path.replace("/blog/", ""),
   }))
 }
-
-// export const metadata: Metadata = {
-//   title: "Blog Post",
-//   description: "Green Design System",
-//   openGraph: {
-//     images: "http://localhost:3000/og?title=I am a blog post",
-//   },
-// };
 
 export async function generateMetadata({
   params,

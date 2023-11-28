@@ -16,69 +16,45 @@ interface TOCProps {
 }
 
 const TOC: React.FC<TOCProps> = ({ headings }) => {
-  const observer = useRef<IntersectionObserver | null>(null)
   const [activeId, setActiveId] = useState("")
-  const [anchorTop, setAnchorTop] = useState(0)
+  const observer = useRef<IntersectionObserver | null>(null)
 
   useEffect(() => {
-    const handleObserver: IntersectionObserverCallback = (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveId(entry.target.id)
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY
+
+      for (let i = headings.length - 1; i >= 0; i--) {
+        const heading = headings[i]
+        const element = document.getElementById(heading.slug)
+
+        if (element && element.offsetTop <= scrollPosition + 161) {
+          setActiveId(heading.slug)
+          break
         }
-      })
-    }
-
-    observer.current = new IntersectionObserver(handleObserver, {
-      rootMargin: "0% 0% -80% 0%",
-    })
-
-    headings.forEach((heading) => {
-      const element = document.getElementById(heading.slug)
-      if (element) {
-        observer.current?.observe(element)
       }
-    })
-
-    return () => {
-      observer.current?.disconnect()
     }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
   }, [headings])
-
-  useEffect(() => {
-    updateAnchorPosition()
-  }, [activeId])
-
-  const updateAnchorPosition = () => {
-    const activeLink = document.querySelector(
-      `.toc-link[data-id="${activeId}"]`
-    )
-    if (activeLink) {
-      const activeLinkTop = activeLink.getBoundingClientRect().top
-      setAnchorTop(activeLinkTop)
-    } else {
-      setAnchorTop(0)
-    }
-  }
 
   const handleClick = (slug: string) => {
     setActiveId(slug)
-    setTimeout(updateAnchorPosition, 0)
   }
 
   return (
     <aside className="toc">
+      <span>On this page</span>
       <nav data-name={headings.length > 0 ? "On this page" : ""}>
-        <span className="anchor" style={{ top: `${anchorTop}px` }}></span>
         {headings.map((heading) => (
           <Link
             key={`#${heading.slug}`}
             href={`#${heading.slug}`}
             className={`toc-link ${activeId === heading.slug ? "active" : ""}`}
-            data-id={heading.slug} // Add data-id attribute to identify the link
+            data-id={heading.slug}
             data-level={heading.level}
-            passHref
             onClick={() => handleClick(heading.slug)}
+            passHref
           >
             {heading.text}
           </Link>

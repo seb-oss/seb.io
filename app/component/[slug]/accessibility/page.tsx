@@ -1,11 +1,10 @@
 import { notFound } from "next/navigation"
 import { Mdx } from "@/core/blocks/mdx"
-import TOC from "@/core/blocks/toc/toc"
 import { allComponents } from "content"
 
 export async function generateStaticParams() {
   return allComponents.map((component) => ({
-    slug: component.url_path,
+    slug: component.url_path.replace("/component/", ""),
   }))
 }
 
@@ -27,10 +26,5 @@ export default function Accessibility({
 
   const { body } = component
 
-  return (
-    <>
-      <Mdx code={body.code} />
-      {component.headings && <TOC headings={component.headings} />}
-    </>
-  )
+  return <Mdx code={body.code} />
 }

@@ -32,14 +32,26 @@ export default function Sidebar({
 
   return (
     <aside className={`nav ${!isNavOpen ? "hidden" : ""}`}>
-      <section data-name="Components">
+      <details open>
+        <summary>
+          <span>Components</span>
+          <svg viewBox="0 0 24 24">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </summary>
         <nav>
           {components.map((component, idx) => (
             <Component key={idx} {...component} />
           ))}
         </nav>
-      </section>
-      <section data-name="Foundation">
+      </details>
+      <details>
+        <summary>
+          <span>Foundation</span>
+          <svg viewBox="0 0 24 24">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </summary>
         <nav>
           <Link
             className={path == "/foundation/accessibility" ? "active" : ""}
@@ -54,9 +66,14 @@ export default function Sidebar({
             Direction
           </Link>
         </nav>
-      </section>
-
-      <section data-name="About">
+      </details>
+      <details>
+        <summary>
+          <span>About</span>
+          <svg viewBox="0 0 24 24">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </summary>
         <nav>
           <Link
             className={path == "/changelog" ? "active" : ""}
@@ -68,7 +85,7 @@ export default function Sidebar({
             Status
           </Link>
         </nav>
-      </section>
+      </details>
     </aside>
   )
 }

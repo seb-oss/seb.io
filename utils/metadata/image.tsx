@@ -1,6 +1,8 @@
 import { ImageResponse } from "next/og"
 import { NextRequest } from "next/server"
 
+// import { ImageResponse } from "@vercel/og"
+
 export const runtime = "edge"
 
 export async function GET(req: NextRequest) {

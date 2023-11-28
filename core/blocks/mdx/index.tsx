@@ -1,9 +1,10 @@
 "use client"
 
 import * as React from "react"
-import {useState} from "react"
+import { useEffect, useState } from "react"
 import Image from "next/image"
-import {useMDXComponent} from "next-contentlayer/hooks"
+import { useMDXComponent } from "next-contentlayer/hooks"
+import { useTheme } from "next-themes"
 
 interface FigmaProps {
     file: string
@@ -44,8 +45,31 @@ function Pen() {
     )
 }
 
-function CustomImage(props: any) {
-    return <img alt={props.alt} {...props} />
+function CustomImage({
+  alt,
+  dark,
+  ...props
+}: { alt: string; dark: string } & React.ImgHTMLAttributes<HTMLImageElement>) {
+  const { theme } = useTheme()
+  const [isMounted, setIsMounted] = useState(false)
+  const isDarkMode = theme === "dark"
+  // const src = isDarkMode ? dark : props.src
+
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
+
+  if (!isMounted) {
+    return null
+  }
+  return (
+    <picture>
+      {isDarkMode && (
+        <source srcSet={dark} media="(prefers-color-scheme: dark)" />
+      )}
+      <img alt={alt} {...props} />
+    </picture>
+  )
 }
 
 function Sandbox() {
@@ -87,20 +111,6 @@ function Playground(props) {
     <playground-preview project="story-project"> </playground-preview>
     </>
   )
-
-/*    return (
-        <playground-ide line-numbers resizable>
-            <script type="sample/html" filename="index.html" dangerouslySetInnerHTML={{
-                __html: `
-            <!doctype html>
-            <body>
-                Hello
-                <script type="module" src="./index.js">&lt;/script>
-            </body>
-                `
-            }}></script>
-        </playground-ide>
-    )*/
 }
 
 const components = {Figma, Pen, Image: CustomImage, Sandbox, Playground}
