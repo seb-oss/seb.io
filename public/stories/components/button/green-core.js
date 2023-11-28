@@ -1,0 +1,6264 @@
+var __defProp = Object.defineProperty;
+var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+var __decorateClass = (decorators, target, key, kind) => {
+  var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc(target, key) : target;
+  for (var i = decorators.length - 1, decorator; i >= 0; i--)
+    if (decorator = decorators[i])
+      result = (kind ? decorator(target, key, result) : decorator(result)) || result;
+  if (kind && result)
+    __defProp(target, key, result);
+  return result;
+};
+var __accessCheck = (obj, member, msg3) => {
+  if (!member.has(obj))
+    throw TypeError("Cannot " + msg3);
+};
+var __privateGet = (obj, member, getter) => {
+  __accessCheck(obj, member, "read from private field");
+  return getter ? getter.call(obj) : member.get(obj);
+};
+var __privateAdd = (obj, member, value) => {
+  if (member.has(obj))
+    throw TypeError("Cannot add the same private member more than once");
+  member instanceof WeakSet ? member.add(obj) : member.set(obj, value);
+};
+var __privateSet = (obj, member, value, setter) => {
+  __accessCheck(obj, member, "write to private field");
+  setter ? setter.call(obj, value) : member.set(obj, value);
+  return value;
+};
+var __privateMethod = (obj, member, method) => {
+  __accessCheck(obj, member, "access private method");
+  return method;
+};
+
+// libs/core/src/components/button/button.ts
+import { unsafeCSS as unsafeCSS4 } from "lit";
+import { property as property2, query as query2 } from "lit/decorators.js";
+
+// libs/core/src/utils/helpers/constrain-slots.ts
+function constrainSlots(self) {
+  self.updateComplete.then(() => {
+    const slots = self.shadowRoot?.querySelectorAll("slot[gds-allow]");
+    if (!slots)
+      return;
+    for (const node of Array.from(self.childNodes)) {
+      if (node.nodeType === Node.TEXT_NODE && node.textContent?.trim() === "") {
+        node.parentNode?.removeChild(node);
+      }
+    }
+    const constrain = (slot) => {
+      const allowed = slot.getAttribute("gds-allow")?.split(" ") || [];
+      for (const node of Array.from(slot.assignedNodes())) {
+        if (!allowed.includes(node.nodeName.toLowerCase())) {
+          node.parentNode?.removeChild(node);
+        }
+      }
+    };
+    slots.forEach((slot) => {
+      constrain(slot);
+      slot.addEventListener("slotchange", () => constrain(slot));
+    });
+  });
+}
+
+// libs/core/src/utils/helpers/id.ts
+var randomId = () => "gds-" + Math.random().toString(36).substring(2, 9);
+
+// libs/core/src/components/icon/icon.ts
+import { LitElement, html, unsafeCSS } from "lit";
+import { customElement } from "lit/decorators.js";
+
+// libs/core/src/components/icon/stem.styles.scss
+var stem_styles_default = `svg:not([display=none]) {
+  contain: layout style;
+  display: flex;
+  height: 1lh;
+  isolation: isolate;
+  overflow: hidden;
+  width: auto;
+}
+
+symbol {
+  fill: none;
+  height: 24px;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2px;
+  width: 24px;
+}`;
+
+// libs/core/src/components/icon/icon.ts
+var GdsIcon = class extends LitElement {
+  constructor() {
+    super(...arguments);
+    this.open = false;
+    this.name = "";
+  }
+  static get styles() {
+    return unsafeCSS(stem_styles_default);
+  }
+  render() {
+    const { name } = this;
+    return html`
+      <svg display="none">
+        <symbol id="plus">
+          <line x1="12" y1="5" x2="12" y2="19" />
+          <line x1="5" y1="12" x2="19" y2="12" />
+        </symbol>
+        <symbol id="x">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </symbol>
+        <symbol id="chevron">
+          <polyline points="9 18 15 12 9 6" />
+        </symbol>
+        <symbol id="chevron-down">
+          <polyline points="6 9 12 15 18 9" />
+        </symbol>
+        <symbol id="arrow">
+          <line x1="5" y1="12" x2="19" y2="12" />
+          <polyline points="12 5 19 12 12 19" />
+        </symbol>
+        <symbol id="bell">
+          <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+          <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+        </symbol>
+        <symbol id="calendar">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+          <line x1="16" y1="2" x2="16" y2="6"/>
+          <line x1="8" y1="2" x2="8" y2="6"/>
+          <line x1="3" y1="10" x2="21" y2="10" />
+        </symbol>
+        <symbol id="lock">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+          <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+        </symbol>
+        <symbol id="eye">
+          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+          <circle cx="12" cy="12" r="3" />
+        </symbol>
+        <symbol id="hash">
+          <line x1="4" y1="9" x2="20" y2="9" />
+          <line x1="4" y1="15" x2="20" y2="15" />
+          <line x1="10" y1="3" x2="8" y2="21" />
+          <line x1="16" y1="3" x2="14" y2="21" />
+        </symbol>
+        <symbol id="mail">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+          <polyline points="22,6 12,13 2,6" />
+        </symbol>
+        <symbol id="send">
+          <line x1="22" y1="2" x2="11" y2="13" />
+          <polygon points="22 2 15 22 11 13 2 9 22 2" />
+        </symbol>
+        <symbol id="info">
+          <circle cx="12" cy="12" r="10" />
+          <line x1="12" y1="16" x2="12" y2="12" />
+          <line x1="12" y1="8" x2="12.01" y2="8" />
+        </symbol>
+        <symbol id="tel">
+          <path d="M15.05 5A5 5 0 0 1 19 8.95M15.05 1A9 9 0 0 1 23 8.94m-1 7.98v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" /> 
+        </symbol>
+        <symbol id="search">
+          <circle cx="11" cy="11" r="8" />
+          <line x1="21" y1="21" x2="16.65" y2="16.65" />
+        </symbol>
+        <symbol id="user">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+          <circle cx="12" cy="7" r="4" />
+        </symbol>
+        <symbol id="arrow-up">
+         <line x1="12" y1="19" x2="12" y2="5" />
+         <polyline points="5 12 12 5 19 12" /> 
+        </symbol>
+        <symbol id="arrow-down">
+          <line x1="12" y1="5" x2="12" y2="19" /> 
+          <polyline points="19 12 12 19 5 12" /> 
+        </symbol>
+        <symbol id="warning">
+         <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+         <line x1="12" y1="9" x2="12" y2="13" />
+         <path x1="12" y1="17" x2="12.01" y2="17" />
+        </symbol>
+      </svg>
+      <svg viewBox="0 0 24 24">
+        <use href="#${name}"></use>
+      </svg>
+    `;
+  }
+};
+GdsIcon.properties = {
+  open: { type: String, reflect: true },
+  name: { type: String }
+};
+GdsIcon = __decorateClass([
+  customElement("gds-icon")
+], GdsIcon);
+
+// libs/core/src/primitives/ripple/ripple.ts
+import { LitElement as LitElement2, html as html3, unsafeCSS as unsafeCSS2 } from "lit";
+
+// libs/core/src/primitives/ripple/ripple.styles.scss
+var ripple_styles_default = `:host {
+  --gds-ripple-animation-name: ripple;
+  --gds-ripple-animation: var(--gds-ripple-animation-name)
+    var(--gds-sys-animation-duration) var(--gds-sys-animation-timing-function)
+    var(--gds-sys-animation-delay) var(--gds-sys-animation-iteration-count)
+    var(--gds-sys-animation-direction) var(--gds-sys-animation-fill-mode)
+    var(--gds-sys-animation-play-state);
+  border-radius: var(--gds-sys-radii-full);
+  contain: strict;
+  display: flex;
+  height: 100%;
+  inset: 0;
+  overflow: hidden;
+  position: absolute;
+  width: 100%;
+}
+
+div {
+  background-color: currentColor;
+  border-radius: var(--gds-sys-radii-full);
+  display: flex;
+  height: 20px;
+  left: var(--gds-ripple-left, 50%);
+  margin-left: -10px;
+  margin-top: -10px;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  top: var(--gds-ripple-top, 50%);
+  width: 20px;
+  will-change: transform;
+}
+
+div.gds-ripple-effect {
+  animation: var(--gds-ripple-animation);
+}
+
+@keyframes ripple {
+  from {
+    opacity: 0.5;
+    transform: scale(0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(calc(3 * var(--mt-ripple-spread, 4)));
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  :host {
+    --gds-ripple-animation-name: none !important;
+  }
+}`;
+
+// libs/core/src/utils/helpers/custom-element-scoping.ts
+import { html as litHtml } from "lit";
+import { customElement as customElement2 } from "lit/decorators.js";
+var VER_SUFFIX = "-463ffc";
+var elementLookupTable = /* @__PURE__ */ new Map();
+var gdsCustomElement = (tagName) => {
+  if (globalThis.GDS_DISABLE_VERSIONED_ELEMENTS) {
+    return customElement2(tagName);
+  }
+  const versionedTagName = tagName + VER_SUFFIX;
+  elementLookupTable.set(tagName, versionedTagName);
+  if (customElements.get(versionedTagName))
+    return (_classOrDescriptor) => false;
+  return customElement2(versionedTagName);
+};
+var templateCache = /* @__PURE__ */ new WeakMap();
+function applyElementScoping(strings, ...values) {
+  let modstrings = templateCache.get(strings);
+  if (!modstrings) {
+    modstrings = replaceTags(strings);
+    modstrings.raw = replaceTags(strings.raw);
+    templateCache.set(strings, modstrings);
+  }
+  return [modstrings, ...values];
+}
+var replaceTags = (inStr) => inStr.map((s) => {
+  for (const [key, value] of elementLookupTable.entries()) {
+    s = s.split(key).join(value);
+  }
+  return s;
+});
+function htmlTemplateTagFactory(extendedTag) {
+  return (strings, ...values) => {
+    if (globalThis.GDS_DISABLE_VERSIONED_ELEMENTS) {
+      return extendedTag(strings, ...values);
+    }
+    const [modstrings, ...modvalues] = applyElementScoping(strings, ...values);
+    return extendedTag(modstrings, ...modvalues);
+  };
+}
+var html2 = htmlTemplateTagFactory(litHtml);
+function getScopedTagName(tagName) {
+  return elementLookupTable.get(tagName) ?? tagName;
+}
+function getUnscopedTagName(tagName) {
+  return [...elementLookupTable.entries()].find(
+    ([, value]) => value === tagName
+  )?.[0];
+}
+
+// libs/core/src/primitives/ripple/ripple.ts
+import { query } from "lit/decorators.js";
+var Ripple = class extends LitElement2 {
+  constructor() {
+    super(...arguments);
+    this.onmousedown = (e) => {
+      const target = e.target;
+      const rect = target.getBoundingClientRect();
+      const rippleEl = this._rippleEl;
+      if (rippleEl) {
+        rippleEl.classList.remove("gds-ripple-effect");
+        this.style.setProperty("--gds-ripple-top", `${e.clientY - rect.top}px`);
+        this.style.setProperty("--gds-ripple-left", `${e.clientX - rect.left}px`);
+        setTimeout(() => {
+          rippleEl.classList.add("gds-ripple-effect");
+        }, 20);
+      }
+    };
+  }
+  static get styles() {
+    return unsafeCSS2(ripple_styles_default);
+  }
+  render() {
+    return html3`<div></div>`;
+  }
+};
+__decorateClass([
+  query("div")
+], Ripple.prototype, "_rippleEl", 2);
+Ripple = __decorateClass([
+  gdsCustomElement("gds-ripple")
+], Ripple);
+
+// libs/core/src/tokens.style.ts
+import { unsafeCSS as unsafeCSS3 } from "lit";
+
+// dist/libs/tokens/internal/pallet.css
+var pallet_default = `/**
+ * Do not edit directly
+ * Generated on Wed, 15 Nov 2023 14:45:36 GMT
+ */
+
+:host {
+  --gds-ref-color-blue-5: #001127;
+  --gds-ref-color-blue-10: #001C39;
+  --gds-ref-color-blue-15: #00264B;
+  --gds-ref-color-blue-20: #00315D;
+  --gds-ref-color-blue-25: #003C70;
+  --gds-ref-color-blue-30: #004883;
+  --gds-ref-color-blue-35: #005397;
+  --gds-ref-color-blue-40: #005FAC;
+  --gds-ref-color-blue-45: #006CC1;
+  --gds-ref-color-blue-50: #0078D7;
+  --gds-ref-color-blue-55: #0085EC;
+  --gds-ref-color-blue-60: #1992FF;
+  --gds-ref-color-blue-65: #4EA0FF;
+  --gds-ref-color-blue-70: #6FAEFF;
+  --gds-ref-color-blue-75: #8ABBFF;
+  --gds-ref-color-blue-80: #A4C9FF;
+  --gds-ref-color-blue-85: #BCD6FF;
+  --gds-ref-color-blue-90: #D4E3FF;
+  --gds-ref-color-blue-95: #EBF1FF;
+  --gds-ref-color-blue-98: #F8F9FF;
+  --gds-ref-color-green-5: #001505;
+  --gds-ref-color-green-10: #00210E;
+  --gds-ref-color-green-15: #002D10;
+  --gds-ref-color-green-20: #003916;
+  --gds-ref-color-green-25: #00461D;
+  --gds-ref-color-green-30: #005323;
+  --gds-ref-color-green-35: #00602A;
+  --gds-ref-color-green-40: #006D31;
+  --gds-ref-color-green-45: #007B38;
+  --gds-ref-color-green-50: #138942;
+  --gds-ref-color-green-55: #29964D;
+  --gds-ref-color-green-60: #39A459;
+  --gds-ref-color-green-65: #48B265;
+  --gds-ref-color-green-70: #57C071;
+  --gds-ref-color-green-75: #65CE7E;
+  --gds-ref-color-green-80: #73DC8A;
+  --gds-ref-color-green-85: #81EA97;
+  --gds-ref-color-green-90: #8FF9A4;
+  --gds-ref-color-green-95: #C5FFCA;
+  --gds-ref-color-green-98: #EAFFE8;
+  --gds-ref-color-black: #000000;
+  --gds-ref-color-white: #FFFFFF;
+  --gds-ref-color-grey-5: #0D0D0C;
+  --gds-ref-color-grey-10: #1B1B18;
+  --gds-ref-color-grey-15: #282825;
+  --gds-ref-color-grey-20: #353531;
+  --gds-ref-color-grey-25: #42423D;
+  --gds-ref-color-grey-30: #505049;
+  --gds-ref-color-grey-35: #5D5D56;
+  --gds-ref-color-grey-40: #6A6A62;
+  --gds-ref-color-grey-45: #77776E;
+  --gds-ref-color-grey-50: #85857A;
+  --gds-ref-color-grey-55: #919188;
+  --gds-ref-color-grey-60: #9D9D95;
+  --gds-ref-color-grey-65: #A9A9A2;
+  --gds-ref-color-grey-70: #B6B6AF;
+  --gds-ref-color-grey-75: #C2C2BD;
+  --gds-ref-color-grey-80: #CECECA;
+  --gds-ref-color-grey-85: #DADAD7;
+  --gds-ref-color-grey-90: #E7E7E4;
+  --gds-ref-color-grey-95: #F3F3F2;
+  --gds-ref-color-grey-98: #F9F9F9;
+  --gds-ref-color-orange-5: #1A0F00;
+  --gds-ref-color-orange-10: #271900;
+  --gds-ref-color-orange-15: #352200;
+  --gds-ref-color-orange-20: #422C00;
+  --gds-ref-color-orange-25: #503700;
+  --gds-ref-color-orange-30: #503700;
+  --gds-ref-color-orange-35: #6E4C00;
+  --gds-ref-color-orange-40: #7D5700;
+  --gds-ref-color-orange-45: #8D6300;
+  --gds-ref-color-orange-50: #9D6E00;
+  --gds-ref-color-orange-55: #AE7A00;
+  --gds-ref-color-orange-60: #BE8600;
+  --gds-ref-color-orange-65: #CF9300;
+  --gds-ref-color-orange-70: #E19F00;
+  --gds-ref-color-orange-75: #F2AC00;
+  --gds-ref-color-orange-80: #FFBA30;
+  --gds-ref-color-orange-85: #FFCC77;
+  --gds-ref-color-orange-90: #FFDEAB;
+  --gds-ref-color-orange-95: #FFEED9;
+  --gds-ref-color-orange-98: #FFF8F3;
+  --gds-ref-color-red-5: #2B0200;
+  --gds-ref-color-red-10: #3E0400;
+  --gds-ref-color-red-15: #510700;
+  --gds-ref-color-red-20: #650B00;
+  --gds-ref-color-red-25: #790F00;
+  --gds-ref-color-red-30: #8E1400;
+  --gds-ref-color-red-35: #A31800;
+  --gds-ref-color-red-40: #BA1D00;
+  --gds-ref-color-red-45: #D02200;
+  --gds-ref-color-red-50: #E23010;
+  --gds-ref-color-red-55: #F53E1D;
+  --gds-ref-color-red-60: #FF5636;
+  --gds-ref-color-red-65: #FF7257;
+  --gds-ref-color-red-70: #FF8A73;
+  --gds-ref-color-red-75: #FFA08D;
+  --gds-ref-color-red-80: #FFB4A5;
+  --gds-ref-color-red-85: #FFC8BC;
+  --gds-ref-color-red-90: #FFDAD3;
+  --gds-ref-color-red-95: #FFEDE9;
+  --gds-ref-color-red-98: #FFF8F6;
+}
+`;
+
+// dist/libs/tokens/internal/theme/light.css
+var light_default = `/**
+ * Do not edit directly
+ * Generated on Wed, 15 Nov 2023 14:45:36 GMT
+ */
+
+:host {
+  color-scheme: light;
+  --gds-sys-color-accent-accent-green: #006D31;
+  --gds-sys-color-accent-accent-orange: #FFBA30;
+  --gds-sys-color-background-background: #FFFFFF;
+  --gds-sys-color-background-background-dim: #F3F3F2;
+  --gds-sys-color-container-container: #F3F3F2;
+  --gds-sys-color-container-container-dim1: #E7E7E4;
+  --gds-sys-color-container-container-dim2: #DADAD7;
+  --gds-sys-color-container-container-bright: #FFFFFF;
+  --gds-sys-color-container-container-shade1: #353531;
+  --gds-sys-color-container-container-shade2: #1B1B18;
+  --gds-sys-color-container-container-disabled: #F9F9F9;
+  --gds-sys-color-container-container-positive: #006D31;
+  --gds-sys-color-container-container-negative: #BA1D00;
+  --gds-sys-color-content-content: #353531;
+  --gds-sys-color-content-content-inverse: #FFFFFF;
+  --gds-sys-color-content-content-secondary: #6A6A62;
+  --gds-sys-color-content-content-positive: #006D31;
+  --gds-sys-color-content-content-negative: #BA1D00;
+  --gds-sys-color-content-content-negative-bright: #FFF8F6;
+  --gds-sys-color-content-content-custom-blue-bright: #F8F9FF;
+  --gds-sys-color-content-content-disabled: #9D9D95;
+  --gds-sys-color-custom-custom-blue: #005FAC;
+  --gds-sys-color-custom-on-custom-blue: #D4E3FF;
+  --gds-sys-color-custom-custom-blue-bright: #D4E3FF;
+  --gds-sys-color-custom-on-custom-blue-bright: #00315D;
+  --gds-sys-color-custom-custom-green: #003916;
+  --gds-sys-color-custom-on-custom-green: #EAFFE8;
+  --gds-sys-color-custom-custom-green-bright: #EAFFE8;
+  --gds-sys-color-custom-on-custom-green-bright: #003916;
+  --gds-sys-color-custom-custom-grey: #353531;
+  --gds-sys-color-custom-on-custom-grey: #E7E7E4;
+  --gds-sys-color-custom-custom-grey-bright: #E7E7E4;
+  --gds-sys-color-custom-on-custom-grey-bright: #353531;
+  --gds-sys-color-primary-primary: #353531;
+  --gds-sys-color-state-layers-state-black: #000000 10%;
+  --gds-sys-color-state-layers-state-black-dim1: #000000 20%;
+  --gds-sys-color-state-layers-state-black-dim2: #000000 40%;
+  --gds-sys-color-state-layers-state-black-shade: #000000 60%;
+  --gds-sys-color-state-layers-state-positive: #006d31 10%;
+  --gds-sys-color-state-layers-state-positive-dim: #006d31 20%;
+  --gds-sys-color-state-layers-state-negative: #ba1d00 10%;
+  --gds-sys-color-state-layers-state-negative-dim: #ba1d00 20%;
+  --gds-sys-color-state-layers-state-custom-blue: #005fac 20%;
+  --gds-sys-color-status-information-information: #353531;
+  --gds-sys-color-status-information-on-information: #FFFFFF;
+  --gds-sys-color-status-information-information-bright: #F3F3F2;
+  --gds-sys-color-status-information-on-information-bright: #353531;
+  --gds-sys-color-status-negative-negative: #BA1D00;
+  --gds-sys-color-status-negative-on-negative: #FFFFFF;
+  --gds-sys-color-status-negative-negative-bright: #FFEDE9;
+  --gds-sys-color-status-negative-on-negative-bright: #BA1D00;
+  --gds-sys-color-status-warning-warning: #9D6E00;
+  --gds-sys-color-status-warning-on-warning: #FFFFFF;
+  --gds-sys-color-status-warning-warning-bright: #FFEED9;
+  --gds-sys-color-status-warning-on-warning-bright: #7D5700;
+  --gds-sys-color-status-positive-positive: #006D31;
+  --gds-sys-color-status-positive-on-positive: #FFFFFF;
+  --gds-sys-color-status-positive-positive-bright: #EAFFE8;
+  --gds-sys-color-status-positive-on-positive-bright: #006D31;
+  --gds-sys-color-status-notice-notice: #005FAC;
+  --gds-sys-color-status-notice-on-notice: #FFFFFF;
+  --gds-sys-color-status-notice-notice-bright: #EBF1FF;
+  --gds-sys-color-status-notice-on-notice-bright: #005FAC;
+  --gds-sys-color-stroke-stroke: #353531;
+  --gds-sys-color-stroke-stroke-variant1: #85857A;
+  --gds-sys-color-stroke-stroke-variant2: #CECECA;
+  --gds-sys-color-stroke-stroke-disabled: #9D9D95;
+  --gds-sys-color-stroke-stroke-notice: #005FAC;
+  --gds-sys-color-stroke-stroke-positive: #006D31;
+  --gds-sys-color-stroke-stroke-warning: #7D5700;
+  --gds-sys-color-stroke-stroke-negative: #BA1D00;
+  --gds-sys-color-stroke-stroke-custom-blue: #BA1D00;
+}
+`;
+
+// libs/core/src/tokens/tokens.css
+var tokens_default = `:host {
+  /* Color styles */
+  --gds-color-transparent: transparent;
+  --gds-color-current: currentColor;
+  --gds-theme: var(--gds-color-green-40);
+  --gds-color-white: rgba(255, 255, 255, 1);
+  --gds-color-black: rgba(0, 0, 0, 1);
+
+  /* New update 29.05.23 */
+  --gds-color-text-primary: var(--gds-ref-color-grey-20);
+  --gds-color-text-secondary: var(--gds-ref-color-grey-40);
+  --gds-color-text-disabled: var(--gds-ref-color-grey-60);
+  --gds-color-text-inverse: var(--gds-ref-color-white);
+  --gds-color-text-red: var(--gds-ref-color-red-40);
+  --gds-color-text-green: var(--gds-ref-color-green-40);
+  --gds-color-text-blue: var(--gds-ref-color-blue-40);
+  --gds-color-link-primary: var(--gds-ref-color-grey-20);
+  --gds-color-icon-primary: var(--gds-ref-color-grey-20);
+  --gds-color-icon-secondary: var(--gds-ref-color-grey-40);
+  --gds-color-icon-disabled: var(--gds-ref-color-grey-60);
+  --gds-color-icon-inverse: var(--gds-ref-color-white);
+  --gds-color-icon-red: var(--gds-ref-color-red-40);
+  --gds-color-icon-green: var(--gds-ref-color-green-40);
+  --gds-color-icon-blue: var(--gds-ref-color-blue-40);
+  --gds-color-background-primary: var(--gds-ref-color-white);
+  --gds-color-stroke-primary: var(--gds-ref-color-grey-50);
+  --gds-color-stroke-secondary: var(--gds-ref-color-grey-80);
+  --gds-color-stroke-inverse: var(--gds-ref-color-white);
+  --gds-color-stroke-error: var(--gds-ref-color-red-40);
+
+  /* Text-size styles */
+  /* font-size: 100%; font-size: large; font-size: larger; font-size: medium; font-size: small; font-size: smaller;  --gds-fs-base: 10px; */
+
+  --gds-fs-base: 100%; /* 16px is the default font size */
+  --gds-fs-display-large: 5.125rem; /* 82px / 16px = 5.125rem */
+  --gds-fs-display-medium: 4rem; /* 64px / 16px = 4rem */
+  --gds-fs-display-small: 2.5rem; /* 40px / 16px = 2.5rem */
+  --gds-fs-headline-large: 2rem; /* 32px / 16px = 2rem */
+  --gds-fs-headline-medium: 1.75rem; /* 28px / 16px = 1.75rem */
+  --gds-fs-headline-small: 1.5rem; /* 24px / 16px = 1.5rem */
+  --gds-fs-title-large: 1.375rem; /* 22px / 16px = 1.375rem */
+  --gds-fs-title-medium: 1rem; /* 16px / 16px = 1.6rem */
+  --gds-fs-title-small: 0.875rem; /* 14px / 16px = .875rem */
+  --gds-fs-body-large: 1rem; /* 16px / 16px = 1rem */
+  --gds-fs-body-medium: 0.875rem; /* 14px / 16px = .875rem */
+  --gds-fs-body-small: 0.75rem; /* 12px / 16px = .75rem */
+  --gds-fs-label-large: 1rem; /* 16px / 16px = 1rem */
+  --gds-fs-label-medium: 0.875rem; /* 14px / 16px = .875rem */
+  --gds-fs-label-small: 0.75rem; /* 12px / 16px = .75rem */
+  --gds-fs-label-information-large: 1rem; /* 16px / 16px = 1rem */
+  --gds-fs-label-information-medium: 0.875rem; /* 14px / 16px = .75rem */
+  --gds-fs-label-input-large: 1rem; /* 16px / 16px = 1rem */
+  --gds-fs-label-input-medium: 0.875rem; /* 14px / 16px = .875rem */
+  --gds-fs-label-overline: 0.875rem; /* 14px / 16px = .875rem */
+
+  /* Line heights */
+  --gds-lh-display-large: 1.1905; /* 98/82 */
+  --gds-lh-display-medium: 1.25; /* 80/64 */
+  --gds-lh-display-small: 1.3077; /* 52/40 */
+  --gds-lh-headline-large: 1.25; /* 40/32 */
+  --gds-lh-headline-medium: 1.125; /* 36/32 */
+  --gds-lh-headline-small: 1.2; /* 30/24 */
+  --gds-lh-title-large: 1.1071; /* 28/22 */
+  --gds-lh-title-medium: 1.5; /* 24/16 */
+  --gds-lh-title-small: 1.4286; /* 20/14 */
+  --gds-lh-body-large: 1.25; /* 20/16 */
+  --gds-lh-body-medium: 1.4286; /* 20/14 */
+  --gds-lh-body-small: 1.3333; /* 16/12 */
+  --gds-lh-label-large: 1.25; /* 20/16 */
+  --gds-lh-label-medium: 1.4286; /* 20/14 */
+  --gds-lh-label-small: 1.3333; /* 16/12 */
+  --gds-lh-label-information-large: 1.25; /* 20/16 */
+  --gds-lh-label-information-medium: 1.4286; /* 20/14 */
+  --gds-lh-label-input-large: 1.25; /* 20/16 */
+  --gds-lh-label-input-medium: 1.4286; /* 20/14 */
+  --gds-lh-label-overline: 1.1667; /* 18/14 */
+
+  /* Font weights */
+  --gds-fw-light: 300;
+  --gds-fw-regular: 400;
+  --gds-fw-medium: 500;
+  --gds-fw-bold: 700;
+
+  /* Spacing */
+  --gds-spacing-0: 0;
+  --gds-spacing-1: 0.125rem; /* 2px / 16px = 0.125rem */
+  --gds-spacing-2: 0.25rem; /* 4px / 16px = 0.25rem */
+  --gds-spacing-3: 0.5rem; /* 8px / 16px = 0.5rem */
+  --gds-spacing-4: 0.75rem; /* 12px / 16px = 0.75rem */
+  --gds-spacing-5: 1rem; /* 16px / 16px = 1rem */
+  --gds-spacing-6: 1.5rem; /* 24px / 16px = 1.5rem */
+  --gds-spacing-7: 2rem; /* 32px / 16px = 2rem */
+  --gds-spacing-8: 2.5rem; /* 40px / 16px = 2.5rem */
+  --gds-spacing-9: 3rem; /* 48px / 16px = 3rem */
+  --gds-spacing-10: 4rem; /* 64px / 16px = 4rem */
+  --gds-spacing-11: 5rem; /* 80px / 16px = 5rem */
+  --gds-spacing-12: 6rem; /* 96px / 16px = 6rem */
+  --gds-spacing-13: 7rem; /* 112px / 16px = 7rem */
+  --gds-spacing-14: 8rem; /* 128px / 16px = 8rem */
+
+  /* Transitions */
+  --gds-sys-transition-easing: cubic-bezier(0.46, 0.03, 0.52, 0.96);
+  --gds-sys-transition-properties: all;
+  --gds-sys-transition-duration: 0.3s;
+  --gds-sys-transition-delay: 0s;
+  --gds-sys-transition-timing-function: var(--gds-sys-transition-easing);
+  --gds-sys-transition: var(--gds-sys-transition-properties)
+    var(--gds-sys-transition-duration) var(--gds-sys-transition-timing-function)
+    var(--gds-sys-transition-delay);
+
+  /* Animation */
+  --gds-sys-animation-duration: 1.2s;
+  --gds-sys-animation-timing-function: ease;
+  --gds-sys-animation-delay: 0s;
+  --gds-sys-animation-iteration-count: 1;
+  --gds-sys-animation-direction: normal;
+  --gds-sys-animation-fill-mode: none;
+  --gds-sys-animation-play-state: running;
+
+  /* Border */
+  --gds-sys-radii-small: var(--gds-spacing-2);
+  --gds-sys-radii-medium: var(--gds-spacing-3);
+  --gds-sys-radii-large: var(--gds-spacing-4);
+  --gds-sys-radii-full: var(--gds-spacing-14);
+  --gds-sys-border-radius: var(--gds-sys-radii-full);
+  --gds-sys-border-width: 1px;
+  --gds-sys-border-color: var(--gds-ref-color-grey-20);
+  --gds-sys-border-style: solid;
+  --gds-sys-border: var(--gds-sys-border-width) var(--gds-sys-border-style)
+    var(--gds-sys-border-color);
+
+  /* Base Padding */
+  --gds-sys-padding-inline: var(--gds-spacing-5);
+  --gds-sys-padding-block: var(--gds-spacing-4);
+
+  /* Gap */
+  --gds-sys-gap-small: var(--gds-spacing-3);
+  --gds-sys-gap-medium: var(--gds-spacing-5);
+  --gds-sys-gap-large: var(--gds-spacing-8);
+
+  /* Background styles */
+  --gds-bg-a50: 0.5;
+  --gds-bg-a80: 0.8;
+}
+`;
+
+// libs/core/src/tokens/a11y.css
+var a11y_default = `/* Styles for dark mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --gds-color-text-primary: var(--gds-color-text-primary-dark);
+    --gds-color-text-secondary: var(--gds-color-text-secondary-dark);
+    --gds-color-text-disabled: var(--gds-color-text-disabled-dark);
+    --gds-color-text-inverse: var(--gds-color-text-inverse-dark);
+    --gds-color-text-red: var(--gds-color-text-red-dark);
+    --gds-color-text-green: var(--gds-color-text-green-dark);
+    --gds-color-text-blue: var(--gds-color-text-blue-dark);
+    --gds-color-link-primary: var(--gds-color-link-primary-dark);
+    --gds-color-icon-primary: var(--gds-color-icon-primary-dark);
+    --gds-color-icon-secondary: var(--gds-color-icon-secondary-dark);
+    --gds-color-icon-disabled: var(--gds-color-icon-disabled-dark);
+    --gds-color-icon-inverse: var(--gds-color-icon-inverse-dark);
+    --gds-color-icon-red: var(--gds-color-icon-red-dark);
+    --gds-color-icon-green: var(--gds-color-icon-green-dark);
+    --gds-color-icon-blue: var(--gds-color-icon-blue-dark);
+    --gds-color-background-primary: var(--gds-color-background-primary-dark);
+    --gds-color-stroke-primary: var(--gds-color-stroke-primary-dark);
+    --gds-color-stroke-secondary: var(--gds-color-stroke-secondary-dark);
+    --gds-color-stroke-inverse: var(--gds-color-stroke-inverse-dark);
+    --gds-color-stroke-error: var(--gds-color-stroke-error-dark);
+  }
+}
+
+/* Styles for reduced motion mode */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --gds-sys-transition-duration: 0s;
+    --gds-sys-animation-duration: 0s;
+  }
+}
+
+/* Styles for high contrast mode */
+@media (prefers-contrast: high) {
+  /* styles for high contrast motion */
+}
+
+/* Styles for hover state on devices that support hover */
+@media (hover: hover) {
+  /* styles for hover state */
+}
+
+/* Styles for print media */
+@media print {
+  /* styles for print */
+}
+
+/* Styles for devices with a high resolution */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  /* styles for high resolution displays */
+}
+
+/* Styles for devices with a pointer, such as a mouse */
+@media (pointer: fine) {
+  /* styles for pointer devices */
+}
+
+/* Styles for devices that support touch */
+@media (pointer: coarse) {
+  /* styles for touch devices */
+}
+
+/* Styles for devices with a 16:9 aspect ratio */
+@media (aspect-ratio: 16/9) {
+  /* styles for 16:9 aspect ratio */
+}
+
+/* Styles for devices in portrait orientation */
+@media (orientation: portrait) {
+  /* styles for portrait orientation */
+}
+
+/* Styles for devices in landscape orientation */
+@media (orientation: landscape) {
+  /* styles for landscape orientation */
+}
+
+/* Styles for devices with a monochrome color scheme */
+@media (monochrome) {
+  /* styles for monochrome devices */
+}
+
+/* Styles for devices with a forced color scheme */
+@media (forced-colors: active) {
+  /* styles for devices with a forced color scheme */
+}
+
+/* Styles for devices with a wide color gamut */
+@media (color-gamut: p3) {
+  /* styles for devices with a wide color gamut */
+}
+
+/* Styles for devices with a high dynamic range */
+@media (dynamic-range: high) {
+  /* styles for devices with a high dynamic range */
+}
+
+/* Styles for devices with a grid */
+@media (display: grid) {
+  /* styles for devices with a grid */
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  /* CSS styles for reduced transparency */
+}
+
+/* Color Mix */
+@supports (background-color: color-mix(in srgb, red, transparent 10%)) {
+  [alert='support'] {
+    display: none;
+  }
+}
+
+/* Backdrop */
+
+@supports (backdrop-filter: blur(20px)) {
+  :host([blur]) gds-blur {
+    backdrop-filter: blur(20px);
+  }
+}
+`;
+
+// libs/core/src/tokens.style.ts
+var tokens = [
+  unsafeCSS3(pallet_default),
+  unsafeCSS3(light_default),
+  //unsafeCSS(darkThemeCss),
+  unsafeCSS3(tokens_default),
+  unsafeCSS3(a11y_default)
+];
+
+// libs/core/src/components/button/button.style.css
+var button_style_default = `@layer tokens, a11y, core, variants, sizes, sets, disabled;
+
+@layer tokens {
+  :host {
+    --_gap: var(--gds-sys-gap-small);
+
+    --_transition: var(--gds-sys-transition);
+
+    --_padding-inline: var(--gds-sys-padding-inline);
+    --_padding-block: var(--gds-sys-padding-block);
+
+    --_border-radius: var(--gds-sys-border-radius);
+    --_border-width: var(--gds-sys-border-width);
+    --_border-style: var(--gds-sys-border-style);
+
+    --_color-bg: var(--gds-sys-color-content-content);
+    --_color-text: var(--gds-sys-color-content-content-inverse);
+    --_color-border: var(--gds-sys-color-stroke-stroke);
+
+    --_color-outline-alpha: 60%;
+    --_color-outline: var(--_color-border);
+
+    /* These state layer variables can be set to the correct state layer token in
+    * the variant and set specific styles. It will be blended with \`--_color-bg\`
+    * for the \`background-color\` rule. */
+    --_state-layer-hover: var(--gds-sys-color-state-layers-state-black);
+    --_state-layer-active: var(--gds-sys-color-state-layers-state-black-shade);
+
+    contain: layout;
+    display: inline-block;
+    isolation: isolate;
+
+    max-width: 100%;
+  }
+}
+
+@layer a11y {
+  @media (prefers-color-scheme: dark) {
+    /* TODO */
+  }
+  @media (prefers-reduced-motion: reduce) {
+    :host {
+      --_transition: none;
+    }
+  }
+}
+
+@layer core {
+  button {
+    align-items: center;
+
+    background-color: var(--_color-bg);
+    block-size: 100%;
+
+    border-color: var(--_color-border);
+    border-radius: var(--_border-radius);
+    border-style: var(--_border-style);
+    border-width: var(--_border-width);
+
+    box-sizing: border-box;
+    color: var(--_color-text);
+    color-scheme: dark light;
+    cursor: pointer;
+
+    display: inline-flex;
+    gap: var(--_gap);
+    height: var(--_size);
+
+    inline-size: 100%;
+    justify-content: space-between;
+    justify-items: center;
+    outline-color: transparent;
+    outline-offset: 2px;
+    outline-style: solid;
+    outline-width: 2px;
+    padding-block: var(--_padding-block);
+    padding-inline: var(--_padding-inline);
+    position: relative;
+    transition: var(--_transition);
+    font-family: inherit;
+
+    /* TODO: Tokens... */
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.25;
+
+    &:focus {
+      outline-color: color-mix(in srgb,
+        var(--_color-outline),
+        transparent var(--_color-outline-alpha));
+
+      &:not(:focus-visible) {
+        outline-color: transparent;
+      }
+    }
+
+    &:hover {
+      background-color: color-mix(
+        in srgb,
+        var(--_color-bg),
+        var(--_state-layer-hover));
+      border-color: color-mix(
+        in srgb,
+        var(--_color-border),
+        var(--_state-layer-hover));
+    }
+
+    &:active {
+      background-color: color-mix(
+        in srgb,
+        var(--_color-bg),
+        var(--_state-layer-active));
+      border-color: color-mix(
+        in srgb,
+        var(--_color-border),
+        var(--_state-layer-active));
+    }
+  }
+
+  button slot:not([name]) {
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+@layer variants {
+  :host([variant*='secondary']) button {
+    --_color-bg: var(--gds-sys-color-content-content-inverse);
+    --_color-text: var(--gds-sys-color-content-content);
+    --_color-border: var(--gds-sys-color-stroke-stroke);
+
+    &:active {
+      --_state-layer-active: var(--gds-sys-color-state-layers-state-black-dim1);
+    }
+  }
+
+  :host([variant*='tertiary']) button {
+    --_color-bg: transparent;
+    --_color-text: var(--gds-sys-color-content-content);
+    --_color-border: transparent;
+
+    &:hover {
+      --_color-border: var(--gds-sys-color-stroke-stroke);
+    }
+
+    &:active {
+      --_state-layer-active: var(--gds-sys-color-state-layers-state-black-dim1);
+      --_color-border: var(--gds-sys-color-stroke-stroke);
+    }
+  }
+
+  button.circle {
+    align-items: center;
+    aspect-ratio: 1/1;
+    height: var(--_size);
+    justify-content: center;
+    padding: 0;
+    width: var(--_size);
+
+    &::slotted(gds-icon) {
+      align-items: center;
+      display: flex;
+      height: 24px;
+      justify-content: center;
+      width: 24px;
+    }
+  }
+}
+
+@layer sizes {
+  :host([size='small']) button {
+    --_padding-inline: var(--gds-spacing-5);
+    --_padding-block: var(--gds-spacing-3);
+    --_size: 2rem;
+    font-size: 0.875rem;
+  }
+
+  :host([size='medium']) button {
+    --_padding-inline: var(--gds-spacing-5);
+    --_padding-block: var(--gds-spacing-3);
+    --_size: 2.5rem;
+  }
+
+  :host([size='large']) button {
+    --_padding-inline: var(--gds-spacing-5);
+    --_padding-block: var(--gds-spacing-4);
+    --_size: 3rem;
+  }
+}
+
+@layer sets {
+  :host([variant='primary'][set='positive']) button {
+    --_bg: var(--gds-sys-color-container-container-positive);
+    --_color-bg: var(--_bg);
+    --_color-border: var(--_bg);
+
+    &:hover {
+      --_state-layer-hover: var(--gds-sys-color-state-layers-state-black-dim1);
+    }
+
+    &:active {
+      --_state-layer-active: var(--gds-sys-color-state-layers-state-black-dim2);
+    }
+
+    &:focus {
+      --_color-outline: var(--_bg);
+    }
+  }
+
+  :host([variant='secondary'][set='positive']) button {
+    --_color-bg: var(--gds-sys-color-content-content-inverse);
+    --_color-text: var(--gds-sys-color-content-content-positive);
+    --_color-border: var(--gds-sys-color-stroke-stroke-positive);
+
+    &:hover {
+      --_state-layer-hover: var(--gds-sys-color-state-layers-state-positive);
+    }
+
+    &:active {
+      --_state-layer-active: var(--gds-sys-color-state-layers-state-positive-dim);
+    }
+  }
+
+  :host([variant='tertiary'][set='positive']) button {
+    --_color-bg: transparent;
+    --_color-text: var(--gds-sys-color-content-content-positive);
+    --_color-border: transparent;
+
+    &:hover {
+      --_state-layer-hover: var(--gds-sys-color-state-layers-state-positive);
+      --_color-border: var(--gds-sys-color-stroke-stroke-positive);
+    }
+
+    &:active {
+      --_state-layer-active: var(--gds-sys-color-state-layers-state-positive-dim);
+      --_color-border: var(--gds-sys-color-stroke-stroke-positive);
+    }
+  }
+
+  :host([variant='primary'][set='negative']) button {
+    --_bg: var(--gds-sys-color-container-container-negative);
+    --_color-bg: var(--_bg);
+    --_color-text: var(--gds-sys-color-status-negative-on-negative);
+    --_color-border: var(--_bg);
+
+    &:hover {
+      --_state-layer-hover: var(--gds-sys-color-state-layers-state-black-dim1);
+    }
+
+    &:active {
+      --_state-layer-active: var(--gds-sys-color-state-layers-state-black-dim2);
+    }
+
+    &:focus {
+      --_color-outline: var(--_bg);
+    }
+  }
+
+  :host([variant='secondary'][set='negative']) button {
+    --_color-bg: var(--gds-sys-color-content-content-inverse);
+    --_color-text: var(--gds-sys-color-content-content-negative);
+    --_color-border: var(--gds-sys-color-stroke-stroke-negative);
+
+    &:hover {
+      --_state-layer-hover: var(--gds-sys-color-state-layers-state-negative);
+    }
+
+    &:active {
+      --_state-layer-active: var(--gds-sys-color-state-layers-state-negative-dim);
+    }
+  }
+
+  :host([variant='tertiary'][set='negative']) button {
+    --_color-bg: transparent;
+    --_color-text: var(--gds-sys-color-content-content-negative);
+    --_color-border: transparent;
+
+    &:hover {
+      --_state-layer-hover: var(--gds-sys-color-state-layers-state-negative);
+      --_color-border: var(--gds-sys-color-stroke-stroke-negative);
+    }
+
+    &:active {
+      --_state-layer-active: var(--gds-sys-color-state-layers-state-negative-dim);
+      --_color-border: var(--gds-sys-color-stroke-stroke-negative);
+    }
+  }
+}
+
+@layer disabled {
+  button:disabled {
+    --_color-bg: var(--gds-sys-color-container-container-disabled);
+    border-color: var(--_color-bg);
+    color: var(--gds-sys-color-content-content-disabled);
+    pointer-events: none;
+  }
+}
+`;
+
+// libs/core/src/utils/helpers/strip-white-space.ts
+var templateCache2 = /* @__PURE__ */ new WeakMap();
+function stripWhitespace(extendedTag) {
+  return (strings, ...values) => {
+    let modstrings = templateCache2.get(strings);
+    if (!modstrings) {
+      modstrings = strings.map((s) => s.replace(/\n[\s]+</gm, "<"));
+      modstrings.raw = strings.raw;
+      templateCache2.set(strings, modstrings);
+    }
+    return extendedTag(modstrings, ...values);
+  };
+}
+
+// libs/core/src/components/button/button.ts
+import { classMap } from "lit/directives/class-map.js";
+
+// libs/core/src/components/form-control.ts
+import { LitElement as LitElement3 } from "lit";
+import { property } from "lit/decorators.js";
+
+// libs/core/src/utils/decorators/watch.ts
+function watch(propertyName, options) {
+  const resolvedOptions = {
+    waitUntilFirstUpdate: false,
+    ...options
+  };
+  return (proto, propertyKey, descriptor) => {
+    const { update } = proto;
+    const watchedProperties = Array.isArray(propertyName) ? propertyName : [propertyName];
+    proto.update = function(changedProps) {
+      watchedProperties.forEach((property15) => {
+        const key = property15;
+        if (changedProps.has(key)) {
+          const oldValue = changedProps.get(key);
+          const newValue = this[key];
+          if (oldValue !== newValue) {
+            if (!resolvedOptions.waitUntilFirstUpdate || this.hasUpdated) {
+              descriptor.value?.call(this, oldValue, newValue);
+            }
+          }
+        }
+      });
+      update.call(this, changedProps);
+    };
+  };
+}
+
+// libs/core/src/utils/decorators/observe-light-dom.ts
+function observeLightDOM() {
+  return (proto, _propertyKey, descriptor) => {
+    const observerConfig = { attributes: true, childList: true, subtree: false };
+    let observer;
+    const connectedCallback = proto.connectedCallback;
+    const disconnectedCallback = proto.disconnectedCallback;
+    proto.connectedCallback = function() {
+      connectedCallback?.call(this);
+      const callback = (_mutationList, _observer) => {
+        descriptor.value?.call(this);
+      };
+      observer = new MutationObserver(callback);
+      observer.observe(this, observerConfig);
+    };
+    proto.disconnectedCallback = function() {
+      disconnectedCallback?.call(this);
+      observer.disconnect();
+    };
+  };
+}
+
+// libs/core/src/utils/decorators/watch-media-query.ts
+function watchMediaQuery(q) {
+  return (proto, _propertyKey, descriptor) => {
+    const mediaQuery = window.matchMedia(q);
+    const connectedCallback = proto.connectedCallback;
+    const disconnectedCallback = proto.disconnectedCallback;
+    proto.connectedCallback = function() {
+      connectedCallback?.call(this);
+      const listener = (e) => {
+        descriptor.value?.call(this, e.matches);
+      };
+      mediaQuery.addEventListener("change", listener);
+      this.disconnectedCallback = function() {
+        disconnectedCallback?.call(this);
+        mediaQuery.removeEventListener("change", listener);
+      };
+      descriptor.value?.call(this, mediaQuery.matches);
+    };
+  };
+}
+
+// libs/core/src/components/form-control.ts
+var GdsFormControlElement = class extends LitElement3 {
+  constructor() {
+    super();
+    this.invalid = false;
+    this.name = "";
+    /**
+     * Event handler for the form reset event.
+     */
+    this.#handleFormReset = () => {
+      this.value = void 0;
+    };
+    this.#internals = this.attachInternals();
+  }
+  #internals;
+  static {
+    this.formAssociated = true;
+  }
+  get form() {
+    return this.#internals.form;
+  }
+  get validity() {
+    return this.#internals.validity;
+  }
+  get validationMessage() {
+    return this.#internals.validationMessage;
+  }
+  get willValidate() {
+    return this.#internals.willValidate;
+  }
+  checkValidity() {
+    return this.#internals.checkValidity();
+  }
+  reportValidity() {
+    return this.#internals.reportValidity();
+  }
+  connectedCallback() {
+    super.connectedCallback();
+    this.#internals.form?.addEventListener("reset", this.#handleFormReset);
+  }
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this.#internals.form?.removeEventListener("reset", this.#handleFormReset);
+  }
+  __handleValidityChange() {
+    this.#internals.setValidity(
+      {
+        badInput: false,
+        customError: this.invalid,
+        patternMismatch: false,
+        rangeOverflow: false,
+        rangeUnderflow: false,
+        stepMismatch: false,
+        tooLong: false,
+        tooShort: false,
+        typeMismatch: false,
+        valueMissing: false
+      },
+      this.validationMessage || "Error message"
+    );
+  }
+  __handleValueChange() {
+    this.#internals.setFormValue(this.value);
+  }
+  #handleFormReset;
+};
+__decorateClass([
+  property({
+    type: Boolean,
+    reflect: true,
+    attribute: "aria-invalid",
+    converter: {
+      fromAttribute: Boolean,
+      toAttribute: (value) => value?.toString()
+    }
+  })
+], GdsFormControlElement.prototype, "invalid", 2);
+__decorateClass([
+  property()
+], GdsFormControlElement.prototype, "value", 2);
+__decorateClass([
+  property({ reflect: true })
+], GdsFormControlElement.prototype, "name", 2);
+__decorateClass([
+  watch("invalid")
+], GdsFormControlElement.prototype, "__handleValidityChange", 1);
+__decorateClass([
+  watch("value")
+], GdsFormControlElement.prototype, "__handleValueChange", 1);
+
+// libs/core/src/components/button/button.ts
+var html4 = stripWhitespace(html2);
+var _isIconButton, _mainSlotChange, _handleClick;
+var GdsButton = class extends GdsFormControlElement {
+  constructor() {
+    super();
+    this.disabled = false;
+    this.variant = "primary";
+    this.set = "neutral";
+    this.size = "medium";
+    __privateAdd(this, _isIconButton, false);
+    // Check if the button is an icon button.
+    __privateAdd(this, _mainSlotChange, () => {
+      const assignedNodes = this._mainSlot?.assignedNodes() ?? [];
+      __privateSet(this, _isIconButton, assignedNodes.length === 1 && assignedNodes.some((node) => node.nodeName === "GDS-ICON"));
+      this.requestUpdate();
+    });
+    __privateAdd(this, _handleClick, (e) => {
+      this.dispatchEvent(
+        new CustomEvent("gds-click", {
+          bubbles: true,
+          composed: true,
+          detail: e
+        })
+      );
+      if (this.form) {
+        if (this.type === "submit") {
+          this.form.requestSubmit();
+        } else if (this.type === "reset") {
+          this.form.reset();
+        }
+      }
+    });
+    constrainSlots(this);
+  }
+  render() {
+    return html4`
+      <button
+        class="${classMap({ circle: __privateGet(this, _isIconButton) })}"
+        ?type="${this.type}"
+        ?disabled="${this.disabled}"
+        @click="${__privateGet(this, _handleClick)}"
+      >
+        <slot name="lead" gds-allow="gds-icon"></slot>
+        <slot
+          @slotchange=${__privateGet(this, _mainSlotChange)}
+          gds-allow="#text gds-icon"
+        ></slot>
+        <slot name="trail" gds-allow="gds-icon"></slot>
+        <gds-ripple></gds-ripple>
+      </button>
+    `;
+  }
+};
+_isIconButton = new WeakMap();
+_mainSlotChange = new WeakMap();
+_handleClick = new WeakMap();
+GdsButton.styles = [tokens, unsafeCSS4(button_style_default)];
+GdsButton.shadowRootOptions = {
+  mode: "open",
+  delegatesFocus: true
+};
+__decorateClass([
+  property2({ type: Boolean, reflect: true })
+], GdsButton.prototype, "disabled", 2);
+__decorateClass([
+  property2({ reflect: true })
+], GdsButton.prototype, "type", 2);
+__decorateClass([
+  property2({ reflect: true })
+], GdsButton.prototype, "variant", 2);
+__decorateClass([
+  property2({ reflect: true })
+], GdsButton.prototype, "set", 2);
+__decorateClass([
+  property2({ reflect: true })
+], GdsButton.prototype, "size", 2);
+__decorateClass([
+  query2("slot:not([name])")
+], GdsButton.prototype, "_mainSlot", 2);
+GdsButton = __decorateClass([
+  gdsCustomElement("gds-button")
+], GdsButton);
+
+// libs/core/src/components/dropdown/dropdown.ts
+import { property as property6 } from "lit/decorators.js";
+import { unsafeHTML } from "lit/directives/unsafe-html.js";
+import { when as when2 } from "lit/directives/when.js";
+import { ifDefined } from "lit/directives/if-defined.js";
+import { createRef as createRef3, ref as ref3 } from "lit/directives/ref.js";
+import { msg as msg2, str, updateWhenLocaleChanges } from "@lit/localize";
+import "reflect-metadata";
+
+// libs/core/src/primitives/listbox/listbox.ts
+import { LitElement as LitElement5 } from "lit";
+import { property as property4 } from "lit/decorators.js";
+import { createRef, ref } from "lit/directives/ref.js";
+
+// libs/core/src/utils/helpers/transitional-styles.ts
+var TransitionalStyles = class _TransitionalStyles {
+  constructor() {
+    this.sheets = /* @__PURE__ */ new Map();
+    this.elements = /* @__PURE__ */ new Map();
+  }
+  static get instance() {
+    if (!globalThis.__gdsTransitionalStyles?.[VER_SUFFIX])
+      globalThis.__gdsTransitionalStyles = {
+        [VER_SUFFIX]: new _TransitionalStyles()
+      };
+    return globalThis.__gdsTransitionalStyles[VER_SUFFIX];
+  }
+  apply(element, styleKey) {
+    const sheet = this.sheets.get(styleKey);
+    if (!sheet || !element.shadowRoot)
+      return;
+    this.elements.set(styleKey, element);
+    this.applyToElement(styleKey, sheet);
+  }
+  applyToElement(styleKey, sheet) {
+    const element = this.elements.get(styleKey);
+    if (!element || !element.shadowRoot)
+      return;
+    element.shadowRoot.adoptedStyleSheets = [sheet];
+  }
+  register(name, styles) {
+    const sheet = new CSSStyleSheet();
+    sheet.replaceSync(styles);
+    this.sheets.set(name, sheet);
+    this.applyToElement(name, sheet);
+  }
+};
+
+// libs/core/src/primitives/listbox/option.ts
+import { LitElement as LitElement4, html as html5 } from "lit";
+import { property as property3 } from "lit/decorators.js";
+import { when } from "lit/directives/when.js";
+import { classMap as classMap2 } from "lit/directives/class-map.js";
+
+// libs/core/src/primitives/listbox/option.styles.ts
+import { css } from "lit";
+var style = css`
+  :host {
+    padding: 0.5 1rem;
+    cursor: pointer;
+  }
+
+  :host(:hover) {
+    background-color: grey;
+  }
+`;
+var option_styles_default = style;
+
+// libs/core/src/primitives/listbox/option.ts
+import "reflect-metadata";
+var _hidden, _emitSelect, emitSelect_fn;
+var GdsOption = class extends LitElement4 {
+  constructor() {
+    super();
+    __privateAdd(this, _emitSelect);
+    __privateAdd(this, _hidden, false);
+    this.selected = false;
+    this.isPlaceholder = false;
+    this.onblur = (e) => {
+      this.setAttribute("tabindex", "-1");
+      this.dispatchEvent(
+        new FocusEvent("gds-blur", {
+          bubbles: true,
+          composed: true,
+          relatedTarget: e.relatedTarget
+        })
+      );
+    };
+    this.onfocus = (e) => {
+      this.dispatchEvent(
+        new FocusEvent("gds-focus", {
+          bubbles: true,
+          composed: true,
+          relatedTarget: e.relatedTarget
+        })
+      );
+    };
+    this.addEventListener("click", __privateMethod(this, _emitSelect, emitSelect_fn));
+    this.addEventListener("keydown", (e) => {
+      if (e.key !== "Enter" && e.key !== " ")
+        return;
+      e.preventDefault();
+      __privateMethod(this, _emitSelect, emitSelect_fn).call(this);
+    });
+  }
+  get hidden() {
+    return __privateGet(this, _hidden);
+  }
+  set hidden(value) {
+    if (this.isPlaceholder)
+      return;
+    __privateSet(this, _hidden, value === "true" || value === true);
+    this.setAttribute("aria-hidden", value.toString());
+  }
+  connectedCallback() {
+    super.connectedCallback();
+    this.setAttribute("role", "option");
+    if (this.isPlaceholder) {
+      __privateSet(this, _hidden, true);
+      this.setAttribute("aria-hidden", "true");
+    }
+    this.updateComplete.then(
+      () => TransitionalStyles.instance.apply(this, "gds-option")
+    );
+  }
+  get parentElement() {
+    return super.parentElement;
+  }
+  handlePlaceholderStatusChange() {
+    if (this.isPlaceholder) {
+      __privateSet(this, _hidden, true);
+      this.setAttribute("aria-hidden", "true");
+    } else {
+      __privateSet(this, _hidden, false);
+      this.setAttribute("aria-hidden", "false");
+    }
+  }
+  /**
+   * Focuses the option.
+   *
+   * @param options - Focus options
+   */
+  focus(options) {
+    this.setAttribute("tabindex", "0");
+    super.focus(options);
+    if (document.activeElement !== this) {
+      const iv = setInterval(() => {
+        if (document.activeElement === this)
+          clearInterval(iv);
+        super.focus(options);
+      }, 10);
+    }
+  }
+  render() {
+    const isMultiple = this.parentElement.multiple;
+    const checkbox = html5`<span
+      class="checkbox ${classMap2({ checked: this.selected })}"
+    ></span>`;
+    if (!isMultiple) {
+      if (this.selected)
+        this.setAttribute("highlighted", "");
+      else
+        this.removeAttribute("highlighted");
+    }
+    return html5`${when(isMultiple, () => checkbox)}<slot></slot>`;
+  }
+};
+_hidden = new WeakMap();
+_emitSelect = new WeakSet();
+emitSelect_fn = function() {
+  this.dispatchEvent(
+    new CustomEvent("gds-select", {
+      bubbles: true,
+      composed: true,
+      detail: {
+        value: this.value
+      }
+    })
+  );
+};
+GdsOption.styles = option_styles_default;
+__decorateClass([
+  property3()
+], GdsOption.prototype, "value", 2);
+__decorateClass([
+  property3({
+    attribute: "aria-hidden",
+    reflect: true
+  })
+], GdsOption.prototype, "hidden", 1);
+__decorateClass([
+  property3({
+    attribute: "aria-selected",
+    reflect: true
+  })
+], GdsOption.prototype, "selected", 2);
+__decorateClass([
+  property3({ type: Boolean, reflect: true })
+], GdsOption.prototype, "isPlaceholder", 2);
+__decorateClass([
+  watch("isplaceholder")
+], GdsOption.prototype, "handlePlaceholderStatusChange", 1);
+GdsOption = __decorateClass([
+  gdsCustomElement("gds-option")
+], GdsOption);
+
+// libs/core/src/primitives/listbox/listbox.ts
+import "reflect-metadata";
+
+// libs/core/src/primitives/listbox/listbox.styles.ts
+import { css as css2 } from "lit";
+var style2 = css2`
+  :host {
+    display: flex;
+    flex-direction: column;
+  }
+`;
+var listbox_styles_default = style2;
+
+// libs/core/src/primitives/listbox/listbox.ts
+var _slotRef, _handleSelect, _keyboardNavigationHandler;
+var GdsListbox = class extends LitElement5 {
+  constructor() {
+    super();
+    this.multiple = false;
+    this.compareWith = (a, b) => a === b;
+    __privateAdd(this, _slotRef, createRef());
+    __privateAdd(this, _handleSelect, (e) => {
+      const option = e.target;
+      if (this.multiple)
+        option.selected = !option.selected;
+      else {
+        option.selected = true;
+        Array.from(this.options).forEach((el) => {
+          if (el !== option)
+            el.selected = false;
+        });
+      }
+      ;
+      this.ariaActiveDescendantElement = option;
+      this.dispatchEvent(
+        new CustomEvent("change", {
+          bubbles: false,
+          composed: false
+        })
+      );
+    });
+    __privateAdd(this, _keyboardNavigationHandler, (e) => {
+      if (!(e.target instanceof GdsOption))
+        return;
+      let handled = false;
+      if (e.key === "ArrowDown") {
+        const nextOptionIndex = this.visibleOptionElements.indexOf(e.target) + 1;
+        const nextItem = this.visibleOptionElements[nextOptionIndex];
+        nextItem?.focus();
+        handled = true;
+      } else if (e.key === "ArrowUp") {
+        const prevOptionIndex = this.visibleOptionElements.indexOf(e.target) - 1;
+        const prevItem = this.visibleOptionElements[prevOptionIndex];
+        prevItem?.focus();
+        handled = true;
+      } else if (e.key === "Home") {
+        this.visibleOptionElements[0]?.focus();
+        handled = true;
+      } else if (e.key === "End") {
+        this.visibleOptionElements[this.visibleOptionElements.length - 1]?.focus();
+        handled = true;
+      } else {
+        const key = e.key.toLowerCase();
+        if (key.length !== 1) {
+          return;
+        }
+        const isLetter = key >= "a" && key <= "z";
+        const isNumber = key >= "0" && key <= "9";
+        if (isLetter || isNumber) {
+          const firstMatch = this.visibleOptionElements.find((el) => {
+            const text = el.textContent?.trim().toLowerCase();
+            return text?.startsWith(key);
+          });
+          firstMatch?.focus();
+          handled = true;
+        }
+      }
+      if (handled) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    });
+  }
+  /**
+   * Returns a list of all `gds-option` elements in the listbox.
+   */
+  get options() {
+    let slot = __privateGet(this, _slotRef).value;
+    if (!slot)
+      return [];
+    while (slot.assignedElements().length > 0 && slot.assignedElements()[0].nodeName === "SLOT") {
+      slot = slot.assignedElements()[0];
+    }
+    return slot.assignedElements().filter(
+      (o) => !o.hasAttribute("isplaceholder")
+    ) || [];
+  }
+  /**
+   * Returns a list of all visible `gds-option` elements in the listbox.
+   */
+  get visibleOptionElements() {
+    return this.options.filter((el) => !el.hidden);
+  }
+  /**
+   * Returns a list of all visible `gds-option` elements in the listbox.
+   */
+  get visibleSelectedOptionElements() {
+    return this.options.filter((el) => el.selected && !el.hidden);
+  }
+  /**
+   * Returns a list of all selected `gds-option` elements in the listbox.
+   */
+  get selection() {
+    return this.options.filter((el) => el.selected);
+  }
+  set selection(values) {
+    this.options.forEach((el) => {
+      el.selected = values.some((v) => this.compareWith(v, el.value));
+    });
+  }
+  connectedCallback() {
+    super.connectedCallback();
+    this.setAttribute("role", "listbox");
+    TransitionalStyles.instance.apply(this, "gds-listbox");
+    this.addEventListener("keydown", __privateGet(this, _keyboardNavigationHandler));
+    this.addEventListener("gds-select", __privateGet(this, _handleSelect));
+  }
+  /**
+   * Focuses the first selected option in the listbox.
+   * If no option is selected, the first visible option is focused.
+   */
+  focus() {
+    ;
+    (this.visibleSelectedOptionElements[0] || this.visibleOptionElements[0])?.focus();
+  }
+  render() {
+    return html2`<slot ${ref(__privateGet(this, _slotRef))}></slot>`;
+  }
+  _rerenderOptions() {
+    this.options.forEach((el) => {
+      el.requestUpdate();
+    });
+  }
+};
+_slotRef = new WeakMap();
+_handleSelect = new WeakMap();
+_keyboardNavigationHandler = new WeakMap();
+GdsListbox.styles = listbox_styles_default;
+__decorateClass([
+  property4({
+    type: Boolean,
+    reflect: true,
+    attribute: "aria-multiselectable",
+    converter: {
+      fromAttribute: Boolean,
+      toAttribute: (value) => value.toString()
+    }
+  })
+], GdsListbox.prototype, "multiple", 2);
+__decorateClass([
+  property4()
+], GdsListbox.prototype, "compareWith", 2);
+__decorateClass([
+  watch("multiple")
+], GdsListbox.prototype, "_rerenderOptions", 1);
+GdsListbox = __decorateClass([
+  gdsCustomElement("gds-listbox")
+], GdsListbox);
+
+// libs/core/src/primitives/popover/popover.ts
+import { LitElement as LitElement6, html as html6, unsafeCSS as unsafeCSS7 } from "lit";
+import { property as property5 } from "lit/decorators.js";
+import { msg } from "@lit/localize";
+import { createRef as createRef2, ref as ref2 } from "lit/directives/ref.js";
+
+// node_modules/@floating-ui/utils/dist/floating-ui.utils.mjs
+var min = Math.min;
+var max = Math.max;
+var round = Math.round;
+var floor = Math.floor;
+var createCoords = (v) => ({
+  x: v,
+  y: v
+});
+var oppositeSideMap = {
+  left: "right",
+  right: "left",
+  bottom: "top",
+  top: "bottom"
+};
+var oppositeAlignmentMap = {
+  start: "end",
+  end: "start"
+};
+function evaluate(value, param) {
+  return typeof value === "function" ? value(param) : value;
+}
+function getSide(placement) {
+  return placement.split("-")[0];
+}
+function getAlignment(placement) {
+  return placement.split("-")[1];
+}
+function getOppositeAxis(axis) {
+  return axis === "x" ? "y" : "x";
+}
+function getAxisLength(axis) {
+  return axis === "y" ? "height" : "width";
+}
+function getSideAxis(placement) {
+  return ["top", "bottom"].includes(getSide(placement)) ? "y" : "x";
+}
+function getAlignmentAxis(placement) {
+  return getOppositeAxis(getSideAxis(placement));
+}
+function getAlignmentSides(placement, rects, rtl) {
+  if (rtl === void 0) {
+    rtl = false;
+  }
+  const alignment = getAlignment(placement);
+  const alignmentAxis = getAlignmentAxis(placement);
+  const length = getAxisLength(alignmentAxis);
+  let mainAlignmentSide = alignmentAxis === "x" ? alignment === (rtl ? "end" : "start") ? "right" : "left" : alignment === "start" ? "bottom" : "top";
+  if (rects.reference[length] > rects.floating[length]) {
+    mainAlignmentSide = getOppositePlacement(mainAlignmentSide);
+  }
+  return [mainAlignmentSide, getOppositePlacement(mainAlignmentSide)];
+}
+function getExpandedPlacements(placement) {
+  const oppositePlacement = getOppositePlacement(placement);
+  return [getOppositeAlignmentPlacement(placement), oppositePlacement, getOppositeAlignmentPlacement(oppositePlacement)];
+}
+function getOppositeAlignmentPlacement(placement) {
+  return placement.replace(/start|end/g, (alignment) => oppositeAlignmentMap[alignment]);
+}
+function getSideList(side, isStart, rtl) {
+  const lr = ["left", "right"];
+  const rl = ["right", "left"];
+  const tb = ["top", "bottom"];
+  const bt = ["bottom", "top"];
+  switch (side) {
+    case "top":
+    case "bottom":
+      if (rtl)
+        return isStart ? rl : lr;
+      return isStart ? lr : rl;
+    case "left":
+    case "right":
+      return isStart ? tb : bt;
+    default:
+      return [];
+  }
+}
+function getOppositeAxisPlacements(placement, flipAlignment, direction, rtl) {
+  const alignment = getAlignment(placement);
+  let list = getSideList(getSide(placement), direction === "start", rtl);
+  if (alignment) {
+    list = list.map((side) => side + "-" + alignment);
+    if (flipAlignment) {
+      list = list.concat(list.map(getOppositeAlignmentPlacement));
+    }
+  }
+  return list;
+}
+function getOppositePlacement(placement) {
+  return placement.replace(/left|right|bottom|top/g, (side) => oppositeSideMap[side]);
+}
+function expandPaddingObject(padding) {
+  return {
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+    ...padding
+  };
+}
+function getPaddingObject(padding) {
+  return typeof padding !== "number" ? expandPaddingObject(padding) : {
+    top: padding,
+    right: padding,
+    bottom: padding,
+    left: padding
+  };
+}
+function rectToClientRect(rect) {
+  return {
+    ...rect,
+    top: rect.y,
+    left: rect.x,
+    right: rect.x + rect.width,
+    bottom: rect.y + rect.height
+  };
+}
+
+// node_modules/@floating-ui/core/dist/floating-ui.core.mjs
+function computeCoordsFromPlacement(_ref, placement, rtl) {
+  let {
+    reference,
+    floating
+  } = _ref;
+  const sideAxis = getSideAxis(placement);
+  const alignmentAxis = getAlignmentAxis(placement);
+  const alignLength = getAxisLength(alignmentAxis);
+  const side = getSide(placement);
+  const isVertical = sideAxis === "y";
+  const commonX = reference.x + reference.width / 2 - floating.width / 2;
+  const commonY = reference.y + reference.height / 2 - floating.height / 2;
+  const commonAlign = reference[alignLength] / 2 - floating[alignLength] / 2;
+  let coords;
+  switch (side) {
+    case "top":
+      coords = {
+        x: commonX,
+        y: reference.y - floating.height
+      };
+      break;
+    case "bottom":
+      coords = {
+        x: commonX,
+        y: reference.y + reference.height
+      };
+      break;
+    case "right":
+      coords = {
+        x: reference.x + reference.width,
+        y: commonY
+      };
+      break;
+    case "left":
+      coords = {
+        x: reference.x - floating.width,
+        y: commonY
+      };
+      break;
+    default:
+      coords = {
+        x: reference.x,
+        y: reference.y
+      };
+  }
+  switch (getAlignment(placement)) {
+    case "start":
+      coords[alignmentAxis] -= commonAlign * (rtl && isVertical ? -1 : 1);
+      break;
+    case "end":
+      coords[alignmentAxis] += commonAlign * (rtl && isVertical ? -1 : 1);
+      break;
+  }
+  return coords;
+}
+var computePosition = async (reference, floating, config) => {
+  const {
+    placement = "bottom",
+    strategy = "absolute",
+    middleware = [],
+    platform: platform2
+  } = config;
+  const validMiddleware = middleware.filter(Boolean);
+  const rtl = await (platform2.isRTL == null ? void 0 : platform2.isRTL(floating));
+  let rects = await platform2.getElementRects({
+    reference,
+    floating,
+    strategy
+  });
+  let {
+    x,
+    y
+  } = computeCoordsFromPlacement(rects, placement, rtl);
+  let statefulPlacement = placement;
+  let middlewareData = {};
+  let resetCount = 0;
+  for (let i = 0; i < validMiddleware.length; i++) {
+    const {
+      name,
+      fn
+    } = validMiddleware[i];
+    const {
+      x: nextX,
+      y: nextY,
+      data,
+      reset
+    } = await fn({
+      x,
+      y,
+      initialPlacement: placement,
+      placement: statefulPlacement,
+      strategy,
+      middlewareData,
+      rects,
+      platform: platform2,
+      elements: {
+        reference,
+        floating
+      }
+    });
+    x = nextX != null ? nextX : x;
+    y = nextY != null ? nextY : y;
+    middlewareData = {
+      ...middlewareData,
+      [name]: {
+        ...middlewareData[name],
+        ...data
+      }
+    };
+    if (reset && resetCount <= 50) {
+      resetCount++;
+      if (typeof reset === "object") {
+        if (reset.placement) {
+          statefulPlacement = reset.placement;
+        }
+        if (reset.rects) {
+          rects = reset.rects === true ? await platform2.getElementRects({
+            reference,
+            floating,
+            strategy
+          }) : reset.rects;
+        }
+        ({
+          x,
+          y
+        } = computeCoordsFromPlacement(rects, statefulPlacement, rtl));
+      }
+      i = -1;
+      continue;
+    }
+  }
+  return {
+    x,
+    y,
+    placement: statefulPlacement,
+    strategy,
+    middlewareData
+  };
+};
+async function detectOverflow(state, options) {
+  var _await$platform$isEle;
+  if (options === void 0) {
+    options = {};
+  }
+  const {
+    x,
+    y,
+    platform: platform2,
+    rects,
+    elements,
+    strategy
+  } = state;
+  const {
+    boundary = "clippingAncestors",
+    rootBoundary = "viewport",
+    elementContext = "floating",
+    altBoundary = false,
+    padding = 0
+  } = evaluate(options, state);
+  const paddingObject = getPaddingObject(padding);
+  const altContext = elementContext === "floating" ? "reference" : "floating";
+  const element = elements[altBoundary ? altContext : elementContext];
+  const clippingClientRect = rectToClientRect(await platform2.getClippingRect({
+    element: ((_await$platform$isEle = await (platform2.isElement == null ? void 0 : platform2.isElement(element))) != null ? _await$platform$isEle : true) ? element : element.contextElement || await (platform2.getDocumentElement == null ? void 0 : platform2.getDocumentElement(elements.floating)),
+    boundary,
+    rootBoundary,
+    strategy
+  }));
+  const rect = elementContext === "floating" ? {
+    ...rects.floating,
+    x,
+    y
+  } : rects.reference;
+  const offsetParent = await (platform2.getOffsetParent == null ? void 0 : platform2.getOffsetParent(elements.floating));
+  const offsetScale = await (platform2.isElement == null ? void 0 : platform2.isElement(offsetParent)) ? await (platform2.getScale == null ? void 0 : platform2.getScale(offsetParent)) || {
+    x: 1,
+    y: 1
+  } : {
+    x: 1,
+    y: 1
+  };
+  const elementClientRect = rectToClientRect(platform2.convertOffsetParentRelativeRectToViewportRelativeRect ? await platform2.convertOffsetParentRelativeRectToViewportRelativeRect({
+    rect,
+    offsetParent,
+    strategy
+  }) : rect);
+  return {
+    top: (clippingClientRect.top - elementClientRect.top + paddingObject.top) / offsetScale.y,
+    bottom: (elementClientRect.bottom - clippingClientRect.bottom + paddingObject.bottom) / offsetScale.y,
+    left: (clippingClientRect.left - elementClientRect.left + paddingObject.left) / offsetScale.x,
+    right: (elementClientRect.right - clippingClientRect.right + paddingObject.right) / offsetScale.x
+  };
+}
+var flip = function(options) {
+  if (options === void 0) {
+    options = {};
+  }
+  return {
+    name: "flip",
+    options,
+    async fn(state) {
+      var _middlewareData$arrow, _middlewareData$flip;
+      const {
+        placement,
+        middlewareData,
+        rects,
+        initialPlacement,
+        platform: platform2,
+        elements
+      } = state;
+      const {
+        mainAxis: checkMainAxis = true,
+        crossAxis: checkCrossAxis = true,
+        fallbackPlacements: specifiedFallbackPlacements,
+        fallbackStrategy = "bestFit",
+        fallbackAxisSideDirection = "none",
+        flipAlignment = true,
+        ...detectOverflowOptions
+      } = evaluate(options, state);
+      if ((_middlewareData$arrow = middlewareData.arrow) != null && _middlewareData$arrow.alignmentOffset) {
+        return {};
+      }
+      const side = getSide(placement);
+      const isBasePlacement = getSide(initialPlacement) === initialPlacement;
+      const rtl = await (platform2.isRTL == null ? void 0 : platform2.isRTL(elements.floating));
+      const fallbackPlacements = specifiedFallbackPlacements || (isBasePlacement || !flipAlignment ? [getOppositePlacement(initialPlacement)] : getExpandedPlacements(initialPlacement));
+      if (!specifiedFallbackPlacements && fallbackAxisSideDirection !== "none") {
+        fallbackPlacements.push(...getOppositeAxisPlacements(initialPlacement, flipAlignment, fallbackAxisSideDirection, rtl));
+      }
+      const placements2 = [initialPlacement, ...fallbackPlacements];
+      const overflow = await detectOverflow(state, detectOverflowOptions);
+      const overflows = [];
+      let overflowsData = ((_middlewareData$flip = middlewareData.flip) == null ? void 0 : _middlewareData$flip.overflows) || [];
+      if (checkMainAxis) {
+        overflows.push(overflow[side]);
+      }
+      if (checkCrossAxis) {
+        const sides2 = getAlignmentSides(placement, rects, rtl);
+        overflows.push(overflow[sides2[0]], overflow[sides2[1]]);
+      }
+      overflowsData = [...overflowsData, {
+        placement,
+        overflows
+      }];
+      if (!overflows.every((side2) => side2 <= 0)) {
+        var _middlewareData$flip2, _overflowsData$filter;
+        const nextIndex = (((_middlewareData$flip2 = middlewareData.flip) == null ? void 0 : _middlewareData$flip2.index) || 0) + 1;
+        const nextPlacement = placements2[nextIndex];
+        if (nextPlacement) {
+          return {
+            data: {
+              index: nextIndex,
+              overflows: overflowsData
+            },
+            reset: {
+              placement: nextPlacement
+            }
+          };
+        }
+        let resetPlacement = (_overflowsData$filter = overflowsData.filter((d) => d.overflows[0] <= 0).sort((a, b) => a.overflows[1] - b.overflows[1])[0]) == null ? void 0 : _overflowsData$filter.placement;
+        if (!resetPlacement) {
+          switch (fallbackStrategy) {
+            case "bestFit": {
+              var _overflowsData$map$so;
+              const placement2 = (_overflowsData$map$so = overflowsData.map((d) => [d.placement, d.overflows.filter((overflow2) => overflow2 > 0).reduce((acc, overflow2) => acc + overflow2, 0)]).sort((a, b) => a[1] - b[1])[0]) == null ? void 0 : _overflowsData$map$so[0];
+              if (placement2) {
+                resetPlacement = placement2;
+              }
+              break;
+            }
+            case "initialPlacement":
+              resetPlacement = initialPlacement;
+              break;
+          }
+        }
+        if (placement !== resetPlacement) {
+          return {
+            reset: {
+              placement: resetPlacement
+            }
+          };
+        }
+      }
+      return {};
+    }
+  };
+};
+async function convertValueToCoords(state, options) {
+  const {
+    placement,
+    platform: platform2,
+    elements
+  } = state;
+  const rtl = await (platform2.isRTL == null ? void 0 : platform2.isRTL(elements.floating));
+  const side = getSide(placement);
+  const alignment = getAlignment(placement);
+  const isVertical = getSideAxis(placement) === "y";
+  const mainAxisMulti = ["left", "top"].includes(side) ? -1 : 1;
+  const crossAxisMulti = rtl && isVertical ? -1 : 1;
+  const rawValue = evaluate(options, state);
+  let {
+    mainAxis,
+    crossAxis,
+    alignmentAxis
+  } = typeof rawValue === "number" ? {
+    mainAxis: rawValue,
+    crossAxis: 0,
+    alignmentAxis: null
+  } : {
+    mainAxis: 0,
+    crossAxis: 0,
+    alignmentAxis: null,
+    ...rawValue
+  };
+  if (alignment && typeof alignmentAxis === "number") {
+    crossAxis = alignment === "end" ? alignmentAxis * -1 : alignmentAxis;
+  }
+  return isVertical ? {
+    x: crossAxis * crossAxisMulti,
+    y: mainAxis * mainAxisMulti
+  } : {
+    x: mainAxis * mainAxisMulti,
+    y: crossAxis * crossAxisMulti
+  };
+}
+var offset = function(options) {
+  if (options === void 0) {
+    options = 0;
+  }
+  return {
+    name: "offset",
+    options,
+    async fn(state) {
+      const {
+        x,
+        y
+      } = state;
+      const diffCoords = await convertValueToCoords(state, options);
+      return {
+        x: x + diffCoords.x,
+        y: y + diffCoords.y,
+        data: diffCoords
+      };
+    }
+  };
+};
+
+// node_modules/@floating-ui/utils/dom/dist/floating-ui.utils.dom.mjs
+function getNodeName(node) {
+  if (isNode(node)) {
+    return (node.nodeName || "").toLowerCase();
+  }
+  return "#document";
+}
+function getWindow(node) {
+  var _node$ownerDocument;
+  return (node == null ? void 0 : (_node$ownerDocument = node.ownerDocument) == null ? void 0 : _node$ownerDocument.defaultView) || window;
+}
+function getDocumentElement(node) {
+  var _ref;
+  return (_ref = (isNode(node) ? node.ownerDocument : node.document) || window.document) == null ? void 0 : _ref.documentElement;
+}
+function isNode(value) {
+  return value instanceof Node || value instanceof getWindow(value).Node;
+}
+function isElement(value) {
+  return value instanceof Element || value instanceof getWindow(value).Element;
+}
+function isHTMLElement(value) {
+  return value instanceof HTMLElement || value instanceof getWindow(value).HTMLElement;
+}
+function isShadowRoot(value) {
+  if (typeof ShadowRoot === "undefined") {
+    return false;
+  }
+  return value instanceof ShadowRoot || value instanceof getWindow(value).ShadowRoot;
+}
+function isOverflowElement(element) {
+  const {
+    overflow,
+    overflowX,
+    overflowY,
+    display
+  } = getComputedStyle2(element);
+  return /auto|scroll|overlay|hidden|clip/.test(overflow + overflowY + overflowX) && !["inline", "contents"].includes(display);
+}
+function isTableElement(element) {
+  return ["table", "td", "th"].includes(getNodeName(element));
+}
+function isContainingBlock(element) {
+  const webkit = isWebKit();
+  const css6 = getComputedStyle2(element);
+  return css6.transform !== "none" || css6.perspective !== "none" || (css6.containerType ? css6.containerType !== "normal" : false) || !webkit && (css6.backdropFilter ? css6.backdropFilter !== "none" : false) || !webkit && (css6.filter ? css6.filter !== "none" : false) || ["transform", "perspective", "filter"].some((value) => (css6.willChange || "").includes(value)) || ["paint", "layout", "strict", "content"].some((value) => (css6.contain || "").includes(value));
+}
+function getContainingBlock(element) {
+  let currentNode = getParentNode(element);
+  while (isHTMLElement(currentNode) && !isLastTraversableNode(currentNode)) {
+    if (isContainingBlock(currentNode)) {
+      return currentNode;
+    } else {
+      currentNode = getParentNode(currentNode);
+    }
+  }
+  return null;
+}
+function isWebKit() {
+  if (typeof CSS === "undefined" || !CSS.supports)
+    return false;
+  return CSS.supports("-webkit-backdrop-filter", "none");
+}
+function isLastTraversableNode(node) {
+  return ["html", "body", "#document"].includes(getNodeName(node));
+}
+function getComputedStyle2(element) {
+  return getWindow(element).getComputedStyle(element);
+}
+function getNodeScroll(element) {
+  if (isElement(element)) {
+    return {
+      scrollLeft: element.scrollLeft,
+      scrollTop: element.scrollTop
+    };
+  }
+  return {
+    scrollLeft: element.pageXOffset,
+    scrollTop: element.pageYOffset
+  };
+}
+function getParentNode(node) {
+  if (getNodeName(node) === "html") {
+    return node;
+  }
+  const result = (
+    // Step into the shadow DOM of the parent of a slotted node.
+    node.assignedSlot || // DOM Element detected.
+    node.parentNode || // ShadowRoot detected.
+    isShadowRoot(node) && node.host || // Fallback.
+    getDocumentElement(node)
+  );
+  return isShadowRoot(result) ? result.host : result;
+}
+function getNearestOverflowAncestor(node) {
+  const parentNode = getParentNode(node);
+  if (isLastTraversableNode(parentNode)) {
+    return node.ownerDocument ? node.ownerDocument.body : node.body;
+  }
+  if (isHTMLElement(parentNode) && isOverflowElement(parentNode)) {
+    return parentNode;
+  }
+  return getNearestOverflowAncestor(parentNode);
+}
+function getOverflowAncestors(node, list, traverseIframes) {
+  var _node$ownerDocument2;
+  if (list === void 0) {
+    list = [];
+  }
+  if (traverseIframes === void 0) {
+    traverseIframes = true;
+  }
+  const scrollableAncestor = getNearestOverflowAncestor(node);
+  const isBody = scrollableAncestor === ((_node$ownerDocument2 = node.ownerDocument) == null ? void 0 : _node$ownerDocument2.body);
+  const win = getWindow(scrollableAncestor);
+  if (isBody) {
+    return list.concat(win, win.visualViewport || [], isOverflowElement(scrollableAncestor) ? scrollableAncestor : [], win.frameElement && traverseIframes ? getOverflowAncestors(win.frameElement) : []);
+  }
+  return list.concat(scrollableAncestor, getOverflowAncestors(scrollableAncestor, [], traverseIframes));
+}
+
+// node_modules/@floating-ui/dom/dist/floating-ui.dom.mjs
+function getCssDimensions(element) {
+  const css6 = getComputedStyle2(element);
+  let width = parseFloat(css6.width) || 0;
+  let height = parseFloat(css6.height) || 0;
+  const hasOffset = isHTMLElement(element);
+  const offsetWidth = hasOffset ? element.offsetWidth : width;
+  const offsetHeight = hasOffset ? element.offsetHeight : height;
+  const shouldFallback = round(width) !== offsetWidth || round(height) !== offsetHeight;
+  if (shouldFallback) {
+    width = offsetWidth;
+    height = offsetHeight;
+  }
+  return {
+    width,
+    height,
+    $: shouldFallback
+  };
+}
+function unwrapElement(element) {
+  return !isElement(element) ? element.contextElement : element;
+}
+function getScale(element) {
+  const domElement = unwrapElement(element);
+  if (!isHTMLElement(domElement)) {
+    return createCoords(1);
+  }
+  const rect = domElement.getBoundingClientRect();
+  const {
+    width,
+    height,
+    $
+  } = getCssDimensions(domElement);
+  let x = ($ ? round(rect.width) : rect.width) / width;
+  let y = ($ ? round(rect.height) : rect.height) / height;
+  if (!x || !Number.isFinite(x)) {
+    x = 1;
+  }
+  if (!y || !Number.isFinite(y)) {
+    y = 1;
+  }
+  return {
+    x,
+    y
+  };
+}
+var noOffsets = /* @__PURE__ */ createCoords(0);
+function getVisualOffsets(element) {
+  const win = getWindow(element);
+  if (!isWebKit() || !win.visualViewport) {
+    return noOffsets;
+  }
+  return {
+    x: win.visualViewport.offsetLeft,
+    y: win.visualViewport.offsetTop
+  };
+}
+function shouldAddVisualOffsets(element, isFixed, floatingOffsetParent) {
+  if (isFixed === void 0) {
+    isFixed = false;
+  }
+  if (!floatingOffsetParent || isFixed && floatingOffsetParent !== getWindow(element)) {
+    return false;
+  }
+  return isFixed;
+}
+function getBoundingClientRect(element, includeScale, isFixedStrategy, offsetParent) {
+  if (includeScale === void 0) {
+    includeScale = false;
+  }
+  if (isFixedStrategy === void 0) {
+    isFixedStrategy = false;
+  }
+  const clientRect = element.getBoundingClientRect();
+  const domElement = unwrapElement(element);
+  let scale = createCoords(1);
+  if (includeScale) {
+    if (offsetParent) {
+      if (isElement(offsetParent)) {
+        scale = getScale(offsetParent);
+      }
+    } else {
+      scale = getScale(element);
+    }
+  }
+  const visualOffsets = shouldAddVisualOffsets(domElement, isFixedStrategy, offsetParent) ? getVisualOffsets(domElement) : createCoords(0);
+  let x = (clientRect.left + visualOffsets.x) / scale.x;
+  let y = (clientRect.top + visualOffsets.y) / scale.y;
+  let width = clientRect.width / scale.x;
+  let height = clientRect.height / scale.y;
+  if (domElement) {
+    const win = getWindow(domElement);
+    const offsetWin = offsetParent && isElement(offsetParent) ? getWindow(offsetParent) : offsetParent;
+    let currentIFrame = win.frameElement;
+    while (currentIFrame && offsetParent && offsetWin !== win) {
+      const iframeScale = getScale(currentIFrame);
+      const iframeRect = currentIFrame.getBoundingClientRect();
+      const css6 = getComputedStyle2(currentIFrame);
+      const left = iframeRect.left + (currentIFrame.clientLeft + parseFloat(css6.paddingLeft)) * iframeScale.x;
+      const top = iframeRect.top + (currentIFrame.clientTop + parseFloat(css6.paddingTop)) * iframeScale.y;
+      x *= iframeScale.x;
+      y *= iframeScale.y;
+      width *= iframeScale.x;
+      height *= iframeScale.y;
+      x += left;
+      y += top;
+      currentIFrame = getWindow(currentIFrame).frameElement;
+    }
+  }
+  return rectToClientRect({
+    width,
+    height,
+    x,
+    y
+  });
+}
+function convertOffsetParentRelativeRectToViewportRelativeRect(_ref) {
+  let {
+    rect,
+    offsetParent,
+    strategy
+  } = _ref;
+  const isOffsetParentAnElement = isHTMLElement(offsetParent);
+  const documentElement = getDocumentElement(offsetParent);
+  if (offsetParent === documentElement) {
+    return rect;
+  }
+  let scroll = {
+    scrollLeft: 0,
+    scrollTop: 0
+  };
+  let scale = createCoords(1);
+  const offsets = createCoords(0);
+  if (isOffsetParentAnElement || !isOffsetParentAnElement && strategy !== "fixed") {
+    if (getNodeName(offsetParent) !== "body" || isOverflowElement(documentElement)) {
+      scroll = getNodeScroll(offsetParent);
+    }
+    if (isHTMLElement(offsetParent)) {
+      const offsetRect = getBoundingClientRect(offsetParent);
+      scale = getScale(offsetParent);
+      offsets.x = offsetRect.x + offsetParent.clientLeft;
+      offsets.y = offsetRect.y + offsetParent.clientTop;
+    }
+  }
+  return {
+    width: rect.width * scale.x,
+    height: rect.height * scale.y,
+    x: rect.x * scale.x - scroll.scrollLeft * scale.x + offsets.x,
+    y: rect.y * scale.y - scroll.scrollTop * scale.y + offsets.y
+  };
+}
+function getClientRects(element) {
+  return Array.from(element.getClientRects());
+}
+function getWindowScrollBarX(element) {
+  return getBoundingClientRect(getDocumentElement(element)).left + getNodeScroll(element).scrollLeft;
+}
+function getDocumentRect(element) {
+  const html16 = getDocumentElement(element);
+  const scroll = getNodeScroll(element);
+  const body = element.ownerDocument.body;
+  const width = max(html16.scrollWidth, html16.clientWidth, body.scrollWidth, body.clientWidth);
+  const height = max(html16.scrollHeight, html16.clientHeight, body.scrollHeight, body.clientHeight);
+  let x = -scroll.scrollLeft + getWindowScrollBarX(element);
+  const y = -scroll.scrollTop;
+  if (getComputedStyle2(body).direction === "rtl") {
+    x += max(html16.clientWidth, body.clientWidth) - width;
+  }
+  return {
+    width,
+    height,
+    x,
+    y
+  };
+}
+function getViewportRect(element, strategy) {
+  const win = getWindow(element);
+  const html16 = getDocumentElement(element);
+  const visualViewport = win.visualViewport;
+  let width = html16.clientWidth;
+  let height = html16.clientHeight;
+  let x = 0;
+  let y = 0;
+  if (visualViewport) {
+    width = visualViewport.width;
+    height = visualViewport.height;
+    const visualViewportBased = isWebKit();
+    if (!visualViewportBased || visualViewportBased && strategy === "fixed") {
+      x = visualViewport.offsetLeft;
+      y = visualViewport.offsetTop;
+    }
+  }
+  return {
+    width,
+    height,
+    x,
+    y
+  };
+}
+function getInnerBoundingClientRect(element, strategy) {
+  const clientRect = getBoundingClientRect(element, true, strategy === "fixed");
+  const top = clientRect.top + element.clientTop;
+  const left = clientRect.left + element.clientLeft;
+  const scale = isHTMLElement(element) ? getScale(element) : createCoords(1);
+  const width = element.clientWidth * scale.x;
+  const height = element.clientHeight * scale.y;
+  const x = left * scale.x;
+  const y = top * scale.y;
+  return {
+    width,
+    height,
+    x,
+    y
+  };
+}
+function getClientRectFromClippingAncestor(element, clippingAncestor, strategy) {
+  let rect;
+  if (clippingAncestor === "viewport") {
+    rect = getViewportRect(element, strategy);
+  } else if (clippingAncestor === "document") {
+    rect = getDocumentRect(getDocumentElement(element));
+  } else if (isElement(clippingAncestor)) {
+    rect = getInnerBoundingClientRect(clippingAncestor, strategy);
+  } else {
+    const visualOffsets = getVisualOffsets(element);
+    rect = {
+      ...clippingAncestor,
+      x: clippingAncestor.x - visualOffsets.x,
+      y: clippingAncestor.y - visualOffsets.y
+    };
+  }
+  return rectToClientRect(rect);
+}
+function hasFixedPositionAncestor(element, stopNode) {
+  const parentNode = getParentNode(element);
+  if (parentNode === stopNode || !isElement(parentNode) || isLastTraversableNode(parentNode)) {
+    return false;
+  }
+  return getComputedStyle2(parentNode).position === "fixed" || hasFixedPositionAncestor(parentNode, stopNode);
+}
+function getClippingElementAncestors(element, cache) {
+  const cachedResult = cache.get(element);
+  if (cachedResult) {
+    return cachedResult;
+  }
+  let result = getOverflowAncestors(element, [], false).filter((el) => isElement(el) && getNodeName(el) !== "body");
+  let currentContainingBlockComputedStyle = null;
+  const elementIsFixed = getComputedStyle2(element).position === "fixed";
+  let currentNode = elementIsFixed ? getParentNode(element) : element;
+  while (isElement(currentNode) && !isLastTraversableNode(currentNode)) {
+    const computedStyle = getComputedStyle2(currentNode);
+    const currentNodeIsContaining = isContainingBlock(currentNode);
+    if (!currentNodeIsContaining && computedStyle.position === "fixed") {
+      currentContainingBlockComputedStyle = null;
+    }
+    const shouldDropCurrentNode = elementIsFixed ? !currentNodeIsContaining && !currentContainingBlockComputedStyle : !currentNodeIsContaining && computedStyle.position === "static" && !!currentContainingBlockComputedStyle && ["absolute", "fixed"].includes(currentContainingBlockComputedStyle.position) || isOverflowElement(currentNode) && !currentNodeIsContaining && hasFixedPositionAncestor(element, currentNode);
+    if (shouldDropCurrentNode) {
+      result = result.filter((ancestor) => ancestor !== currentNode);
+    } else {
+      currentContainingBlockComputedStyle = computedStyle;
+    }
+    currentNode = getParentNode(currentNode);
+  }
+  cache.set(element, result);
+  return result;
+}
+function getClippingRect(_ref) {
+  let {
+    element,
+    boundary,
+    rootBoundary,
+    strategy
+  } = _ref;
+  const elementClippingAncestors = boundary === "clippingAncestors" ? getClippingElementAncestors(element, this._c) : [].concat(boundary);
+  const clippingAncestors = [...elementClippingAncestors, rootBoundary];
+  const firstClippingAncestor = clippingAncestors[0];
+  const clippingRect = clippingAncestors.reduce((accRect, clippingAncestor) => {
+    const rect = getClientRectFromClippingAncestor(element, clippingAncestor, strategy);
+    accRect.top = max(rect.top, accRect.top);
+    accRect.right = min(rect.right, accRect.right);
+    accRect.bottom = min(rect.bottom, accRect.bottom);
+    accRect.left = max(rect.left, accRect.left);
+    return accRect;
+  }, getClientRectFromClippingAncestor(element, firstClippingAncestor, strategy));
+  return {
+    width: clippingRect.right - clippingRect.left,
+    height: clippingRect.bottom - clippingRect.top,
+    x: clippingRect.left,
+    y: clippingRect.top
+  };
+}
+function getDimensions(element) {
+  return getCssDimensions(element);
+}
+function getRectRelativeToOffsetParent(element, offsetParent, strategy) {
+  const isOffsetParentAnElement = isHTMLElement(offsetParent);
+  const documentElement = getDocumentElement(offsetParent);
+  const isFixed = strategy === "fixed";
+  const rect = getBoundingClientRect(element, true, isFixed, offsetParent);
+  let scroll = {
+    scrollLeft: 0,
+    scrollTop: 0
+  };
+  const offsets = createCoords(0);
+  if (isOffsetParentAnElement || !isOffsetParentAnElement && !isFixed) {
+    if (getNodeName(offsetParent) !== "body" || isOverflowElement(documentElement)) {
+      scroll = getNodeScroll(offsetParent);
+    }
+    if (isOffsetParentAnElement) {
+      const offsetRect = getBoundingClientRect(offsetParent, true, isFixed, offsetParent);
+      offsets.x = offsetRect.x + offsetParent.clientLeft;
+      offsets.y = offsetRect.y + offsetParent.clientTop;
+    } else if (documentElement) {
+      offsets.x = getWindowScrollBarX(documentElement);
+    }
+  }
+  return {
+    x: rect.left + scroll.scrollLeft - offsets.x,
+    y: rect.top + scroll.scrollTop - offsets.y,
+    width: rect.width,
+    height: rect.height
+  };
+}
+function getTrueOffsetParent(element, polyfill) {
+  if (!isHTMLElement(element) || getComputedStyle2(element).position === "fixed") {
+    return null;
+  }
+  if (polyfill) {
+    return polyfill(element);
+  }
+  return element.offsetParent;
+}
+function getOffsetParent(element, polyfill) {
+  const window2 = getWindow(element);
+  if (!isHTMLElement(element)) {
+    return window2;
+  }
+  let offsetParent = getTrueOffsetParent(element, polyfill);
+  while (offsetParent && isTableElement(offsetParent) && getComputedStyle2(offsetParent).position === "static") {
+    offsetParent = getTrueOffsetParent(offsetParent, polyfill);
+  }
+  if (offsetParent && (getNodeName(offsetParent) === "html" || getNodeName(offsetParent) === "body" && getComputedStyle2(offsetParent).position === "static" && !isContainingBlock(offsetParent))) {
+    return window2;
+  }
+  return offsetParent || getContainingBlock(element) || window2;
+}
+var getElementRects = async function(_ref) {
+  let {
+    reference,
+    floating,
+    strategy
+  } = _ref;
+  const getOffsetParentFn = this.getOffsetParent || getOffsetParent;
+  const getDimensionsFn = this.getDimensions;
+  return {
+    reference: getRectRelativeToOffsetParent(reference, await getOffsetParentFn(floating), strategy),
+    floating: {
+      x: 0,
+      y: 0,
+      ...await getDimensionsFn(floating)
+    }
+  };
+};
+function isRTL(element) {
+  return getComputedStyle2(element).direction === "rtl";
+}
+var platform = {
+  convertOffsetParentRelativeRectToViewportRelativeRect,
+  getDocumentElement,
+  getClippingRect,
+  getOffsetParent,
+  getElementRects,
+  getClientRects,
+  getDimensions,
+  getScale,
+  isElement,
+  isRTL
+};
+function observeMove(element, onMove) {
+  let io = null;
+  let timeoutId;
+  const root = getDocumentElement(element);
+  function cleanup() {
+    clearTimeout(timeoutId);
+    io && io.disconnect();
+    io = null;
+  }
+  function refresh(skip, threshold) {
+    if (skip === void 0) {
+      skip = false;
+    }
+    if (threshold === void 0) {
+      threshold = 1;
+    }
+    cleanup();
+    const {
+      left,
+      top,
+      width,
+      height
+    } = element.getBoundingClientRect();
+    if (!skip) {
+      onMove();
+    }
+    if (!width || !height) {
+      return;
+    }
+    const insetTop = floor(top);
+    const insetRight = floor(root.clientWidth - (left + width));
+    const insetBottom = floor(root.clientHeight - (top + height));
+    const insetLeft = floor(left);
+    const rootMargin = -insetTop + "px " + -insetRight + "px " + -insetBottom + "px " + -insetLeft + "px";
+    const options = {
+      rootMargin,
+      threshold: max(0, min(1, threshold)) || 1
+    };
+    let isFirstUpdate = true;
+    function handleObserve(entries) {
+      const ratio = entries[0].intersectionRatio;
+      if (ratio !== threshold) {
+        if (!isFirstUpdate) {
+          return refresh();
+        }
+        if (!ratio) {
+          timeoutId = setTimeout(() => {
+            refresh(false, 1e-7);
+          }, 100);
+        } else {
+          refresh(false, ratio);
+        }
+      }
+      isFirstUpdate = false;
+    }
+    try {
+      io = new IntersectionObserver(handleObserve, {
+        ...options,
+        // Handle <iframe>s
+        root: root.ownerDocument
+      });
+    } catch (e) {
+      io = new IntersectionObserver(handleObserve, options);
+    }
+    io.observe(element);
+  }
+  refresh(true);
+  return cleanup;
+}
+function autoUpdate(reference, floating, update, options) {
+  if (options === void 0) {
+    options = {};
+  }
+  const {
+    ancestorScroll = true,
+    ancestorResize = true,
+    elementResize = typeof ResizeObserver === "function",
+    layoutShift = typeof IntersectionObserver === "function",
+    animationFrame = false
+  } = options;
+  const referenceEl = unwrapElement(reference);
+  const ancestors = ancestorScroll || ancestorResize ? [...referenceEl ? getOverflowAncestors(referenceEl) : [], ...getOverflowAncestors(floating)] : [];
+  ancestors.forEach((ancestor) => {
+    ancestorScroll && ancestor.addEventListener("scroll", update, {
+      passive: true
+    });
+    ancestorResize && ancestor.addEventListener("resize", update);
+  });
+  const cleanupIo = referenceEl && layoutShift ? observeMove(referenceEl, update) : null;
+  let reobserveFrame = -1;
+  let resizeObserver = null;
+  if (elementResize) {
+    resizeObserver = new ResizeObserver((_ref) => {
+      let [firstEntry] = _ref;
+      if (firstEntry && firstEntry.target === referenceEl && resizeObserver) {
+        resizeObserver.unobserve(floating);
+        cancelAnimationFrame(reobserveFrame);
+        reobserveFrame = requestAnimationFrame(() => {
+          resizeObserver && resizeObserver.observe(floating);
+        });
+      }
+      update();
+    });
+    if (referenceEl && !animationFrame) {
+      resizeObserver.observe(referenceEl);
+    }
+    resizeObserver.observe(floating);
+  }
+  let frameId;
+  let prevRefRect = animationFrame ? getBoundingClientRect(reference) : null;
+  if (animationFrame) {
+    frameLoop();
+  }
+  function frameLoop() {
+    const nextRefRect = getBoundingClientRect(reference);
+    if (prevRefRect && (nextRefRect.x !== prevRefRect.x || nextRefRect.y !== prevRefRect.y || nextRefRect.width !== prevRefRect.width || nextRefRect.height !== prevRefRect.height)) {
+      update();
+    }
+    prevRefRect = nextRefRect;
+    frameId = requestAnimationFrame(frameLoop);
+  }
+  update();
+  return () => {
+    ancestors.forEach((ancestor) => {
+      ancestorScroll && ancestor.removeEventListener("scroll", update);
+      ancestorResize && ancestor.removeEventListener("resize", update);
+    });
+    cleanupIo && cleanupIo();
+    resizeObserver && resizeObserver.disconnect();
+    resizeObserver = null;
+    if (animationFrame) {
+      cancelAnimationFrame(frameId);
+    }
+  };
+}
+var computePosition2 = (reference, floating, options) => {
+  const cache = /* @__PURE__ */ new Map();
+  const mergedOptions = {
+    platform,
+    ...options
+  };
+  const platformWithCache = {
+    ...mergedOptions.platform,
+    _c: cache
+  };
+  return computePosition(reference, floating, {
+    ...mergedOptions,
+    platform: platformWithCache
+  });
+};
+
+// libs/core/src/primitives/popover/topLayerOverTransforms.middleware.ts
+var topLayerOverTransforms = () => ({
+  name: "topLayer",
+  async fn(middlewareArguments) {
+    const {
+      x,
+      y,
+      elements: { reference, floating }
+    } = middlewareArguments;
+    let onTopLayer = false;
+    let topLayerIsFloating = false;
+    const diffCoords = {
+      x: 0,
+      y: 0
+    };
+    try {
+      onTopLayer = onTopLayer || floating.matches(":open");
+    } catch (e) {
+    }
+    try {
+      onTopLayer = onTopLayer || floating.matches(":modal");
+    } catch (e) {
+    }
+    topLayerIsFloating = onTopLayer;
+    if (!onTopLayer) {
+      const dialogAncestorQueryEvent = new Event("floating-ui-dialog-test", {
+        composed: true,
+        bubbles: true
+      });
+      floating.addEventListener(
+        "floating-ui-dialog-test",
+        (event) => {
+          event.composedPath().forEach((el) => {
+            if (el === floating || el.localName !== "dialog")
+              return;
+            try {
+              onTopLayer = onTopLayer || el.matches(":modal");
+              if (onTopLayer) {
+              }
+            } catch (e) {
+            }
+          });
+        },
+        { once: true }
+      );
+      floating.dispatchEvent(dialogAncestorQueryEvent);
+    }
+    let overTransforms = false;
+    const containingBlock = getContainingBlock2(reference);
+    if (containingBlock !== null && !isWindow(containingBlock)) {
+      overTransforms = true;
+    }
+    if (onTopLayer && overTransforms) {
+      const rect = containingBlock.getBoundingClientRect();
+      diffCoords.x = rect.x;
+      diffCoords.y = rect.y;
+    }
+    if (onTopLayer && topLayerIsFloating) {
+      return {
+        x: x + diffCoords.x,
+        y: y + diffCoords.y,
+        data: diffCoords
+      };
+    }
+    if (onTopLayer) {
+      return {
+        x,
+        y,
+        data: diffCoords
+      };
+    }
+    return {
+      x: x - diffCoords.x,
+      y: y - diffCoords.y,
+      data: diffCoords
+    };
+  }
+});
+function getContainingBlock2(element) {
+  let currentNode = getParentNode2(element);
+  if (isShadowRoot2(currentNode)) {
+    currentNode = currentNode.host;
+  }
+  while (isHTMLElement2(currentNode) && !isLastTraversableNode2(currentNode)) {
+    if (isContainingBlock2(currentNode)) {
+      return currentNode;
+    } else {
+      const parent = currentNode.assignedSlot ? currentNode.assignedSlot : currentNode.parentNode;
+      currentNode = isShadowRoot2(parent) ? parent.host : parent;
+    }
+  }
+  return null;
+}
+function isLastTraversableNode2(node) {
+  return ["html", "body", "#document"].includes(getNodeName2(node));
+}
+function isContainingBlock2(element) {
+  const isFirefox = /firefox/i.test(getUAString());
+  if (element.tagName === "dialog") {
+    return true;
+  }
+  const css6 = getComputedStyle(element);
+  return css6.transform !== "none" || css6.perspective !== "none" || css6.contain === "paint" || ["transform", "perspective"].includes(css6.willChange) || isFirefox && css6.willChange === "filter" || isFirefox && (css6.filter ? css6.filter !== "none" : false);
+}
+function getUAString() {
+  const uaData = navigator.userAgentData;
+  if (uaData?.brands) {
+    return uaData.brands.map((item) => `${item.brand}/${item.version}`).join(" ");
+  }
+  return navigator.userAgent;
+}
+function getParentNode2(node) {
+  if (getNodeName2(node) === "html") {
+    return node;
+  }
+  return (
+    // this is a quicker (but less type safe) way to save quite some bytes from the bundle
+    node.assignedSlot || // step into the shadow DOM of the parent of a slotted node
+    node.parentNode || // DOM Element detected
+    (isShadowRoot2(node) ? node.host : null) || // ShadowRoot detected
+    getDocumentElement2(node)
+  );
+}
+function getNodeName2(node) {
+  return isWindow(node) ? "" : node ? (node.nodeName || "").toLowerCase() : "";
+}
+function getDocumentElement2(node) {
+  return ((isNode2(node) ? node.ownerDocument : node.document) || window.document).documentElement;
+}
+function isNode2(value) {
+  return value instanceof getWindow2(value).Node;
+}
+function isWindow(value) {
+  return value && value.document && value.location && value.alert && value.setInterval;
+}
+function getWindow2(node) {
+  if (node == null) {
+    return window;
+  }
+  if (!isWindow(node)) {
+    const ownerDocument = node.ownerDocument;
+    return ownerDocument ? ownerDocument.defaultView || window : window;
+  }
+  return node;
+}
+function isShadowRoot2(node) {
+  if (typeof ShadowRoot === "undefined") {
+    return false;
+  }
+  const OwnElement = getWindow2(node).ShadowRoot;
+  const testNode = node;
+  return node instanceof OwnElement || testNode instanceof ShadowRoot;
+}
+function isHTMLElement2(value) {
+  return value instanceof getWindow2(value).HTMLElement;
+}
+
+// libs/core/src/primitives/popover/popover.styles.ts
+import { css as css3 } from "lit";
+var style3 = css3`
+  :host {
+    position: absolute;
+    background-color: white;
+    box-shadow: 0 1rem 1rem 1rem rgba(0, 0, 0, 0.1);
+  }
+`;
+var popover_styles_default = style3;
+
+// libs/core/src/primitives/popover/popover.ts
+var _dialogElementRef, _handleCloseButton, _registerTriggerEvents, registerTriggerEvents_fn, _unregisterTriggerEvents, unregisterTriggerEvents_fn, _autoPositionCleanup, _registerAutoPositioning, registerAutoPositioning_fn, _triggerKeyDownListener, _focusFirstSlottedChild, _clickOutsideListener;
+var GdsPopover = class extends LitElement6 {
+  constructor() {
+    super(...arguments);
+    __privateAdd(this, _registerTriggerEvents);
+    __privateAdd(this, _unregisterTriggerEvents);
+    __privateAdd(this, _registerAutoPositioning);
+    this.open = false;
+    this.trigger = void 0;
+    this.label = void 0;
+    __privateAdd(this, _dialogElementRef, createRef2());
+    __privateAdd(this, _handleCloseButton, (e) => {
+      e.stopPropagation();
+      e.preventDefault();
+      this.open = false;
+      setTimeout(() => this.trigger?.focus(), 250);
+    });
+    __privateAdd(this, _autoPositionCleanup, void 0);
+    /**
+     * ArrowDown on the trigger element will trigger the popover by default, and escape will close it.
+     */
+    __privateAdd(this, _triggerKeyDownListener, (e) => {
+      if (e.key === "ArrowDown") {
+        e.preventDefault();
+        this.open = true;
+      }
+      if (e.key === "Escape") {
+        this.open = false;
+      }
+    });
+    /**
+     * Move focus to the first slotted child.
+     */
+    __privateAdd(this, _focusFirstSlottedChild, () => {
+      const firstSlottedChild = this.shadowRoot?.querySelector("slot")?.assignedElements()[0];
+      this.updateComplete.then(() => {
+        firstSlottedChild?.focus();
+      });
+    });
+    __privateAdd(this, _clickOutsideListener, (e) => {
+      const dialog = __privateGet(this, _dialogElementRef).value;
+      if (dialog && this.open) {
+        const rect = dialog.getBoundingClientRect();
+        const isInDialog = rect.top <= e.clientY && e.clientY <= rect.top + rect.height && rect.left <= e.clientX && e.clientX <= rect.left + rect.width;
+        if (!isInDialog) {
+          this.open = false;
+        }
+      }
+    });
+  }
+  _handleTriggerChanged() {
+    __privateMethod(this, _registerTriggerEvents, registerTriggerEvents_fn).call(this);
+  }
+  connectedCallback() {
+    super.connectedCallback();
+    TransitionalStyles.instance.apply(this, "gds-popover");
+    __privateMethod(this, _registerTriggerEvents, registerTriggerEvents_fn).call(this);
+    this._handleOpenChange();
+    this.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        this.open = false;
+        e.stopImmediatePropagation();
+      }
+    });
+  }
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    __privateMethod(this, _unregisterTriggerEvents, unregisterTriggerEvents_fn).call(this);
+  }
+  render() {
+    return html6`<dialog ${ref2(__privateGet(this, _dialogElementRef))}>
+      <header>
+        <h2>${this.label}</h2>
+        <button
+          class="close"
+          @click=${__privateGet(this, _handleCloseButton)}
+          aria-label="${msg("Close")}"
+        >
+          <i></i>
+        </button>
+      </header>
+      <slot></slot>
+    </dialog>`;
+  }
+  _handleOpenChange() {
+    this.setAttribute("aria-hidden", String(!this.open));
+    this.hidden = !this.open;
+    this.updateComplete.then(() => {
+      if (this.open) {
+        __privateGet(this, _dialogElementRef).value?.showModal();
+        __privateGet(this, _focusFirstSlottedChild).call(this);
+        setTimeout(
+          () => __privateGet(this, _dialogElementRef).value?.addEventListener(
+            "click",
+            __privateGet(this, _clickOutsideListener)
+          ),
+          0
+        );
+      } else {
+        __privateGet(this, _dialogElementRef).value?.close();
+        __privateGet(this, _dialogElementRef).value?.removeEventListener(
+          "click",
+          __privateGet(this, _clickOutsideListener)
+        );
+      }
+    });
+    this.dispatchEvent(
+      new CustomEvent("gds-ui-state", {
+        detail: { open: this.open },
+        bubbles: true,
+        composed: false
+      })
+    );
+  }
+  _handleMobileLayout(matches) {
+    var _a;
+    if (matches) {
+      (_a = __privateGet(this, _autoPositionCleanup)) == null ? void 0 : _a.call(this);
+      __privateGet(this, _dialogElementRef).value?.style.removeProperty("left");
+      __privateGet(this, _dialogElementRef).value?.style.removeProperty("top");
+      this.updateComplete.then(() => {
+        if (this.open)
+          __privateGet(this, _dialogElementRef).value?.showModal();
+      });
+    } else {
+      this.updateComplete.then(() => {
+        __privateMethod(this, _registerAutoPositioning, registerAutoPositioning_fn).call(this);
+      });
+    }
+  }
+};
+_dialogElementRef = new WeakMap();
+_handleCloseButton = new WeakMap();
+_registerTriggerEvents = new WeakSet();
+registerTriggerEvents_fn = function() {
+  this.trigger?.addEventListener("keydown", __privateGet(this, _triggerKeyDownListener));
+};
+_unregisterTriggerEvents = new WeakSet();
+unregisterTriggerEvents_fn = function() {
+  var _a;
+  this.trigger?.removeEventListener("keydown", __privateGet(this, _triggerKeyDownListener));
+  (_a = __privateGet(this, _autoPositionCleanup)) == null ? void 0 : _a.call(this);
+};
+_autoPositionCleanup = new WeakMap();
+_registerAutoPositioning = new WeakSet();
+registerAutoPositioning_fn = function() {
+  const referenceEl = this.trigger;
+  const floatingEl = __privateGet(this, _dialogElementRef).value;
+  if (!referenceEl || !floatingEl)
+    return;
+  __privateSet(this, _autoPositionCleanup, autoUpdate(referenceEl, floatingEl, () => {
+    computePosition2(referenceEl, floatingEl, {
+      placement: "bottom-start",
+      middleware: [offset(8), flip(), topLayerOverTransforms()],
+      strategy: "fixed"
+    }).then(
+      ({ x, y }) => Object.assign(floatingEl.style, {
+        left: `${x}px`,
+        top: `${y}px`,
+        minWidth: `${referenceEl.offsetWidth}px`
+      })
+    );
+  }));
+};
+_triggerKeyDownListener = new WeakMap();
+_focusFirstSlottedChild = new WeakMap();
+_clickOutsideListener = new WeakMap();
+GdsPopover.styles = unsafeCSS7(popover_styles_default);
+__decorateClass([
+  property5({ type: Boolean, reflect: true })
+], GdsPopover.prototype, "open", 2);
+__decorateClass([
+  property5()
+], GdsPopover.prototype, "trigger", 2);
+__decorateClass([
+  property5()
+], GdsPopover.prototype, "label", 2);
+__decorateClass([
+  watch("trigger")
+], GdsPopover.prototype, "_handleTriggerChanged", 1);
+__decorateClass([
+  watch("open")
+], GdsPopover.prototype, "_handleOpenChange", 1);
+__decorateClass([
+  watchMediaQuery("(max-width: 576px)")
+], GdsPopover.prototype, "_handleMobileLayout", 1);
+GdsPopover = __decorateClass([
+  gdsCustomElement("gds-popover")
+], GdsPopover);
+
+// libs/core/src/components/dropdown/dropdown.styles.ts
+import { css as css4 } from "lit";
+var style4 = css4`
+  button {
+    appearance: none;
+    display: block;
+    background-color: black;
+    border-radius: 2rem;
+    border: none;
+    color: white;
+    padding: 0.7rem 2rem;
+    margin: 0.5rem 0;
+  }
+`;
+var dropdown_styles_default = style4;
+
+// libs/core/src/components/dropdown/dropdown.ts
+var _listboxRef, _triggerRef, _searchInputRef, _optionElements, _listboxId, _triggerId, _handleSearchFieldKeyUp, _handleSearchFieldKeyDown, _handleListboxKeyDown, _handleOptionFocusChange, _registerPopoverTrigger, registerPopoverTrigger_fn, _handleSelectionChange, handleSelectionChange_fn, _registerAutoCloseListener, registerAutoCloseListener_fn, _unregisterAutoCloseListener, unregisterAutoCloseListener_fn, _blurCloseListener, _tabCloseListener;
+var GdsDropdown = class extends GdsFormControlElement {
+  constructor() {
+    super();
+    /**
+     * Registers the trigger button of the dropdown to the popover.
+     *
+     * @param el The popover element.
+     */
+    __privateAdd(this, _registerPopoverTrigger);
+    /**
+     * Selects an option in the dropdown.
+     *
+     * @fires change
+     */
+    __privateAdd(this, _handleSelectionChange);
+    __privateAdd(this, _registerAutoCloseListener);
+    __privateAdd(this, _unregisterAutoCloseListener);
+    this.label = "";
+    this.open = false;
+    this.searchable = false;
+    this.multiple = false;
+    this.compareWith = (a, b) => a === b;
+    this.searchFilter = (q, o) => o.innerHTML.toLowerCase().includes(q.toLowerCase());
+    // Private members
+    __privateAdd(this, _listboxRef, createRef3());
+    __privateAdd(this, _triggerRef, createRef3());
+    __privateAdd(this, _searchInputRef, createRef3());
+    __privateAdd(this, _optionElements, void 0);
+    __privateAdd(this, _listboxId, randomId());
+    __privateAdd(this, _triggerId, randomId());
+    /**
+     * Event handler for filtering the options in the dropdown.
+     *
+     * @param e The keyboard event.
+     */
+    __privateAdd(this, _handleSearchFieldKeyUp, (e) => {
+      const input = __privateGet(this, _searchInputRef).value;
+      const options = Array.from(__privateGet(this, _optionElements));
+      options.forEach((o) => o.hidden = false);
+      if (!input.value)
+        return;
+      const filteredOptions = options.filter(
+        (o) => !this.searchFilter(input.value, o)
+      );
+      filteredOptions.forEach((o) => o.hidden = true);
+    });
+    /**
+     * Check for ArrowDown or Tab in the search field.
+     * If found, focus should be moved to the listbox.
+     */
+    __privateAdd(this, _handleSearchFieldKeyDown, (e) => {
+      if (e.key === "ArrowDown" || e.key === "Tab") {
+        e.preventDefault();
+        __privateGet(this, _listboxRef).value?.focus();
+        return;
+      }
+    });
+    /**
+     * Check for Tab in the listbox.
+     * If found, focus should be moved to the search field.
+     */
+    __privateAdd(this, _handleListboxKeyDown, (e) => {
+      if (e.key === "Tab" && this.searchable) {
+        e.preventDefault();
+        __privateGet(this, _searchInputRef).value?.focus();
+        return;
+      }
+    });
+    __privateAdd(this, _handleOptionFocusChange, (e) => {
+      const triggerButton = __privateGet(this, _triggerRef).value;
+      if (triggerButton)
+        triggerButton.ariaActiveDescendantElement = e.target;
+    });
+    /**
+     * A listener to close the dropdown when any other element is focused.
+     */
+    __privateAdd(this, _blurCloseListener, (e) => {
+      const isFocusOutside = e instanceof FocusEvent && e.relatedTarget && !this.contains(e.relatedTarget);
+      if (isFocusOutside)
+        this.open = false;
+    });
+    __privateAdd(this, _tabCloseListener, (e) => {
+      if (e.key === "Tab" && !this.searchable) {
+        e.preventDefault();
+        this.open = false;
+        __privateGet(this, _triggerRef).value?.focus();
+      }
+    });
+    constrainSlots(this);
+    updateWhenLocaleChanges(this);
+    __privateSet(this, _optionElements, this.getElementsByTagName(
+      getScopedTagName("gds-option")
+    ));
+  }
+  connectedCallback() {
+    super.connectedCallback();
+    TransitionalStyles.instance.apply(this, "gds-dropdown");
+    this.updateComplete.then(() => {
+      this._handleLightDOMChange();
+      this._handleValueChange();
+    });
+  }
+  /**
+   * Get the options of the dropdown.
+   */
+  get options() {
+    return Array.from(__privateGet(this, _optionElements)).filter(
+      (o) => !o.hasAttribute("isplaceholder")
+    );
+  }
+  /**
+   * Return the first option with a isPlaceholder attribute.
+   * If no placeholder is found, this will be undefined.
+   */
+  get placeholder() {
+    return Array.from(__privateGet(this, _optionElements)).find(
+      (o) => o.hasAttribute("isplaceholder")
+    );
+  }
+  /**
+   * Returns the display value as a string.
+   * If the dropdown is in multiple mode, this will be a comma separated list of the selected values.
+   */
+  get displayValue() {
+    let displayValue;
+    if (Array.isArray(this.value)) {
+      this.value.length > 2 ? displayValue = msg2(str`${this.value.length} selected`) : displayValue = this.value.reduce(
+        (acc, cur) => acc + this.options.find((v) => v.value === cur)?.innerHTML + ", ",
+        ""
+      ).slice(0, -2);
+    } else {
+      displayValue = this.options.find((v) => v.selected)?.innerHTML;
+    }
+    return displayValue || this.placeholder?.innerHTML || "";
+  }
+  render() {
+    return html2`
+      ${when2(
+      this.label,
+      () => html2`<label for="${__privateGet(this, _triggerId)}">${this.label}</label>`
+    )}
+
+      <span class="form-info"><slot name="sub-label"></slot></span>
+
+      <button
+        id="${__privateGet(this, _triggerId)}"
+        @click="${() => this.open = !this.open}"
+        aria-haspopup="listbox"
+        role="combobox"
+        aria-owns="${__privateGet(this, _listboxId)}"
+        aria-controls="${__privateGet(this, _listboxId)}"
+        aria-expanded="${this.open}"
+        ${ref3(__privateGet(this, _triggerRef))}
+      >
+        <slot name="trigger">
+          <span>${unsafeHTML(this.displayValue)}</span>
+        </slot>
+      </button>
+
+      <span class="form-info"><slot name="message"></slot></span>
+
+      <gds-popover
+        .label=${this.label}
+        .open=${this.open}
+        @gds-ui-state=${(e) => this.open = e.detail.open}
+        ${ref3(__privateMethod(this, _registerPopoverTrigger, registerPopoverTrigger_fn))}
+      >
+        ${when2(
+      this.searchable,
+      () => html2`<input
+            type="text"
+            aria-label="${msg2("Filter available options")}"
+            placeholder="${msg2("Search")}"
+            ${ref3(__privateGet(this, _searchInputRef))}
+            @keydown=${__privateGet(this, _handleSearchFieldKeyDown)}
+            @keyup=${__privateGet(this, _handleSearchFieldKeyUp)}
+          />`
+    )}
+
+        <gds-listbox
+          id="${__privateGet(this, _listboxId)}"
+          .multiple="${ifDefined(this.multiple)}"
+          .compareWith="${this.compareWith}"
+          ${ref3(__privateGet(this, _listboxRef))}
+          @change="${__privateMethod(this, _handleSelectionChange, handleSelectionChange_fn)}"
+          @gds-focus="${__privateGet(this, _handleOptionFocusChange)}"
+          @keydown=${__privateGet(this, _handleListboxKeyDown)}
+        >
+          <slot gds-allow="gds-option"></slot>
+        </gds-listbox>
+      </gds-popover>
+    `;
+  }
+  _handleLightDOMChange() {
+    this.requestUpdate();
+    this._handleValueChange();
+    if (this.multiple)
+      return;
+    if (!this.value) {
+      if (this.placeholder)
+        this.value = this.placeholder.value;
+      else
+        this.value = this.options[0]?.value;
+    } else if (!this.placeholder && this.options.find((o) => o.value === this.value) === void 0) {
+      this.options[0] && (this.options[0].selected = true);
+      this.value = this.options[0]?.value;
+    }
+  }
+  _handleValueChange() {
+    const listbox = __privateGet(this, _listboxRef).value;
+    if (listbox) {
+      if (Array.isArray(this.value))
+        listbox.selection = this.value;
+      else
+        listbox.selection = [this.value];
+    }
+  }
+  _onOpenChange() {
+    const open = this.open;
+    Array.from(__privateGet(this, _optionElements)).forEach((o) => o.hidden = !open);
+    if (open)
+      __privateMethod(this, _registerAutoCloseListener, registerAutoCloseListener_fn).call(this);
+    else {
+      __privateMethod(this, _unregisterAutoCloseListener, unregisterAutoCloseListener_fn).call(this);
+      __privateGet(this, _searchInputRef).value && (__privateGet(this, _searchInputRef).value.value = "");
+    }
+    this.dispatchEvent(
+      new CustomEvent("gds-ui-state", {
+        detail: { open },
+        bubbles: true,
+        composed: true
+      })
+    );
+  }
+};
+_listboxRef = new WeakMap();
+_triggerRef = new WeakMap();
+_searchInputRef = new WeakMap();
+_optionElements = new WeakMap();
+_listboxId = new WeakMap();
+_triggerId = new WeakMap();
+_handleSearchFieldKeyUp = new WeakMap();
+_handleSearchFieldKeyDown = new WeakMap();
+_handleListboxKeyDown = new WeakMap();
+_handleOptionFocusChange = new WeakMap();
+_registerPopoverTrigger = new WeakSet();
+registerPopoverTrigger_fn = function(el) {
+  if (el) {
+    const popover = el;
+    popover.trigger = __privateGet(this, _triggerRef).value;
+  }
+};
+_handleSelectionChange = new WeakSet();
+handleSelectionChange_fn = function() {
+  const listbox = __privateGet(this, _listboxRef).value;
+  if (!listbox)
+    return;
+  if (this.multiple)
+    this.value = listbox.selection.map((s) => s.value);
+  else {
+    this.value = listbox.selection[0]?.value;
+    this.open = false;
+    setTimeout(() => __privateGet(this, _triggerRef).value?.focus(), 0);
+  }
+  this.dispatchEvent(
+    new CustomEvent("change", {
+      detail: { value: this.value },
+      bubbles: true,
+      composed: true
+    })
+  );
+};
+_registerAutoCloseListener = new WeakSet();
+registerAutoCloseListener_fn = function() {
+  this.addEventListener("blur", __privateGet(this, _blurCloseListener));
+  this.addEventListener("gds-blur", __privateGet(this, _blurCloseListener));
+  this.addEventListener("keydown", __privateGet(this, _tabCloseListener));
+};
+_unregisterAutoCloseListener = new WeakSet();
+unregisterAutoCloseListener_fn = function() {
+  this.removeEventListener("blur", __privateGet(this, _blurCloseListener));
+  this.removeEventListener("gds-blur", __privateGet(this, _blurCloseListener));
+  this.removeEventListener("keydown", __privateGet(this, _tabCloseListener));
+};
+_blurCloseListener = new WeakMap();
+_tabCloseListener = new WeakMap();
+GdsDropdown.styles = dropdown_styles_default;
+GdsDropdown.shadowRootOptions = {
+  mode: "open",
+  delegatesFocus: true
+};
+__decorateClass([
+  property6()
+], GdsDropdown.prototype, "label", 2);
+__decorateClass([
+  property6({ type: Boolean, reflect: true })
+], GdsDropdown.prototype, "open", 2);
+__decorateClass([
+  property6({ type: Boolean, reflect: true })
+], GdsDropdown.prototype, "searchable", 2);
+__decorateClass([
+  property6({ type: Boolean, reflect: true })
+], GdsDropdown.prototype, "multiple", 2);
+__decorateClass([
+  property6()
+], GdsDropdown.prototype, "compareWith", 2);
+__decorateClass([
+  property6()
+], GdsDropdown.prototype, "searchFilter", 2);
+__decorateClass([
+  observeLightDOM()
+], GdsDropdown.prototype, "_handleLightDOMChange", 1);
+__decorateClass([
+  watch("value")
+], GdsDropdown.prototype, "_handleValueChange", 1);
+__decorateClass([
+  watch("open")
+], GdsDropdown.prototype, "_onOpenChange", 1);
+GdsDropdown = __decorateClass([
+  gdsCustomElement("gds-dropdown")
+], GdsDropdown);
+
+// libs/core/src/components/form/form.ts
+import { LitElement as LitElement7, html as html7, unsafeCSS as unsafeCSS8 } from "lit";
+import { customElement as customElement3 } from "lit/decorators.js";
+
+// libs/core/src/components/form/style/form.styles.scss
+var form_styles_default = `@layer tokens, a11y, core, variants, sizes, sets, slotted;
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+gds-input {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+gds-input .main {
+  --border-color: hsla(60, 4%, 50%, 1);
+  align-items: center;
+  background-color: hsl(60, 4%, 95%);
+  background-position: bottom center;
+  background-repeat: repeat-x;
+  background-size: 100% 1px;
+  block-size: 56px;
+  border: 2px solid transparent;
+  border-bottom-color: hsl(60, 4%, 50%);
+  border-start-end-radius: 8px;
+  border-start-start-radius: 8px;
+  box-sizing: border-box;
+  display: flex;
+  gap: 8px;
+  min-block-size: 56px;
+  padding-block: 12px;
+  padding-inline: 16px;
+  position: relative;
+  transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+gds-input .main:hover {
+  background-size: 100% 2px;
+  border-bottom-color: #000;
+}
+gds-input .main:focus-within:has(input:focus-visible) {
+  border-radius: 8px;
+}
+gds-input .main:focus-within, gds-input .main:has(input:not(:placeholder-shown)) {
+  border-color: currentColor;
+}
+gds-input .main:focus-within .base label, gds-input .main:has(input:not(:placeholder-shown)) .base label {
+  font-size: 12px;
+  top: 0;
+  transform: translateY(-5px);
+}
+gds-input .main:focus-within .base input, gds-input .main:has(input:not(:placeholder-shown)) .base input {
+  opacity: 1;
+  transform: translateY(0);
+}
+gds-input .main gds-icon {
+  transition: color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+gds-input .main input[type=number]::-webkit-inner-spin-button {
+  display: none;
+}
+gds-input .main:has(input:focus-visible:valid:not(:placeholder-shown)) {
+  background-color: var(--gds-color-green-98);
+  border-color: var(--gds-color-green-50);
+  color: var(--gds-color-green-50);
+}
+gds-input .main:has(input:focus-visible:valid:not(:placeholder-shown)) input {
+  color: currentColor;
+}
+gds-input .main:has(input:focus-visible:valid:not(:placeholder-shown)) .base::after {
+  background-color: var(--gds-color-green-85);
+}
+gds-input .main:has(input:focus-visible:valid:not(:placeholder-shown)) gds-icon {
+  color: var(--gds-color-green-50);
+}
+gds-input .main:has(input:valid:not(:placeholder-shown)) {
+  border-color: transparent;
+  border-bottom-color: var(--gds-color-green-50);
+}
+gds-input .main:has(input:focus-visible:invalid:not(:placeholder-shown)) {
+  background-color: var(--gds-color-red-98);
+  border-color: var(--gds-color-red-50);
+  color: var(--gds-color-red-50);
+}
+gds-input .main:has(input:focus-visible:invalid:not(:placeholder-shown)) input {
+  color: currentColor;
+}
+gds-input .main:has(input:focus-visible:invalid:not(:placeholder-shown)) .base::after {
+  background-color: var(--gds-color-red-85);
+}
+gds-input .main:has(input:focus-visible:invalid:not(:placeholder-shown)) + .support {
+  color: currentColor;
+}
+gds-input .main:has(input:focus-visible:invalid:not(:placeholder-shown)) gds-icon {
+  color: var(--gds-color-red-50);
+}
+gds-input .main:has(input:invalid:not(:placeholder-shown)) {
+  border-color: transparent;
+  border-bottom-color: var(--gds-color-red-50);
+}
+gds-input .main > * {
+  box-sizing: border-box;
+}
+gds-input .main .base {
+  position: relative;
+  width: 100%;
+}
+gds-input .main .base label {
+  align-items: center;
+  background-color: transparent;
+  display: block;
+  font-size: 16px;
+  height: max-content;
+  inset: 0;
+  line-height: 20px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  width: 100%;
+}
+gds-input .main .base input {
+  appearance: none;
+  background-color: transparent;
+  border: 0;
+  border-radius: 0;
+  border-radius: 0;
+  box-sizing: border-box;
+  display: flex;
+  font-family: inherit;
+  font-size: 16px;
+  height: 100%;
+  margin: unset;
+  opacity: 0;
+  outline: none;
+  padding: unset;
+  padding-top: 12px;
+  transform: translateY(5px);
+  transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  width: 100%;
+}
+gds-input .main .base input::placeholder {
+  font-family: inherit;
+}
+gds-input .main .base input:focus:not(:focus-visible) {
+  outline: none;
+}
+gds-input .main .base input::-webkit-inner-spin-button, gds-input .main .base input::-webkit-calendar-picker-indicator {
+  appearance: none;
+  background-color: rgb(195, 0, 255);
+  background-image: none;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 40px;
+}
+gds-input .main .base[data-badge]::after {
+  background-color: #fff;
+  border-radius: 3px;
+  content: attr(data-badge);
+  display: flex;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 0;
+  line-height: 1;
+  padding: 2px 4px;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+gds-input .main .lead,
+gds-input .main .trail {
+  align-items: center;
+  aspect-ratio: 1/1;
+  display: flex;
+  height: 24px;
+  justify-content: center;
+  width: 24px;
+}
+gds-input .main .lead {
+  justify-content: flex-start;
+}
+gds-input .main .trail {
+  justify-content: right;
+}
+gds-input .support {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-inline: 18px;
+}
+gds-input .support:has([data-badge]) {
+  padding-inline-end: 0;
+}
+gds-input .support .icon {
+  align-items: center;
+  display: flex;
+  gap: 16px;
+}
+gds-input .support .icon[data-badge]::after {
+  background-color: hsl(108, 91%, 96%);
+  border-radius: 4px;
+  color: hsl(130, 40%, 30%);
+  content: attr(data-badge);
+  display: flex;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
+  padding: 6px 10px;
+}
+
+gds-input .main:has(textarea) {
+  block-size: auto;
+}
+gds-input .main:has(textarea) .base::before {
+  content: attr(data-value) " ";
+  visibility: hidden;
+  white-space: pre-wrap;
+}
+gds-input .main:has(textarea) .base textarea {
+  box-sizing: border-box;
+  display: flex;
+  height: 100%;
+  max-height: 100%;
+  max-width: 100%;
+  min-height: 100%;
+  min-width: 100%;
+  position: relative;
+  resize: none;
+  width: 100%;
+}`;
+
+// libs/core/src/components/form/form.ts
+var GdsForm = class extends LitElement7 {
+  // TODO:
+  // Might be neccessary to use something like the stopPropagation() event: 
+  // This behavior is known as "bubbling" or "propagation," where the click event on the <div> is propagated to its child elements, and the first focusable element receives focus.
+  render() {
+    return html7`
+    <form>
+      <gds-input>
+        <div class="main">
+          <div class="lead"><gds-icon name="calendar"></gds-icon></div>
+          <div class="base" data-badge="SEK">
+            <label for="input">Label</label>
+            <!-- <input type="text" id="input" placeholder=" " pattern="\S+.*" required/> -->
+            <!-- <input type="text" id="input" placeholder=" " pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" required/> -->
+            <input type="text" id="input" placeholder=" " minlength="3" pattern="[a-z]+" required/>
+          </div>  
+          <div class="trail"><gds-icon name="x"></gds-icon></div>
+        </div>
+        <div class="support">
+          <span>Only lowercase, min-length 3 characters</span>
+          <div class="icon" data-badge="120"><gds-icon name="info"></gds-icon></div>
+        </div>
+      </gds-input>
+      <gds-input>
+        <div class="main">
+          <div class="lead"><gds-icon name="hash"></gds-icon></div>
+          <div class="base" data-badge="SEK">
+            <label for="number">Number</label>
+            <input type="number" min="4" max="8" id="number" placeholder=" " required/>
+          </div>  
+          <div class="trail"><gds-icon name="x"></gds-icon></div>
+        </div>
+        <div class="support">
+          <span>Number type, range  min="4" max="8"</span>
+          <div class="icon"><gds-icon name="info"></gds-icon></div>
+        </div>
+      </gds-input>
+      <gds-input>
+        <div class="main">
+          <div class="lead"><gds-icon name="lock"></gds-icon></div>
+          <div class="base">
+            <label for="password">Password</label>
+            <input type="password" min="4" max="8" id="password" placeholder=" " required/>
+          </div>  
+          <div class="trail"><gds-icon name="eye"></gds-icon></div>
+        </div>
+        <div class="support">
+          <span>Password type</span>
+          <div class="icon"><gds-icon name="info"></gds-icon></div>
+        </div>
+      </gds-input>
+      <gds-input>
+        <div class="main">
+          <div class="lead"><gds-icon name="mail"></gds-icon></div>
+          <div class="base">
+            <label for="email">E-Mail</label>
+            <input type="email" min="4" max="8" id="email" placeholder=" " required/>
+          </div>  
+          <div class="trail"><gds-icon name="send"></gds-icon></div>
+        </div>
+        <div class="support">
+          <span>Email type</span>
+          <div class="icon"><gds-icon name="info"></gds-icon></div>
+        </div>
+      </gds-input>
+      <gds-input>
+        <div class="main">
+          <div class="lead"><gds-icon name="tel"></gds-icon></div>
+          <div class="base">
+            <label for="tel">Telephone</label>
+            <input type="tel" pattern="[0-9\+]{4,18}" id="tel" placeholder=" " required/>
+          </div>  
+          <div class="trail"><gds-icon name="x"></gds-icon></div>
+        </div>
+        <div class="support">
+          <span>Tel type, Pattern [0-9\+]{4,18}</span>
+          <div class="icon"><gds-icon name="info"></gds-icon></div>
+        </div>
+      </gds-input>
+      <gds-input>
+        <div class="main">
+          <div class="lead"><gds-icon name="calendar"></gds-icon></div>
+          <div class="base">
+            <label for="date">Date</label>
+            <input type="date" pattern="[0-9\+]{4,18}" id="date" placeholder=" "  required/>
+          </div>  
+          <div class="trail"><gds-icon name="x"></gds-icon></div>
+        </div>
+        <div class="support">
+          <span>Tel type, Pattern [0-9\+]{4,18}</span>
+          <div class="icon"><gds-icon name="info"></gds-icon></div>
+        </div>
+      </gds-input>
+      <gds-input>
+        <div class="main">
+          <div class="lead"><gds-icon name="calendar"></gds-icon></div>
+          <div class="base">
+            <label for="week">Week</label>
+            <input type="week" min="2018-W18" max="2018-W26" id="week" placeholder=" "  required/>
+          </div>  
+          <div class="trail"><gds-icon name="x"></gds-icon></div>
+        </div>
+        <div class="support">
+          <span>Tel type, Pattern [0-9\+]{4,18}</span>
+          <div class="icon"><gds-icon name="info"></gds-icon></div>
+        </div>
+      </gds-input>
+      <gds-input>
+        <div class="main">
+          <div class="lead"><gds-icon name="calendar"></gds-icon></div>
+          <div class="base">
+            <label for="time">Time</label>
+            <input type="time" min="09:00" max="18:00" id="time" placeholder=" "  required/>
+          </div>  
+          <div class="trail"><gds-icon name="x"></gds-icon></div>
+        </div>
+        <div class="support">
+          <span>Tel type, Pattern [0-9\+]{4,18}</span>
+          <div class="icon"><gds-icon name="info"></gds-icon></div>
+        </div>
+      </gds-input>
+      <gds-input>
+        <div class="main">
+          <div class="lead"><gds-icon name="calendar"></gds-icon></div>
+          <div class="base">
+            <label for="datetime-local">Datetime Local</label>
+            <input type="datetime-local" value="2018-06-12T19:30" min="2018-06-07T00:00" max="2018-06-14T00:00" id="datetime-local" placeholder=" "  required/>
+          </div>  
+          <div class="trail"><gds-icon name="x"></gds-icon></div>
+        </div>
+        <div class="support">
+          <span>Datetime local</span>
+          <div class="icon"><gds-icon name="info"></gds-icon></div>
+        </div>
+      </gds-input>
+      <gds-input>
+        <div class="main">
+          <div class="lead"><gds-icon name="calendar"></gds-icon></div>
+          <div class="base">
+            <label for="date">Date</label>
+            <input type="month" pattern="[0-9\+]{4,18}" id="date" placeholder=" "  required/>
+          </div>  
+          <div class="trail"><gds-icon name="x"></gds-icon></div>
+        </div>
+        <div class="support">
+          <span>Tel type, Pattern [0-9\+]{4,18}</span>
+          <div class="icon"><gds-icon name="info"></gds-icon></div>
+        </div>
+      </gds-input>
+      <gds-input>
+        <div class="main">
+          <div class="lead"><gds-icon name="search"></gds-icon></div>
+          <div class="base">
+            <label for="select">Select Search</label>
+            <input type="text" id="select" placeholder=" "  required/>
+          </div>  
+          <div class="trail"><gds-icon name="chevron-down"></gds-icon></div>
+        </div>
+        <div class="support">
+          <span>This is select with search</span>
+          <div class="icon"><gds-icon name="info"></gds-icon></div>
+        </div>
+      </gds-input>
+      <gds-input>
+        <div class="main">
+          <div class="lead"><gds-icon name="user"></gds-icon></div>
+          <div class="base">
+            <label for="select">Select Account</label>
+            <input type="text" id="select" placeholder=" "  required/>
+          </div>  
+          <div class="base" data-badge="SEK">
+            <label for="select">Select Account</label>
+            <input type="text" id="select" placeholder=" "  required/>
+          </div>  
+          <div class="trail"><gds-icon name="chevron-down"></gds-icon></div>
+        </div>
+        <div class="support">
+          <span>This is account select</span>
+          <div class="icon" data-badge="120"><gds-icon name="info"></gds-icon></div>
+        </div>
+      </gds-input>
+      <gds-input>
+        <div class="main">
+          <div class="lead"><gds-icon name="calendar"></gds-icon></div>
+          <div class="base" data-badge="SEK">
+            <label for="textarea">Freetext</label>
+            <textarea id="textarea" name="textarea" rows="1" minlength="10" maxlength="200" oninput="this.parentNode.dataset.value = this.value" required></textarea>
+          </div>  
+          <div class="trail" ><gds-icon name="x"></gds-icon></div>
+        </div>
+        <div class="support">
+          <span>Only lowercase, min-length 3 characters</span>
+          <div class="icon"><gds-icon name="info"></gds-icon></div>
+        </div>
+      </gds-input>
+      <gds-input>
+        <div class="main">
+          <div class="lead"><gds-icon name="calendar"></gds-icon></div>
+          <div class="base" data-badge="SEK">
+            <label for="span">Span with role</label>
+            <span role="textbox" id="span" contenteditable>hello</span>
+          </div>  
+          <div class="trail" ><gds-icon name="x"></gds-icon></div>
+        </div>
+        <div class="support">
+          <span>Only lowercase, min-length 3 characters</span>
+          <div class="icon"><gds-icon name="info"></gds-icon></div>
+        </div>
+      </gds-input>
+      <fieldset>
+        <legend>Type: Textarea</legend>
+        <label for="textarea">Textarea:</label>
+        <textarea id="textarea" placeholder=" " name="textarea" minlength="10" maxlength="200" required></textarea>
+        <!-- Requires a minimum length of 10, maximum length of 200 -->
+      </fieldset>
+
+      <fieldset>
+        <legend>Type: Submit</legend>
+        <input type="submit" id="submit" value="Submit" />
+        <!-- Triggering a form submission when clicked -->
+      </fieldset>
+      <fieldset>
+        <legend>Type: Range</legend>
+        <input type="range" id="volume" name="volume" min="0" max="11"/>
+        <!-- Triggering a form submission when clicked -->
+      </fieldset>
+    </form>
+
+
+`;
+  }
+};
+GdsForm.styles = unsafeCSS8(form_styles_default);
+GdsForm.shadowRootOptions = {
+  mode: "open",
+  delegatesFocus: true
+};
+GdsForm = __decorateClass([
+  customElement3("gds-form")
+], GdsForm);
+
+// libs/core/src/components/input/input.ts
+import { LitElement as LitElement9, html as html9, unsafeCSS as unsafeCSS10 } from "lit";
+import { customElement as customElement5, property as property8 } from "lit/decorators.js";
+import { when as when4 } from "lit/directives/when.js";
+
+// libs/core/src/components/input/style/input.styles.css
+var input_styles_default = `@layer gds-input, type-safe, tokens, a11y, containment, shell, core, parts, types;
+
+/* 
+
+input:user-valid {
+  border-color:  green;
+}
+
+*/
+
+@layer gds-input {
+  @layer type-safe {
+    @property --gds-input-width {
+      syntax: '<length-percentage>';
+      initial-value: 30cqi;
+      inherits: false;
+    }
+    @property --gds-textarea-lines {
+      syntax: '<length>';
+      initial-value: 1;
+      inherits: true;
+    }
+  }
+
+  @layer tokens {
+    :host {
+      --gds-input-color: hsla(60, 4%, 50%, 1);
+      --gds-input-color-border: hsla(60, 4%, 50%, 1);
+      --gds-input-color-outline-alpha: 60%;
+      --gds-input-color-outline: color-mix(
+        in srgb,
+        var(--gds-input-color-border),
+        transparent var(--gds-input-color-outline-alpha)
+      );
+      --gds-input-color-bg: hsla(60, 4%, 95%, 1);
+      --gds-input-color-bg-dark: hsla(60, 4%, 95%, 1);
+      --gds-input-width: 30cqi;
+      --gds-input-transition-property: all;
+      --gds-input-transition-duration: 150ms;
+      --gds-input-transition-function: cubic-bezier(0.4, 0, 0.2, 1);
+      --gds-input-transition: var(--gds-input-transition-property)
+        var(--gds-input-transition-duration)
+        var(--gds-input-transition-function);
+      --gds-input-border-radius: 8px;
+      --gds-input-border-width: 2px;
+      --gds-input-fs: 16px;
+      --gds-input-lh: 1.25;
+      /* --gds-input-lh: 1.333333333; */
+      /* --gds-input-lh: 1.25; */
+      --gds-input-core-base-fs: 16px;
+      --gds-input-core-base-focus-fs: 12px;
+      --gds-input-core-min-block-size: 56px;
+      --gds-input-gap: 8px;
+      --gds-input-core-gap: 8px;
+      --gds-input-padding-block: 10px;
+      --gds-input-padding-inline: 16px;
+      --gds-input-core-icon-size: 24px;
+      --gds-input-textarea-min-block-size: 32px;
+      --gds-input-label-translate: 5px;
+    }
+  }
+
+  @layer a11y {
+    @media (prefers-color-scheme: dark) {
+      :host {
+        --gds-input-color-bg: var(--gds-input-color-bg-dark);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      :host {
+        --gds-input-transition: none;
+      }
+    }
+
+    @media (prefers-reduced-transparency: reduce) {
+      :host {
+        --gds-input-transparency: 1;
+      }
+    }
+
+    @media (prefers-contrast: more) {
+      :host {
+        --gds-input-color-bg: hsla(60, 4%, 96%, 1);
+        --gds-input-color-outline-alpha: 0%;
+      }
+    }
+  }
+
+  @layer containment {
+    :host {
+      display: contents;
+    }
+
+    .gds-input {
+      contain: layout;
+      container-name: gds-input;
+      container-type: inline-size;
+      isolation: isolate;
+
+      @container gds-input (width < 30ch) {
+        .gds-input-badge {
+          display: none;
+        }
+      }
+
+      > * {
+        box-sizing: border-box;
+      }
+    }
+  }
+
+  @layer shell {
+    .gds-input {
+      display: flex;
+      flex-direction: column;
+      gap: var(--gds-input-gap);
+      min-inline-size: var(--gds-input-width);
+    }
+  }
+
+  @layer core {
+    .gds-input-core {
+      align-items: center;
+      background-color: var(--gds-input-color-bg);
+      border: var(--gds-input-border-width) solid transparent;
+      border-block-end-color: transparent;
+      border-start-end-radius: var(--gds-input-border-radius);
+      border-start-start-radius: var(--gds-input-border-radius);
+      box-shadow: 0 var(--gds-input-border-width) 0
+        var(--gds-input-color-border);
+      display: flex;
+      gap: var(--gds-input-core-gap);
+      padding-block: var(--gds-input-padding-block);
+      padding-inline: var(--gds-input-padding-inline);
+      position: relative;
+      transition: var(--gds-input-transition);
+      block-size: max-content;
+      min-block-size: var(--gds-input-core-min-block-size);
+      outline-style: solid;
+      outline-offset: var(--gds-input-border-width);
+      outline-width: calc(var(--gds-input-border-width) / 2);
+      outline-color: transparent;
+
+      &:focus-within {
+        outline-color: var(--gds-input-color-outline);
+      }
+
+      &:focus:not(:focus-visible) {
+        outline: none;
+      }
+
+      &:hover {
+        box-shadow: 0 var(--gds-input-border-width) 0 currentColor;
+      }
+
+      & input[readonly] {
+        user-select: none;
+        pointer-events: none;
+      }
+
+      &:focus-within:has(select),
+      &:focus-within:has(textarea:focus-visible),
+      &:focus-within:has(input:focus-visible),
+      &:focus-within:has([readonly]) {
+        border-radius: var(--gds-input-border-radius);
+        box-shadow: none;
+      }
+
+      &:has(select option:not([hidden]):checked),
+      &:focus-within:has(textarea:placeholder-shown),
+      &:focus-within:has(input:placeholder-shown) {
+        box-shadow: none;
+        border-radius: var(--gds-input-border-radius);
+      }
+
+      &:focus-within,
+      &:has(select option:not([hidden]):checked),
+      &:has(textarea:not(:placeholder-shown)),
+      &:has(input:not(:placeholder-shown, [readonly])) {
+        border-color: currentColor;
+
+        .gds-input-core-base {
+          & label {
+            font-size: var(--gds-input-core-base-focus-fs);
+            height: var(--gds-input-core-base-focus-fs);
+          }
+          & select,
+          & input,
+          & textarea {
+            opacity: 1;
+            transform: translateY(10px);
+
+            :host([rows]) & {
+              /* padding-block-end: 10px; */
+            }
+          }
+        }
+      }
+
+      & gds-icon {
+        --gds-input-transition-property: color;
+        transition: var(--gds-input-transition);
+      }
+
+      & input[type='number']::-webkit-inner-spin-button {
+        display: none;
+      }
+
+      /* Valid */
+
+      &:has(textarea:focus-visible:valid:not(:placeholder-shown)),
+      &:has(input:focus-visible:valid:not(:placeholder-shown)) {
+        background-color: var(--gds-color-green-98);
+        border-color: var(--gds-color-green-50);
+        color: var(--gds-color-green-50);
+
+        & select,
+        & textare,
+        & input {
+          color: currentColor;
+        }
+
+        & .gds-input-core-base::after {
+          background-color: var(--gds-color-green-85);
+        }
+
+        & gds-icon {
+          color: var(--gds-color-green-50);
+        }
+      }
+
+      &:has(textarea:valid:not(:placeholder-shown)),
+      &:has(input:valid:not(:placeholder-shown)) {
+        border-color: transparent;
+        box-shadow: 0 var(--gds-input-border-width) 0 var(--gds-color-green-50);
+      }
+
+      &:focus-within:has(textarea:focus-visible),
+      &:focus-within:has(input:focus-visible),
+      &:has(textarea:focus-visible),
+      &:has(input:focus-visible) {
+        box-shadow: none;
+      }
+
+      &:not(:focus-within):has(textarea:valid:not(:placeholder-shown)),
+      &:not(:focus-within):has(input:valid:not(:placeholder-shown)) {
+        border-color: transparent;
+        box-shadow: 0 var(--gds-input-border-width) 0 var(--gds-color-green-50);
+      }
+
+      /* Invalid */
+
+      &:has(textarea:focus-visible:invalid:not(:placeholder-shown)),
+      &:has(input:focus-visible:invalid:not(:placeholder-shown)) {
+        background-color: var(--gds-color-red-98);
+        border-color: var(--gds-color-red-50);
+        color: var(--gds-color-red-50);
+
+        & textare,
+        & input {
+          color: currentColor;
+        }
+
+        & .gds-input-core-base::after {
+          background-color: var(--gds-color-red-85);
+        }
+
+        & gds-icon {
+          color: var(--gds-color-red-50);
+        }
+      }
+
+      &:has(textarea:invalid:not(:placeholder-shown)),
+      &:has(input:invalid:not(:placeholder-shown)) {
+        border-color: transparent;
+        box-shadow: 0 var(--gds-input-border-width) 0 var(--gds-color-red-50);
+      }
+
+      &:focus-within:has(textarea:focus-visible),
+      &:focus-within:has(input:focus-visible),
+      &:has(textarea:focus-visible),
+      &:has(input:focus-visible) {
+        box-shadow: none;
+      }
+
+      &:not(:focus-within):has(textarea:invalid:not(:placeholder-shown)),
+      &:not(:focus-within):has(input:invalid:not(:placeholder-shown)) {
+        border-color: transparent;
+        box-shadow: 0 var(--gds-input-border-width) 0 var(--gds-color-red-50);
+      }
+
+      /* Base */
+
+      .gds-input-core-base {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        width: 100%;
+        min-block-size: 32px;
+
+        & label {
+          display: flex;
+          align-items: center;
+          background-color: transparent;
+          width: 100%;
+          height: 32px;
+          position: absolute;
+          line-height: 1;
+          font-size: var(--gds-input-core-base-fs);
+          transition: var(--gds-input-transition);
+          /* background-color: aqua; */
+
+          :host([rows]) & {
+            /* background-color: orange; */
+          }
+        }
+
+        & select,
+        & input,
+        & textarea {
+          appearance: none;
+          background-color: transparent;
+          border: 0;
+          border-radius: 0;
+          display: flex;
+          font-family: inherit;
+          overflow: hidden;
+          margin: unset;
+          outline: none;
+          padding: unset;
+          width: 100%;
+          height: max-content;
+          caret-color: accent;
+          caret-shape: underscore;
+          box-sizing: border-box;
+          font-size: var(--gds-input-fs);
+          line-height: var(--gds-input-lh);
+          transition: var(--gds-input-transition);
+          opacity: 0;
+          /* background-color: teal; */
+
+          &::placeholder {
+            font-family: inherit;
+          }
+
+          &:focus:not(:focus-visible) {
+            outline: none;
+          }
+
+          &::-webkit-inner-spin-button,
+          &::-webkit-calendar-picker-indicator {
+            appearance: none;
+            background-color: rgb(195, 0, 255);
+            background-image: none;
+            height: 100%;
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 40px;
+          }
+        }
+
+        & textarea {
+          resize: none;
+          overflow: hidden;
+          transition: unset;
+          min-height: calc(1lh * var(--gds-textarea-lines));
+          max-height: calc(1lh * var(--gds-textarea-lines));
+          /* background-color: rgb(10, 207, 141); */
+
+          :host([rows]) & {
+            transform: translateY(10px);
+            /* background-color: orangered; */
+          }
+        }
+      }
+
+      &:has(.gds-input-core-trail-button) {
+        padding-inline-end: calc(var(--gds-input-padding-inline) / 2);
+      }
+
+      @layer parts {
+        .gds-input-badge {
+          pointer-events: none;
+          transition: var(--gds-input-transition);
+        }
+
+        .gds-input-core-lead,
+        .gds-input-core-trail {
+          align-items: center;
+          aspect-ratio: 1/1;
+          display: flex;
+          block-size: var(--gds-input-core-icon-size);
+          inline-size: var(--gds-input-core-icon-size);
+          justify-content: center;
+        }
+
+        .gds-input-core-lead {
+          justify-content: flex-start;
+        }
+
+        .gds-input-core-trail {
+          height: auto;
+          width: max-content;
+        }
+      }
+    }
+  }
+}
+
+:host([type='textarea']) .gds-input-core {
+  align-items: flex-start;
+  .gds-input-core-lead,
+  .gds-input-core-base,
+  .gds-input-badge,
+  .gds-input-core-trail {
+    min-block-size: var(--gds-input-textarea-min-block-size);
+    display: flex;
+    align-items: center;
+  }
+}
+
+/* The double select style */
+
+:host([type='duo']) .gds-input-core-base-duo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  input {
+    flex: 1;
+    max-width: 50%;
+  }
+}
+
+/* [selected] */
+/* [selected] */
+/* [selected] */
+/* [selected] */
+/* [selected] */
+/* [selected] */
+/* [selected] */
+/* [selected] */
+`;
+
+// libs/core/src/components/badge/badge.ts
+import { LitElement as LitElement8, html as html8, unsafeCSS as unsafeCSS9 } from "lit";
+import { customElement as customElement4, property as property7 } from "lit/decorators.js";
+import { when as when3 } from "lit/directives/when.js";
+
+// libs/core/src/components/badge/style/badge.styles.css
+var badge_styles_default = `@layer gds-badge, shell, tokens, a11y, variants, types;
+
+@layer gds-badge {
+  @layer tokens {
+    :host {
+      --gds-badge-cl: rgba(53, 53, 49, 1);
+      --gds-badge-bg: rgba(243, 243, 242, 1);
+
+      --gds-badge-cl-information: rgba(53, 53, 49, 1);
+      --gds-badge-bg-information: rgba(243, 243, 242, 1);
+
+      --gds-badge-cl-success: rgba(0, 109, 49, 1);
+      --gds-badge-bg-success: rgba(234, 255, 232, 1);
+
+      --gds-badge-cl-warning: rgba(125, 87, 0, 1);
+      --gds-badge-bg-warning: rgba(255, 238, 217, 1);
+
+      --gds-badge-cl-error: rgba(186, 29, 0, 1);
+      --gds-badge-bg-error: rgba(255, 237, 233, 1);
+
+      --gds-badge-cl-disabled: rgba(157, 157, 149, 1);
+      --gds-badge-bg-disabled: rgba(249, 249, 249, 1);
+
+      --gds-badge-cl-surface: rgba(106, 106, 98, 1);
+      --gds-badge-bg-surface: rgba(255, 255, 255, 1);
+
+      /* Dark Mode */
+      --gds-badge-cl-dark: rgba(53, 53, 49, 1);
+      --gds-badge-bg-dark: rgba(243, 243, 242, 1);
+
+      --gds-badge-cl-information-dark: rgba(53, 53, 49, 1);
+      --gds-badge-bg-information-dark: rgba(243, 243, 242, 1);
+
+      --gds-badge-cl-success-dark: rgba(0, 109, 49, 1);
+      --gds-badge-bg-success-dark: rgba(234, 255, 232, 1);
+
+      --gds-badge-cl-warning-dark: rgba(125, 87, 0, 1);
+      --gds-badge-bg-warning-dark: rgba(255, 238, 217, 1);
+
+      --gds-badge-cl-error-dark: rgba(186, 29, 0, 1);
+      --gds-badge-bg-error-dark: rgba(255, 237, 233, 1);
+
+      --gds-badge-cl-disabled-dark: rgba(157, 157, 149, 1);
+      --gds-badge-bg-disabled-dark: rgba(249, 249, 249, 1);
+
+      --gds-badge-cl-surface-dark: rgba(106, 106, 98, 1);
+      --gds-badge-bg-surface-dark: rgba(255, 255, 255, 1);
+
+      --gds-badge-radii: 4px;
+
+      --gds-badge-fs: 12px;
+      --gds-badge-lh: 1;
+      --gds-badge-fw: 500;
+      --gds-badge-inline-padding: 10px;
+      --gds-badge-block-padding: 6px;
+    }
+  }
+  @layer a11y {
+    @media (prefers-color-scheme: dark) {
+      :host {
+        --gds-badge-cl: var(--gds-badge-cl-dark);
+        --gds-badge-bg: var(--gds-badge-bg-dark);
+
+        --gds-badge-cl-information: var(--gds-badge-cl-information-dark);
+        --gds-badge-bg-information: var(--gds-badge-bg-information-dark);
+
+        --gds-badge-cl-success: var(--gds-badge-cl-success-dark);
+        --gds-badge-bg-success: var(--gds-badge-bg-success-dark);
+
+        --gds-badge-cl-warning: var(--gds-badge-cl-warning-dark);
+        --gds-badge-bg-warning: var(--gds-badge-bg-warning-dark);
+
+        --gds-badge-cl-error: var(--gds-badge-cl-error-dark);
+        --gds-badge-bg-error: var(--gds-badge-bg-error-dark);
+
+        --gds-badge-cl-disabled: var(--gds-badge-cl-disabled-dark);
+        --gds-badge-bg-disabled: var(--gds-badge-bg-disabled-dark);
+
+        --gds-badge-cl-surface: var(--gds-badge-cl-surface-dark);
+        --gds-badge-bg-surface: var(--gds-badge-bg-surface-dark);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      :host {
+        --gds-badge-motion: 0;
+      }
+    }
+
+    @media (prefers-reduced-transparency: reduce) {
+      :host {
+        --gds-badge-transparency: 1;
+      }
+    }
+
+    @media (prefers-contrast: more) {
+      :root {
+        --gds-badge-contrast: 1;
+      }
+    }
+  }
+
+  @layer shell {
+    .gds-badge {
+      font-size: var(--gds-badge-fs);
+      line-height: var(--gds-badge-lh);
+      font-weight: var(--gds-badge-fw);
+      padding-block: var(--gds-badge-block-padding);
+      padding-inline: var(--gds-badge-inline-padding);
+      color: var(--gds-badge-cl);
+      background-color: var(--gds-badge-bg);
+      border-radius: var(--gds-badge-radii);
+      letter-spacing: normal;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      text-transform: uppercase;
+      max-width: max-content;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 1lh;
+      gap: 1ch;
+
+      @layer variants {
+        :host([variant='information']) & {
+          --gds-badge-cl: var(--gds-badge-cl-information);
+          --gds-badge-bg: var(--gds-badge-bg-information);
+        }
+
+        :host([variant='success']) & {
+          --gds-badge-cl: var(--gds-badge-cl-success);
+          --gds-badge-bg: var(--gds-badge-bg-success);
+        }
+
+        :host([variant='warning']) & {
+          --gds-badge-cl: var(--gds-badge-cl-warning);
+          --gds-badge-bg: var(--gds-badge-bg-warning);
+        }
+
+        :host([variant='error']) & {
+          --gds-badge-cl: var(--gds-badge-cl-error);
+          --gds-badge-bg: var(--gds-badge-bg-error);
+        }
+
+        :host([variant='disabled']) & {
+          --gds-badge-cl: var(--gds-badge-cl-disabled);
+          --gds-badge-bg: var(--gds-badge-bg-disabled);
+          pointer-events: none;
+        }
+
+        :host([variant='surface']) & {
+          --gds-badge-cl: var(--gds-badge-cl-surface);
+          --gds-badge-bg: var(--gds-badge-bg-surface);
+        }
+      }
+
+      @layer types {
+        :host([type='counter']) & {
+          max-width: var(--gds-badge-counter-max-width);
+        }
+      }
+    }
+  }
+}
+`;
+
+// libs/core/src/components/badge/badge.ts
+var _internals;
+var GdsBadge = class extends LitElement8 {
+  constructor() {
+    super();
+    // Private members
+    __privateAdd(this, _internals, void 0);
+    this.variant = "";
+    this.type = "";
+    this.icon = "";
+    __privateSet(this, _internals, this.attachInternals());
+    constrainSlots(this);
+  }
+  slotIcon() {
+    return html8` <slot name="icon" gds-allow="gds-icon"></slot> `;
+  }
+  slotLabel() {
+    const content = this.textContent?.trim() || "";
+    const hasLabel = content !== "";
+    let label = content;
+    if (this.type.toLowerCase() === "counter" && label.length > 4) {
+      label = label.substring(0, 4);
+      return hasLabel ? html8`${label}` : "";
+    }
+    return hasLabel ? html8`<slot part="label" gds-allow="#text"></slot>` : "";
+  }
+  // slotLabel() {
+  //   return this.textContent
+  //     ? html`<slot part="label" gds-allow="#text"></slot>`
+  //     : ''
+  // }
+  render() {
+    const hasIconSlot = this.querySelector('[slot="icon"]') !== null;
+    const content = html8`${when3(
+      hasIconSlot,
+      () => html8`<slot name="icon" gds-allow="gds-icon"></slot>`
+    )}${this.slotLabel()}`;
+    return html8`<div class="gds-badge">${content}</div>`;
+  }
+};
+_internals = new WeakMap();
+GdsBadge.styles = unsafeCSS9(badge_styles_default);
+GdsBadge.shadowRootOptions = {
+  mode: "open",
+  delegatesFocus: true
+};
+__decorateClass([
+  property7({ type: String, reflect: true, attribute: "variant" })
+], GdsBadge.prototype, "variant", 2);
+__decorateClass([
+  property7({ type: String, reflect: true, attribute: "type" })
+], GdsBadge.prototype, "type", 2);
+__decorateClass([
+  property7({ type: String, reflect: true, attribute: "icon" })
+], GdsBadge.prototype, "icon", 2);
+GdsBadge = __decorateClass([
+  customElement4("gds-badge")
+], GdsBadge);
+
+// libs/core/src/components/input/input.ts
+var _internals2;
+var GdsInput = class extends LitElement9 {
+  constructor() {
+    super();
+    // Private members
+    __privateAdd(this, _internals2, void 0);
+    this.lead = null;
+    this.trail = null;
+    this.label = "Label";
+    this.hasInvalidState = false;
+    this.inputElement = null;
+    this.exludeAttr = ["placeholder", "id", "label"];
+    __privateSet(this, _internals2, this.attachInternals());
+    constrainSlots(this);
+  }
+  slotLabel() {
+    return this.textContent ? html9`<slot part="label" gds-allow="#text"></slot>` : "";
+  }
+  slotLead() {
+    return html9`
+      <div class="gds-input-core-lead">
+        <slot name="lead" gds-allow="gds-icon"></slot>
+      </div>
+    `;
+  }
+  updated(changedProperties) {
+    super.updated(changedProperties);
+    if (changedProperties.has("trail")) {
+      this.updateParentClass();
+    }
+  }
+  updateParentClass() {
+    const trailSlotElement = this.renderRoot.querySelector(
+      'slot[name="trail"]'
+    );
+    const assignedElements = trailSlotElement.assignedElements({
+      flatten: true
+    });
+    const parentElement = this.renderRoot.querySelector(
+      ".gds-input-core-trail"
+    );
+    if (assignedElements.some((element) => element.tagName === "GDS-BUTTON")) {
+      parentElement?.classList.add("gds-input-core-trail-button");
+    } else {
+      parentElement?.classList.remove("gds-input-core-trail-button");
+    }
+  }
+  slotTrail() {
+    const trailSlotContent = this.querySelector('[slot="trail"]');
+    const hasButtonTag = trailSlotContent && trailSlotContent.tagName.toLowerCase() === "gds-button";
+    const inputValue = this.renderRoot?.querySelector("#input")?.value.trim();
+    if (this.hasInvalidState && hasButtonTag) {
+      const slottedIcon = trailSlotContent?.querySelector('[slot="circle"]');
+      if (slottedIcon) {
+        slottedIcon.setAttribute("name", "warning");
+        const buttonParent = slottedIcon.parentElement;
+        if (buttonParent) {
+          buttonParent.setAttribute("set", "negative");
+        }
+      }
+    }
+    if (inputValue === "") {
+      console.log("inputValue is empty");
+    }
+    return html9`
+      <div class="gds-input-core-trail">
+        ${this.hasInvalidState && !hasButtonTag ? html9` <gds-icon name="warning"></gds-icon> ` : html9` <slot name="trail" gds-allow="gds-icon gds-button"></slot> `}
+      </div>
+    `;
+  }
+  slotOptions() {
+    const optionElements = Array.from(this.querySelectorAll("option"));
+    const optgroupElements = Array.from(this.querySelectorAll("optgroup"));
+    const hasOptgroup = optgroupElements.length > 0;
+    const ungroupedOptions = optionElements.filter(
+      (option) => option.parentElement && option.parentElement.tagName !== "OPTGROUP"
+    );
+    return html9`
+      ${optgroupElements.map(
+      (optgroup) => html9`
+          <optgroup label="${optgroup.label}">
+            ${Array.from(optgroup.children).map(
+        (option) => html9` <option>${option.textContent}</option> `
+      )}
+          </optgroup>
+        `
+    )}
+      ${ungroupedOptions.map(
+      (option) => html9` <option>${option.textContent}</option> `
+    )}
+    `;
+  }
+  slotBase() {
+    const inputElement = this.renderRoot?.querySelector("#input");
+    const rows = inputElement?.getAttribute("rows");
+    const maxRows = rows || "1";
+    inputElement?.style.setProperty("--gds-textarea-lines", maxRows.toString());
+    let prevMaxRows = 1;
+    const handleInput = () => {
+      const inputElement2 = this.renderRoot?.querySelector("#input");
+      const inputValue = inputElement2?.value.trim();
+      if (inputValue === "") {
+        this.hasInvalidState = false;
+        inputElement2?.style.setProperty("--gds-textarea-lines", "0");
+      } else {
+        this.hasInvalidState = inputElement2?.checkValidity() === false;
+      }
+      const lines = (this.renderRoot?.querySelector("#input")?.value.split("\n").length || 1).toString();
+      const minRows = inputElement2?.getAttribute("rows") ? parseInt(inputElement2.getAttribute("rows")) : 1;
+      prevMaxRows = Math.max(
+        minRows,
+        lines?.length > prevMaxRows ? lines.length : prevMaxRows
+      );
+      const maxRows2 = Math.max(minRows, parseInt(lines));
+      inputElement2?.setAttribute("rows", prevMaxRows.toString());
+      inputElement2?.style.setProperty(
+        "--gds-textarea-lines",
+        maxRows2.toString()
+      );
+    };
+    const inputType = this.getAttribute("type")?.toLowerCase() || "";
+    const validInputTypes = [
+      "text",
+      "textarea",
+      "select",
+      "select-native",
+      "duo"
+    ];
+    const hasInput = validInputTypes.includes(inputType);
+    if (inputType === "select-native") {
+      return html9`
+        <div class="gds-input-core-base">
+          <label for="input">${this.label}</label>
+          <select id="input" title="test">
+            <option disabled selected hidden>Select your option</option>
+            ${this.slotOptions()}
+          </select>
+        </div>
+      `;
+    }
+    return html9`
+      <div class="gds-input-core-base">
+        <label for="input">${this.label}</label>
+        ${!hasInput || inputType === "text" ? html9` <input id="input" @input="${handleInput}" placeholder=" " /> ` : inputType === "textarea" ? html9`
+              <textarea
+                id="input"
+                @input="${handleInput}"
+                @change="${handleInput}"
+                @keyup="${handleInput}"
+                @keydown="${handleInput}"
+                placeholder=" "
+                autocomplete="off"
+                autocorrect="off"
+                autocapitalize="off"
+                rows="${rows || "1"}"
+                spellcheck="false"
+              ></textarea>
+            ` : inputType === "select" ? html9`
+              <input
+                part="input"
+                type="text"
+                autocomplete="off"
+                spellcheck="false"
+                autocapitalize="off"
+                readonly=""
+                aria-controls="listbox"
+                aria-haspopup="listbox"
+                aria-labelledby="label"
+                aria-describedby="help-text"
+                role="combobox"
+                tabindex="0"
+                value="Selected item"
+                aria-expanded="false"
+                aria-disabled="false"
+              />
+            ` : inputType === "select-nativeer" ? html9`
+              <!-- Options for multi select type -->
+              <select id="input" title="test">
+                <option disabled selected hidden>Select your option</option>
+                <slot name="options"></slot>
+              </select>
+              <!-- <optgroup label="Group 1">
+              <option>Option Slot 1</option>
+              <option>Option Slot 2</option>
+              <option>Option Slot 3</option>
+            </optgroup>
+            <optgroup label="Group 2">
+              <option>Option Slot 3</option>
+              <option>Option Slot 4</option>
+              <option>Option Slot 5</option>
+            </optgroup>
+          </select> -->
+              <!-- <select multiple="true" placeholder=" ">
+            <option value="" disabled selected hidden>Select your option</option>
+            <option>Option Slot 1</option>
+            <option>Option Slot 2</option>
+            <option>Option Slot 3</option>
+            <option>Option Slot 4</option>
+          </select> -->
+            ` : inputType === "duo" ? html9`
+              <div class="gds-input-core-base-duo">
+                <input
+                  type="text"
+                  id="duo-primary"
+                  placeholder="Primary"
+                  part="primary"
+                  readonly="readonly"
+                  tabindex="-1"
+                  aria-controls="listbox"
+                  aria-haspopup="listbox"
+                  aria-labelledby="label"
+                  aria-describedby="help-text"
+                  role="combobox"
+                />
+                <input
+                  type="text"
+                  id="duo-secondary"
+                  placeholder="Secondary"
+                  part="secondary"
+                  readonly="readonly"
+                  tabindex="-1"
+                  aria-controls="listbox"
+                  aria-haspopup="listbox"
+                  aria-labelledby="label"
+                  aria-describedby="help-text"
+                  role="combobox"
+                />
+              </div>
+            ` : ""}
+      </div>
+    `;
+  }
+  slotBadge() {
+    return html9`
+      <div class="gds-input-badge">
+        <slot name="badge" gds-allow="gds-badge"></slot>
+      </div>
+    `;
+  }
+  reflectAttributesToInput() {
+    if (this.inputElement) {
+      const attributes = this.attributes;
+      for (let i = 0; i < attributes.length; i++) {
+        const attribute = attributes[i];
+        if (!this.exludeAttr.includes(attribute.name)) {
+          this.inputElement.setAttribute(attribute.name, attribute.value);
+        }
+      }
+    }
+  }
+  update(changedProperties) {
+    super.update(changedProperties);
+    if (!this.inputElement) {
+      this.inputElement = this.shadowRoot?.getElementById(
+        "input"
+      );
+    }
+    this.reflectAttributesToInput();
+  }
+  render() {
+    const hasLeadSlot = this.querySelector('[slot="lead"]') !== null;
+    const hasTrailSlot = this.querySelector('[slot="trail"]') !== null;
+    const hasBadgeSlot = this.querySelector('[slot="badge"]') !== null;
+    const content = html9`${when4(
+      hasLeadSlot,
+      () => this.slotLead()
+    )}${this.slotBase()}${when4(hasBadgeSlot, () => this.slotBadge())}${when4(
+      hasTrailSlot,
+      () => this.slotTrail()
+    )}`;
+    return html9`
+      <div class="gds-input">
+        <div class="gds-input-core">${content}</div>
+        <slot name="helper" gds-allow="gds-input-helper"></slot>
+      </div>
+    `;
+  }
+};
+_internals2 = new WeakMap();
+GdsInput.styles = unsafeCSS10(input_styles_default);
+GdsInput.shadowRootOptions = {
+  mode: "open",
+  delegatesFocus: true
+};
+__decorateClass([
+  property8({ type: String, reflect: true })
+], GdsInput.prototype, "lead", 2);
+__decorateClass([
+  property8({ type: String, reflect: true })
+], GdsInput.prototype, "trail", 2);
+__decorateClass([
+  property8({ type: String, reflect: true, attribute: "label" })
+], GdsInput.prototype, "label", 2);
+__decorateClass([
+  property8({ type: Boolean })
+], GdsInput.prototype, "hasInvalidState", 2);
+GdsInput = __decorateClass([
+  customElement5("gds-input")
+], GdsInput);
+
+// libs/core/src/components/input/helper/helper.ts
+import { LitElement as LitElement11, html as html11, unsafeCSS as unsafeCSS12 } from "lit";
+import { customElement as customElement7, property as property10 } from "lit/decorators.js";
+import { ifDefined as ifDefined2 } from "lit/directives/if-defined.js";
+import { when as when5 } from "lit/directives/when.js";
+
+// libs/core/src/components/input/helper/style/helper.styles.css
+var helper_styles_default = `@layer gds-input-helper, tokens, a11y, containment, shell, core, parts;
+
+@layer gds-input-helper {
+  @layer tokens {
+    :host {
+      --gds-input-helper-bg: hsla(60, 4%, 95%, 1);
+      --gds-input-helper-br-width: 2px;
+    }
+  }
+
+  @layer a11y {
+    @media (prefers-color-scheme: dark) {
+      :host {
+        --gds-input-helper-bg: var(--gds-input-helper-bg-dark);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      :host {
+        --gds-input-helper-motion: 0;
+      }
+    }
+
+    @media (prefers-reduced-transparency: reduce) {
+      :host {
+        --gds-input-helper-transparency: 1;
+      }
+    }
+
+    @media (prefers-contrast: more) {
+      :host {
+        --gds-input-helper-contrast: 1;
+      }
+    }
+  }
+
+  @layer containment {
+    :host {
+      display: contents;
+    }
+
+    .gds-input-helper {
+      contain: layout;
+      container-name: gds-input-helper;
+      container-type: inline-size;
+      isolation: isolate;
+
+      @container gds-input-helper (width < 30ch) {
+        .gds-input-badge {
+          display: none;
+        }
+      }
+
+      > * {
+        box-sizing: border-box;
+      }
+    }
+  }
+
+  @layer shell {
+    .gds-input-helper {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+  }
+
+  @layer core {
+    .gds-input-helper {
+      &:has(slot[name='badge']),
+      &:has(slot[name='action']) {
+        .gds-input-helper-header {
+          padding-inline-end: 8px;
+        }
+      }
+
+      @layer parts {
+        .gds-input-helper-header {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+          border-left: var(--gds-input-helper-br-width) solid transparent;
+          border-right: var(--gds-input-helper-br-width) solid transparent;
+          padding-inline: 18px;
+          min-height: 32px;
+
+          .gds-input-helper-options {
+            align-items: center;
+            margin-inline-start: auto;
+            display: flex;
+            gap: 8px;
+          }
+        }
+
+        .gds-input-helper-title {
+          font-size: 14px;
+          user-select: none;
+
+          &.gds-input-helper-action {
+            cursor: pointer;
+            appearance: none;
+            padding: unset;
+            border: unset;
+            background: unset;
+            outline-offset: 6px;
+            outline-color: transparent;
+            outline-width: 2px;
+            outline-style: solid;
+            font-family: inherit;
+            font-size: 14px;
+
+            &:focus {
+              outline-color: currentColor;
+              border-radius: 200px;
+
+              &:not(:focus-visible) {
+                outline-color: transparent;
+              }
+            }
+          }
+        }
+
+        .gds-input-helper-content {
+          border: 1px solid hsla(60, 4%, 80%, 1);
+          background-color: hsla(60, 4%, 95%, 1);
+          font-size: 14px;
+          gap: 8px;
+          line-height: 1.4;
+          margin-block-start: 8px;
+          padding: 12px 16px;
+          border-radius: 4px;
+          user-select: auto;
+        }
+      }
+    }
+  }
+}
+`;
+
+// libs/core/src/components/tooltip/tooltip.ts
+import { LitElement as LitElement10, html as html10, unsafeCSS as unsafeCSS11 } from "lit";
+import { customElement as customElement6, property as property9 } from "lit/decorators.js";
+
+// libs/core/src/components/tooltip/style/tooltip.styles.css
+var tooltip_styles_default = `@layer gds-tooltip, tokens, a11y, parts, position, trigger, keyframes;
+
+@layer gds-tooltip {
+  @layer tokens {
+    :host {
+      --gds-tooltip-bg-color: #000;
+      --gds-tooltip-bg-alpha: 90%;
+      --gds-tooltip-fs: 14px;
+      --gds-tooltip-bg: color-mix(
+        in srgb,
+        var(--gds-tooltip-bg-color) var(--gds-tooltip-bg-alpha),
+        transparent
+      );
+      --gds-tooltip-color: #fff;
+      --gds-tooltip-offset: 8px;
+      --gds-tooltip-arrow: 6px;
+      --gds-tooltip-radii: 8px;
+      --gds-tooltip-transition-easing: var(--gds-sys-transition-easing);
+      display: contents;
+      position: relative;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :host {
+        --gds-tooltip-color-bg: var(
+          --gds-tooltip-color-bg-dark,
+          var(--gds-color-grey-20)
+        );
+      }
+    }
+  }
+
+  .gds-tooltip {
+    display: inline-block;
+    position: relative;
+
+    @layer a11y {
+      cursor: help;
+      --gds-tooltip-transition: var(--gds-sys-transition);
+      --gds-tooltip-contrast: var(--gds-sys-transition);
+    }
+
+    @layer parts {
+      &::before,
+      &::after {
+        font-size: var(--gds-tooltip-fs);
+        line-height: 1;
+        user-select: none;
+        pointer-events: none;
+        position: absolute;
+        display: none;
+        opacity: 0;
+        align-items: center;
+        justify-content: center;
+      }
+
+      &::before {
+        content: '';
+        border: var(--gds-tooltip-arrow, 6px) solid transparent;
+        z-index: 1001;
+      }
+
+      &::after {
+        content: attr(content);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding-inline: 2ch;
+        padding-block: 1.5ex;
+        max-inline-size: 50ch;
+        min-inline-size: max-content;
+        z-index: 1000;
+        offset-anchor: center top;
+        background-color: var(--gds-tooltip-bg);
+        color: var(--gds-tooltip-color);
+        border-radius: var(--gds-tooltip-radii);
+      }
+
+      &:hover::before,
+      &:hover::after {
+        display: flex;
+      }
+    }
+
+    @layer position {
+      &:not([position])::before,
+      &[position^='up']::before {
+        bottom: calc(100% + 2px);
+        border-bottom-width: 0;
+        border-top-color: var(--gds-tooltip-bg);
+      }
+      &:not([position])::after,
+      &[position^='up']::after {
+        bottom: calc(100% + var(--gds-tooltip-offset, 8px));
+      }
+
+      &:not([position])::before,
+      &:not([position])::after,
+      &[position^='up']::before,
+      &[position^='up']::after {
+        left: 50%;
+        transform: translate(-50%, calc(var(--gds-tooltip-offset, 8px) * -1));
+      }
+
+      &[position^='down']::before {
+        top: calc(100% + 2px);
+        border-top-width: 0;
+        border-bottom-color: var(--gds-tooltip-bg);
+      }
+      &[position^='down']::after {
+        top: calc(100% + var(--gds-tooltip-offset, 8px));
+      }
+      &[position^='down']::before,
+      &[position^='down']::after {
+        left: 50%;
+        transform: translate(-50%, var(--gds-tooltip-offset, 8px));
+      }
+
+      &[position^='left']::before {
+        top: 50%;
+        border-right-width: 0;
+        border-left-color: var(--gds-tooltip-bg);
+        left: calc(-1px - var(--gds-tooltip-offset, 8px));
+        transform: translate(calc(var(--gds-tooltip-offset, 8px) * -2), -50%);
+      }
+      &[position^='left']::after {
+        top: 50%;
+        right: calc(100% + var(--gds-tooltip-offset, 8px));
+        transform: translate(calc(var(--gds-tooltip-offset, 8px) * -1), -50%);
+      }
+
+      &[position^='right']::before {
+        top: 50%;
+        border-left-width: 0;
+        border-right-color: var(--gds-tooltip-bg);
+        right: calc(-1px - var(--gds-tooltip-offset, 8px));
+        transform: translate(var(--gds-tooltip-offset, 8px), -50%);
+      }
+      &[position^='right']::after {
+        top: 50%;
+        left: calc(100% + var(--gds-tooltip-offset, 8px));
+        transform: translate(var(--gds-tooltip-offset, 8px), -50%);
+      }
+    }
+
+    @layer trigger {
+      &:hover:is(
+          :not([position]),
+          [position^='up'],
+          [position^='down']
+        )::before,
+      &:hover:is(
+          :not([position]),
+          [position^='up'],
+          [position^='down']
+        )::after {
+        animation: gds-tooltip-animation-y 300ms
+          var(--gds-tooltip-transition-easing) forwards;
+      }
+
+      &:hover:is(
+          :not([position]),
+          [position^='left'],
+          [position^='right']
+        )::before,
+      &:hover:is(
+          :not([position]),
+          [position^='left'],
+          [position^='right']
+        )::after {
+        animation: gds-tooltip-animation-h 300ms
+          var(--gds-tooltip-transition-easing) forwards;
+      }
+    }
+  }
+
+  @layer keyframes {
+    @keyframes gds-tooltip-animation-y {
+      to {
+        opacity: 0.9;
+        transform: translate(-50%, 0);
+      }
+    }
+
+    @keyframes gds-tooltip-animation-h {
+      to {
+        opacity: 0.9;
+        transform: translate(0, -50%);
+      }
+    }
+  }
+}
+`;
+
+// libs/core/src/components/tooltip/tooltip.ts
+var GdsTooltip = class extends LitElement10 {
+  constructor() {
+    super(...arguments);
+    this.open = false;
+    this.content = null;
+    this.position = null;
+  }
+  render() {
+    return html10`
+      <div 
+        class="gds-tooltip" 
+        content=${this.content}
+        position=${this.position}
+        role="tooltip"
+      >
+        <slot slot="anchor"></slot>
+      </div>
+    `;
+  }
+};
+GdsTooltip.styles = unsafeCSS11(tooltip_styles_default);
+GdsTooltip.shadowRootOptions = {
+  mode: "open",
+  delegatesFocus: true
+};
+__decorateClass([
+  property9({ type: Boolean, reflect: true })
+], GdsTooltip.prototype, "open", 2);
+__decorateClass([
+  property9({ type: String, reflect: true, attribute: "content" })
+], GdsTooltip.prototype, "content", 2);
+__decorateClass([
+  property9({ type: String, reflect: true, attribute: "position" })
+], GdsTooltip.prototype, "position", 2);
+GdsTooltip = __decorateClass([
+  customElement6("gds-tooltip")
+], GdsTooltip);
+
+// libs/core/src/components/input/helper/helper.ts
+var _internals3;
+var GdsInputHelper = class extends LitElement11 {
+  constructor() {
+    super();
+    __privateAdd(this, _internals3, void 0);
+    this.isContentVisible = false;
+    this.helperTooltip = null;
+    this.helperLabel = null;
+    __privateSet(this, _internals3, this.attachInternals());
+    constrainSlots(this);
+  }
+  connectedCallback() {
+    super.connectedCallback();
+  }
+  /**
+   * Toggles the visibility of the content.
+   */
+  toggleContent() {
+    this.isContentVisible = !this.isContentVisible;
+  }
+  /**
+   * Returns the icon slot.
+   * @returns {TemplateResult} The icon slot.
+   */
+  slotIcon() {
+    const trailSlotContent = this.querySelector('[slot="action"]');
+    const slottedIcon = trailSlotContent?.querySelector(
+      '[slot="action"] gds-icon'
+    );
+    if (slottedIcon) {
+      if (this.isContentVisible) {
+        slottedIcon.setAttribute("name", "x");
+      } else {
+        slottedIcon.setAttribute("name", "info");
+      }
+    }
+    return this.helperTooltip == null ? html11`
+          <slot
+            name="action"
+            @click=${this.toggleContent}
+            gds-allow="gds-button"
+          ></slot>
+        ` : html11`
+          <gds-tooltip content="${this.helperTooltip}" position="up">
+            <slot
+              name="action"
+              @click=${this.toggleContent}
+              gds-allow="gds-button"
+            ></slot>
+          </gds-tooltip>
+        `;
+  }
+  /**
+   * Returns the badge slot.
+   * @returns {TemplateResult} The badge slot.
+   */
+  slotBadge() {
+    return html11` <slot name="badge" gds-allow="gds-badge"></slot> `;
+  }
+  /**
+   * Returns the content slot.
+   * @returns {TemplateResult} The content slot.
+   */
+  slotContent() {
+    const slotContentNotEmpty = this.textContent?.trim() && this.isContentVisible && this.textContent?.trim() !== " ";
+    return slotContentNotEmpty ? html11`
+          <div class="gds-input-helper-content">
+            <slot part="content" gds-allow="#text"></slot>
+          </div>
+        ` : null;
+  }
+  render() {
+    const getSlotContent = this.slotContent();
+    const hasContent = this.textContent?.trim() && this.textContent?.trim() !== " ";
+    const hasBadge = this.querySelector('[slot="badge"]') !== null;
+    const hasAction = this.querySelector('[slot="action"]') !== null;
+    const hasTooltip = this.helperTooltip !== null;
+    const hasLabel = this.helperLabel !== null;
+    return html11`
+      <div class="gds-input-helper">
+        <div class="gds-input-helper-header">
+          <!-- ${when5(
+      hasLabel,
+      () => html11`
+              <span
+                class="gds-input-helper-title ${hasContent ? "gds-input-helper-action" : ""}"
+                @click=${this.toggleContent}
+              >
+                ${this.helperLabel}
+              </span>
+            `
+    )} -->
+          ${when5(
+      hasLabel,
+      () => html11`
+              ${hasContent ? html11`
+                    <button
+                      class="gds-input-helper-title gds-input-helper-action"
+                      @click=${this.toggleContent}
+                    >
+                      ${this.helperLabel}
+                    </button>
+                  ` : html11`
+                    <span class="gds-input-helper-title">
+                      ${this.helperLabel}
+                    </span>
+                  `}
+            `
+    )}
+          <div class="gds-input-helper-options">
+            ${when5(hasBadge, () => this.slotBadge())}
+            ${when5(hasAction, () => this.slotIcon())}
+            ${when5(
+      !hasAction && !hasTooltip && hasContent,
+      () => html11`
+                <gds-button
+                  variant="circle tertiary"
+                  effect="ripple"
+                  size="small"
+                  slot="action"
+                  @click=${this.toggleContent}
+                >
+                  <gds-icon name="info" slot="circle" />
+                </gds-button>
+              `
+    )}
+            ${when5(
+      !hasAction && hasContent && hasTooltip,
+      () => html11`
+                <gds-tooltip content="${this.helperTooltip}" position="up">
+                  <gds-button
+                    variant="circle tertiary"
+                    effect="ripple"
+                    size="small"
+                    slot=""
+                    @click=${this.toggleContent}
+                  >
+                    <gds-icon name="info" slot="circle" />
+                  </gds-button>
+                </gds-tooltip>
+              `
+    )}
+          </div>
+        </div>
+        ${ifDefined2(getSlotContent)}
+      </div>
+    `;
+  }
+};
+_internals3 = new WeakMap();
+GdsInputHelper.styles = unsafeCSS12(helper_styles_default);
+GdsInputHelper.shadowRootOptions = {
+  mode: "open",
+  delegatesFocus: true
+};
+__decorateClass([
+  property10({ type: Boolean, reflect: true, attribute: "content-visible" })
+], GdsInputHelper.prototype, "isContentVisible", 2);
+__decorateClass([
+  property10({ type: String, reflect: true, attribute: "tooltip" })
+], GdsInputHelper.prototype, "helperTooltip", 2);
+__decorateClass([
+  property10({ type: String, reflect: true, attribute: "label" })
+], GdsInputHelper.prototype, "helperLabel", 2);
+GdsInputHelper = __decorateClass([
+  customElement7("gds-input-helper")
+], GdsInputHelper);
+
+// libs/core/src/components/input/checkbox/checkbox.ts
+import { LitElement as LitElement12, html as html12, unsafeCSS as unsafeCSS13 } from "lit";
+import { customElement as customElement8 } from "lit/decorators.js";
+
+// libs/core/src/components/input/checkbox/checkbox.css
+var checkbox_default = `:host {
+  --gds-checkbox-bg-color: hsl(0, 0%, 100%);
+  --gds-checkbox-border-color: hsla(60, 4%, 50%, 1);
+  --gds-checkbox-border-width: 2px;
+  --gds-checkbox-border-radius: 4px;
+
+  --gds-checkbox-color-hover: hsla(60, 6%, 90%, 1);
+  --gds-checkbox-color-active: hsla(60, 4%, 85%, 1);
+
+  --gds-checkbox-checked-color: hsla(60, 4%, 20%, 1);
+  --gds-checkbox-color-tick: hsl(0, 0%, 100%);
+}
+
+.gds-checkbox {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: calc(var(--gds-checkbox-border-radius) * 2);
+  transition: all 248ms ease-in-out;
+  cursor: pointer;
+
+  & input {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    position: relative;
+    margin: unset;
+    padding: unset;
+    box-sizing: border-box;
+    cursor: pointer;
+    aspect-ratio: 1/1;
+    width: 16px;
+    height: 16px;
+    background-color: var(--gds-checkbox-bg-color);
+    border: var(--gds-checkbox-border-width) solid
+      var(--gds-checkbox-border-color);
+    border-radius: var(--gds-checkbox-border-radius);
+    transition: all 248ms cubic-bezier(0.2, 0.85, 0.32, 1.2);
+
+    &::after {
+      content: '';
+      width: 5px;
+      height: 8px;
+      border: var(--gds-checkbox-border-width) solid
+        var(--gds-checkbox-color-tick);
+      border-top: 0;
+      border-left: 0;
+      rotate: 43deg;
+      inset: 1px 0 0 3.5px;
+      position: absolute;
+      pointer-events: none;
+      box-sizing: border-box;
+      transition: all 248ms cubic-bezier(0.2, 0.85, 0.32, 1.2);
+      scale: 0.8;
+      opacity: 0;
+    }
+
+    &:checked {
+      color: var(--gds-checkbox-checked-color-tick);
+      border-color: var(--gds-checkbox-checked-color);
+      background-color: var(--gds-checkbox-checked-color);
+
+      &::after {
+        scale: 1;
+        opacity: 1;
+      }
+    }
+
+    &[indeterminate],
+    &:indeterminate {
+      &::after {
+        border-top: 0;
+        border-left: 0;
+        border-radius: 0;
+        width: 8px;
+        height: var(--gds-checkbox-border-width);
+        inset: 5px 0px 0px 2px;
+        rotate: 0deg;
+        opacity: 1;
+        scale: 1;
+      }
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+  }
+
+  &:hover:has(input:not([disabled])) {
+    background-color: var(--gds-checkbox-color-hover);
+  }
+
+  &:active:has(input:not([disabled])) {
+    background-color: var(--gds-checkbox-color-active);
+    .gds-checkbox-core {
+      border-color: var(--gds-checkbox-checked-color);
+    }
+  }
+
+  &:has(input:checked) {
+    background-color: var(--gds-checkbox-color-hover);
+  }
+
+  &:has(input:disabled) {
+    cursor: not-allowed;
+  }
+
+  /* Invalid state */
+
+  &:has(input:invalid) {
+    --gds-checkbox-bg-color: hsla(13, 75%, 95%, 1);
+    --gds-checkbox-border-color: hsla(9, 75%, 38%, 1);
+    --gds-checkbox-color-hover: hsla(12, 75%, 91%, 1);
+    --gds-checkbox-color-active: hsla(12, 78%, 86%, 1);
+    --gds-checkbox-checked-color: hsla(9, 75%, 38%, 1);
+    --gds-checkbox-color-tick: hsla(0, 0%, 100%, 1);
+
+    & input {
+      &::after {
+        border-color: var(--gds-checkbox-color-tick);
+      }
+
+      &:checked {
+        color: var(--gds-checkbox-checked-color-tick);
+        border-color: var(--gds-checkbox-checked-color);
+        background-color: var(--gds-checkbox-checked-color);
+      }
+    }
+
+    &:hover:has(input:not([disabled])) {
+      background-color: var(--gds-checkbox-color-hover);
+    }
+
+    &:active:has(input:not([disabled])) {
+      background-color: var(--gds-checkbox-color-active);
+      .gds-checkbox-core {
+        border-color: var(--gds-checkbox-checked-color);
+      }
+    }
+
+    &:has(input:checked) {
+      background-color: var(--gds-checkbox-color-hover);
+    }
+  }
+}
+`;
+
+// libs/core/src/components/input/checkbox/checkbox.ts
+var _internals4;
+var GdsCheckbox = class extends LitElement12 {
+  constructor() {
+    super();
+    // Private members
+    __privateAdd(this, _internals4, void 0);
+    this.inputElement = null;
+    this.exludeAttr = ["id", "label"];
+    __privateSet(this, _internals4, this.attachInternals());
+    constrainSlots(this);
+  }
+  reflectAttributesToInput() {
+    if (this.inputElement) {
+      const attributes = this.attributes;
+      for (let i = 0; i < attributes.length; i++) {
+        const attribute = attributes[i];
+        if (!this.exludeAttr.includes(attribute.name)) {
+          this.inputElement.setAttribute(attribute.name, attribute.value);
+        }
+      }
+    }
+  }
+  update(changedProperties) {
+    super.update(changedProperties);
+    if (!this.inputElement) {
+      this.inputElement = this.shadowRoot?.getElementById(
+        "checkbox"
+      );
+    }
+    this.reflectAttributesToInput();
+  }
+  render() {
+    return html12`
+      <label class="gds-checkbox">
+        <input id="checkbox" type="checkbox" />
+      </label>
+    `;
+  }
+};
+_internals4 = new WeakMap();
+GdsCheckbox.styles = unsafeCSS13(checkbox_default);
+GdsCheckbox.shadowRootOptions = {
+  mode: "open",
+  delegatesFocus: true
+};
+GdsCheckbox = __decorateClass([
+  customElement8("gds-checkbox")
+], GdsCheckbox);
+
+// libs/core/src/components/input/radio/radio.ts
+import { LitElement as LitElement14, html as html14, unsafeCSS as unsafeCSS15 } from "lit";
+import { customElement as customElement10 } from "lit/decorators.js";
+
+// libs/core/src/components/input/radio/radio.css
+var radio_default = `:host {
+  --gds-checkbox-bg-color: hsl(0, 0%, 100%);
+  --gds-checkbox-border-color: hsla(60, 4%, 50%, 1);
+  --gds-checkbox-border-width: 1px;
+  --gds-checkbox-border-radius: 200px;
+
+  --gds-checkbox-color-hover: hsla(60, 6%, 90%, 1);
+  --gds-checkbox-color-active: hsla(60, 4%, 85%, 1);
+
+  --gds-checkbox-checked-color: hsla(60, 4%, 20%, 1);
+  --gds-checkbox-color-tick: hsl(0, 0%, 100%);
+
+  --gds-radio-transition: all 248ms ease-in-out;
+  --gds-radio-transition-input: all 248ms cubic-bezier(0.2, 0.85, 0.32, 1.2);
+}
+
+@media (prefers-color-scheme: dark) {
+  :host {
+    --gds-dark: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :host {
+    --gds-radio-transition: none;
+    --gds-radio-transition-input: none;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  :host {
+    --gds-input-transparency: 1;
+  }
+}
+
+@media (prefers-contrast: more) {
+  :host {
+    --gds-input-color-bg: hsla(60, 4%, 96%, 1);
+    --gds-input-color-outline-alpha: 0%;
+  }
+}
+
+.gds-radio {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--gds-checkbox-border-radius);
+  transition: var(--gds-radio-transition);
+  cursor: pointer;
+
+  & input {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    position: relative;
+    margin: unset;
+    padding: unset;
+    box-sizing: border-box;
+    cursor: pointer;
+    aspect-ratio: 1/1;
+    width: 16px;
+    height: 16px;
+    background-color: var(--gds-checkbox-bg-color);
+    border: var(--gds-checkbox-border-width) solid
+      var(--gds-checkbox-border-color);
+    border-radius: var(--gds-checkbox-border-radius);
+    transition: var(--gds-radio-transition-input);
+
+    &:checked {
+      border-color: var(--gds-checkbox-checked-color);
+      border-width: 4px;
+    }
+
+    &[indeterminate],
+    &:indeterminate {
+      &::after {
+        border-top: 0;
+        border-left: 0;
+        border-radius: 0;
+        width: 8px;
+        height: var(--gds-checkbox-border-width);
+        inset: 5px 0px 0px 2px;
+        rotate: 0deg;
+        opacity: 1;
+        scale: 1;
+      }
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+  }
+
+  &:hover:has(input:not([disabled])) {
+    background-color: var(--gds-checkbox-color-hover);
+  }
+
+  &:active:has(input:not([disabled])) {
+    background-color: var(--gds-checkbox-color-active);
+    .gds-checkbox-core {
+      border-color: var(--gds-checkbox-checked-color);
+    }
+  }
+
+  &:has(input:checked) {
+    background-color: var(--gds-checkbox-color-hover);
+  }
+
+  &:has(input:disabled) {
+    cursor: not-allowed;
+  }
+
+  /* Invalid state */
+
+  &:has(input:invalid) {
+    --gds-checkbox-bg-color: hsla(13, 75%, 95%, 1);
+    --gds-checkbox-border-color: hsla(9, 75%, 38%, 1);
+    --gds-checkbox-color-hover: hsla(12, 75%, 91%, 1);
+    --gds-checkbox-color-active: hsla(12, 78%, 86%, 1);
+    --gds-checkbox-checked-color: hsla(9, 75%, 38%, 1);
+    --gds-checkbox-color-tick: hsla(0, 0%, 100%, 1);
+
+    & input {
+      &::after {
+        border-color: var(--gds-checkbox-color-tick);
+      }
+
+      &:checked {
+        color: var(--gds-checkbox-checked-color-tick);
+        border-color: var(--gds-checkbox-checked-color);
+        background-color: var(--gds-checkbox-checked-color);
+      }
+    }
+
+    &:hover:has(input:not([disabled])) {
+      background-color: var(--gds-checkbox-color-hover);
+    }
+
+    &:active:has(input:not([disabled])) {
+      background-color: var(--gds-checkbox-color-active);
+      .gds-checkbox-core {
+        border-color: var(--gds-checkbox-checked-color);
+      }
+    }
+
+    &:has(input:checked) {
+      background-color: var(--gds-checkbox-color-hover);
+    }
+  }
+}
+
+.gds-radio-group {
+  appearance: none;
+  border: 0;
+  padding: 0;
+}
+`;
+
+// libs/core/src/components/input/radio/radio-group.ts
+import { LitElement as LitElement13, html as html13 } from "lit";
+import { customElement as customElement9, property as property12 } from "lit/decorators.js";
+var _internals5;
+var GdsRadioGroup = class extends LitElement13 {
+  constructor() {
+    super();
+    // Private members
+    __privateAdd(this, _internals5, void 0);
+    this.label = "Label";
+    this.inputElement = null;
+    this.exludeAttr = ["id", "label"];
+    __privateSet(this, _internals5, this.attachInternals());
+    constrainSlots(this);
+  }
+  reflectAttributesToInput() {
+    if (this.inputElement) {
+      const attributes = this.attributes;
+      for (let i = 0; i < attributes.length; i++) {
+        const attribute = attributes[i];
+        if (!this.exludeAttr.includes(attribute.name)) {
+          this.inputElement.setAttribute(attribute.name, attribute.value);
+        }
+      }
+    }
+  }
+  update(changedProperties) {
+    super.update(changedProperties);
+    if (!this.inputElement) {
+      this.inputElement = this.shadowRoot?.getElementById(
+        "radio"
+      );
+    }
+    this.reflectAttributesToInput();
+  }
+  render() {
+    return html13`
+      <fieldset
+        class="gds-radio-group"
+        role="radiogroup"
+        aria-labelledby="label"
+      >
+        <label>${this.label}</label>
+        <slot></slot>
+      </fieldset>
+    `;
+  }
+};
+_internals5 = new WeakMap();
+// static styles = unsafeCSS(styles)
+GdsRadioGroup.shadowRootOptions = {
+  mode: "open",
+  delegatesFocus: true
+};
+__decorateClass([
+  property12({ type: String, reflect: true, attribute: "label" })
+], GdsRadioGroup.prototype, "label", 2);
+GdsRadioGroup = __decorateClass([
+  customElement9("gds-radio-group")
+], GdsRadioGroup);
+
+// libs/core/src/components/input/radio/radio.ts
+var _internals6;
+var GdsRadio = class extends LitElement14 {
+  constructor() {
+    super();
+    // Private members
+    __privateAdd(this, _internals6, void 0);
+    this.inputElement = null;
+    this.exludeAttr = ["id", "label"];
+    __privateSet(this, _internals6, this.attachInternals());
+    constrainSlots(this);
+  }
+  reflectAttributesToInput() {
+    if (this.inputElement) {
+      const attributes = this.attributes;
+      for (let i = 0; i < attributes.length; i++) {
+        const attribute = attributes[i];
+        if (!this.exludeAttr.includes(attribute.name)) {
+          this.inputElement.setAttribute(attribute.name, attribute.value);
+        }
+      }
+    }
+  }
+  update(changedProperties) {
+    super.update(changedProperties);
+    if (!this.inputElement) {
+      this.inputElement = this.shadowRoot?.getElementById(
+        "radio"
+      );
+    }
+    this.reflectAttributesToInput();
+  }
+  handleClick() {
+    const radioGroup = this.closest("gds-radio-group");
+    if (radioGroup instanceof GdsRadioGroup) {
+      radioGroup.selectedValue = this.value;
+    }
+  }
+  render() {
+    return html14`
+      <label class="gds-radio">
+        <input id="radio" type="radio" />
+      </label>
+      <label for="radio">${this.textContent}</label>
+    `;
+  }
+};
+_internals6 = new WeakMap();
+GdsRadio.styles = unsafeCSS15(radio_default);
+GdsRadio.shadowRootOptions = {
+  mode: "open",
+  delegatesFocus: true
+};
+GdsRadio = __decorateClass([
+  customElement10("gds-radio")
+], GdsRadio);
+
+// libs/core/src/components/input/switch/switch.ts
+import { LitElement as LitElement15, html as html15, unsafeCSS as unsafeCSS16 } from "lit";
+import { customElement as customElement11 } from "lit/decorators.js";
+
+// libs/core/src/components/input/switch/switch.css
+var switch_default = `:host {
+  --gds-checkbox-bg-color: hsl(0, 0%, 100%);
+  --gds-checkbox-border-color: hsla(60, 4%, 20%, 1);
+  --gds-checkbox-border-width: 7.5px;
+  --gds-checkbox-border-radius: 200px;
+
+  --gds-checkbox-color-hover: hsla(60, 6%, 90%, 1);
+  --gds-checkbox-color-active: hsla(60, 4%, 85%, 1);
+
+  --gds-checkbox-checked-color: hsla(130, 40%, 30%, 1);
+  --gds-checkbox-color-tick: hsl(0, 0%, 100%);
+
+  --gds-switch-transition: all 548ms ease-in-out;
+  --gds-switch-animaton-on: 248ms;
+  --gds-switch-animaton-off: 248ms;
+  --gds-switch-animaton-transition: all 248ms cubic-bezier(0.2, 0.85, 0.32, 1.2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :host {
+    --gds-switch-transition: none;
+    --gds-switch-animaton-on: 0ms;
+    --gds-switch-animaton-off: 0ms;
+    --gds-switch-animaton-transition: none;
+  }
+}
+
+.gds-switch {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 64px;
+  height: 32px;
+  border-radius: var(--gds-checkbox-border-radius);
+  transition: var(--gds-switch-transition);
+  cursor: pointer;
+  background-color: var(--gds-checkbox-color-hover);
+
+  & input {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    position: relative;
+    margin: unset;
+    padding: unset;
+    box-sizing: border-box;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    background-color: var(--gds-checkbox-bg-color);
+    border: var(--gds-checkbox-border-width) solid
+      var(--gds-checkbox-border-color);
+    border-radius: var(--gds-checkbox-border-radius);
+    transition: var(--gds-switch-animaton-transition);
+
+    &:checked {
+      border-color: var(--gds-checkbox-checked-color);
+      animation: switch-on var(--gds-switch-animaton-on) forwards;
+    }
+
+    &:not(:checked) {
+      animation: switch-off var(--gds-switch-animaton-off) backwards;
+    }
+  }
+
+  &:has(input:checked) {
+    background-color: var(--gds-checkbox-checked-color);
+  }
+
+  &:has(input:disabled) {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+@keyframes switch-on {
+  to {
+    transform: translate3d(100%, 0, 0) scale(0.5);
+    width: 32px;
+    border-width: 0;
+  }
+}
+
+@keyframes switch-off {
+  from {
+    transform: translate3d(100%, 0, 0) scale(0.5);
+    width: 32px;
+    border-width: 0;
+  }
+  to {
+    transform: translate3d(0%, 0, 0) scale(1);
+    width: 32px;
+    border-width: 7.5px;
+  }
+}
+`;
+
+// libs/core/src/components/input/switch/switch.ts
+var _internals7;
+var GdsSwitch = class extends LitElement15 {
+  constructor() {
+    super();
+    // Private members
+    __privateAdd(this, _internals7, void 0);
+    this.inputElement = null;
+    this.exludeAttr = ["id", "label"];
+    __privateSet(this, _internals7, this.attachInternals());
+    constrainSlots(this);
+  }
+  reflectAttributesToInput() {
+    if (this.inputElement) {
+      const attributes = this.attributes;
+      for (let i = 0; i < attributes.length; i++) {
+        const attribute = attributes[i];
+        if (!this.exludeAttr.includes(attribute.name)) {
+          this.inputElement.setAttribute(attribute.name, attribute.value);
+        }
+      }
+    }
+  }
+  update(changedProperties) {
+    super.update(changedProperties);
+    if (!this.inputElement) {
+      this.inputElement = this.shadowRoot?.getElementById(
+        "switch"
+      );
+    }
+    this.reflectAttributesToInput();
+  }
+  render() {
+    return html15`
+      <label class="gds-switch">
+        <input id="switch" type="checkbox" />
+      </label>
+    `;
+  }
+};
+_internals7 = new WeakMap();
+GdsSwitch.styles = unsafeCSS16(switch_default);
+GdsSwitch.shadowRootOptions = {
+  mode: "open",
+  delegatesFocus: true
+};
+GdsSwitch = __decorateClass([
+  customElement11("gds-switch")
+], GdsSwitch);
+export {
+  GdsBadge,
+  GdsButton,
+  GdsCheckbox,
+  GdsDropdown,
+  GdsForm,
+  GdsIcon,
+  GdsInput,
+  GdsInputHelper,
+  GdsOption,
+  GdsRadio,
+  GdsRadioGroup,
+  GdsSwitch,
+  GdsTooltip,
+  VER_SUFFIX,
+  gdsCustomElement,
+  getScopedTagName,
+  getUnscopedTagName,
+  html2 as html,
+  htmlTemplateTagFactory
+};

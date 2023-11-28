@@ -14,7 +14,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "export": "next export"
+    "export": "next export",
+    "bundle-playground": "vite build -c utils/playground-elements/vite.config.js"
   },
   "dependencies": {
     "@giscus/react": "^2.3.0",
@@ -28,6 +29,7 @@
     "next": "^14.0.3",
     "next-contentlayer": "^0.3.4",
     "next-themes": "^0.2.1",
+    "playground-elements": "^0.18.1",
     "react": "^18",
     "react-dom": "^18",
     "rehype-autolink-headings": "^7.0.0",
@@ -37,7 +39,8 @@
     "remark-gfm": "^4.0.0",
     "shiki": "^0.14.5",
     "sonner": "^1.0.3",
-    "vanilla-cookieconsent": "^2.9.2"
+    "vanilla-cookieconsent": "^2.9.2",
+    "vite": "^4.5.0"
   },
   "devDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "^4.1.1",
