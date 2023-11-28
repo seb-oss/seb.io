@@ -1,11 +1,8 @@
 {
   "files": {
-    "index.html": {
-    },
-    "green-core.js": {
-    },
-    "basic.css": {
-
-    }
+    "index.html": {},
+    "green-core.js": {},
+    "basic.css": {},
+    "../../../fonts/SEBSansSerif-Bold.woff2": {}
   }
 }

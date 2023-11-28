@@ -32,10 +32,10 @@ export default function Sidebar({
 
   return (
     <aside className={`nav ${!isNavOpen ? "hidden" : ""}`}>
-      <details open>
+      <details open={path.includes("/component") ? true : undefined}>
         <summary>
           <Link
-            className={path == "/components" ? "active" : ""}
+            className={path.includes("/component") ? "active" : ""}
             href="/components"
           >
             Components
@@ -52,10 +52,10 @@ export default function Sidebar({
           ))}
         </nav>
       </details>
-      <details>
+      <details open={path.includes("/foundation") ? true : undefined}>
         <summary>
           <Link
-            className={path == "/foundation" ? "active" : ""}
+            className={path.includes("/foundation") ? "active" : ""}
             href="/foundation"
           >
             Foundation
@@ -81,7 +81,7 @@ export default function Sidebar({
           </Link>
         </nav>
       </details>
-      <details>
+      <details open={path.includes("/about") ? true : undefined}>
         <summary>
           <Link className={path == "/about" ? "active" : ""} href="/about">
             About

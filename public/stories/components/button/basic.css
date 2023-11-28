@@ -1,8 +1,32 @@
+@font-face {
+  font-family: "SEBSansSerif";
+  font-weight: 900;
+  font-style: normal;
+  src: url("../../../fonts/SEBSansSerif-Bold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "SEBSansSerif";
+  font-weight: 900;
+  font-style: italic;
+  src: url("../../../fonts/SEBSansSerif-BoldItalic.woff2") format("woff2");
+}
+
 :root {
-  font-family: "SEB SansSerif";
+  font-family: "SEBSansSerif";
+}
+
+
+
+html {
+  background-color: rgb(229, 229, 229);
 }
 
 body {
+  font-family: "SEBSansSerif";
+  font-weight: 900;
+  margin: 0;
+  padding: 0;
   background: repeating-linear-gradient(
     to right,
     transparent,
@@ -20,4 +44,26 @@ body {
   place-content: center;
   grid-auto-flow: column;
   gap: 1rem;
+}
+
+@media (prefers-color-scheme: dark) { 
+  html {
+    background-color: hsla(60, 6%, 10%, 1);
+  }
+  body {
+    background-color: hsla(60, 6%, 10%, 1);
+    background: repeating-linear-gradient(
+      to right,
+      transparent,
+      transparent 10px,
+      #222 10px,
+      #222 11px
+    ), repeating-linear-gradient(
+      to bottom,
+      transparent,
+      transparent 10px,
+      #222 10px,
+      #222 11px
+    );
+  }
 }

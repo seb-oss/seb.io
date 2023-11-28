@@ -7,15 +7,16 @@ aside.nav {
   gap: 8px;
   padding: 24px;
   border-right: 1px solid var(--border-color);
-  /* min-width: 220px; */
   width: 320px;
   min-width: 320px;
-  /* max-width: max-content; */
   block-size: 100vh;
 
   details {
     &[open] {
       summary {
+        span {
+          background-color: var(--border-color);
+        }
         svg {
           transform: scaleY(-1);
         }
@@ -25,12 +26,13 @@ aside.nav {
     a {
       border-radius: 2000px;
       width: 100%;
-      /* background-color: var(--border-color); */
       padding: 12px 16px;
+      transition: all 482ms cubic-bezier(0.4, 0, 0.2, 1);
 
-      &:hover {
-        background-color: var(--color-black);
-        color: var(--color-white);
+      &:hover,
+      &.active {
+        background-color: var(--border-color);
+        color: var(--color-black);
       }
     }
 
@@ -44,6 +46,15 @@ aside.nav {
       transition: all 0.4s;
       margin-bottom: 4px;
 
+      > a {
+        &.active {
+          background-color: color-mix(
+            in srgb,
+            var(--color-black),
+            transparent 98%
+          );
+        }
+      }
       &:hover {
         svg {
           opacity: 1;
@@ -53,6 +64,7 @@ aside.nav {
       a {
         width: 100%;
         flex: 1;
+        transition: all 482ms;
       }
 
       span {
@@ -61,8 +73,12 @@ aside.nav {
         height: 42px;
         align-items: center;
         justify-content: center;
-        background-color: var(--border-color);
         border-radius: 200px;
+        transition: all 482ms;
+
+        &:hover {
+          background-color: var(--border-color);
+        }
       }
 
       svg {
@@ -74,6 +90,7 @@ aside.nav {
         stroke-linecap: round;
         stroke-linejoin: round;
         opacity: 0.6;
+        transition: color 482ms;
       }
     }
   }
@@ -82,10 +99,6 @@ aside.nav {
     display: flex;
     flex-direction: column;
     gap: 4px;
-    font-size: 14px;
-
-    a.active {
-      text-decoration: underline;
-    }
+    font-size: 16px;
   }
 }
