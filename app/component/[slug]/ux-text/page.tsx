@@ -12,7 +12,7 @@ export default function Code({ params }: { params: { slug: string } }) {
   const { slug } = params
 
   const component = allComponents.find(
-    (component) => component.url_path === "/component/" + slug + "/content"
+    (component) => component.url_path === "/component/" + slug + "/ux-text"
   )
 
   if (!component) {

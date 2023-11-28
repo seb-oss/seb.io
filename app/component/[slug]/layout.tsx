@@ -66,48 +66,41 @@ export default function ComponentLayout({
 
   return (
     <Layout key={global_id}>
+      <Trail home={"Home"} separator={<span> / </span>} activeClass="active" />
       <header>
-        <Trail
-          home={"Home"}
-          separator={<span> / </span>}
-          activeClass="active"
-        />
         <div className="content">
-          <h1>{title}</h1>
-          <p>{summary}</p>
-        </div>
-        <div className="details">
-          <div title="Status">
-            <div className="status">{status}</div>
+          <div className="intro">
+            <h1>{title}</h1>
+            <p>{summary}</p>
           </div>
-          <div title="Tags">
-            {/* {tags} */}
-            <menu>
-              {tagsArray.map((tag, index) => (
-                // This should be a link potentially to a search page
-                // <div key={tag} href={`/tags/${tag}`}>
-                <div key={tag}>{tag}</div>
-              ))}
-            </menu>
+          <div className="details">
+            <div title="Status">
+              <div className="status">{status}</div>
+            </div>
+            <div title="Tags">
+              <menu>
+                {tagsArray.map((tag, index) => (
+                  <div key={tag}>{tag}</div>
+                ))}
+              </menu>
+            </div>
           </div>
         </div>
+        <figure></figure>
       </header>
       <article>
         <div className="content">
           {children}
           <Taber component={url_path} />
         </div>
-
         {tocComponent}
       </article>
-      <br />
-      <br />
-      <br />
-      <br />
-      Last updated:
-      <time dateTime={last_edited} title="Last updated">
-        {format(parseISO(last_edited), "d LLL, yyyy '/' HH:mm")}
-      </time>
+      <footer>
+        Last updated: <br />
+        <time dateTime={last_edited} title="Last updated">
+          {format(parseISO(last_edited), "d LLL, yyyy '/' HH:mm")}
+        </time>
+      </footer>
     </Layout>
   )
 }

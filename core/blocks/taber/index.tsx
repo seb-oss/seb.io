@@ -15,10 +15,10 @@ export default function Taber({ component }: TaberProps) {
 
   const links = [
     { path: "", label: "Overview" },
-    { path: "/code", label: "Code" },
     { path: "/design", label: "Design" },
     { path: "/ux-text", label: "UX text" },
-    { path: "/guidelines", label: "Guidelines" },
+    { path: "/code", label: "Code" },
+    // { path: "/guidelines", label: "Guidelines" },
     { path: "/accessibility", label: "Accessibility" },
   ]
 
