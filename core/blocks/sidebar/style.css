@@ -15,7 +15,11 @@ aside.nav {
     &[open] {
       summary {
         span {
-          background-color: var(--border-color);
+          background-color: color-mix(
+            in srgb,
+            var(--color-black),
+            transparent 98%
+          );
         }
         svg {
           transform: scaleY(-1);
@@ -55,9 +59,10 @@ aside.nav {
           );
         }
       }
+
       &:hover {
-        svg {
-          opacity: 1;
+        span {
+          background-color: var(--border-color);
         }
       }
 
@@ -89,8 +94,6 @@ aside.nav {
         stroke-width: 2;
         stroke-linecap: round;
         stroke-linejoin: round;
-        opacity: 0.6;
-        transition: color 482ms;
       }
     }
   }

@@ -62,7 +62,10 @@ export default function ComponentLayout({
     }
   }
 
+  // const tagsArray = tags ? tags.split(", ") : []
+  const MAX_VISIBLE_TAGS = 3
   const tagsArray = tags ? tags.split(", ") : []
+  const extraTagsCount = Math.max(0, tagsArray.length - MAX_VISIBLE_TAGS)
 
   return (
     <Layout key={global_id}>
@@ -79,9 +82,10 @@ export default function ComponentLayout({
             </div>
             <div title="Tags">
               <menu>
-                {tagsArray.map((tag, index) => (
+                {tagsArray.slice(0, MAX_VISIBLE_TAGS).map((tag, index) => (
                   <div key={tag}>{tag}</div>
                 ))}
+                {extraTagsCount > 0 && <div>...</div>}
               </menu>
             </div>
           </div>
