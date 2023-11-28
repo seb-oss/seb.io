@@ -2,7 +2,8 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 1102px;
+  width: 1600px;
+  padding: 40px;
   margin-inline: auto;
   --border-color: color-mix(in srgb, var(--color-black), transparent 90%);
   padding-block: 40px;
@@ -17,10 +18,6 @@
     display: flex;
     gap: 48px;
     flex-direction: row;
-    padding: 48px;
-    border: 1px solid var(--border-color);
-    border-radius: 16px;
-    margin-left: -48px;
 
     .content {
       display: flex;
@@ -33,6 +30,7 @@
         display: flex;
         gap: 16px;
         flex-direction: column;
+        max-width: 80ch;
 
         h1 {
           font-size: 32px;
@@ -106,6 +104,10 @@
       flex: 0 1 100%;
       font-size: 16px;
       line-height: 1.5;
+
+      main {
+        max-width: 80ch;
+      }
     }
 
     aside {

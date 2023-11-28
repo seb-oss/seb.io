@@ -1,7 +1,7 @@
-import {notFound} from "next/navigation"
-import {Mdx} from "@/core/blocks/mdx"
-import {allComponents} from "content"
-import Script from 'next/script'
+import { notFound } from "next/navigation"
+import Script from "next/script"
+import { Mdx } from "@/core/blocks/mdx"
+import { allComponents } from "content"
 
 export const dynamic = "force-static"
 
@@ -11,8 +11,8 @@ export const generateStaticParams = (): any => {
   }))
 }
 
-export default function Component({params}: { params: { slug: string } }) {
-  const {slug} = params
+export default function Component({ params }: { params: { slug: string } }) {
+  const { slug } = params
 
   const component = allComponents.find(
     (component) => component.url_path === "/component/" + slug
@@ -22,12 +22,15 @@ export default function Component({params}: { params: { slug: string } }) {
     notFound()
   }
 
-  const {body} = component
+  const { body } = component
 
   return (
     <>
-      <Script src={"/playground-elements/playground-elements.mjs"} type="module"></Script>
-      <Mdx code={body.code} globals={{slug}} />)
+      <Script
+        src={"/playground-elements/playground-elements.mjs"}
+        type="module"
+      ></Script>
+      <Mdx code={body.code} globals={{ slug }} />
     </>
   )
 }

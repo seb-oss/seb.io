@@ -34,10 +34,17 @@ export default function Sidebar({
     <aside className={`nav ${!isNavOpen ? "hidden" : ""}`}>
       <details open>
         <summary>
-          <span>Components</span>
-          <svg viewBox="0 0 24 24">
-            <polyline points="6 9 12 15 18 9"></polyline>
-          </svg>
+          <Link
+            className={path == "/components" ? "active" : ""}
+            href="/components"
+          >
+            Components
+          </Link>
+          <span>
+            <svg viewBox="0 0 24 24">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </span>
         </summary>
         <nav>
           {components.map((component, idx) => (
@@ -47,10 +54,17 @@ export default function Sidebar({
       </details>
       <details>
         <summary>
-          <span>Foundation</span>
-          <svg viewBox="0 0 24 24">
-            <polyline points="6 9 12 15 18 9"></polyline>
-          </svg>
+          <Link
+            className={path == "/foundation" ? "active" : ""}
+            href="/foundation"
+          >
+            Foundation
+          </Link>
+          <span>
+            <svg viewBox="0 0 24 24">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </span>
         </summary>
         <nav>
           <Link
@@ -69,10 +83,14 @@ export default function Sidebar({
       </details>
       <details>
         <summary>
-          <span>About</span>
-          <svg viewBox="0 0 24 24">
-            <polyline points="6 9 12 15 18 9"></polyline>
-          </svg>
+          <Link className={path == "/about" ? "active" : ""} href="/about">
+            About
+          </Link>
+          <span>
+            <svg viewBox="0 0 24 24">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </span>
         </summary>
         <nav>
           <Link
