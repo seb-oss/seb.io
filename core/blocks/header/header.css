@@ -1,6 +1,6 @@
 header.main {
   display: flex;
-  padding: 20px;
+
   align-items: center;
   justify-content: space-between;
   color: var(--color-black);
@@ -14,6 +14,9 @@ header.main {
   top: 0;
   backdrop-filter: blur(10px);
   z-index: 2;
+  max-block-size: var(--header-height);
+  block-size: var(--header-height);
+  padding-inline: 24px;
 
   .logo {
     display: flex;
@@ -37,6 +40,7 @@ header.main {
   nav {
     display: flex;
     align-items: center;
+    height: 100%;
     gap: 10px;
 
     svg {
@@ -48,56 +52,31 @@ header.main {
       stroke-linecap: round;
       stroke-linejoin: round;
     }
-
-    a {
-      display: flex;
-      align-items: center;
-      gap: 1ch;
-      text-decoration: none;
-      padding: 16px 22px;
-      border-radius: 8px;
-
-      &:hover {
-        background-color: color-mix(
-          in srgb,
-          var(--color-black),
-          transparent 90%
-        );
-      }
-
-      &.active {
-        background-color: color-mix(
-          in srgb,
-          var(--color-black),
-          transparent 98%
-        );
-      }
-    }
-
-    button {
-      display: flex;
-      align-items: center;
-      appearance: none;
-      border: none;
-      background: none;
-      padding: 16px;
-      cursor: pointer;
-      border-radius: 8px;
-
-      &:hover {
-        background-color: color-mix(
-          in srgb,
-          var(--color-black),
-          transparent 90%
-        );
-      }
-    }
   }
 
   .hamburger {
     min-inline-size: 64px;
     display: flex;
     gap: 10px;
+    border: none;
+    border-bottom: 1px solid transparent;
+    background: none;
+    cursor: pointer;
+    align-items: center;
+    gap: 1ch;
+    min-block-size: 100%;
+    padding: 0 16px;
+    transition: var(--transition);
+    color: currentColor;
+    outline: none;
+
+    &.active {
+      border-color: color-mix(in srgb, var(--color-black), transparent 60%);
+    }
+
+    &:hover {
+      border-color: color-mix(in srgb, var(--color-black), transparent 80%);
+    }
 
     svg {
       width: 14px;
@@ -117,19 +96,50 @@ header.main {
     transition-duration: 0.15s;
     font-weight: 600;
     font-size: 12px;
+    line-height: 1;
+    align-items: center;
     border-radius: 100px;
-    border: 1px solid hsla(0, 0%, 98%, 0.1);
+    border: 1px solid color-mix(in srgb, var(--color-black), transparent 90%);
     background-color: transparent;
+    color: currentColor;
     display: flex;
     gap: 14px;
     font-size-adjust: 0.5rem;
     margin-inline-end: 0.4rem;
     padding: 10px 20px 10px 16px;
     line-height: 1;
+    min-block-size: max-content;
+    cursor: pointer;
+    transition: all 286ms var(--transition);
 
     svg {
       width: 14px;
       height: 14px;
+    }
+
+    &:hover {
+      background-color: color-mix(in srgb, var(--color-black), transparent 90%);
+    }
+  }
+
+  .github,
+  .theme {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border-radius: 200px;
+    transition: var(--transition);
+    text-decoration: none;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: currentColor;
+
+    &:hover {
+      background-color: color-mix(in srgb, var(--color-black), transparent 90%);
     }
   }
 }

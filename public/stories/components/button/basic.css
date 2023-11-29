@@ -1,51 +1,50 @@
-:root {
-  font-family: sans-serif;
-}
-
-html {
-  background-color: rgb(229, 229, 229);
-}
 
 body {
+  color-scheme: dark;
+  --color-white: hsl(0 0% 100%);
+  --color-black: hsla(60, 6%, 10%, 1);
   margin: 0;
   padding: 0;
-  background: repeating-linear-gradient(
-    to right,
-    transparent,
-    transparent 10px,
-    #dedede 10px,
-    #dedede 11px
-  ), repeating-linear-gradient(
-    to bottom,
-    transparent,
-    transparent 10px,
-    #dedede 10px,
-    #dedede 11px
-  );
+  font-family: sans-serif;
+  --cell-lg: 60px;
+  --cell-lg-cl: color-mix(in srgb, var(--color-white), transparent 98%);
+  --cell-sm: 10px;
+  --cell-sm-cl: color-mix(in srgb, var(--color-white), transparent 99%);
+  background-color: var(--color-black);
+  background-image: linear-gradient(
+      to right,
+      transparent calc(var(--cell-lg) - 1px),
+      var(--cell-lg-cl) 1px
+    ),
+    linear-gradient(
+      to bottom,
+      transparent calc(var(--cell-lg) - 1px),
+      var(--cell-lg-cl) 1px
+    ),
+    linear-gradient(
+      to right,
+      transparent calc(var(--cell-sm) - 1px),
+      var(--cell-sm-cl) 1px
+    ),
+    linear-gradient(
+      to bottom,
+      transparent calc(var(--cell-sm) - 1px),
+      var(--cell-sm-cl) 1px
+    );
+  background-repeat: repeat-x, repeat-y, repeat-x, repeat-y;
+  background-size: var(--cell-lg) 100%, 100% var(--cell-lg),
+    var(--cell-sm) 100%, 100% var(--cell-sm);
+  border: 1px solid color-mix(in srgb, var(--color-white), transparent 98%);
   display: grid;
   place-content: center;
   grid-auto-flow: column;
   gap: 1rem;
+  min-block-size: 100vh;
 }
 
 @media (prefers-color-scheme: dark) { 
-  html {
-    background-color: hsla(60, 6%, 10%, 1);
-  }
-  body {
-    background-color: hsla(60, 6%, 10%, 1);
-    background: repeating-linear-gradient(
-      to right,
-      transparent,
-      transparent 10px,
-      #222 10px,
-      #222 11px
-    ), repeating-linear-gradient(
-      to bottom,
-      transparent,
-      transparent 10px,
-      #222 10px,
-      #222 11px
-    );
-  }
+    body {
+      --color-black: hsla(60, 6%, 10%, 1);
+      --color-white: hsl(0 0% 100%);
+    }
 }

@@ -3,7 +3,7 @@ aside.nav {
   display: flex;
   position: sticky;
   flex-direction: column;
-  top: 90px;
+  top: var(--header-height);
   gap: 8px;
   padding: 24px;
   border-right: 1px solid var(--border-color);

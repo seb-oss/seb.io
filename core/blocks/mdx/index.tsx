@@ -115,7 +115,7 @@ declare global {
 }
 
 function Playground(props: any) {
-  console.log(props)
+  // console.log(props)
 
   return (
     <>

@@ -4,6 +4,7 @@ import {
   allChangelogs,
   Changelog,
 } from "content";
+import Layout from "@/core/layouts/changelog";
 
 function ChangelogCard(changelog: Changelog) {
   return (
@@ -23,7 +24,7 @@ function ChangelogCard(changelog: Changelog) {
         <p>{changelog.summary}</p>
         <h3>Bug fixes</h3>
         <ul>
-          <li>List item</li>
+          <li>Hello</li>
           <li>List item</li>
           <li>List item</li>
           <li>List item <code>test</code></li>
@@ -41,13 +42,13 @@ export default function Changelog() {
   );
 
   return (
-    <div className="layout changelog">
+    <Layout  >
       <h1>Changelogs</h1>
       <section>
         {changelogs.map((changelog, idx) => (
           <ChangelogCard key={idx} {...changelog} />
         ))}
       </section>
-    </div>
+    </Layout>
   );
 }

@@ -23,3 +23,8 @@
 
   @layer blocks;
 }
+
+#playground {
+  --playground-tab-bar-background: #c93636;
+  --playground-preview-toolbar-foreground-color: #c93636 !important;
+}

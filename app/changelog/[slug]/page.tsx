@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { notFound } from "next/navigation"
+import Layout from "@/core/layouts/changelog"
 import { allChangelogs } from "content"
 import { format, parseISO } from "date-fns"
 
@@ -23,7 +24,7 @@ export default function Changelog({ params }: { params: { slug: string } }) {
   const { date, title, global_id, last_edited } = changelog
 
   return (
-    <div className="layout changelog">
+    <Layout>
       <section>
         <article id={changelog.version} className="log">
           <aside>
@@ -49,6 +50,6 @@ export default function Changelog({ params }: { params: { slug: string } }) {
           </main>
         </article>
       </section>
-    </div>
+    </Layout>
   )
 }

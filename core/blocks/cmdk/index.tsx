@@ -72,8 +72,14 @@ export default function Cmdk({
     const componentFuse = new Fuse(allComponents, {
       keys: ["title", "keywords"],
     })
+    // const componentResults = componentFuse.search(value)
+    // const componentItems = componentResults.map((result) => result.item)
+    // results.push(...componentItems)
+
     const componentResults = componentFuse.search(value)
-    const componentItems = componentResults.map((result) => result.item)
+    const componentItems = componentResults
+      .map((result) => result.item)
+      .filter((item) => item._raw.sourceFileName === "index.mdx")
     results.push(...componentItems)
 
     // Posts
@@ -283,20 +289,30 @@ export default function Cmdk({
                   if (groups[doc.type]) {
                     groups[doc.type].push(doc)
                   } else {
+                    // console.log("group", (groups[doc.type] = [doc]))
                     groups[doc.type] = [doc]
                   }
                   return groups
                 }, {})
-              ).map(([type, docs]) => (
-                <div key={type}>
-                  <div className="category" tabIndex={-1}>
-                    {type}
+              )
+                .filter(([type, docs]) => type !== "Post" && type !== "Member")
+                .map(([type, docs]) => (
+                  <div key={type}>
+                    <div className="category" tabIndex={-1}>
+                      {type}
+                    </div>
+                    <div className="list">
+                      {docs
+                        .filter(
+                          (doc: any) =>
+                            type !== "Component" ||
+                            doc._id.endsWith("index.mdx")
+                        )
+                        .map((doc: Document) => renderResult(doc))}
+                      {/* {docs.filter((doc: Document) => doc._id.endsWith("index.mdx")).map((doc: Document) => renderResult(doc))} */}
+                    </div>
                   </div>
-                  <div className="list">
-                    {docs.map((doc: Document) => renderResult(doc))}
-                  </div>
-                </div>
-              ))}
+                ))}
             </>
           ) : (
             <div className="no-results">

@@ -1,26 +1,41 @@
 footer.main-footer {
-  padding: 40px;
+  padding: 64px;
   border-top: 1px solid color-mix(in srgb, var(--color-black), transparent 90%);
-  font-weight: 300;
+  font-weight: 400;
   font-size: 12px;
   display: flex;
-  align-items: center;
-  gap: 20px;
-  font-weight: 400;
+  flex-direction: column;
+  gap: 100px;
+  width: 100%;
+  font-size: 16px;
 
-  button {
-    display: flex;
-    padding: 0;
-    border: none;
-    background: none;
-    cursor: pointer;
+  h2 {
+    font-size: 40px;
+    line-height: 1.2;
   }
 
-  div {
+  .content {
     display: flex;
-    align-items: center;
-    gap: 10px;
-    border-right: 1px solid color-mix(in srgb, currentColor, transparent 90%);
-    padding-right: 20px;
+    gap: 100px;
+    nav {
+      ul {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+
+        button {
+          background: none;
+          border: none;
+          cursor: pointer;
+        }
+
+        a,
+        button {
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
   }
 }

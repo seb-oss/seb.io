@@ -90,7 +90,9 @@ export default function ComponentLayout({
             </div>
           </div>
         </div>
-        <figure></figure>
+        <figure>
+          <button>Test</button>
+        </figure>
       </header>
       <article>
         <div className="content">

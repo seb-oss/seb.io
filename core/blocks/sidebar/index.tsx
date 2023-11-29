@@ -30,9 +30,19 @@ export default function Sidebar({
     a.title.localeCompare(b.title)
   )
 
+  const Arrow = () => {
+    return (
+      <span>
+        <svg viewBox="0 0 24 24">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </span>
+    )
+  }
+
   return (
     <aside className={`nav ${!isNavOpen ? "hidden" : ""}`}>
-      <details open={path.includes("/component") ? true : undefined}>
+      <details>
         <summary>
           <Link
             className={path.includes("/component") ? "active" : ""}
@@ -40,11 +50,7 @@ export default function Sidebar({
           >
             Components
           </Link>
-          <span>
-            <svg viewBox="0 0 24 24">
-              <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
-          </span>
+          <Arrow />
         </summary>
         <nav>
           {components.map((component, idx) => (
@@ -52,7 +58,7 @@ export default function Sidebar({
           ))}
         </nav>
       </details>
-      <details open={path.includes("/foundation") ? true : undefined}>
+      <details>
         <summary>
           <Link
             className={path.includes("/foundation") ? "active" : ""}
@@ -60,11 +66,7 @@ export default function Sidebar({
           >
             Foundation
           </Link>
-          <span>
-            <svg viewBox="0 0 24 24">
-              <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
-          </span>
+          <Arrow />
         </summary>
         <nav>
           <Link
@@ -81,16 +83,12 @@ export default function Sidebar({
           </Link>
         </nav>
       </details>
-      <details open={path.includes("/about") ? true : undefined}>
+      <details>
         <summary>
           <Link className={path == "/about" ? "active" : ""} href="/about">
             About
           </Link>
-          <span>
-            <svg viewBox="0 0 24 24">
-              <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
-          </span>
+          <Arrow />
         </summary>
         <nav>
           <Link
