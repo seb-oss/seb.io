@@ -6,44 +6,9 @@ import Image from "next/image"
 import { useMDXComponent } from "next-contentlayer/hooks"
 import { useTheme } from "next-themes"
 
-interface FigmaProps {
-  file: string
-}
-
-function Figma({ file }: FigmaProps) {
-  const [isLoading, setIsLoading] = useState(true)
-
-  const handleLoad = () => {
-    setIsLoading(false)
-  }
-
-  return (
-    <figure className={isLoading ? "loading" : ""}>
-      <div className="gg-loadbar-alt"></div>
-      <iframe
-        src={`https://www.figma.com/file/${file}?embed_host=share&hide_ui=1&kind=&mode=design&type=design&viewer=1`}
-        onLoad={handleLoad}
-      ></iframe>
-    </figure>
-  )
-}
-
-function Pen() {
-  const [isLoading, setIsLoading] = useState(true)
-
-  const handleLoad = () => {
-    setIsLoading(false)
-  }
-  return (
-    <figure className={isLoading ? "loading" : ""}>
-      <div className="gg-loadbar-alt"></div>
-      <iframe
-        src="https://codepen.io/astrit/embed/RwvKavd?default-tab=html%2Cresult"
-        onLoad={handleLoad}
-      ></iframe>
-    </figure>
-  )
-}
+import Col from "./col/col"
+import Figma from "./figma/figma"
+import Row from "./row/row"
 
 function CustomImage({
   alt,
@@ -53,7 +18,6 @@ function CustomImage({
   const { theme } = useTheme()
   const [isMounted, setIsMounted] = useState(false)
   const isDarkMode = theme === "dark"
-  // const src = isDarkMode ? dark : props.src
 
   useEffect(() => {
     setIsMounted(true)
@@ -69,23 +33,6 @@ function CustomImage({
       )}
       <img alt={alt} {...props} />
     </picture>
-  )
-}
-
-function Sandbox() {
-  const [isLoading, setIsLoading] = useState(true)
-
-  const handleLoad = () => {
-    setIsLoading(false)
-  }
-  return (
-    <figure className={isLoading ? "loading" : ""}>
-      <div className="gg-loadbar-alt"></div>
-      <iframe
-        src="https://codesandbox.io/embed/silent-water-pd45yy?fontsize=14&hidenavigation=1&theme=dark"
-        onLoad={handleLoad}
-      ></iframe>
-    </figure>
   )
 }
 
@@ -115,8 +62,6 @@ declare global {
 }
 
 function Playground(props: any) {
-  // console.log(props)
-
   return (
     <>
       <playground-project
@@ -128,7 +73,7 @@ function Playground(props: any) {
   )
 }
 
-const components = { Figma, Pen, Image: CustomImage, Sandbox, Playground }
+const components = { Figma, Image: CustomImage, Playground, Row, Col }
 
 export function Mdx({
   code,

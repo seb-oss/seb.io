@@ -87,7 +87,7 @@ export default function ComponentLayout({
                 {tagsArray.slice(0, MAX_VISIBLE_TAGS).map((tag, index) => (
                   <div key={tag}>{tag}</div>
                 ))}
-                {extraTagsCount > 0 && <div>...</div>}
+                {extraTagsCount > 0 && <div>···</div>}
               </menu>
             </div>
           </div>
