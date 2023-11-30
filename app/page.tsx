@@ -1,13 +1,14 @@
 import Link from "next/link"
 import Hero from "@/core/blocks/hero/hero"
+import Pattern from "@/core/blocks/pattern/pattern"
 import { allComponents, Component } from "content"
 
 function ComponentCard(component: Component) {
   return (
     <Link href={component.url_path}>
-      <figure>
+      <Pattern>
         <button>Button</button>
-      </figure>
+      </Pattern>
       <span>{component.title}</span>
       <p>{component.summary}</p>
     </Link>

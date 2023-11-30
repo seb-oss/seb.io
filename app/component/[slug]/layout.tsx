@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { notFound, usePathname, useRouter } from "next/navigation"
+import Pattern from "@/core/blocks/pattern/pattern"
 import Taber from "@/core/blocks/taber"
 import TOC from "@/core/blocks/toc/toc"
 import Trail from "@/core/blocks/trail/trail"
@@ -53,11 +54,12 @@ export default function ComponentLayout({
     { path: "/guidelines", component: componentGuidelines },
   ]
 
-  let tocComponent = <TOC headings={component?.headings} /> // default TOC component
+  // default TOC component
+  let tocComponent = <TOC headings={component?.headings} component={title} />
 
   for (let { path, component } of pathsAndComponents) {
     if (pathName.includes(path)) {
-      tocComponent = <TOC headings={component?.headings} />
+      tocComponent = <TOC headings={component?.headings} component={title} />
       break
     }
   }
@@ -90,9 +92,9 @@ export default function ComponentLayout({
             </div>
           </div>
         </div>
-        <figure>
+        <Pattern>
           <button>Test</button>
-        </figure>
+        </Pattern>
       </header>
       <article>
         <div className="content">
