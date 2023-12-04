@@ -4,8 +4,13 @@ import "./style.css"
 
 interface PatternProps {
   children: ReactNode
+  caption?: string
 }
 
-export default function Pattern({ children }: PatternProps) {
-  return <figure className="preview">{children}</figure>
+export default function Pattern({ children, caption }: PatternProps) {
+  return (
+    <figure className="preview" data-caption={caption}>
+      {children}
+    </figure>
+  )
 }

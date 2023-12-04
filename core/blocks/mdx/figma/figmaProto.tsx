@@ -1,25 +1,23 @@
 "use client"
 
 import * as React from "react"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
-import "./style.css"
-
-interface FigmaProps {
-  file: string
+interface FigmaProtoProps {
+  file?: string
   caption?: string
   node?: string
   scale?: string
   height?: string
 }
 
-export default function Figma({
+export default function FigmaProto({
   file,
   caption,
   node,
   scale,
   height,
-}: FigmaProps) {
+}: FigmaProtoProps) {
   const [isLoading, setIsLoading] = useState(true)
 
   const handleLoad = () => {
@@ -38,16 +36,24 @@ export default function Figma({
   // Embed as prototype 
 
  src={`https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/proto/${file}/Embed?type=design&scaling=min-zoom&node-id=${node}&mode=design&hide-ui=1`}
+ 
+ 
+
+  https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/file/R7v6avf1VILuFqpAjt6U07/Best-Floating-Label-Input?node-id=0%3A1
+
+
+  Final 
+
+  src={`https://www.figma.com/file/${file}?embed_host=share&hide_ui=1&kind=&mode=design&scaling=1&zoom=0&node-id=${node}&type=design&viewer=1`}
+ 
  */
 
   return (
     <figure className={isLoading ? "loading" : ""}>
-      <div className="gg-loadbar-alt"></div>
       <iframe
-        src={`https://www.figma.com/file/${file}?embed_host=share&hide_ui=1&kind=&mode=design&scaling=scale-down-width&node-id=${node}&type=design&viewer=1`}
+        src={`https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/proto/${file}/Embed?type=design&scaling=min-zoom&node-id=${node}&mode=design&hide-ui=1`}
         onLoad={handleLoad}
         height={height}
-        // allowTransparency={true}
       ></iframe>
       <figcaption>{caption}</figcaption>
     </figure>
