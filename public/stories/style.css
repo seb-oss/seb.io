@@ -21,3 +21,22 @@ body {
   grid-auto-flow: column;
   gap: 1rem;
 }
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: repeating-linear-gradient(
+        to right,
+        transparent,
+        transparent 10px,
+        #333 10px,
+        #333 11px
+      ),
+      repeating-linear-gradient(
+        to bottom,
+        transparent,
+        transparent 10px,
+        #333 10px,
+        #333 11px
+      );
+  }
+}
