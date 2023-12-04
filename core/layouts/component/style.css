@@ -2,7 +2,8 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 1100px;
+  width: max-content;
+  /* width: 1100px; */
   padding: 40px;
   margin-inline: auto;
   --border-color: color-mix(in srgb, var(--color-black), transparent 90%);
@@ -91,7 +92,7 @@
   article {
     display: flex;
     width: 100%;
-    gap: 40px;
+    gap: 48px;
     align-items: flex-start;
 
     .content {
@@ -99,9 +100,15 @@
       flex: 0 1 100%;
       font-size: 16px;
       line-height: 1.5;
+      max-width: max-content;
 
       main {
-        max-width: 80ch;
+        max-width: 950px;
+
+        p {
+          text-wrap: balance;
+          margin-top: 2ex;
+        }
       }
     }
 
@@ -109,7 +116,7 @@
       padding-block-start: 40px;
       position: sticky;
       top: 80px;
-      min-width: 260px;
+      min-width: 180px;
     }
 
     h2 {
@@ -130,20 +137,53 @@
       position: relative;
       font-weight: 600;
       padding-block-start: 3ex;
-      margin-bottom: 1ex;
+      /* margin-bottom: 1ex; */
+    }
+
+    hr {
+      border: none;
+      background: linear-gradient(
+        to bottom,
+        var(--border-color),
+        var(--border-color)
+      );
+      background-repeat: repeat-x;
+      background-size: 100% 1px;
+      background-position: center;
+      height: 10ex;
+    }
+
+    ul {
+      list-style: inside;
+      padding-top: 2ex;
+
+      li {
+        padding-left: 3ch;
+        position: relative;
+
+        &::before {
+          content: "—";
+          position: absolute;
+          left: 0;
+          opacity: 0.4;
+        }
+      }
     }
 
     img {
       border-radius: 8px;
-      /* margin-block: 2ex; */
+      margin-block: 2ex;
     }
 
-    figure {
+    .col img {
+      margin-block: 0;
+    }
+
+    figure:has(iframe) {
       transition: all 0.4s ease-in-out;
       display: flex;
       align-items: center;
       justify-content: center;
-      /* margin-block: 20px; */
       background-color: color-mix(in srgb, var(--color-black), transparent 97%);
       &.loading {
         iframe {
@@ -216,6 +256,19 @@
       background-color: transparent;
       transition: all 2s cubic-bezier(0.165, 0.84, 0.44, 1);
       transition-delay: 1s;
+    }
+
+    figure:not(:has(iframe)) {
+      /* position: relative; */
+      figcaption {
+        font-size: 12px;
+        opacity: 0.5;
+        margin-block-start: 1lh;
+        margin-bottom: 1lh;
+        /* position: absolute;
+        bottom: -4ex;
+        margin-bottom: 4ex; */
+      }
     }
 
     playground-preview {

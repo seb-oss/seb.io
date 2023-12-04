@@ -8,33 +8,34 @@ import { useTheme } from "next-themes"
 
 import Col from "./col/col"
 import Figma from "./figma/figma"
+import IMG from "./image/image"
 import Row from "./row/row"
 
-function CustomImage({
-  alt,
-  dark,
-  ...props
-}: { alt: string; dark: string } & React.ImgHTMLAttributes<HTMLImageElement>) {
-  const { theme } = useTheme()
-  const [isMounted, setIsMounted] = useState(false)
-  const isDarkMode = theme === "dark"
+// function CustomImage({
+//   alt,
+//   dark,
+//   ...props
+// }: { alt: string; dark: string } & React.ImgHTMLAttributes<HTMLImageElement>) {
+//   const { theme } = useTheme()
+//   const [isMounted, setIsMounted] = useState(false)
+//   const isDarkMode = theme === "dark"
 
-  useEffect(() => {
-    setIsMounted(true)
-  }, [])
+//   useEffect(() => {
+//     setIsMounted(true)
+//   }, [])
 
-  if (!isMounted) {
-    return null
-  }
-  return (
-    <picture>
-      {isDarkMode && (
-        <source srcSet={dark} media="(prefers-color-scheme: dark)" />
-      )}
-      <img alt={alt} {...props} />
-    </picture>
-  )
-}
+//   if (!isMounted) {
+//     return null
+//   }
+//   return (
+//     <picture>
+//       {isDarkMode && (
+//         <source srcSet={dark} media="(prefers-color-scheme: dark)" />
+//       )}
+//       <img alt={alt} {...props} />
+//     </picture>
+//   )
+// }
 
 declare global {
   namespace JSX {
@@ -73,7 +74,7 @@ function Playground(props: any) {
   )
 }
 
-const components = { Figma, Image: CustomImage, Playground, Row, Col }
+const components = { Figma, Image: IMG, Playground, Row, Col }
 
 export function Mdx({
   code,

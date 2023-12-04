@@ -2,15 +2,11 @@
   display: flex;
   gap: 24px;
   flex-direction: row;
-  margin-top: 40px;
+  margin-block-start: 2lh;
 
   .col {
     display: flex;
     flex: 1;
-    align-items: center;
-    justify-content: center;
-    background-color: color-mix(in srgb, currentColor, transparent 90%);
-    border: 1px solid color-mix(in srgb, currentColor, transparent 90%);
-    border-radius: 8px;
+    flex-direction: column;
   }
 }
