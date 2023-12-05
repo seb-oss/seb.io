@@ -14,7 +14,11 @@ export default function Hero() {
         Green Design System is the latest version of SEB’s open-source design
         system. Welcome to a new era of digital banking.
       </p>
-      <Link href="#" className="cta">
+      <Link
+        href="https://github.com/sebgroup/green/discussions"
+        target="_blank"
+        className="cta"
+      >
         <svg
           width="24"
           height="24"
