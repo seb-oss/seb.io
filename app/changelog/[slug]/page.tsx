@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { notFound } from "next/navigation"
+import { Mdx } from "@/core/blocks/mdx"
 import Layout from "@/core/layouts/changelog"
 import { allChangelogs } from "content"
 import { format, parseISO } from "date-fns"
@@ -21,7 +22,7 @@ export default function Changelog({ params }: { params: { slug: string } }) {
     notFound()
   }
 
-  const { date, title, global_id, last_edited } = changelog
+  const { date, title, global_id, last_edited, body } = changelog
 
   return (
     <Layout>
@@ -30,23 +31,12 @@ export default function Changelog({ params }: { params: { slug: string } }) {
           <aside>
             <span>{changelog.version}</span>
             <time dateTime={changelog.date}>
-              {format(parseISO(changelog.date), "LLLL d, yyyy")}
+              {format(parseISO(changelog.date), "LL.d.yy")}
             </time>
           </aside>
           <main>
             <h2>{changelog.title}</h2>
-            <p>{changelog.summary}</p>
-            <h3>Bug fixes</h3>
-            <ul>
-              <li>List item</li>
-              <li>List item</li>
-              <li>List item</li>
-              <li>
-                List item <code>test</code>
-              </li>
-              <li>List item</li>
-              <li>List item</li>
-            </ul>
+            <Mdx code={body.code} globals={{ slug }} />
           </main>
         </article>
       </section>
