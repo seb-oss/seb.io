@@ -45,7 +45,7 @@ export default function Cmdk({
   useEffect(() => {
     if (refs[focusedIndex] && refs[focusedIndex].current) {
       refs[focusedIndex].current?.focus()
-      console.log(refs[focusedIndex].current)
+      // console.log(refs[focusedIndex].current)
     }
   }, [focusedIndex])
 
@@ -235,13 +235,13 @@ export default function Cmdk({
         setFocusedIndex((prevIndex) =>
           prevIndex > 0 ? prevIndex - 1 : searchResults.length - 1
         )
-        console.log(focusedIndex)
+        // console.log(focusedIndex)
       } else if (e.key === "ArrowDown") {
         e.preventDefault()
         setFocusedIndex((prevIndex) =>
           prevIndex < searchResults.length - 1 ? prevIndex + 1 : 0
         )
-        console.log(focusedIndex)
+        // console.log(focusedIndex)
       }
     }
 

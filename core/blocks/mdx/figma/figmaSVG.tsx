@@ -2,10 +2,8 @@
 
 import * as React from "react"
 import { useEffect, useState } from "react"
-import Image from "next/image"
+import Pattern from "@/core/blocks/pattern/pattern"
 import axios from "axios"
-
-import Pattern from "../../pattern/pattern"
 
 interface FigmaSVGProps {
   caption?: string
@@ -13,11 +11,10 @@ interface FigmaSVGProps {
 }
 
 export default function FigmaSVG({ caption, node }: FigmaSVGProps) {
-  const [imageUrl, setImageUrl] = useState("")
   const [svgContent, setSvgContent] = useState("")
 
-  const figmaAccessKey = process.env.FIGMA_ACCESS_KEY
-  const figmaProjectId = process.env.FIGMA_PROJECT_ID
+  const figmaAccessKey = process.env.NEXT_PUBLIC_FIGMA_ACCESS_KEY
+  const figmaProjectId = process.env.NEXT_PUBLIC_FIGMA_PROJECT_ID
   const figmaNodeId = node
 
   useEffect(() => {
@@ -34,10 +31,8 @@ export default function FigmaSVG({ caption, node }: FigmaSVGProps) {
 
         const images = response.data.images
         const imageUrl = Object.values(images)[0] as string
-
         const svgResponse = await axios.get(imageUrl)
         setSvgContent(svgResponse.data)
-        // console.log("Figma image data:", response)
       } catch (error) {
         console.error("Error fetching Figma image:", error)
       }
