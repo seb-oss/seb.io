@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'SEBSansSerif-Regular';
-  src: url('./fonts/SEBSansSerif-Regular.woff2') format('woff2'),
-       url('./fonts/SEBSansSerif-Regular.woff') format('woff');
+  src: url('//esm.sh/@sebgroup/fonts@1.1.0/fonts/SEBSansSerif-Regular.woff2') format('woff2'),
+       url('//esm.sh/@sebgroup/fonts@1.1.0/fonts/SEBSansSerif-Regular.woff') format('woff');
   font-weight: 300;
   font-style: normal;
 }
@@ -12,7 +12,7 @@ body {
   --color-black: hsla(60, 6%, 10%, 1);
   margin: 0;
   padding: 0;
-  font-family: 'SEBSansSerif-Regular';
+  font-family: 'SEBSansSerif-Regular', sans-serif;
   font-weight: 300;
   --cell-lg: 60px;
   --cell-lg-cl: color-mix(in srgb, var(--color-white), transparent 98%);
@@ -48,6 +48,7 @@ body {
   grid-auto-flow: column;
   gap: 1rem;
   min-block-size: 100vh;
+  overflow: hidden;
 }
 
 @media (prefers-color-scheme: dark) { 
