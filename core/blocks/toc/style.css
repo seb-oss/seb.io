@@ -5,16 +5,13 @@ aside.toc {
   span {
     font-size: 10px;
     opacity: 0.5;
-    margin-bottom: 4ex;
-    padding-left: 3ch;
+    margin-bottom: 1ex;
   }
 
   nav {
     display: flex;
     flex-direction: column;
-    gap: 2ex;
     font-size: 14px;
-    border-left: 1px solid rgba(255, 255, 255, 0.1);
     position: relative;
 
     &:hover {
@@ -30,11 +27,9 @@ aside.toc {
       transition: all 0.4s;
       border-left: 1px solid transparent;
       margin-left: -1px;
-      padding-left: var(--_inline-padding);
       opacity: 0.4;
 
       &.active {
-        border-color: white;
         opacity: 1;
       }
 
@@ -43,16 +38,36 @@ aside.toc {
         opacity: 1;
       }
 
-      &[data-level="2"] {
-        padding-left: calc(var(--_inline-padding) + 2ch);
+      &[data-level="1"] {
+        margin-bottom: 1ex;
       }
 
-      &[data-level="3"] {
-        padding-left: calc(var(--_inline-padding) + 3ch);
+      &[data-level="2"] {
+        margin-top: 2ex;
+        margin-bottom: 1ex;
+        gap: 1ch;
+
+        &::before {
+          content: " ";
+          display: flex;
+          width: 6px;
+          height: 6px;
+          border-radius: 200px;
+          background-color: currentColor;
+        }
+      }
+
+      &[data-level="3"],
+      &[data-level="4"] {
+        margin-left: 2.5px;
+        padding-left: var(--_inline-padding);
+        border-left: 1px solid currentColor;
+        padding-block: 8px;
+        /* padding-left: calc(var(--_inline-padding) + 3ch); */
       }
 
       &[data-level="4"] {
-        padding-left: calc(var(--_inline-padding) + 4ch);
+        /* padding-left: calc(var(--_inline-padding) + 4ch); */
       }
     }
   }

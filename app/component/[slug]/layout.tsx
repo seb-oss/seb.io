@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { notFound, usePathname, useRouter } from "next/navigation"
+import Pattern from "@/core/blocks/pattern/pattern"
 import Taber from "@/core/blocks/taber"
 import TOC from "@/core/blocks/toc/toc"
 import Trail from "@/core/blocks/trail/trail"
@@ -53,16 +54,20 @@ export default function ComponentLayout({
     { path: "/guidelines", component: componentGuidelines },
   ]
 
-  let tocComponent = <TOC headings={component?.headings} /> // default TOC component
+  // default TOC component
+  let tocComponent = <TOC headings={component?.headings} component={title} />
 
   for (let { path, component } of pathsAndComponents) {
     if (pathName.includes(path)) {
-      tocComponent = <TOC headings={component?.headings} />
+      tocComponent = <TOC headings={component?.headings} component={title} />
       break
     }
   }
 
+  // const tagsArray = tags ? tags.split(", ") : []
+  const MAX_VISIBLE_TAGS = 3
   const tagsArray = tags ? tags.split(", ") : []
+  const extraTagsCount = Math.max(0, tagsArray.length - MAX_VISIBLE_TAGS)
 
   return (
     <Layout key={global_id}>
@@ -79,14 +84,17 @@ export default function ComponentLayout({
             </div>
             <div title="Tags">
               <menu>
-                {tagsArray.map((tag, index) => (
+                {tagsArray.slice(0, MAX_VISIBLE_TAGS).map((tag, index) => (
                   <div key={tag}>{tag}</div>
                 ))}
+                {extraTagsCount > 0 && <div>···</div>}
               </menu>
             </div>
           </div>
         </div>
-        <figure></figure>
+        <Pattern>
+          <button>Test</button>
+        </Pattern>
       </header>
       <article>
         <div className="content">

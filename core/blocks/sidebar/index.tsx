@@ -30,14 +30,27 @@ export default function Sidebar({
     a.title.localeCompare(b.title)
   )
 
+  const Arrow = () => {
+    return (
+      <span>
+        <svg viewBox="0 0 24 24">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </span>
+    )
+  }
+
   return (
     <aside className={`nav ${!isNavOpen ? "hidden" : ""}`}>
-      <details open>
+      <details>
         <summary>
-          <span>Components</span>
-          <svg viewBox="0 0 24 24">
-            <polyline points="6 9 12 15 18 9"></polyline>
-          </svg>
+          <Link
+            className={path.includes("/component") ? "active" : ""}
+            href="/components"
+          >
+            Components
+          </Link>
+          <Arrow />
         </summary>
         <nav>
           {components.map((component, idx) => (
@@ -47,10 +60,13 @@ export default function Sidebar({
       </details>
       <details>
         <summary>
-          <span>Foundation</span>
-          <svg viewBox="0 0 24 24">
-            <polyline points="6 9 12 15 18 9"></polyline>
-          </svg>
+          <Link
+            className={path.includes("/foundation") ? "active" : ""}
+            href="/foundation"
+          >
+            Foundation
+          </Link>
+          <Arrow />
         </summary>
         <nav>
           <Link
@@ -69,10 +85,10 @@ export default function Sidebar({
       </details>
       <details>
         <summary>
-          <span>About</span>
-          <svg viewBox="0 0 24 24">
-            <polyline points="6 9 12 15 18 9"></polyline>
-          </svg>
+          <Link className={path == "/about" ? "active" : ""} href="/about">
+            About
+          </Link>
+          <Arrow />
         </summary>
         <nav>
           <Link

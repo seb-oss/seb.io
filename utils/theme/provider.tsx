@@ -22,14 +22,37 @@ export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
   }
 
   const toggleNav = () => {
-    const newNavOpen = !isNavOpen
-    setNavOpen(newNavOpen)
-    localStorage.setItem("navOpen", newNavOpen ? "true" : "false")
+    setNavOpen((prevNavOpen) => {
+      const newNavOpen = !prevNavOpen
+      localStorage.setItem("navOpen", newNavOpen ? "true" : "false")
+      return newNavOpen
+    })
   }
 
   useEffect(() => {
     const navOpen = localStorage.getItem("navOpen")
     setNavOpen(navOpen === "true")
+
+    const handleMKey = (e: {
+      stopPropagation(): void
+      key: string
+      target: any
+      preventDefault: () => void
+    }) => {
+      const target = e.target
+      const inputElements = Array.from(
+        document.querySelectorAll("input, textarea")
+      )
+      if (e.key === "m" && inputElements.includes(target) === false) {
+        e.stopPropagation()
+        toggleNav()
+      }
+    }
+
+    document.addEventListener("keydown", handleMKey)
+    return () => {
+      document.removeEventListener("keydown", handleMKey)
+    }
   }, [])
 
   const themeProviderValue = {

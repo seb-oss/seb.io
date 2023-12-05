@@ -1,12 +1,12 @@
-"use client";
+"use client"
 
-import * as React from "react";
-import { useState, useEffect } from "react";
-import { useTheme } from "next-themes";
+import * as React from "react"
+import { useEffect, useState } from "react"
+import { useTheme } from "next-themes"
 
 export function ThemeToggle() {
-  const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false)
+  const { theme, setTheme } = useTheme()
 
   const Light = () => (
     <svg viewBox="0 0 24 24">
@@ -20,13 +20,13 @@ export function ThemeToggle() {
       <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
       <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
     </svg>
-  );
+  )
 
   const Dark = () => (
     <svg viewBox="0 0 24 24">
       <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
     </svg>
-  );
+  )
 
   React.useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -36,34 +36,37 @@ export function ThemeToggle() {
         (event.target as HTMLElement).tagName !== "INPUT" &&
         (event.target as HTMLElement).tagName !== "TEXTAREA"
       ) {
-        setTheme(theme === "light" ? "dark" : "light");
+        setTheme(theme === "light" ? "dark" : "light")
       }
-    };
+    }
 
-    document.addEventListener("keydown", handleKeyDown);
+    document.addEventListener("keydown", handleKeyDown)
 
     return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [setTheme, theme]);
+      document.removeEventListener("keydown", handleKeyDown)
+    }
+  }, [setTheme, theme])
 
   function isHTMLElement(target: EventTarget | null): target is HTMLElement {
-    return target instanceof HTMLElement;
+    return target instanceof HTMLElement
   }
   useEffect(() => {
-    setMounted(true);
-  }, []);
+    setMounted(true)
+  }, [])
 
   if (!mounted) {
     return (
-      <button>
+      <button className="theme">
         <Light />
       </button>
-    );
+    )
   }
   return (
-    <button onClick={() => setTheme(theme === "light" ? "dark" : "light")}>
+    <button
+      className="theme"
+      onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+    >
       {theme === "dark" ? <Light /> : <Dark />}
     </button>
-  );
+  )
 }

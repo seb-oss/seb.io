@@ -2,6 +2,8 @@
 
 import React, { useEffect, useRef, useState } from "react"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
+import { allComponents, Component } from "content"
 
 import "./style.css"
 
@@ -13,9 +15,10 @@ interface Heading {
 
 interface TOCProps {
   headings: Heading[]
+  component: string
 }
 
-const TOC: React.FC<TOCProps> = ({ headings }) => {
+const TOC: React.FC<TOCProps> = ({ headings, component }) => {
   const [activeId, setActiveId] = useState("")
   const observer = useRef<IntersectionObserver | null>(null)
 
@@ -46,6 +49,16 @@ const TOC: React.FC<TOCProps> = ({ headings }) => {
     <aside className="toc">
       <span>On this page</span>
       <nav data-name={headings.length > 0 ? "On this page" : ""}>
+        <Link
+          key={`#top`}
+          href={`#top`}
+          data-id={"top"}
+          data-level={"1"}
+          onClick={() => handleClick("top")}
+          passHref
+        >
+          {component}
+        </Link>
         {headings.map((heading) => (
           <Link
             key={`#${heading.slug}`}
