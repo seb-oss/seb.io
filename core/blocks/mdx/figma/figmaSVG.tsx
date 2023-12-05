@@ -12,7 +12,6 @@ interface FigmaSVGProps {
 
 export default function FigmaSVG({ caption, node }: FigmaSVGProps) {
   const [svgContent, setSvgContent] = useState("")
-
   const figmaAccessKey = process.env.NEXT_PUBLIC_FIGMA_ACCESS_KEY
   const figmaProjectId = process.env.NEXT_PUBLIC_FIGMA_PROJECT_ID
   const figmaNodeId = node
