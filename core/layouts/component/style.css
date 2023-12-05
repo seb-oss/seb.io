@@ -224,12 +224,6 @@
       }
     }
 
-    playground-preview {
-      border-radius: 8px;
-      overflow: hidden;
-      border: 1px solid color-mix(in srgb, var(--color-white), transparent 10%);
-    }
-
     div[data-rehype-pretty-code-fragment] {
       margin-top: 20px;
 
