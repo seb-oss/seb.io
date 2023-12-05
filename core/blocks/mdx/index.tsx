@@ -42,7 +42,7 @@ function Playground(props: any) {
     <>
       <playground-project
         id="story-project"
-        project-src="/stories/components/button/story-project.json"
+        project-src="/stories/story-button-1-project.json"
       ></playground-project>
       <playground-preview project="story-project"> </playground-preview>
     </>

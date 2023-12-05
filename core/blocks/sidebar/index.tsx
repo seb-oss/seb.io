@@ -102,6 +102,9 @@ export default function Sidebar({
           </Link>
         </nav>
       </details>
+      <Link href="https://designlibrary.sebgroup.com/" target="_blank">
+        Design Library
+      </Link>
     </aside>
   )
 }
