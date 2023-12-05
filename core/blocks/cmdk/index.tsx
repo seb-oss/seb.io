@@ -15,6 +15,7 @@ import Fuse from "fuse.js"
 
 import "./style.css"
 
+import React from "react"
 import Image from "next/image"
 
 interface Document {
@@ -35,11 +36,18 @@ export default function Cmdk({
   isOpen: boolean
   toggleCmd: () => void
 }) {
-  const [focusedIndex, setFocusedIndex] = useState<number>(-1)
-
   const [searchResults, setSearchResults] = useState<Document[]>(
     allDocuments as Document[]
   )
+  const [focusedIndex, setFocusedIndex] = useState<number>(-1)
+  const refs = searchResults.map(() => React.createRef<HTMLDivElement>())
+
+  useEffect(() => {
+    if (refs[focusedIndex] && refs[focusedIndex].current) {
+      refs[focusedIndex].current?.focus()
+      console.log(refs[focusedIndex].current)
+    }
+  }, [focusedIndex])
 
   const inputRef = useRef<HTMLInputElement>(null)
 
@@ -101,13 +109,15 @@ export default function Cmdk({
     setSearchResults(results as Document[])
   }
 
-  const renderResult = (doc: Document) => {
+  const renderResult = (doc: Document, index: number, isFocused: boolean) => {
+    const className = isFocused ? "focused" : ""
     if (doc.type === "Changelog") {
       return (
         <Link
           key={doc.title + doc.url_path}
           href={doc.url_path}
           onClick={toggleCmd}
+          className={className}
         >
           <div className="cmdk-item-name">
             <span className="cmdk-item-char">{doc.title.charAt(0)}</span>
@@ -128,6 +138,7 @@ export default function Cmdk({
           key={doc.title + doc.url_path}
           href={doc.url_path}
           onClick={toggleCmd}
+          className={className}
         >
           <div className="cmdk-item-name">
             <span className="cmdk-item-char">{doc.title.charAt(0)}</span>
@@ -158,6 +169,7 @@ export default function Cmdk({
           key={doc.title + doc.url_path}
           href={doc.url_path}
           onClick={toggleCmd}
+          className={className}
         >
           <div className="cmdk-item-name">
             <span className="cmdk-item-char">{doc.title.charAt(0)}</span>
@@ -171,6 +183,7 @@ export default function Cmdk({
           key={doc.title + doc.url_path}
           href={"about" + doc.url_path}
           onClick={toggleCmd}
+          className={className}
         >
           <div className="cmdk-item-name">
             <Image
@@ -310,7 +323,10 @@ export default function Cmdk({
                             type !== "Component" ||
                             doc._id.endsWith("index.mdx")
                         )
-                        .map((doc: Document) => renderResult(doc))}
+                        .map((doc: Document, index: number) => {
+                          const isFocused = index === focusedIndex
+                          return renderResult(doc, index, isFocused)
+                        })}
                       {/* {docs.filter((doc: Document) => doc._id.endsWith("index.mdx")).map((doc: Document) => renderResult(doc))} */}
                     </div>
                   </div>
