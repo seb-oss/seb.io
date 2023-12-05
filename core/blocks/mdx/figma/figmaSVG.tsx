@@ -16,11 +16,9 @@ export default function FigmaSVG({ caption, node }: FigmaSVGProps) {
   const [imageUrl, setImageUrl] = useState("")
   const [svgContent, setSvgContent] = useState("")
 
-  // const figmaProjectId = "Nv3WN0vGhsCj1WSqlA1Ctn"
-  const figmaProjectId = "Nv3WN0vGhsCj1WSqlA1Ctn"
-  // const figmaNodeId = "1-8"
+  const figmaAccessKey = process.env.FIGMA_ACCESS_KEY
+  const figmaProjectId = process.env.FIGMA_PROJECT_ID
   const figmaNodeId = node
-  const accessKey = "figd_eknpiT303DVZu645udfaNGedTdI2De9uLbgqArNQ"
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,7 +27,7 @@ export default function FigmaSVG({ caption, node }: FigmaSVGProps) {
           `https://api.figma.com/v1/images/${figmaProjectId}/?ids=${figmaNodeId}&format=svg`,
           {
             headers: {
-              "X-Figma-Token": accessKey,
+              "X-Figma-Token": figmaAccessKey,
             },
           }
         )
