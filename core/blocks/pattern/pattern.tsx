@@ -25,7 +25,7 @@ export default function Pattern({ children, caption, height }: PatternProps) {
       <figure className="preview" data-caption={caption} style={style}>
         {children}
       </figure>
-      <span>{caption}</span>
+      {caption && <span>{caption}</span>}
     </>
   )
 }

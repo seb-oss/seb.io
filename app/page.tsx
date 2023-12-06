@@ -1,17 +1,27 @@
 import Link from "next/link"
 import Hero from "@/core/blocks/hero/hero"
+import FigmaSVG from "@/core/blocks/mdx/figma/figmaSVG"
 import Pattern from "@/core/blocks/pattern/pattern"
 import { allComponents, Component } from "content"
 
 function ComponentCard(component: Component) {
   return (
     <Link href={component.url_path}>
-      <Pattern>
-        <button>Button</button>
-      </Pattern>
-      <span>{component.title}</span>
+      <FigmaSVG node={component.node} />
+      <div>{component.title}</div>
       <p>{component.summary}</p>
     </Link>
+  )
+}
+
+function Chevron() {
+  return (
+    <div>
+      <svg viewBox="0 0 24 24">
+        <line x1="5" y1="12" x2="19" y2="12"></line>
+        <polyline points="12 5 19 12 12 19"></polyline>
+      </svg>
+    </div>
   )
 }
 
@@ -23,18 +33,9 @@ export default function Home() {
   return (
     <div className="layout core">
       <Hero />
-      {/* <section>
-        <h2>Other pages</h2>
-        <div>
-          <Link href="/changelog">Changelog</Link>
-          <Link href="/status">Status</Link>
-          <Link href="/status">Status</Link>
-        </div>
-      </section> */}
       <section>
         <h2>
           <Link href="/components">Components</Link>
-          <Link href="/components">All components</Link>
         </h2>
         <div className="component-list">
           {components.map((component, idx) => (
@@ -42,12 +43,23 @@ export default function Home() {
           ))}
         </div>
       </section>
-      <section>
+      <section className="resources">
         <h2>Resources</h2>
-        <div>
-          <Link href="/">A good link for a developer</Link>
-          <Link href="/">SEB Brand Hub</Link>
-          <Link href="/">Get access to Figma</Link>
+        <div className="list">
+          <Link className="cta-home" href="/">
+            <span data-caption="Developer">A good link for a developer</span>
+            <Chevron />
+          </Link>
+          <Link className="cta-home" href="/">
+            <span data-caption="Media Bank & Brand Guidelines">
+              SEB Brand Hub
+            </span>
+            <Chevron />
+          </Link>
+          <Link className="cta-home" href="/">
+            <span data-caption="Designer">Get access to Figma</span>
+            <Chevron />
+          </Link>
         </div>
       </section>
       <section>
