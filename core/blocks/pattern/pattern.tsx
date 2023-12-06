@@ -12,9 +12,10 @@ export default function Pattern({ children, caption, height }: PatternProps) {
   const style = height
     ? {
         maxBlockSize: `${height}px`,
-        minBlockSize: `140px`,
+        minBlockSize: `260px`,
         aspectRatio: "initial",
         width: "auto",
+        height: "auto",
         padding: "48px",
       }
     : {}

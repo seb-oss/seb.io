@@ -58,6 +58,7 @@ export default function Sidebar({
           ))}
         </nav>
       </details>
+      {/* <hr /> */}
       <details>
         <summary>
           <Link
@@ -83,6 +84,7 @@ export default function Sidebar({
           </Link>
         </nav>
       </details>
+      {/* <hr /> */}
       <details>
         <summary>
           <Link className={path == "/about" ? "active" : ""} href="/about">
@@ -102,9 +104,12 @@ export default function Sidebar({
           </Link>
         </nav>
       </details>
-      <Link href="https://designlibrary.sebgroup.com/" target="_blank">
-        Design Library
-      </Link>
+      {/* <hr /> */}
+      <nav>
+        <Link href="https://designlibrary.sebgroup.com/" target="_blank">
+          Design Library
+        </Link>
+      </nav>
     </aside>
   )
 }
