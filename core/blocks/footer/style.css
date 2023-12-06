@@ -1,6 +1,6 @@
 footer.main-footer {
   padding: 64px;
-  border-top: 1px solid color-mix(in srgb, var(--color-black), transparent 90%);
+  border-top: 1px solid var(--gds-sys-color-stroke-stroke-variant2);
   font-weight: 400;
   font-size: 12px;
   display: flex;

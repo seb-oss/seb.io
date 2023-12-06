@@ -13,8 +13,10 @@
           &.core {
             display: flex;
             flex-direction: column;
+            flex-grow: 1;
             gap: 100px;
             padding: 40px;
+            margin-block-end: 7.5rem;
 
             .component-list {
               a {

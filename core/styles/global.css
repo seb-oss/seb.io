@@ -2,6 +2,8 @@
 @import "tokens.css";
 @import "layouts.css";
 @import "motion.css";
+@import "typography.css";
+@import "utilities.css";
 
 @layer core {
   html {
@@ -12,8 +14,8 @@
   }
 
   body {
-    background-color: var(--color-white);
-    color: var(--color-black);
+    background-color: var(--gds-sys-color-background-background);
+    color: var(--gds-sys-color-content-content);
     letter-spacing: 0.1px;
     -webkit-font-smoothing: antialiased;
     -webkit-tap-highlight-color: transparent;

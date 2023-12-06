@@ -4,17 +4,13 @@ import Link from "next/link"
 
 import "./style.css"
 
-export default function Hero() {
+
+export default function Hero({heading, preamble}) {
   return (
     <div className="hero">
-      <h1>
-        Design and build beautiful, usable products with Green Design System
-      </h1>
-      <p>
-        Green Design System is the latest version of SEB’s open-source design
-        system. Welcome to a new era of digital banking.
-      </p>
-      <Link
+      <h1>{heading}</h1>
+      <p>{preamble}</p>
+{/*      <Link
         href="https://github.com/sebgroup/green/discussions"
         target="_blank"
         className="cta"
@@ -32,7 +28,7 @@ export default function Hero() {
           />
         </svg>
         Ask question
-      </Link>
+      </Link>*/}
     </div>
   )
 }

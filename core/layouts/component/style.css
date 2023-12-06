@@ -245,4 +245,18 @@
     opacity: 0.5;
     margin-block-start: 40px;
   }
+
+  playground-preview {
+    --playground-preview-toolbar-background: var(--gds-sys-color-background-background);
+    --playground-preview-toolbar-foreground-color: var(--gds-sys-color-content-content);
+    --playground-border: none;
+
+    border-radius: 12px;
+    border: 1px solid var(--gds-sys-color-stroke-stroke-variant2);
+    overflow: hidden;
+
+    &::part(preview-toolbar) {
+      display: none;
+    }
+  }
 }

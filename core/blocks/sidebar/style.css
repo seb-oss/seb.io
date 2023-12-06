@@ -1,5 +1,5 @@
 aside.nav {
-  --border-color: color-mix(in srgb, var(--color-black), transparent 90%);
+  --border-color: var(--gds-sys-color-stroke-stroke-variant2);
   display: flex;
   position: sticky;
   flex-direction: column;
@@ -16,11 +16,7 @@ aside.nav {
     &[open] {
       summary {
         span {
-          background-color: color-mix(
-            in srgb,
-            var(--color-black),
-            transparent 98%
-          );
+          /*background-color: var(--gds-sys-color-state-layers-state-black);*/
         }
         svg {
           transform: scaleY(-1);
@@ -38,19 +34,9 @@ aside.nav {
       transition: all 0.4s;
       margin-bottom: 4px;
 
-      > a {
-        &.active {
-          background-color: color-mix(
-            in srgb,
-            var(--color-black),
-            transparent 98%
-          );
-        }
-      }
-
       &:hover {
         span {
-          background-color: var(--border-color);
+          background-color: var(--gds-sys-color-state-layers-state-black);
         }
       }
 
@@ -70,7 +56,7 @@ aside.nav {
         transition: all 482ms;
 
         &:hover {
-          background-color: var(--border-color);
+          background-color: var(--gds-sys-color-state-layers-state-black);
         }
       }
 
@@ -101,8 +87,7 @@ aside.nav {
 
     &:hover,
     &.active {
-      background-color: var(--border-color);
-      color: var(--color-black);
+      background-color: var(--gds-sys-color-state-layers-state-black);
     }
 
     svg, path {

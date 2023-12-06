@@ -1,0 +1,33 @@
+<<<<<<< Updated upstream
+=======
+@import 'light.css';
+@import 'dark.css' screen and (prefers-color-scheme: dark);
+
+:root {
+  font-family: "SEB SansSerif";
+}
+
+html {
+  background: var(--gds-sys-color-background-background);
+}
+body {
+  margin: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 10px,
+    var(--gds-sys-color-stroke-stroke-variant2) 10px,
+    var(--gds-sys-color-stroke-stroke-variant2) 11px
+  ), repeating-linear-gradient(
+    to right,
+    transparent,
+    transparent 10px,
+    var(--gds-sys-color-stroke-stroke-variant2) 10px,
+    var(--gds-sys-color-stroke-stroke-variant2) 11px
+  );
+  display: grid;
+  place-content: center;
+  grid-auto-flow: column;
+  gap: 1rem;
+}
+>>>>>>> Stashed changes

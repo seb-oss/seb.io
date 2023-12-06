@@ -8,6 +8,8 @@ import Layout from "@/core/layouts/core"
 import SEBSAnsSerif from "@/utils/fonts/fonts"
 import { ThemeProvider, ThemeProviderContext } from "@/utils/theme/provider"
 
+import "react-flexbox-grid/dist/react-flexbox-grid.css"
+
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {

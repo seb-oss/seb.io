@@ -2850,6 +2850,13 @@ flatted@^3.2.9:
   resolved "https://registry.yarnpkg.com/flatted/-/flatted-3.2.9.tgz#7eb4c67ca1ba34232ca9d2d93e9886e611ad7daf"
   integrity sha512-36yxDn5H7OFZQla0/jFJmbIKTdZAQHngCedGxiMmpNfEZM0sdEeT+WczLQrjK6D7o2aiyLYDnkw0R3JK0Qv1RQ==
 
+flexboxgrid2@^7.2.0:
+  version "7.2.1"
+  resolved "https://registry.yarnpkg.com/flexboxgrid2/-/flexboxgrid2-7.2.1.tgz#3ffb9661ca5a9e96468eae648f8caf279bd0b2a4"
+  integrity sha512-O2bO5ZcBXnFy7cYmyt/CKb6CuwzNuUPxWJt8WOiaot8SetE9zyUahXGTSpKDm3+CTYQ5YeEMPeunMdjcxKJz4w==
+  dependencies:
+    normalize.css "^7.0.0"
+
 follow-redirects@^1.15.0:
   version "1.15.3"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.15.3.tgz#fe2f3ef2690afce7e82ed0b44db08165b207123a"
@@ -4877,6 +4884,11 @@ normalize-range@^0.1.2:
   resolved "https://registry.yarnpkg.com/normalize-range/-/normalize-range-0.1.2.tgz#2d10c06bdfd312ea9777695a4d28439456b75942"
   integrity sha512-bdok/XvKII3nUpklnV6P2hxtMNrCboOjAcyBuQnWEhO665FwrSNRxU+AqpsyvO6LgGYPspN+lu5CLtw4jPRKNA==
 
+normalize.css@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/normalize.css/-/normalize.css-7.0.0.tgz#abfb1dd82470674e0322b53ceb1aaf412938e4bf"
+  integrity sha512-LYaFZxj2Q1Q9e1VJ0f6laG46Rt5s9URhKyckNaA2vZnL/0gwQHWhM7ALQkp3WBQKM5sXRLQ5Ehrfkp+E/ZiCRg==
+
 object-assign@^4.0.1, object-assign@^4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-4.1.1.tgz#2109adc7965887cfc05cbbd442cac8bfbb360863"
@@ -5193,7 +5205,7 @@ prettier@^2.8.8:
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.8.8.tgz#e8c5d7e98a4305ffe3de2e1fc4aca1a71c28b1da"
   integrity sha512-tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q==
 
-prop-types@^15.8.1:
+prop-types@^15.5.8, prop-types@^15.8.1:
   version "15.8.1"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.8.1.tgz#67d87bf1a694f48435cf332c24af10214a3140b5"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -5247,6 +5259,14 @@ react-dom@^18:
   dependencies:
     loose-envify "^1.1.0"
     scheduler "^0.23.0"
+
+react-flexbox-grid@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/react-flexbox-grid/-/react-flexbox-grid-2.1.2.tgz#5eadf04e8559f7140cd6867a55a5351ded8d3920"
+  integrity sha512-lj1oVnIJ7TY3W6tPjFUxlUYd1DLFxEg8RiX3HAYVvreE3O9HU9n2390CFoPQ+qk1E+5MXa2t/mLMafFLAa8+7Q==
+  dependencies:
+    flexboxgrid2 "^7.2.0"
+    prop-types "^15.5.8"
 
 react-is@^16.13.1:
   version "16.13.1"
