@@ -46,6 +46,7 @@ export default function ComponentLayout({
     last_edited,
     summary,
     body,
+    node,
   } = component
 
   const pathsAndComponents = [
@@ -93,7 +94,7 @@ export default function ComponentLayout({
             </div>
           </div>
         </div>
-        <FigmaSVG node="1608-315" />
+        <FigmaSVG node={node} />
         {/* <Pattern>
           <button>Test</button>
         </Pattern> */}
