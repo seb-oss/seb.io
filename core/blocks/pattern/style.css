@@ -56,15 +56,11 @@ figure.preview {
     }
   }
 
-  &[data-caption]::after {
+  & ~ span {
     content: attr(data-caption);
     display: flex;
     font-size: 12px;
     opacity: 0.5;
-    margin-block-start: 1lh;
-    margin-bottom: 1lh;
-    position: absolute;
-    bottom: -3lh;
-    left: 0;
+    margin-top: 2ex;
   }
 }

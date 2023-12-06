@@ -10,7 +10,7 @@ tags: button, buttons, filter chip, button group
 ## Overview
 A button serve as an interactive element that enables users to perform an action or make a choice with a simple click or tap. It's important to decide what type of button and what em in order to give the user action highest prioritised. A good rule of thumb is to use only one primary action in each context. 
 
-<Playground component="button" story-id="1" />
+{/* <Playground component="button" story-id="1" /> */}
 
 <Row>
 <Col>
@@ -25,10 +25,10 @@ It's critical to find the right balance of what buttons to use. It's up to us as
 </ul>
 </Col>
 <Col>
-    {/* <FigmaSVG 
-        node="2184-5" 
+    <FigmaSVG 
+        node="1608-315" 
         caption="From top - Primary, Secondary, Tertiary." 
-    /> */}
+    />
 </Col>
 </Row>
 
@@ -40,20 +40,23 @@ It's critical to find the right balance of what buttons to use. It's up to us as
 <li>Inverted: Used to place on other than the normal backgrounds (typically darker tones)</li>
 <li>Tonal: Only used internal in other components</li>
 </ul>
-    <FigmaProto 
-        file="Nv3WN0vGhsCj1WSqlA1Ctn"
-        node="2184-5" 
-        caption="From top - Primary, Secondary, Tertiary." 
-    />
-{/* <Figma file="Nv3WN0vGhsCj1WSqlA1Ctn" node="2029-12" height="400" caption="All types of buttons" /> */}
-<Image src="/content/button/image-light.png" dark="/content/button/image-dark.png" alt="test" caption="All types of buttons" />
+
+<FigmaSVG node="1608-1209" caption="All types of buttons" height="300" />
 
 <hr />
 
 ## Button sets
 Some text about the sets is good to have here. Keep it short.
-<Image src="/content/button/image-light.png" dark="/content/button/image-dark.png" alt="test" caption="1 Normal, 2 Icon button, 3 Floating action button, 4 Split button, 5 Next and back button, 6 Category button." />
-{/* <Figma file="Nv3WN0vGhsCj1WSqlA1Ctn" node="1735-7" caption="1 Normal, 2 Icon button, 3 Floating action button, 4 Split button, 5 Next and back button, 6 Category button." /> */}
+<Row>
+<Col><FigmaSVG node="1609-2970" caption="1. Normal" /></Col>
+<Col><FigmaSVG node="1609-2974" caption="2. Icon button" /></Col>
+<Col><FigmaSVG node="1609-2977" caption="3. Extended FAB" /></Col>
+</Row>
+<Row>
+<Col><FigmaSVG node="1609-2981" caption="4. Split button" /></Col>
+<Col><FigmaSVG node="1609-2985" caption="5. Next and back button" /></Col>
+<Col><FigmaSVG node="1609-2988" caption="6. Category button" /></Col>
+</Row>
 
 <Row>
 <Col>
@@ -67,17 +70,9 @@ The normal button can be used as the Positive, Negative and Inverted type.
 </Row>
 
 <Row>
-<Col>
-{/* <Figma file="Nv3WN0vGhsCj1WSqlA1Ctn" node="1735-7" caption="Normal in Primary, secondary and tertiary" /> */}
-<Image src="/content/button/image-light.png" dark="/content/button/image-dark.png" alt="test" caption="Normal in Primary, secondary and tertiary" />
-</Col>
-<Col>
-{/* <Figma file="Nv3WN0vGhsCj1WSqlA1Ctn" node="1735-7" caption="Positive and negative button in Primary." /> */}
-<Image src="/content/button/image-light.png" dark="/content/button/image-dark.png" alt="test" caption="Positive and negative button in Primary." />
-</Col>
+<Col><FigmaSVG node="1609-7673" caption="Normal in Primary, secondary and tertiary" /></Col>
+<Col><FigmaSVG node="1609-7763" caption="Positive and negative button in Primary" /></Col>
 </Row>
-
-
 
 <Row>
 <Col>
@@ -91,11 +86,12 @@ The Icon button can be used as the Positive, Negative and Inverted type also whe
 </Row>
 
 <Row>
-<Col><Image src="/content/button/image-light.png" dark="/content/button/image-dark.png" alt="test" caption="Icon button, normal and positive" />
-</Col>
-<Col><Image src="/content/button/image-light.png" dark="/content/button/image-dark.png" alt="test" caption="Tonal and custom tonal" /></Col>
-<Col><Image src="/content/button/image-light.png" dark="/content/button/image-dark.png" alt="test" caption="Tonal custom combinations on Alert ribbon" /></Col>
+<Col><FigmaSVG node="1609-7912" caption="Icon button, normal and positive" /></Col>
+<Col><FigmaSVG node="1609-8031" caption="Tonal and custom tonal" /></Col>
+<Col><FigmaSVG node="1609-8159" caption="Tonal custom combinations on Alert ribbon" /></Col>
 </Row>
+
+<hr />
 
 <Row>
 <Col>
@@ -104,7 +100,7 @@ Seldom used because they may be disturbing because they are always floating visi
 
 Used only as Primary type.
 </Col>
-<Col><Image src="/content/button/image-light.png" dark="/content/button/image-dark.png" alt="test" caption="This is the floating action button." /></Col>
+<Col><FigmaSVG node="1609-8378" caption="This is the floating action button." /></Col>
 </Row>
 
 <hr />
@@ -116,7 +112,7 @@ Used to group a set of actions that would otherwise be separate buttons and clut
 
 Comes in both primary and secondary types.
 </Col>
-<Col><Image src="/content/button/image-light.png" dark="/content/button/image-dark.png" alt="test" caption="Split button, try it out!" /></Col>
+<Col><FigmaSVG node="1609-8401" caption="Split button, try it out!" /></Col>
 </Row>
 
 <Row>
@@ -130,18 +126,18 @@ Back button comes in both primary and secondary state depending on what suits th
 </Row>
 
 <Row>
-<Col><Image src="/content/button/image-light.png" dark="/content/button/image-dark.png" alt="test" caption="Next button only in primary" />
-</Col>
-<Col><Image src="/content/button/image-light.png" dark="/content/button/image-dark.png" alt="test" caption="Back button primary" /></Col>
-<Col><Image src="/content/button/image-light.png" dark="/content/button/image-dark.png" alt="test" caption="Back button secondary" /></Col>
+<Col><FigmaSVG node="1609-8419" caption="Next button only in primary" /></Col>
+<Col><FigmaSVG node="1609-8421" caption="Back button primary" /></Col>
+<Col><FigmaSVG node="1609-8423" caption="Back button secondary" /></Col>
 </Row>
+
 
 <Row>
 <Col>
 ### Category button
 Text
 </Col>
-<Col><Image src="/content/button/image-light.png" dark="/content/button/image-dark.png" alt="test" caption="Default and highlighted." /></Col>
+<Col><FigmaSVG node="1609-8446" caption="Default and highlighted." /></Col>
 </Row>
 
 <hr />

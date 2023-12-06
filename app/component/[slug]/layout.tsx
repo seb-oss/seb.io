@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { notFound, usePathname, useRouter } from "next/navigation"
+import FigmaSVG from "@/core/blocks/mdx/figma/figmaSVG"
 import Pattern from "@/core/blocks/pattern/pattern"
 import Taber from "@/core/blocks/taber"
 import TOC from "@/core/blocks/toc/toc"
@@ -92,9 +93,10 @@ export default function ComponentLayout({
             </div>
           </div>
         </div>
-        <Pattern>
+        <FigmaSVG node="1608-315" />
+        {/* <Pattern>
           <button>Test</button>
-        </Pattern>
+        </Pattern> */}
       </header>
       <article>
         <div className="content">

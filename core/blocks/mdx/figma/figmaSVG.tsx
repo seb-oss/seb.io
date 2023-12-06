@@ -8,9 +8,10 @@ import axios from "axios"
 interface FigmaSVGProps {
   caption?: string
   node?: string
+  height?: string
 }
 
-export default function FigmaSVG({ caption, node }: FigmaSVGProps) {
+export default function FigmaSVG({ caption, node, height }: FigmaSVGProps) {
   const [svgContent, setSvgContent] = useState("")
   const figmaAccessKey = process.env.NEXT_PUBLIC_FIGMA_ACCESS_KEY
   const figmaProjectId = process.env.NEXT_PUBLIC_FIGMA_PROJECT_ID
@@ -39,9 +40,8 @@ export default function FigmaSVG({ caption, node }: FigmaSVGProps) {
 
     fetchData()
   }, [])
-
   return (
-    <Pattern caption={caption}>
+    <Pattern caption={caption} height={height}>
       {svgContent ? (
         <div dangerouslySetInnerHTML={{ __html: svgContent }} />
       ) : (
