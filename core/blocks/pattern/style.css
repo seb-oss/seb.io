@@ -38,6 +38,12 @@ figure.preview {
   background-position: center;
   border: 1px solid color-mix(in srgb, var(--color-black), transparent 94%);
 
+  p {
+    margin: 0;
+    opacity: 0.5;
+    font-size: 12px;
+  }
+
   /* Only for the demo */
   button {
     display: flex;

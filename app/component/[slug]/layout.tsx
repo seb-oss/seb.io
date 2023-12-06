@@ -30,7 +30,7 @@ export default function ComponentLayout({
   const componentA11y = getComponent("/accessibility")
   const componentCode = getComponent("/code")
   const componentDesign = getComponent("/design")
-  const componentGuidelines = getComponent("/guidelines")
+  const componentUXText = getComponent("/ux-text")
 
   if (!component) {
     notFound()
@@ -52,7 +52,7 @@ export default function ComponentLayout({
     { path: "/accessibility", component: componentA11y },
     { path: "/code", component: componentCode },
     { path: "/design", component: componentDesign },
-    { path: "/guidelines", component: componentGuidelines },
+    { path: "/ux-text", component: componentUXText },
   ]
 
   // default TOC component
