@@ -94,7 +94,7 @@ export default function ComponentLayout({
             </div>
           </div>
         </div>
-        <FigmaSVG node={node} />
+        {/* <FigmaSVG node={node} /> */}
         {/* <Pattern>
           <button>Test</button>
         </Pattern> */}
