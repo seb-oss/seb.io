@@ -2,25 +2,20 @@
 
 import * as React from "react"
 import { useEffect, useState } from "react"
-import Image from "next/image"
+import Pattern from "@/core/blocks/pattern/pattern"
 import axios from "axios"
-
-import Pattern from "../../pattern/pattern"
 
 interface FigmaSVGProps {
   caption?: string
   node?: string
+  height?: string
 }
 
-export default function FigmaSVG({ caption, node }: FigmaSVGProps) {
-  const [imageUrl, setImageUrl] = useState("")
+export default function FigmaSVG({ caption, node, height }: FigmaSVGProps) {
   const [svgContent, setSvgContent] = useState("")
-
-  // const figmaProjectId = "Nv3WN0vGhsCj1WSqlA1Ctn"
-  const figmaProjectId = "Nv3WN0vGhsCj1WSqlA1Ctn"
-  // const figmaNodeId = "1-8"
+  const figmaAccessKey = process.env.NEXT_PUBLIC_FIGMA_ACCESS_KEY
+  const figmaProjectId = process.env.NEXT_PUBLIC_FIGMA_PROJECT_ID
   const figmaNodeId = node
-  const accessKey = "figd_eknpiT303DVZu645udfaNGedTdI2De9uLbgqArNQ"
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,17 +24,15 @@ export default function FigmaSVG({ caption, node }: FigmaSVGProps) {
           `https://api.figma.com/v1/images/${figmaProjectId}/?ids=${figmaNodeId}&format=svg`,
           {
             headers: {
-              "X-Figma-Token": accessKey,
+              "X-Figma-Token": figmaAccessKey,
             },
           }
         )
 
         const images = response.data.images
         const imageUrl = Object.values(images)[0] as string
-
         const svgResponse = await axios.get(imageUrl)
         setSvgContent(svgResponse.data)
-        // console.log("Figma image data:", response)
       } catch (error) {
         console.error("Error fetching Figma image:", error)
       }
@@ -47,9 +40,8 @@ export default function FigmaSVG({ caption, node }: FigmaSVGProps) {
 
     fetchData()
   }, [])
-
   return (
-    <Pattern caption={caption}>
+    <Pattern caption={caption} height={height}>
       {svgContent ? (
         <div dangerouslySetInnerHTML={{ __html: svgContent }} />
       ) : (

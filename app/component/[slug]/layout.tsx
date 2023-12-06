@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { notFound, usePathname, useRouter } from "next/navigation"
+import FigmaSVG from "@/core/blocks/mdx/figma/figmaSVG"
 import Pattern from "@/core/blocks/pattern/pattern"
 import Taber from "@/core/blocks/taber"
 import TOC from "@/core/blocks/toc/toc"
@@ -29,7 +30,7 @@ export default function ComponentLayout({
   const componentA11y = getComponent("/accessibility")
   const componentCode = getComponent("/code")
   const componentDesign = getComponent("/design")
-  const componentGuidelines = getComponent("/guidelines")
+  const componentUXText = getComponent("/ux-text")
 
   if (!component) {
     notFound()
@@ -51,7 +52,7 @@ export default function ComponentLayout({
     { path: "/accessibility", component: componentA11y },
     { path: "/code", component: componentCode },
     { path: "/design", component: componentDesign },
-    { path: "/guidelines", component: componentGuidelines },
+    { path: "/ux-text", component: componentUXText },
   ]
 
   // default TOC component
@@ -92,9 +93,10 @@ export default function ComponentLayout({
             </div>
           </div>
         </div>
-        <Pattern>
+        <FigmaSVG node="1608-315" />
+        {/* <Pattern>
           <button>Test</button>
-        </Pattern>
+        </Pattern> */}
       </header>
       <article>
         <div className="content">

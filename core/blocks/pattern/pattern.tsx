@@ -5,12 +5,26 @@ import "./style.css"
 interface PatternProps {
   children: ReactNode
   caption?: string
+  height?: string
 }
 
-export default function Pattern({ children, caption }: PatternProps) {
+export default function Pattern({ children, caption, height }: PatternProps) {
+  const style = height
+    ? {
+        maxBlockSize: `${height}px`,
+        minBlockSize: `140px`,
+        aspectRatio: "initial",
+        width: "auto",
+        padding: "48px",
+      }
+    : {}
+
   return (
-    <figure className="preview" data-caption={caption}>
-      {children}
-    </figure>
+    <>
+      <figure className="preview" data-caption={caption} style={style}>
+        {children}
+      </figure>
+      <span>{caption}</span>
+    </>
   )
 }

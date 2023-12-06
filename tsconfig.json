@@ -30,7 +30,7 @@
     "**/*.tsx", 
     ".next/types/**/*.ts", 
     ".contentlayer/generated"
-  ],
+, "app/api/figma.js"  ],
   "exclude": ["node_modules"]
 }
 

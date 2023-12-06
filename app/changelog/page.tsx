@@ -9,7 +9,7 @@ import { Mdx } from "@/core/blocks/mdx";
 
 function ChangelogCard(changelog: Changelog) {
 
-  console.log(changelog)
+  // console.log(changelog)
   return (
     <article id={changelog.version} className="log">
       <aside>

@@ -34,7 +34,6 @@ export default function Home() {
       <section>
         <h2>
           <Link href="/components">Components</Link>
-          <Link href="/components">All components</Link>
         </h2>
         <div className="component-list">
           {components.map((component, idx) => (
