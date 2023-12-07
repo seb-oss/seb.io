@@ -76,8 +76,8 @@ jobs:
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
         env:
-          NEXT_PUBLIC_FIGMA_ACCESS_KEY: ${{ secrets.NEXT_PUBLIC_FIGMA_ACCESS_KEY }}
-          NEXT_PUBLIC_FIGMA_PROJECT_ID: ${{ secrets.NEXT_PUBLIC_FIGMA_PROJECT_ID }}
+          NEXT_PUBLIC_FIGMA_ACCESS_KEY: ${{ secrets.FIGMA_ACCESS_KEY }}
+          NEXT_PUBLIC_FIGMA_PROJECT_ID: ${{ secrets.FIGMA_PROJECT_ID }}
       # - name: Static HTML export with Next.js
       #   run: ${{ steps.detect-package-manager.outputs.runner }} next export
       # - name: Export build using react-static-builder
