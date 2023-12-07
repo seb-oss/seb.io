@@ -1,0 +1,22 @@
+.layout.core.about {
+  display: flex;
+  flex-direction: row;
+
+  .container-fluid {
+    position: relative;
+  }
+
+  .about-toc-sidebar {
+    position: absolute;
+    width: 16.6666666666%;
+    padding-inline: .5rem;
+    height: 100%;
+    right: 0;
+    top: 0;
+  }
+
+  .toc {
+    position: sticky;
+    top: 112px;
+  }
+}
