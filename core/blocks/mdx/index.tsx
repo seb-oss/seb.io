@@ -7,6 +7,8 @@ import { useMDXComponent } from "next-contentlayer/hooks"
 import { useTheme } from "next-themes"
 
 import Col from "./col/col"
+import Do from "./do/do"
+import Dont from "./dont/dont"
 import FigmaProto from "./figma/figmaProto"
 import FigmaSVG from "./figma/figmaSVG"
 import IMG from "./image/image"
@@ -49,7 +51,16 @@ function Playground(props: any) {
   )
 }
 
-const components = { FigmaSVG, FigmaProto, Image: IMG, Playground, Row, Col }
+const components = {
+  FigmaSVG,
+  FigmaProto,
+  Image: IMG,
+  Playground,
+  Row,
+  Col,
+  Do,
+  Dont,
+}
 
 export function Mdx({
   code,
