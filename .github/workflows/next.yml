@@ -76,12 +76,8 @@ jobs:
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
         env:
-          NEXT_PUBLIC_FIGMA_ACCESS_KEY: ${{ secrets.FIGMA_ACCESS_KEY }}
-          NEXT_PUBLIC_FIGMA_PROJECT_ID: ${{ secrets.FIGMA_PROJECT_ID }}
-      # - name: Static HTML export with Next.js
-      #   run: ${{ steps.detect-package-manager.outputs.runner }} next export
-      # - name: Export build using react-static-builder
-      #   run: npx react-static-builder export
+          FIGMA_ACCESS_KEY: ${{ secrets.FIGMA_ACCESS_KEY }}
+          FIGMA_PROJECT_ID: ${{ secrets.FIGMA_PROJECT_ID }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
