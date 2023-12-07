@@ -4,8 +4,10 @@ import Link from "next/link"
 import Hero from "@/core/blocks/hero/hero"
 import Stack from "@/core/blocks/stack"
 import TOC from "@/core/blocks/toc/toc"
+import Image from "next/image";
 import {Grid, Row, Col} from 'react-flexbox-grid';
 import "./style.css";
+import WoodsCabinImage from "public/content/woods-cabin.png"
 
 
 const tocHeading = [
@@ -46,8 +48,8 @@ export default function About() {
               <Col xs={12} md={6}>
                 <p className="paragraph-medium text-secondary">"A design system is a set of standards to manage design at
                   scale by reducing redundancy while creating a shared language and visual consistency across different
-                  pages and channels." - <a
-                    href="#">Therese Fessenden</a></p>
+                  pages and channels." - <Link
+                    href="https://www.nngroup.com/articles/design-systems-101/" target="_blank">Therese Fessenden</Link></p>
                 <p className="paragraph-medium text-secondary">In order to have velocity when building digital products
                   and keep a cohesive user experience cross channels and platforms designers and developers should use the
                   Green Design System.</p>
@@ -57,15 +59,21 @@ export default function About() {
                   addressing specific user needs to improve user experience.</p>
                 <p className="paragraph-medium text-secondary">The design system is called Green as an homage to SEB being
                   viewed as the "green bank" with green as a primary colour for the brand and the bank. The bank also
-                  plays a great role in the transition to a net zero society and has a focus on sustainability and helping
-                  it's clients to become more sustainable. The design system initative was also seen as a Greenfield
-                  project.</p>
+                  plays a great role in the transition to a <Link href="https://sebgroup.com/sustainability/netzerotransition" target="_blank">net zero society</Link> and has a focus on <Link href="https://sebgroup.com/sustainability">sustainability</Link> and helping
+                  it's clients to become more sustainable. The design system initative was also seen as a <Link
+                    href="https://en.wikipedia.org/wiki/Greenfield_project" target="_blank">Greenfield
+                    project</Link>.</p>
               </Col>
             </Row>
             <Row>
               <Col xs={12} md={10}>
-                <img style={{aspectRatio: "1.6 / 1", objectFit: "cover", objectPosition: "center"}}
-                     src="/content/woods-cabin.png" alt="A picture of a cabin in the woods"/>
+                <Image src={WoodsCabinImage} alt="A picture of a cabin in the woods" style={{
+                  width: '100%',
+                  height: 'auto',
+                  objectFit: 'cover',
+                  objectPosition: 'center',
+                  aspectRatio: '16 / 9'
+                }}/>
               </Col>
             </Row>
             <Row>
@@ -111,14 +119,14 @@ export default function About() {
                 <p className="paragraph-medium text-secondary">We want to hear from you so don't be a stranger. You can
                   always reach out to us in the following ways:</p>
                 <ul className="paragraph-medium text-secondary">
-                  <li>— Ask in our <a href="#">Teams channel</a></li>
-                  <li>— Post an <a href="#">issue on Github</a></li>
-                  <li>— Email us at <a href="mailto:greendesignsystem@seb.se">greendesignsystem@seb.se</a></li>
+                  <li>— Ask in our <Link href="https://teams.microsoft.com/l/team/19%3aR-yrtyItfX3RWEyU8WrCyVy6u-eqWxYPbY1w2O7UVPs1%40thread.tacv2/conversations?groupId=3ad3eb8f-ab23-44e6-9b61-d08fee172513&tenantId=9a8ff9e3-0e35-4620-a724-e9834dc50b51" target="_blank">Teams channel</Link></li>
+                  <li>— Post an <Link href="https://github.com/sebgroup/green/issues">issue on Github</Link></li>
+                  <li>— Email us at <Link href="mailto:greendesignsystem@seb.se">greendesignsystem@seb.se</Link></li>
                 </ul>
               </Col>
             </Row>
           </Stack>
-          <div class="about-toc-sidebar">
+          <div class="toc-sidebar">
             <TOC headings={tocHeading} component={"About"} />
           </div>
       </Grid>

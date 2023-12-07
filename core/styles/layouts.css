@@ -11,7 +11,7 @@
 
         .layout {
           &.core {
-            max-width: 2560px;
+            max-width: 1600px;
             margin-inline: auto;
             display: flex;
             flex-direction: column;

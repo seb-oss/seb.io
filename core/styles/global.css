@@ -23,6 +23,12 @@
     -webkit-text-size-adjust: 100%;
   }
 
+  p, li {
+    > a {
+      text-decoration: underline;
+    }
+  }
+
   @layer blocks;
 }
 
