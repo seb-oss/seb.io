@@ -33,7 +33,7 @@ export default function Home() {
   return (
     <div className="layout core">
       <Hero />
-      <section>
+      <section className="home-components">
         <h2>
           <Link href="/components">Components</Link>
         </h2>
@@ -43,7 +43,7 @@ export default function Home() {
           ))}
         </div>
       </section>
-      <section className="resources">
+      <section className="home-resources">
         <h2>Resources</h2>
         <div className="list">
           <Link className="cta-home" href="/">
@@ -62,14 +62,14 @@ export default function Home() {
           </Link>
         </div>
       </section>
-      <section>
+      <section className="home-quote">
         <h2>Empowering designers and developers</h2>
-        <div>
+        <p>
           A framework with accessibility and usability rooted at its core, Green
           Design System empowers designers and developers to create with speed
           and precision. It ensures a seamless and consistent visual experience
           across our entire product suite.
-        </div>
+        </p>
       </section>
     </div>
   )
