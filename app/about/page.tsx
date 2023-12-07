@@ -49,7 +49,7 @@ export default function About() {
             <Col xs={12} md={4}>
               <h2 className="heading-medium">How Green works</h2>
             </Col>
-            <Col xs={4} md={6}>
+            <Col xs={12} md={6}>
               <p className="paragraph-medium text-secondary">The Green Design System is a federated design system where the Green Design System Team is the central team who is dedicated to maintain the design system and other team at SEB or external contributors contribute to the design system with insights, design and code.</p>
             </Col>
           </Row>
@@ -57,7 +57,7 @@ export default function About() {
             <Col xs={12} md={4}>
               <h2 className="heading-medium">Maintaining and educating</h2>
             </Col>
-            <Col xs={4} md={6}>
+            <Col xs={12} md={6}>
               <p className="paragraph-medium text-secondary">Navigating the world of Green Design System involves more than just design and code. Delve into our Figma libraries, explore diverse code implementations, and leverage our comprehensive documentation. We're committed to supporting your journey with coaching sessions tailored for both design intricacies and development challenges.</p>
             </Col>
           </Row>
@@ -65,7 +65,7 @@ export default function About() {
             <Col xs={12} md={4}>
               <h2 className="heading-medium">Built on contributions</h2>
             </Col>
-            <Col xs={4} md={6}>
+            <Col xs={12} md={6}>
               <p className="paragraph-medium text-secondary">Green Design System is built on contributions from everyone. Being a central team we are good at building general reusable components but we are not working close our end product's users. That's why it's vital that everyone contributes with what's possible. That can be everything from insights regarding a specific component or pull requests with code or a design update in a Figma branch. If you want to get started on contributing, read our Contribution Guidelines.</p>
             </Col>
           </Row>
@@ -73,7 +73,7 @@ export default function About() {
             <Col xs={12} md={4}>
               <h2 className="heading-medium">Contact us</h2>
             </Col>
-            <Col xs={4} md={6}>
+            <Col xs={12} md={6}>
               <p className="paragraph-medium text-secondary">We want to hear from you so don't be a stranger. You can always reach out to us in the following ways:</p>
               <ul className="paragraph-medium text-secondary">
                 <li>— Ask in our <a href="#">Teams channel</a></li>

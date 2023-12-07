@@ -2,7 +2,7 @@
   @layer layouts {
     @layer main {
       body > main {
-        max-width: 2560px;
+
         margin-inline: auto;
         display: flex;
         flex-direction: row;
@@ -11,6 +11,8 @@
 
         .layout {
           &.core {
+            max-width: 2560px;
+            margin-inline: auto;
             display: flex;
             flex-direction: column;
             flex-grow: 1;
