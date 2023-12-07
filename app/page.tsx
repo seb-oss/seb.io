@@ -46,11 +46,19 @@ export default function Home() {
       <section className="home-resources">
         <h2>Resources</h2>
         <div className="list">
-          <Link className="cta-home" href="/">
-            <span data-caption="Developer">A good link for a developer</span>
+          <Link
+            className="cta-home"
+            href="https://github.com/sebgroup/green"
+            target="_blank"
+          >
+            <span data-caption="Github">Start contributing now!</span>
             <Chevron />
           </Link>
-          <Link className="cta-home" href="/">
+          <Link
+            className="cta-home"
+            href="https://sebgroup.com/sv/press/pressfoton"
+            target="_blank"
+          >
             <span data-caption="Media Bank & Brand Guidelines">
               SEB Brand Hub
             </span>

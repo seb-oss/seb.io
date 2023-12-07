@@ -13,7 +13,8 @@
             display: flex;
             flex-direction: column;
             gap: 100px;
-            padding: 40px;
+            padding: 64px;
+            padding-block-end: 120px;
 
             .component-list {
               a {
