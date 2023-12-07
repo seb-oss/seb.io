@@ -12,6 +12,7 @@ import Dont from "./dont/dont"
 import FigmaProto from "./figma/figmaProto"
 import FigmaSVG from "./figma/figmaSVG"
 import IMG from "./image/image"
+import Refs from "./refs/refs"
 import Row from "./row/row"
 
 declare global {
@@ -60,6 +61,7 @@ const components = {
   Col,
   Do,
   Dont,
+  Refs,
 }
 
 export function Mdx({
