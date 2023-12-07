@@ -7,7 +7,11 @@ import { allComponents, Component } from "content"
 function ComponentCard(component: Component) {
   return (
     <Link href={component.url_path}>
-      <FigmaSVG node={component.node} />
+      <Pattern>
+        <div
+          dangerouslySetInnerHTML={{ __html: component.figma_hero_svg.svg }}
+        />
+      </Pattern>
       <div>{component.title}</div>
       <p>{component.summary}</p>
     </Link>
