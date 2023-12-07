@@ -2,6 +2,7 @@ import {
   defineDocumentType,
   defineNestedType,
 } from "@contentlayer/source-files"
+import axios from "axios"
 import GithubSlugger from "github-slugger"
 
 import { getLastEditedDate, urlFromFilePath } from "../utils"
@@ -73,6 +74,41 @@ export const Component = defineDocumentType(() => ({
     },
 
     last_edited: { type: "date", resolve: getLastEditedDate },
+
+    figma_svgs: {
+      type: "json",
+      resolve: async (doc) => {
+        const figmaAccessKey = process.env.FIGMA_ACCESS_KEY
+        const figmaProjectId = process.env.FIGMA_PROJECT_ID
+
+        const regXHeader = /node="(?<node>.+?)"/g
+        const nodes = await Promise.all(
+          Array.from(doc.body.raw.matchAll(regXHeader)).map(async (match) => {
+            const groups = (match as RegExpMatchArray).groups
+            const node = groups?.node
+
+            const response = await axios.get(
+              `https://api.figma.com/v1/images/${figmaProjectId}/?ids=${node}&format=svg`,
+              {
+                headers: {
+                  "X-Figma-Token": figmaAccessKey,
+                },
+              }
+            )
+
+            const images = response.data.images
+            const imageUrl = Object.values(images)[0] as string
+            const svgResponse = await axios.get(imageUrl)
+
+            return {
+              node: node,
+              svg: svgResponse.data,
+            }
+          })
+        )
+        return nodes
+      },
+    },
   },
   extensions: {},
 }))
