@@ -1,4 +1,5 @@
 figure.preview {
+  color-scheme: light;
   background-color: color-mix(in srgb, var(--color-black), transparent 99%);
   --cell-lg: 56px;
   --cell-lg-cl: color-mix(in srgb, var(--color-black), transparent 99%);
