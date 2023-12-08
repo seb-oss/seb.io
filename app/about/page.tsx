@@ -1,134 +1,216 @@
 "use client"
 
+import Image from "next/image"
 import Link from "next/link"
 import Hero from "@/core/blocks/hero/hero"
 import Stack from "@/core/blocks/stack"
 import TOC from "@/core/blocks/toc/toc"
-import Image from "next/image";
-import {Grid, Row, Col} from 'react-flexbox-grid';
-import "./style.css";
-import WoodsCabinImage from "public/content/woods-cabin.png"
+import { Col, Grid, Row } from "react-flexbox-grid"
 
+import "./style.css"
+
+import WoodsCabinImage from "public/content/woods-cabin.png"
 
 const tocHeading = [
   {
     slug: "what-is-green",
     text: "What is Green?",
-    level: 2
-  }, {
+    level: 2,
+  },
+  {
     slug: "how-green-works",
     text: "How Green works",
-    level: 2
-  }, {
+    level: 2,
+  },
+  {
     slug: "built-on-contributions",
     text: "Built on contributions",
-    level: 2
-  }, {
+    level: 2,
+  },
+  {
     slug: "contact-us",
     text: "Contact us",
-    level: 2
-  }
+    level: 2,
+  },
 ]
 
 export default function About() {
   return (
     <div className="layout core about">
       <Grid fluid>
+        <Row>
+          <Col xs>
+            <Hero
+              heading="About"
+              preamble="Green Design System is the design system for Skandinaviska Enskilda Banken to make it easier and faster to build beautiful digital products and experiences under the SEB brand."
+            />
+          </Col>
+        </Row>
+        <Stack gap="7.5rem">
           <Row>
-            <Col xs>
-              <Hero heading="About"
-                    preamble="Green Design System is the design system for Skandinaviska Enskilda Banken to make it easier and faster to build beautiful digital products and experiences under the SEB brand."/>
+            <Col xs={12} md={4}>
+              <h2 id="what-is-green" className="heading-medium">
+                What is Green?
+              </h2>
+            </Col>
+            <Col xs={12} md={6}>
+              <p className="paragraph-medium text-secondary">
+                A design system is a set of standards to manage design at scale
+                by reducing redundancy while creating a shared language and
+                visual consistency across different pages and channels.
+                <Link
+                  href="https://www.nngroup.com/articles/design-systems-101/"
+                  target="_blank"
+                >
+                  Therese Fessenden
+                </Link>
+              </p>
+              <p className="paragraph-medium text-secondary">
+                In order to have velocity when building digital products and
+                keep a cohesive user experience cross channels and platforms
+                designers and developers should use the Green Design System.
+              </p>
+              <p className="paragraph-medium text-secondary">
+                By using pre-built components for design tools and front-end
+                frameworks the time teams spend designing and building is
+                minimized. Instead of spending time on building and re-building
+                the same components in multiple teams, teams can spend that time
+                on addressing specific user needs to improve user experience.
+              </p>
+              <p className="paragraph-medium text-secondary">
+                The design system is called Green as an homage to SEB being
+                viewed as the {"green bank"} with green as a primary colour for
+                the brand and the bank. The bank also plays a great role in the
+                transition to a{" "}
+                <Link
+                  href="https://sebgroup.com/sustainability/netzerotransition"
+                  target="_blank"
+                >
+                  net zero society
+                </Link>
+                and has a focus on
+                <Link href="https://sebgroup.com/sustainability">
+                  sustainability
+                </Link>
+                and helping {"it's"} clients to become more sustainable. The
+                design system initative was also seen as a
+                <Link
+                  href="https://en.wikipedia.org/wiki/Greenfield_project"
+                  target="_blank"
+                >
+                  Greenfield project
+                </Link>
+                .
+              </p>
             </Col>
           </Row>
-          <Stack gap="7.5rem">
-            <Row>
-              <Col xs={12} md={4}>
-                <h2 id="what-is-green" className="heading-medium">What is Green?</h2>
-              </Col>
-              <Col xs={12} md={6}>
-                <p className="paragraph-medium text-secondary">"A design system is a set of standards to manage design at
-                  scale by reducing redundancy while creating a shared language and visual consistency across different
-                  pages and channels." - <Link
-                    href="https://www.nngroup.com/articles/design-systems-101/" target="_blank">Therese Fessenden</Link></p>
-                <p className="paragraph-medium text-secondary">In order to have velocity when building digital products
-                  and keep a cohesive user experience cross channels and platforms designers and developers should use the
-                  Green Design System.</p>
-                <p className="paragraph-medium text-secondary">By using pre-built components for design tools and
-                  front-end frameworks the time teams spend designing and building is minimized. Instead of spending time
-                  on building and re-building the same components in multiple teams, teams can spend that time on
-                  addressing specific user needs to improve user experience.</p>
-                <p className="paragraph-medium text-secondary">The design system is called Green as an homage to SEB being
-                  viewed as the "green bank" with green as a primary colour for the brand and the bank. The bank also
-                  plays a great role in the transition to a <Link href="https://sebgroup.com/sustainability/netzerotransition" target="_blank">net zero society</Link> and has a focus on <Link href="https://sebgroup.com/sustainability">sustainability</Link> and helping
-                  it's clients to become more sustainable. The design system initative was also seen as a <Link
-                    href="https://en.wikipedia.org/wiki/Greenfield_project" target="_blank">Greenfield
-                    project</Link>.</p>
-              </Col>
-            </Row>
-            <Row>
-              <Col xs={12} md={10}>
-                <Image src={WoodsCabinImage} alt="A picture of a cabin in the woods" style={{
-                  width: '100%',
-                  height: 'auto',
-                  objectFit: 'cover',
-                  objectPosition: 'center',
-                  aspectRatio: '16 / 9'
-                }}/>
-              </Col>
-            </Row>
-            <Row>
-              <Col xs={12} md={4}>
-                <h2 id="how-green-works" className="heading-medium">How Green works</h2>
-              </Col>
-              <Col xs={12} md={6}>
-                <p className="paragraph-medium text-secondary">The Green Design System is a federated design system where
-                  the Green Design System Team is the central team who is dedicated to maintain the design system and
-                  other team at SEB or external contributors contribute to the design system with insights, design and
-                  code.</p>
-              </Col>
-            </Row>
-            <Row>
-              <Col xs={12} md={4}>
-                <h2 id="maintaining-and-educating" className="heading-medium">Maintaining and educating</h2>
-              </Col>
-              <Col xs={12} md={6}>
-                <p className="paragraph-medium text-secondary">Navigating the world of Green Design System involves more
-                  than just design and code. Delve into our Figma libraries, explore diverse code implementations, and
-                  leverage our comprehensive documentation. We're committed to supporting your journey with coaching
-                  sessions tailored for both design intricacies and development challenges.</p>
-              </Col>
-            </Row>
-            <Row>
-              <Col xs={12} md={4}>
-                <h2 id="built-on-contributions" className="heading-medium">Built on contributions</h2>
-              </Col>
-              <Col xs={12} md={6}>
-                <p className="paragraph-medium text-secondary">Green Design System is built on contributions from
-                  everyone. Being a central team we are good at building general reusable components but we are not
-                  working close our end product's users. That's why it's vital that everyone contributes with what's
-                  possible. That can be everything from insights regarding a specific component or pull requests with code
-                  or a design update in a Figma branch. If you want to get started on contributing, read our Contribution
-                  Guidelines.</p>
-              </Col>
-            </Row>
-            <Row>
-              <Col xs={12} md={4}>
-                <h2 id="contact-us" className="heading-medium">Contact us</h2>
-              </Col>
-              <Col xs={12} md={6}>
-                <p className="paragraph-medium text-secondary">We want to hear from you so don't be a stranger. You can
-                  always reach out to us in the following ways:</p>
-                <ul className="paragraph-medium text-secondary">
-                  <li>— Ask in our <Link href="https://teams.microsoft.com/l/team/19%3aR-yrtyItfX3RWEyU8WrCyVy6u-eqWxYPbY1w2O7UVPs1%40thread.tacv2/conversations?groupId=3ad3eb8f-ab23-44e6-9b61-d08fee172513&tenantId=9a8ff9e3-0e35-4620-a724-e9834dc50b51" target="_blank">Teams channel</Link></li>
-                  <li>— Post an <Link href="https://github.com/sebgroup/green/issues">issue on Github</Link></li>
-                  <li>— Email us at <Link href="mailto:greendesignsystem@seb.se">greendesignsystem@seb.se</Link></li>
-                </ul>
-              </Col>
-            </Row>
-          </Stack>
-          <div class="toc-sidebar">
-            <TOC headings={tocHeading} component={"About"} />
-          </div>
+          <Row>
+            <Col xs={12} md={10}>
+              <Image
+                src={WoodsCabinImage}
+                alt="A picture of a cabin in the woods"
+                style={{
+                  width: "100%",
+                  height: "auto",
+                  objectFit: "cover",
+                  objectPosition: "center",
+                  aspectRatio: "16 / 9",
+                }}
+              />
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={12} md={4}>
+              <h2 id="how-green-works" className="heading-medium">
+                How Green works
+              </h2>
+            </Col>
+            <Col xs={12} md={6}>
+              <p className="paragraph-medium text-secondary">
+                The Green Design System is a federated design system where the
+                Green Design System Team is the central team who is dedicated to
+                maintain the design system and other team at SEB or external
+                contributors contribute to the design system with insights,
+                design and code.
+              </p>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={12} md={4}>
+              <h2 id="maintaining-and-educating" className="heading-medium">
+                Maintaining and educating
+              </h2>
+            </Col>
+            <Col xs={12} md={6}>
+              <p className="paragraph-medium text-secondary">
+                Navigating the world of Green Design System involves more than
+                just design and code. Delve into our Figma libraries, explore
+                diverse code implementations, and leverage our comprehensive
+                documentation. {"We're"} committed to supporting your journey
+                with coaching sessions tailored for both design intricacies and
+                development challenges.
+              </p>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={12} md={4}>
+              <h2 id="built-on-contributions" className="heading-medium">
+                Built on contributions
+              </h2>
+            </Col>
+            <Col xs={12} md={6}>
+              <p className="paragraph-medium text-secondary">
+                {`Green Design System is built on contributions from everyone.
+                Being a central team we are good at building general reusable
+                components but we are not working close our end product's users.
+                That's why it's vital that everyone contributes with what's
+                possible. That can be everything from insights regarding a
+                specific component or pull requests with code or a design update
+                in a Figma branch. If you want to get started on contributing,
+                read our Contribution Guidelines.`}
+              </p>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={12} md={4}>
+              <h2 id="contact-us" className="heading-medium">
+                Contact us
+              </h2>
+            </Col>
+            <Col xs={12} md={6}>
+              <p className="paragraph-medium text-secondary">
+                {`We want to hear from you so don't be a stranger. You can always
+                reach out to us in the following ways:`}
+              </p>
+              <ul className="paragraph-medium text-secondary">
+                <li>
+                  — Ask in our{" "}
+                  <Link
+                    href="https://teams.microsoft.com/l/team/19%3aR-yrtyItfX3RWEyU8WrCyVy6u-eqWxYPbY1w2O7UVPs1%40thread.tacv2/conversations?groupId=3ad3eb8f-ab23-44e6-9b61-d08fee172513&tenantId=9a8ff9e3-0e35-4620-a724-e9834dc50b51"
+                    target="_blank"
+                  >
+                    Teams channel
+                  </Link>
+                </li>
+                <li>
+                  — Post an{" "}
+                  <Link href="https://github.com/sebgroup/green/issues">
+                    issue on Github
+                  </Link>
+                </li>
+                <li>
+                  — Email us at{" "}
+                  <Link href="mailto:greendesignsystem@seb.se">
+                    greendesignsystem@seb.se
+                  </Link>
+                </li>
+              </ul>
+            </Col>
+          </Row>
+        </Stack>
+        <div className="toc-sidebar">
+          <TOC headings={tocHeading} component={"About"} />
+        </div>
       </Grid>
     </div>
   )
