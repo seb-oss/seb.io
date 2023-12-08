@@ -75,9 +75,7 @@ export const Component = defineDocumentType(() => ({
             return { order, pathName }
           }),
     },
-
     last_edited: { type: "date", resolve: getLastEditedDate },
-
     figma_hero_svg: {
       type: "json",
       resolve: async (doc) => {
@@ -110,7 +108,6 @@ export const Component = defineDocumentType(() => ({
         }
       },
     },
-
     figma_svgs: {
       type: "json",
       resolve: async (doc) => {

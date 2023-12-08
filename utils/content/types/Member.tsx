@@ -32,13 +32,6 @@ export const Member = defineDocumentType(() => ({
         return urlFromFilePath(member)
       },
     },
-    // url_path_without_id: {
-    //   type: "string",
-    //   description:
-    //     'The URL path of this page relative to site root. For example, the site root page would be "/", and doc page would be "docs/getting-started/"',
-    //   resolve: (team) =>
-    //     urlFromFilePath(post).replace(new RegExp(`-${post.global_id}$`), ""),
-    // },
     pathSegments: {
       type: "json",
       resolve: (team) =>
@@ -53,7 +46,6 @@ export const Member = defineDocumentType(() => ({
             return { order, pathName }
           }),
     },
-
     last_edited: { type: "date", resolve: getLastEditedDate },
   },
   extensions: {},

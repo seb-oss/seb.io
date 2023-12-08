@@ -44,7 +44,6 @@ export const Changelog = defineDocumentType(() => ({
             return { order, pathName }
           }),
     },
-
     last_edited: { type: "date", resolve: getLastEditedDate },
   },
   extensions: {},
