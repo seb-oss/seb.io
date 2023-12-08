@@ -101,7 +101,9 @@
       max-width: max-content;
 
       main {
-        max-width: 950px;
+        /* max-width: 830px; */
+        inline-size: 830px;
+        /* min-width: 950px; */
 
         p {
           text-wrap: balance;
@@ -245,12 +247,16 @@
   }
 
   playground-preview {
-    --playground-preview-toolbar-background: var(--gds-sys-color-background-background);
-    --playground-preview-toolbar-foreground-color: var(--gds-sys-color-content-content);
+    --playground-preview-toolbar-background: var(
+      --gds-sys-color-background-background
+    );
+    --playground-preview-toolbar-foreground-color: var(
+      --gds-sys-color-content-content
+    );
     --playground-border: none;
 
     border-radius: 12px;
-    border: 1px solid var(--gds-sys-color-stroke-stroke-variant2);
+    /* border: 1px solid var(--gds-sys-color-stroke-stroke-variant2); */
     overflow: hidden;
 
     &::part(preview-toolbar) {
