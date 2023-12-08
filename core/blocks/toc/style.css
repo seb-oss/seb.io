@@ -72,3 +72,10 @@ aside.toc {
     }
   }
 }
+
+
+@media only screen and (max-width: 993px) {
+  .layout.core .toc-sidebar {
+    display: none;
+  }
+}
