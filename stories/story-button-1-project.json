@@ -1,7 +1,14 @@
 {
   "files": {
-    "index.html": {},
-    "green-core.js": {},
-    "style.css": {}
+    "index.html": {
+    },
+    "green-core.js": {
+    },
+    "style.css": {
+    },
+    "dark.css": {
+    },
+    "light.css": {
+    }
   }
 }
