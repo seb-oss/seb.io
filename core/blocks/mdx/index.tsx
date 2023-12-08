@@ -14,43 +14,7 @@ import FigmaSVG from "./figma/figmaSVG"
 import IMG from "./image/image"
 import Refs from "./refs/refs"
 import Row from "./row/row"
-
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      "playground-ide": React.DetailedHTMLProps<
-        React.HTMLAttributes<HTMLElement>,
-        HTMLElement
-      >
-      "playground-project": React.DetailedHTMLProps<
-        React.HTMLAttributes<HTMLElement>,
-        HTMLElement
-      >
-      "playground-preview": React.DetailedHTMLProps<
-        React.HTMLAttributes<HTMLElement> & {
-          project: string
-        },
-        HTMLElement
-      >
-      "playground-file-editor": React.DetailedHTMLProps<
-        React.HTMLAttributes<HTMLElement>,
-        HTMLElement
-      >
-    }
-  }
-}
-
-function Playground(props: any) {
-  return (
-    <>
-      <playground-project
-        id="story-project"
-        project-src="/stories/story-button-1-project.json"
-      ></playground-project>
-      <playground-preview project="story-project"> </playground-preview>
-    </>
-  )
-}
+import Playground from "./playground/playground"
 
 const components = {
   FigmaSVG,

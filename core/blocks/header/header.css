@@ -2,13 +2,12 @@ header.main {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  color: var(--color-black);
-  background-color: color-mix(in srgb, var(--color-white), transparent 10%);
+  color: var(--gds-sys-color-content-content);
+  background-color: var(--gds-sys-color-background-background);
   font-size: 16px;
   letter-spacing: 0.1px;
   line-height: 1.25;
-  border-bottom: 1px solid
-    color-mix(in srgb, var(--color-black), transparent 90%);
+  border-bottom: 1px solid var(--gds-sys-color-stroke-stroke-variant2);
   position: sticky;
   top: 0;
   backdrop-filter: blur(10px);
@@ -98,7 +97,7 @@ header.main {
     line-height: 1;
     align-items: center;
     border-radius: 100px;
-    border: 1px solid color-mix(in srgb, var(--color-black), transparent 90%);
+    border: 1px solid var(--gds-sys-color-stroke-stroke-variant2);
     background-color: transparent;
     color: currentColor;
     display: flex;

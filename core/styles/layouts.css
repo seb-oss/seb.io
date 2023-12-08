@@ -2,7 +2,6 @@
   @layer layouts {
     @layer main {
       body > main {
-        max-width: 2560px;
         margin-inline: auto;
         display: flex;
         flex-direction: row;
@@ -10,11 +9,14 @@
 
         .layout {
           &.core {
+            max-width: 1600px;
+            margin-inline: auto;
             display: flex;
             flex-direction: column;
+            flex-grow: 1;
             gap: 100px;
-            padding: 64px;
-            padding-block-end: 120px;
+            padding: 40px;
+            margin-block-end: 7.5rem;
 
             .component-list {
               a {

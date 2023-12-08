@@ -1,5 +1,5 @@
 aside.nav {
-  --border-color: color-mix(in srgb, var(--color-black), transparent 90%);
+  --border-color: var(--gds-sys-color-stroke-stroke-variant2);
   display: flex;
   position: sticky;
   flex-direction: column;
@@ -9,34 +9,18 @@ aside.nav {
   border-right: 1px solid var(--border-color);
   width: 320px;
   min-width: 320px;
+  max-height: calc(100vh - var(--header-height));
   block-size: 100vh;
 
   details {
     &[open] {
       summary {
         span {
-          background-color: color-mix(
-            in srgb,
-            var(--color-black),
-            transparent 98%
-          );
+          /*background-color: var(--gds-sys-color-state-layers-state-black);*/
         }
         svg {
           transform: scaleY(-1);
         }
-      }
-    }
-
-    a {
-      border-radius: 2000px;
-      width: 100%;
-      padding: 12px 16px;
-      transition: all 482ms cubic-bezier(0.4, 0, 0.2, 1);
-
-      &:hover,
-      &.active {
-        background-color: var(--border-color);
-        color: var(--color-black);
       }
     }
 
@@ -50,19 +34,9 @@ aside.nav {
       transition: all 0.4s;
       margin-bottom: 4px;
 
-      > a {
-        &.active {
-          background-color: color-mix(
-            in srgb,
-            var(--color-black),
-            transparent 98%
-          );
-        }
-      }
-
       &:hover {
         span {
-          background-color: var(--border-color);
+          background-color: var(--gds-sys-color-state-layers-state-black);
         }
       }
 
@@ -82,7 +56,7 @@ aside.nav {
         transition: all 482ms;
 
         &:hover {
-          background-color: var(--border-color);
+          background-color: var(--gds-sys-color-state-layers-state-black);
         }
       }
 
@@ -97,21 +71,30 @@ aside.nav {
       }
     }
 
-    > nav {
-      padding-left: 2ch;
-
-      a {
-        /* padding: 8px 12px; */
-        color: color-mix(in srgb, currentColor, transparent 30%);
-        max-width: calc(100% - 50px);
-      }
+    nav {
+      padding-inline-start: 1rem;
     }
   }
 
-  hr {
-    border: none;
-    border-top: 1px solid
-      color-mix(in srgb, var(--color-black), transparent 94%);
+  details a,
+  .pill {
+    border-radius: 2000px;
+    width: 100%;
+    padding: 12px 16px;
+    transition: all 482ms cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &:hover,
+    &.active {
+      background-color: var(--gds-sys-color-state-layers-state-black);
+    }
+
+    svg,
+    path {
+      fill: var(--gds-sys-color-content-content);
+    }
   }
 
   nav {
