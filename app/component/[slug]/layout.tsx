@@ -46,6 +46,8 @@ export default function ComponentLayout({
     last_edited,
     summary,
     body,
+    node,
+    figma_hero_svg,
   } = component
 
   const pathsAndComponents = [
@@ -69,7 +71,6 @@ export default function ComponentLayout({
   const MAX_VISIBLE_TAGS = 3
   const tagsArray = tags ? tags.split(", ") : []
   const extraTagsCount = Math.max(0, tagsArray.length - MAX_VISIBLE_TAGS)
-
   return (
     <Layout key={global_id}>
       <Trail home={"Home"} separator={<span> / </span>} activeClass="active" />
@@ -93,10 +94,9 @@ export default function ComponentLayout({
             </div>
           </div>
         </div>
-        <FigmaSVG node="1608-315" />
-        {/* <Pattern>
-          <button>Test</button>
-        </Pattern> */}
+        <Pattern>
+          <div dangerouslySetInnerHTML={{ __html: figma_hero_svg.svg }} />
+        </Pattern>
       </header>
       <article>
         <div className="content">

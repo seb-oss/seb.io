@@ -1,9 +1,9 @@
 "use client"
 
 import * as React from "react"
-import { useEffect, useState } from "react"
+import { usePathname } from "next/navigation"
+import { allComponents } from "@/.contentlayer/generated"
 import Pattern from "@/core/blocks/pattern/pattern"
-import axios from "axios"
 
 interface FigmaSVGProps {
   caption?: string
@@ -12,41 +12,18 @@ interface FigmaSVGProps {
 }
 
 export default function FigmaSVG({ caption, node, height }: FigmaSVGProps) {
-  const [svgContent, setSvgContent] = useState("")
-  const figmaAccessKey = process.env.NEXT_PUBLIC_FIGMA_ACCESS_KEY
-  const figmaProjectId = process.env.NEXT_PUBLIC_FIGMA_PROJECT_ID
-  const figmaNodeId = node
+  const slug = usePathname()
+  const component = allComponents.find(
+    (component) => component.url_path === slug
+  )
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `https://api.figma.com/v1/images/${figmaProjectId}/?ids=${figmaNodeId}&format=svg`,
-          {
-            headers: {
-              "X-Figma-Token": figmaAccessKey,
-            },
-          }
-        )
+  const svgSource = component?.figma_svgs.find(
+    (svg_node: any) => svg_node.node === node
+  )
 
-        const images = response.data.images
-        const imageUrl = Object.values(images)[0] as string
-        const svgResponse = await axios.get(imageUrl)
-        setSvgContent(svgResponse.data)
-      } catch (error) {
-        console.error("Error fetching Figma image:", error)
-      }
-    }
-
-    fetchData()
-  }, [])
   return (
     <Pattern caption={caption} height={height}>
-      {svgContent ? (
-        <div dangerouslySetInnerHTML={{ __html: svgContent }} />
-      ) : (
-        <p>Loading Figma image...</p>
-      )}
+      <div dangerouslySetInnerHTML={{ __html: svgSource?.svg }} />
     </Pattern>
   )
 }

@@ -1,8 +1,8 @@
 figure.preview {
   background-color: color-mix(in srgb, var(--color-black), transparent 99%);
-  --cell-lg: 60px;
-  --cell-lg-cl: color-mix(in srgb, var(--color-black), transparent 98%);
-  --cell-sm: 12px;
+  --cell-lg: 56px;
+  --cell-lg-cl: color-mix(in srgb, var(--color-black), transparent 99%);
+  --cell-sm: 8px;
   --cell-sm-cl: color-mix(in srgb, var(--color-black), transparent 99%);
   display: flex;
   border-radius: 12px;
