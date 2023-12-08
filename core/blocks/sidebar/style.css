@@ -4,7 +4,7 @@ aside.nav {
   position: sticky;
   flex-direction: column;
   top: var(--header-height);
-  gap: 8px;
+  gap: 12px;
   padding: 24px;
   border-right: 1px solid var(--border-color);
   width: 320px;
@@ -76,7 +76,8 @@ aside.nav {
     }
   }
 
-  details a, .pill {
+  details a,
+  .pill {
     border-radius: 2000px;
     width: 100%;
     padding: 12px 16px;
@@ -90,15 +91,29 @@ aside.nav {
       background-color: var(--gds-sys-color-state-layers-state-black);
     }
 
-    svg, path {
-      fill: var(--gds-sys-color-content-content)
+    svg,
+    path {
+      fill: var(--gds-sys-color-content-content);
     }
   }
 
   nav {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 2px;
     font-size: 16px;
+
+    a {
+      border-radius: 2000px;
+      width: 100%;
+      padding: 12px 16px;
+      transition: all 482ms cubic-bezier(0.4, 0, 0.2, 1);
+
+      &:hover,
+      &.active {
+        background-color: var(--border-color);
+        color: var(--color-black);
+      }
+    }
   }
 }
