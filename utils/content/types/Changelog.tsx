@@ -30,13 +30,6 @@ export const Changelog = defineDocumentType(() => ({
         return urlFromFilePath(changelog)
       },
     },
-    // url_path_without_id: {
-    //   type: "string",
-    //   description:
-    //     'The URL path of this page relative to site root. For example, the site root page would be "/", and doc page would be "docs/getting-started/"',
-    //   resolve: (post) =>
-    //     urlFromFilePath(post).replace(new RegExp(`-${post.global_id}$`), ""),
-    // },
     pathSegments: {
       type: "json",
       resolve: (changelog) =>

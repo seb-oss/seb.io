@@ -142,10 +142,7 @@ export const Component = defineDocumentType(() => ({
                   svg: svgResponse.data,
                 }
               } catch (error) {
-                console.error(
-                  `Error fetching Figma SVG for node ${node}:`,
-                  error
-                )
+                console.error(`Error fetching Figma SVG`)
                 return {
                   node: node,
                   svg: "", // Return empty string for failed requests
@@ -154,7 +151,7 @@ export const Component = defineDocumentType(() => ({
             })
           )
         } catch (error) {
-          console.error("Error processing Figma SVGS:", error)
+          console.error("Error processing Figma SVGS:")
         }
 
         return nodes
