@@ -11,17 +11,18 @@ import {Grid, Row, Col} from 'react-flexbox-grid';
 import "./style.css";
 import WoodsCabinImage from "public/content/woods-cabin.png"
 
-
 const tocHeading = [
   {
     slug: "what-is-green",
     text: "What is Green?",
-    level: 2
-  }, {
+    level: 2,
+  },
+  {
     slug: "how-green-works",
     text: "How Green works",
-    level: 2
-  }, {
+    level: 2,
+  },
+  {
     slug: "maintaining-and-educating",
     text: "Maintaining and educating",
     level: 3
@@ -32,8 +33,8 @@ const tocHeading = [
   }, {
     slug: "contact-us",
     text: "Contact us",
-    level: 2
-  }
+    level: 2,
+  },
 ]
 
 export default function About() {
@@ -52,9 +53,9 @@ export default function About() {
               <h2 id="what-is-green" className="heading-medium">What is Green?</h2>
             </Col>
             <Col xs={12} md={6}>
-              <p className="paragraph-medium text-secondary">"A design system is a set of standards to manage design at
+              <p className="paragraph-medium text-secondary">A design system is a set of standards to manage design at
                 scale by reducing redundancy while creating a shared language and visual consistency across different
-                pages and channels." - <Link
+                pages and channels. <Link
                   href="https://www.nngroup.com/articles/design-systems-101/" target="_blank">Therese Fessenden</Link>
               </p>
               <p className="paragraph-medium text-secondary">In order to have velocity when building digital products
@@ -65,26 +66,26 @@ export default function About() {
                 on building and re-building the same components in multiple teams, teams can spend that time on
                 addressing specific user needs to improve user experience.</p>
               <p className="paragraph-medium text-secondary">The design system is called Green as an homage to SEB being
-                viewed as the "green bank" with green as a primary colour for the brand and the bank. The bank also
-                plays a great role in the transition to a <Link
+                viewed as the {"green bank"} with green as a primary colour for the brand and the bank. The bank also
+                plays a great role in the transition to a{" "} <Link
                   href="https://sebgroup.com/sustainability/netzerotransition" target="_blank">net zero
                   society</Link> and has a focus on <Link
                   href="https://sebgroup.com/sustainability">sustainability</Link> and helping
-                it's clients to become more sustainable. The design system initative was also seen as a <Link
-                  href="https://en.wikipedia.org/wiki/Greenfield_project" target="_blank">Greenfield
-                  project</Link>.</p>
+                {"it's"} clients to become more sustainable. The design system initative was also seen as a <Link
+                  href="https://en.wikipedia.org/wiki/Greenfield_project" target="_blank">
+                  Greenfieldproject</Link>.</p>
             </Col>
           </Row>
           <Row>
             <Col xs={12} md={10}>
               <Image src={WoodsCabinImage} alt="A picture of a cabin in the woods" style={{
-                width: '100%',
-                height: 'auto',
-                objectFit: 'cover',
-                objectPosition: 'center',
-                aspectRatio: '16 / 9'
-              }}/>
-            </Col>
+                width: "100%",
+                height: "auto",
+                objectFit: "cover",
+                objectPosition: "center",
+                aspectRatio: "16 / 9",
+              }}
+            /></Col>
           </Row>
           <Row>
             <Col xs={12} md={4}>
@@ -93,8 +94,8 @@ export default function About() {
             <Col xs={12} md={6}>
               <p className="paragraph-medium text-secondary">The Green Design System is a federated design system where
                 the Green Design System Team is the central team who is dedicated to maintain the design system and
-                other team at SEB or external contributors contribute to the design system with insights, design and
-                code.</p>
+                other team at SEB or external contributors contribute to the design system with insights, design andcode.
+                </p>
             </Col>
           </Row>
           <Row>
@@ -104,7 +105,7 @@ export default function About() {
             <Col xs={12} md={6}>
               <p className="paragraph-medium text-secondary">Navigating the world of Green Design System involves more
                 than just design and code. Delve into our Figma libraries, explore diverse code implementations, and
-                leverage our comprehensive documentation. We're committed to supporting your journey with coaching
+                leverage our comprehensive documentation. {"We're"} committed to supporting your journey with coaching
                 sessions tailored for both design intricacies and development challenges.</p>
               <Spacing direction="vertical" size={8} />
               <Accordion>
@@ -137,12 +138,12 @@ export default function About() {
               <h2 id="built-on-contributions" className="heading-medium">Built on contributions</h2>
             </Col>
             <Col xs={12} md={6}>
-              <p className="paragraph-medium text-secondary">Green Design System is built on contributions from
+              <p className="paragraph-medium text-secondary">{`Green Design System is built on contributions from
                 everyone. Being a central team we are good at building general reusable components but we are not
                 working close our end product's users. That's why it's vital that everyone contributes with what's
                 possible. That can be everything from insights regarding a specific component or pull requests with code
                 or a design update in a Figma branch. If you want to get started on contributing, read our Contribution
-                Guidelines.</p>
+                Guidelines.`}</p>
             </Col>
           </Row>
           <Row>
@@ -150,14 +151,14 @@ export default function About() {
               <h2 id="contact-us" className="heading-medium">Contact us</h2>
             </Col>
             <Col xs={12} md={6}>
-              <p className="paragraph-medium text-secondary">We want to hear from you so don't be a stranger. You can
-                always reach out to us in the following ways:</p>
+              <p className="paragraph-medium text-secondary">{`We want to hear from you so don't be a stranger. You can
+                always reach out to us in the following ways:`}</p>
               <ul className="paragraph-medium text-secondary">
-                <li>— Ask in our <Link
+                <li>— Ask in our{" "} <Link
                   href="https://teams.microsoft.com/l/team/19%3aR-yrtyItfX3RWEyU8WrCyVy6u-eqWxYPbY1w2O7UVPs1%40thread.tacv2/conversations?groupId=3ad3eb8f-ab23-44e6-9b61-d08fee172513&tenantId=9a8ff9e3-0e35-4620-a724-e9834dc50b51"
                   target="_blank">Teams channel</Link></li>
-                <li>— Post an <Link href="https://github.com/sebgroup/green/issues">issue on Github</Link></li>
-                <li>— Email us at <Link href="mailto:greendesignsystem@seb.se">greendesignsystem@seb.se</Link></li>
+                <li>— Post an{" "} <Link href="https://github.com/sebgroup/green/issues">issue on Github</Link></li>
+                <li>— Email us at{" "} <Link href="mailto:greendesignsystem@seb.se">greendesignsystem@seb.se</Link></li>
               </ul>
             </Col>
           </Row>

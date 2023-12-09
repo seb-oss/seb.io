@@ -4,13 +4,19 @@ import Link from "next/link"
 
 import "./style.css"
 
-
-export default function Hero({heading, preamble}) {
+export default function Hero({
+  heading,
+  preamble,
+}: {
+  heading: string
+  preamble: string
+}) {
   return (
     <div className="hero">
       <h1>{heading}</h1>
       <p>{preamble}</p>
-{/*      <Link
+      {/* 
+     <Link
         href="https://github.com/sebgroup/green/discussions"
         target="_blank"
         className="cta"

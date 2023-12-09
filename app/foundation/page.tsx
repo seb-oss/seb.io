@@ -8,25 +8,27 @@ import {Accordion, AccordionItem} from "@/core/blocks/accordion"
 import Spacing from "@/core/blocks/spacing";
 import Image from "next/image";
 import {Grid, Row, Col} from 'react-flexbox-grid';
-import CirclesImage from "public/content/tonality-circles.jpg"
 import MetallicSurfaceImage from "public/content/metallic-surface.jpg"
-import "./style.css";
+import CirclesImage from "public/content/tonality-circles.jpg"
 
+import "./style.css"
 
 const tocHeading = [
   {
     slug: "our-purpose",
     text: "Our purpose",
-    level: 2
-  }, {
+    level: 2,
+  },
+  {
     slug: "tonality",
     text: "Tonality",
     level: 2
   }, {
     slug: "visual-style",
     text: "Visual style",
-    level: 2
-  }, {
+    level: 2,
+  },
+  {
     slug: "timeless",
     text: "Timeless",
     level: 3
@@ -80,44 +82,73 @@ export default function Foundation() {
       <Grid fluid>
         <Row>
           <Col xs>
-            <Hero heading="Foundation"
-                  preamble="Green Design System, a framework designed to bring unity, efficiency, and coherent perspective to our digital experiences. Over time it will grow and evolve but always reflect our design philosophy. User needs first, being forefront and with confidence."/>
+            <Hero
+              heading="Foundation"
+              preamble="Green Design System, a framework designed to bring unity, efficiency, and coherent perspective to our digital experiences. Over time it will grow and evolve but always reflect our design philosophy. User needs first, being forefront and with confidence."
+            />
           </Col>
         </Row>
         <Stack gap="7.5rem">
           <Row>
             <Col xs={12} md={4}>
-              <h2 id="our-purpose" className="heading-medium">Our purpose</h2>
+              <h2 id="our-purpose" className="heading-medium">
+                Our purpose
+              </h2>
             </Col>
             <Col xs={12} md={6}>
-              <p className="paragraph-medium text-secondary">Green Design System, a framework designed to bring unity, efficiency, and coherent perspective to our digital experiences. Over time it will grow and evolve but always reflect our design philosophy. User needs first, being forefront and with confidence.</p>
+              <p className="paragraph-medium text-secondary">
+                Green Design System, a framework designed to bring unity,
+                efficiency, and coherent perspective to our digital experiences.
+                Over time it will grow and evolve but always reflect our design
+                philosophy. User needs first, being forefront and with
+                confidence.
+              </p>
             </Col>
           </Row>
           <Row>
             <Col xs={12} md={4}>
-              <h2 id="tonality" className="heading-medium">Tonality</h2>
+              <h2 id="tonality" className="heading-medium">
+                Tonality
+              </h2>
             </Col>
             <Col xs={12} md={6}>
-              <p className="paragraph-medium text-secondary">Our tonality is a voice that speaks to the user, we do not scream, but when needed we raise our voice to be heard. The balance in volume allows us to point the user in the right direction, wave to get noticed or whisper when needed.</p>
+              <p className="paragraph-medium text-secondary">
+                Our tonality is a voice that speaks to the user, we do not
+                scream, but when needed we raise our voice to be heard. The
+                balance in volume allows us to point the user in the right
+                direction, wave to get noticed or whisper when needed.
+              </p>
             </Col>
           </Row>
           <Row>
             <Col xs={12} md={10}>
-              <Image src={CirclesImage} alt="A picture of a cabin in the woods" style={{
-                width: '100%',
-                height: 'auto',
-                objectFit: 'cover',
-                objectPosition: 'center',
-                aspectRatio: '16 / 9'
-              }}/>
+              <Image
+                src={CirclesImage}
+                alt="A picture of a cabin in the woods"
+                style={{
+                  width: "100%",
+                  height: "auto",
+                  objectFit: "cover",
+                  objectPosition: "center",
+                  aspectRatio: "16 / 9",
+                }}
+              />
             </Col>
           </Row>
           <Row>
             <Col xs={12} md={4}>
-              <h2 id="visual-style" className="heading-medium">Visual style</h2>
+              <h2 id="visual-style" className="heading-medium">
+                Visual style
+              </h2>
             </Col>
             <Col xs={12} md={6}>
-              <p className="paragraph-medium text-secondary">This design language is a direct descendant and part of the global brand identity. It caters to designers and developers with design assets and code. Together we can focus on the user and the experience we want to build, and swiftly make changes as needed.</p>
+              <p className="paragraph-medium text-secondary">
+                This design language is a direct descendant and part of the
+                global brand identity. It caters to designers and developers
+                with design assets and code. Together we can focus on the user
+                and the experience we want to build, and swiftly make changes as
+                needed.
+              </p>
               <Spacing direction="vertical" size={8} />
               <Accordion>
                 <AccordionItem id="timeless" label="Timeless" labelElementLevel={3}>
@@ -140,21 +171,31 @@ export default function Foundation() {
           </Row>
           <Row>
             <Col xs={12} md={10}>
-              <Image src={MetallicSurfaceImage} alt="A picture of a cabin in the woods" style={{
-                width: '100%',
-                height: 'auto',
-                objectFit: 'cover',
-                objectPosition: 'center',
-                aspectRatio: '16 / 9'
-              }}/>
+              <Image
+                src={MetallicSurfaceImage}
+                alt="A picture of a cabin in the woods"
+                style={{
+                  width: "100%",
+                  height: "auto",
+                  objectFit: "cover",
+                  objectPosition: "center",
+                  aspectRatio: "16 / 9",
+                }}
+              />
             </Col>
           </Row>
           <Row>
             <Col xs={12} md={4}>
-              <h2 id="features" className="heading-medium">Features</h2>
+              <h2 id="features" className="heading-medium">
+                Features
+              </h2>
             </Col>
             <Col xs={12} md={6}>
-              <p className="paragraph-medium text-secondary">The Green Design System ensures a unified visual experience. Empowering designers and developers with versatile, accessible and coherent components.</p>
+              <p className="paragraph-medium text-secondary">
+                The Green Design System ensures a unified visual experience.
+                Empowering designers and developers with versatile, accessible
+                and coherent components.
+              </p>
               <Spacing direction="vertical" size={8} />
               <Accordion>
                 <AccordionItem id="features" label="Consistency" labelElementLevel={3}>
@@ -179,11 +220,10 @@ export default function Foundation() {
             </Col>
           </Row>
         </Stack>
-        <div class="toc-sidebar">
+        <div className="toc-sidebar">
           <TOC headings={tocHeading} component={"About"} />
         </div>
       </Grid>
     </div>
   )
 }
-

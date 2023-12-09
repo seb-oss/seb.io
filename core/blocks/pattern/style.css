@@ -1,9 +1,9 @@
 figure.preview {
-  background-color: color-mix(in srgb, var(--color-black), transparent 99%);
+  --color: hsla(60, 6%, 10%, 1);
   --cell-lg: 56px;
-  --cell-lg-cl: color-mix(in srgb, var(--color-black), transparent 99%);
+  --cell-lg-cl: color-mix(in srgb, var(--color), transparent 99%);
   --cell-sm: 8px;
-  --cell-sm-cl: color-mix(in srgb, var(--color-black), transparent 99%);
+  --cell-sm-cl: color-mix(in srgb, var(--color), transparent 99%);
   display: flex;
   border-radius: 12px;
   align-items: center;
@@ -12,6 +12,7 @@ figure.preview {
   aspect-ratio: 16 / 9;
   position: relative;
 
+  background-color: hsl(0 0% 100%);
   background-image: linear-gradient(
       to right,
       transparent calc(var(--cell-lg) - 1px),

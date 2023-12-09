@@ -75,62 +75,82 @@ export const Component = defineDocumentType(() => ({
             return { order, pathName }
           }),
     },
-
     last_edited: { type: "date", resolve: getLastEditedDate },
-
     figma_hero_svg: {
       type: "json",
       resolve: async (doc) => {
         const node = doc.node
 
-        const response = await axios.get(
-          `https://api.figma.com/v1/images/${figmaProjectId}/?ids=${node}&format=svg`,
-          {
-            headers: {
-              "X-Figma-Token": figmaAccessKey,
-            },
+        try {
+          const response = await axios.get(
+            `https://api.figma.com/v1/images/${figmaProjectId}/?ids=${node}&format=svg`,
+            {
+              headers: {
+                "X-Figma-Token": figmaAccessKey,
+              },
+            }
+          )
+
+          const images = response.data.images
+          const imageUrl = Object.values(images)[0] as string
+          const svgResponse = await axios.get(imageUrl)
+
+          return {
+            node: node,
+            svg: svgResponse.data,
           }
-        )
-
-        const images = response.data.images
-        const imageUrl = Object.values(images)[0] as string
-        const svgResponse = await axios.get(imageUrl)
-
-        return {
-          node: node,
-          svg: svgResponse.data,
+        } catch (error) {
+          console.error("Error fetching Figma hero SVG:", error)
+          return {
+            node: node,
+            svg: "", // Return empty string for failed requests
+          }
         }
       },
     },
-
     figma_svgs: {
       type: "json",
       resolve: async (doc) => {
         const regXHeader = /node="(?<node>.+?)"/g
-        const nodes = await Promise.all(
-          Array.from(doc.body.raw.matchAll(regXHeader)).map(async (match) => {
-            const groups = (match as RegExpMatchArray).groups
-            const node = groups?.node
+        let nodes: { node: string | undefined; svg: any }[] = []
 
-            const response = await axios.get(
-              `https://api.figma.com/v1/images/${figmaProjectId}/?ids=${node}&format=svg`,
-              {
-                headers: {
-                  "X-Figma-Token": figmaAccessKey,
-                },
+        try {
+          nodes = await Promise.all(
+            Array.from(doc.body.raw.matchAll(regXHeader)).map(async (match) => {
+              const groups = match.groups
+              const node = groups?.node
+
+              try {
+                const response = await axios.get(
+                  `https://api.figma.com/v1/images/${figmaProjectId}/?ids=${node}&format=svg`,
+                  {
+                    headers: {
+                      "X-Figma-Token": figmaAccessKey,
+                    },
+                  }
+                )
+
+                const images = response.data.images
+                const imageUrl = Object.values(images)[0] as string
+                const svgResponse = await axios.get(imageUrl)
+
+                return {
+                  node: node,
+                  svg: svgResponse.data,
+                }
+              } catch (error) {
+                console.error(`Error fetching Figma SVG`)
+                return {
+                  node: node,
+                  svg: "", // Return empty string for failed requests
+                }
               }
-            )
+            })
+          )
+        } catch (error) {
+          console.error("Error processing Figma SVGS:")
+        }
 
-            const images = response.data.images
-            const imageUrl = Object.values(images)[0] as string
-            const svgResponse = await axios.get(imageUrl)
-
-            return {
-              node: node,
-              svg: svgResponse.data,
-            }
-          })
-        )
         return nodes
       },
     },

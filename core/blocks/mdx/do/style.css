@@ -37,7 +37,7 @@
     }
   }
 
-  figure {
+  figure.preview {
     border-radius: 0;
     margin: 0;
     margin-inline-end: 0px;

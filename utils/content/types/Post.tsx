@@ -1,7 +1,8 @@
-import { defineDocumentType } from "@contentlayer/source-files";
-import { getLastEditedDate, urlFromFilePath } from "../utils";
+import { defineDocumentType } from "@contentlayer/source-files"
 
-export type DocHeading = { level: 1 | 2 | 3; title: string };
+import { getLastEditedDate, urlFromFilePath } from "../utils"
+
+export type DocHeading = { level: 1 | 2 | 3; title: string }
 
 export const Post = defineDocumentType(() => ({
   name: "Post",
@@ -25,18 +26,10 @@ export const Post = defineDocumentType(() => ({
       description:
         'The URL path of this page relative to site root. For example, the site root page would be "/", and doc page would be "docs/getting-started/"',
       resolve: (post) => {
-        if (post._id.startsWith("blog/index.mdx")) return "/blog";
-        return urlFromFilePath(post);
+        if (post._id.startsWith("blog/index.mdx")) return "/blog"
+        return urlFromFilePath(post)
       },
     },
-
-    // url_path_without_id: {
-    //   type: "string",
-    //   description:
-    //     'The URL path of this page relative to site root. For example, the site root page would be "/", and doc page would be "docs/getting-started/"',
-    //   resolve: (post) =>
-    //     urlFromFilePath(post).replace(new RegExp(`-${post.global_id}$`), ""),
-    // },
     pathSegments: {
       type: "json",
       resolve: (post) =>
@@ -45,14 +38,13 @@ export const Post = defineDocumentType(() => ({
           // skip `/docs` prefix
           .slice(2)
           .map((dirName) => {
-            const re = /^((\d+)-)?(.*)$/;
-            const [, , orderStr, pathName] = dirName.match(re) ?? [];
-            const order = orderStr ? parseInt(orderStr) : 0;
-            return { order, pathName };
+            const re = /^((\d+)-)?(.*)$/
+            const [, , orderStr, pathName] = dirName.match(re) ?? []
+            const order = orderStr ? parseInt(orderStr) : 0
+            return { order, pathName }
           }),
     },
-
     last_edited: { type: "date", resolve: getLastEditedDate },
   },
   extensions: {},
-}));
+}))

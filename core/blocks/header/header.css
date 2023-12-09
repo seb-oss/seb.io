@@ -3,7 +3,11 @@ header.main {
   align-items: center;
   justify-content: space-between;
   color: var(--gds-sys-color-content-content);
-  background-color: var(--gds-sys-color-background-background);
+  background-color: color-mix(
+    in srgb,
+    var(--gds-sys-color-background-background),
+    transparent 4%
+  );
   font-size: 16px;
   letter-spacing: 0.1px;
   line-height: 1.25;
@@ -11,7 +15,7 @@ header.main {
   position: sticky;
   top: 0;
   backdrop-filter: blur(10px);
-  z-index: 2;
+  z-index: 5;
   max-block-size: var(--header-height);
   block-size: var(--header-height);
   padding-inline: 24px;
