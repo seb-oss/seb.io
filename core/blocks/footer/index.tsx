@@ -20,15 +20,10 @@ export default function Footer() {
                 <Link href="/about">About</Link>
               </li>
               <li>
-                <Link href="/terms">Terms</Link>
+                <Link href="/foundation">Foundation</Link>
               </li>
               <li>
-                <Link href="/privacy">Privacy</Link>
-              </li>
-              <li>
-                <button type="button" data-cc="c-settings">
-                  Cookie preferences
-                </button>
+                <Link href="/components">Components</Link>
               </li>
             </ul>
           </nav>
@@ -37,20 +32,35 @@ export default function Footer() {
           <nav>
             <ul>
               <li>
-                <Link href="/about">About</Link>
+                <Link href="https://github.com/sebgroup/green">Github</Link>
               </li>
               <li>
-                <Link href="/terms">Terms</Link>
+                <Link href="/changelog">Changelog</Link>
               </li>
               <li>
-                <Link href="/privacy">Privacy</Link>
+                <Link href="/status">Status</Link>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div className="col">
+          <nav>
+            <ul>
+              <li>
+                <Link href="https://sebgroup.com/">SEB Group</Link>
+              </li>
+              <li>
+                <Link href="https://seb.se/">SEB.se</Link>
               </li>
             </ul>
           </nav>
         </div>
       </div>
-      <div>
+      <div className="main-footer__bottom">
         <span>{text}</span>
+        <button type="button" data-cc="c-settings" className="cookie-preferences">
+          Cookie preferences
+        </button>
       </div>
     </footer>
   )

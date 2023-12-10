@@ -12,10 +12,26 @@
       font-style: normal;
       font-weight: 400;
       line-height: 1.875rem;
+
+      li {
+        line-height: 1.875rem;
+      }
     }
 
     .paragraph-medium + .paragraph-medium {
       margin-top: 1.875rem;
+    }
+
+    p {
+      font-size: 1rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 1.5rem;
+      letter-spacing: 0.0125rem;
+    }
+
+    li {
+      line-height: 1.5rem;
     }
   }
 }
