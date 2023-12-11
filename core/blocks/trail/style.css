@@ -10,12 +10,12 @@
     gap: 10px;
 
     span {
-      opacity: 0.4;
+      opacity: 0.6;
     }
 
     li {
       text-transform: capitalize;
-      opacity: 0.4;
+      opacity: 0.6;
 
       &:not(.active) {
         text-underline-offset: 3px;

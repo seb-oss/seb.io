@@ -4,7 +4,7 @@ aside.toc {
 
   span {
     font-size: 10px;
-    opacity: 0.5;
+    opacity: 0.8;
     margin-bottom: 1ex;
   }
 
@@ -27,7 +27,7 @@ aside.toc {
       transition: all 0.4s;
       border-left: 1px solid transparent;
       margin-left: -1px;
-      opacity: 0.4;
+      opacity: 0.8;
 
       &.active {
         opacity: 1;
@@ -72,7 +72,6 @@ aside.toc {
     }
   }
 }
-
 
 @media only screen and (max-width: 993px) {
   .layout.core .toc-sidebar {
