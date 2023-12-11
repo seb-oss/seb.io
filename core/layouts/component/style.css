@@ -228,7 +228,7 @@
     }
 
     figure:has(iframe) {
-      transition: all 0.4s ease-in-out;
+      transition: var(--transition);
       display: flex;
       flex-direction: column;
       pointer-events: all;
@@ -249,7 +249,7 @@
         border: 1px solid
           color-mix(in srgb, var(--color-black), transparent 90%);
         background-color: transparent !important;
-        transition: all 2s cubic-bezier(0.165, 0.84, 0.44, 1);
+        transition: var(--transition);
         transition-delay: 1s;
         pointer-events: none;
         user-select: none;

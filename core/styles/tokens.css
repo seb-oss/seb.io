@@ -171,5 +171,11 @@
         --color-black: hsl(0 0% 100%);
       }
     }
+
+    @media (prefers-reduced-motion: reduce) {
+      :root {
+        --transition: none;
+      }
+    }
   }
 }

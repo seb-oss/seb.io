@@ -54,7 +54,7 @@ figure.preview {
     color: var(--color-black);
     background-color: transparent;
     cursor: pointer;
-    transition: all 128ms linear;
+    transition: var(--transition);
 
     &:hover {
       background-color: color-mix(in srgb, var(--color-black), transparent 90%);

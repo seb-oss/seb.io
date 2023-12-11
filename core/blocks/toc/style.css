@@ -19,7 +19,7 @@ aside.toc {
       --_inline-padding: 2ch;
       align-items: center;
       display: flex;
-      transition: all 0.4s;
+      transition: var(--transition);
       border-left: 1px solid transparent;
       margin-left: -1px;
       color: var(--gds-sys-color-content-content-secondary);

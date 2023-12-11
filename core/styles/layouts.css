@@ -99,7 +99,7 @@
                 justify-content: space-between;
                 border-radius: 12px;
                 background-color: var(--gds-sys-color-container-container);
-                transition: all 0.4s;
+                transition: var(--transition);
                 max-height: max-content;
                 box-sizing: border-box;
 
