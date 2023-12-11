@@ -215,6 +215,16 @@
 
     .col figure {
       margin-block-start: 0;
+      aspect-ratio: 16 / 9;
+      height: auto;
+
+      img {
+        display: flex;
+        object-fit: cover;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        height: auto;
+      }
     }
 
     figure:has(iframe) {
@@ -237,7 +247,7 @@
         border: none;
         border-radius: 8px;
         border: 1px solid
-          color-mix(in srgb, var(--color-black), transparent 98%);
+          color-mix(in srgb, var(--color-black), transparent 90%);
         background-color: transparent !important;
         transition: all 2s cubic-bezier(0.165, 0.84, 0.44, 1);
         transition-delay: 1s;
