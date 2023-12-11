@@ -46,14 +46,10 @@ export default function About() {
     <div className="layout core about">
       <Grid fluid>
         <Stack gap="7.5rem">
-          <Row>
-            <Col xs>
-              <Hero
-                heading="About"
-                preamble="Green Design System is the design system for Skandinaviska Enskilda Banken to make it easier and faster to build beautiful digital products and experiences under the SEB brand."
-              />
-            </Col>
-          </Row>
+          <Hero
+            heading="About"
+            preamble="Green Design System is the design system for Skandinaviska Enskilda Banken to make it easier and faster to build beautiful digital products and experiences under the SEB brand."
+          />
           <Row>
             <Col xs={12} md={4}>
               <h2 id="what-is-green" className="heading-medium">

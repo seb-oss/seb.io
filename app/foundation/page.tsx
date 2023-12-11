@@ -91,14 +91,10 @@ export default function Foundation() {
     <div className="layout core foundation">
       <Grid fluid>
         <Stack gap="7.5rem">
-          <Row>
-            <Col xs>
-              <Hero
-                heading="Foundation"
-                preamble="Green Design System, a framework designed to bring unity, efficiency, and coherent perspective to our digital experiences. Over time it will grow and evolve but always reflect our design philosophy. User needs first, being forefront and with confidence."
-              />
-            </Col>
-          </Row>
+          <Hero
+            heading="Foundation"
+            preamble="Green Design System, a framework designed to bring unity, efficiency, and coherent perspective to our digital experiences. Over time it will grow and evolve but always reflect our design philosophy. User needs first, being forefront and with confidence."
+          />
           <Row>
             <Col xs={12} md={4}>
               <h2 id="our-purpose" className="heading-medium">

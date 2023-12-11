@@ -1,3 +1,5 @@
+/* @import "react-flexbox-grid/dist/react-flexbox-grid.css" layer(core.layouts); */
+
 @layer core {
   @layer layouts {
     @layer main {
@@ -18,6 +20,10 @@
             padding: 1rem 1rem 4rem;
             @media screen and (min-width: 48rem) {
               padding: 2.5rem 2.5rem 7.5rem;
+            }
+
+            .container-fluid {
+              padding: 0;
             }
 
             .home h2 {
@@ -41,7 +47,6 @@
 
             .component-list {
               a {
-
                 @media screen and (min-width: 36rem) {
                   inline-size: calc(100% / 2 - 20px);
                 }
@@ -105,7 +110,7 @@
                 gap: 1rem;
                 flex-direction: column;
 
-                @media screen  and (min-width: 62rem) {
+                @media screen and (min-width: 62rem) {
                   flex-direction: row;
                   gap: 2rem;
                 }
@@ -114,7 +119,7 @@
               .cta-home {
                 display: flex;
 
-                  flex-direction: row;
+                flex-direction: row;
 
                 @media screen and (min-width: 62rem) {
                   inline-size: calc(100% / 3 - 1rem);

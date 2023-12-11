@@ -1,5 +1,4 @@
 footer.main-footer {
-
   padding: 3rem 1rem;
   gap: 4rem;
 
@@ -30,14 +29,18 @@ footer.main-footer {
   .content {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 2rem;
+
+    .col {
+      width: calc(100% / 2 - 2rem);
+    }
 
     @media screen and (min-width: 768px) {
       gap: 6.25rem;
-    }
 
-    .col {
-      width: calc(100% / 2 - 1rem);
+      .col {
+        width: auto;
+      }
     }
 
     nav {
