@@ -56,7 +56,7 @@ export function ThemeToggle() {
 
   if (!mounted) {
     return (
-      <button className="theme">
+      <button className="theme" aria-label="Toggle Light Theme">
         <Light />
       </button>
     )
@@ -65,6 +65,7 @@ export function ThemeToggle() {
     <button
       className="theme"
       onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+      aria-label={`Toggle ${theme === "dark" ? "Light" : "Dark"} Theme`}
     >
       {theme === "dark" ? <Light /> : <Dark />}
     </button>

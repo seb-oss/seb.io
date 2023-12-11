@@ -1,3 +1,4 @@
+import React, { KeyboardEvent } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { allComponents, Component } from "content"
@@ -32,7 +33,7 @@ export default function Sidebar({
 
   const Arrow = () => {
     return (
-      <span>
+      <span aria-label="Expand" tabIndex={0}>
         <svg viewBox="0 0 24 24">
           <polyline points="6 9 12 15 18 9"></polyline>
         </svg>
@@ -42,7 +43,7 @@ export default function Sidebar({
 
   return (
     <aside className={`nav ${!isNavOpen ? "hidden" : ""}`}>
-      <details>
+      <details open={path.includes("/component")}>
         <summary>
           <Link
             className={path.includes("/component") ? "active" : ""}
@@ -58,8 +59,7 @@ export default function Sidebar({
           ))}
         </nav>
       </details>
-      {/* <hr /> */}
-      <details>
+      <details open={path.includes("/foundation")}>
         <summary>
           <Link
             className={path.includes("/foundation") ? "active" : ""}
@@ -84,8 +84,13 @@ export default function Sidebar({
           </Link>
         </nav>
       </details>
-      {/* <hr /> */}
-      <details>
+      <details
+        open={
+          path.includes("/about") ||
+          path.includes("/changelog") ||
+          path.includes("/status")
+        }
+      >
         <summary>
           <Link className={path == "/about" ? "active" : ""} href="/about">
             About

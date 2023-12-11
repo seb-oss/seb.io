@@ -3,9 +3,10 @@ aside.toc {
   flex-direction: column;
 
   span {
-    font-size: 10px;
-    opacity: 0.5;
+    font-size: 14px;
+    line-height: 1.2;
     margin-bottom: 1ex;
+    color: var(--gds-sys-color-content-content);
   }
 
   nav {
@@ -14,12 +15,6 @@ aside.toc {
     font-size: 14px;
     position: relative;
 
-    &:hover {
-      a {
-        opacity: 1;
-      }
-    }
-
     a {
       --_inline-padding: 2ch;
       align-items: center;
@@ -27,15 +22,10 @@ aside.toc {
       transition: all 0.4s;
       border-left: 1px solid transparent;
       margin-left: -1px;
-      opacity: 0.4;
-
-      &.active {
-        opacity: 1;
-      }
+      color: var(--gds-sys-color-content-content-secondary);
 
       &:hover {
         text-decoration: underline;
-        opacity: 1;
       }
 
       &[data-level="1"] {
@@ -61,18 +51,20 @@ aside.toc {
       &[data-level="4"] {
         margin-left: 2.5px;
         padding-left: var(--_inline-padding);
-        border-left: 1px solid currentColor;
+        border-left: 1px solid var(--gds-sys-color-state-layers-state-black);
         padding-block: 8px;
-        /* padding-left: calc(var(--_inline-padding) + 3ch); */
       }
 
-      &[data-level="4"] {
-        /* padding-left: calc(var(--_inline-padding) + 4ch); */
+      &.active {
+        color: var(--gds-sys-color-content-content);
+
+        &:not([data-level="2"]) {
+          border-left-color: var(--gds-sys-color-content-content);
+        }
       }
     }
   }
 }
-
 
 @media only screen and (max-width: 993px) {
   .layout.core .toc-sidebar {

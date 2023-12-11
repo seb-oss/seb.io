@@ -23,9 +23,6 @@ aside.nav {
   details {
     &[open] {
       summary {
-        span {
-          /*background-color: var(--gds-sys-color-state-layers-state-black);*/
-        }
         svg {
           transform: scaleY(-1);
         }
@@ -40,7 +37,6 @@ aside.nav {
       gap: 8px;
       cursor: pointer;
       transition: all 0.4s;
-      margin-bottom: 4px;
 
       &:hover {
         span {
@@ -81,6 +77,7 @@ aside.nav {
 
     nav {
       padding-inline-start: 1rem;
+      padding-block-start: 4px;
     }
   }
 
@@ -108,7 +105,7 @@ aside.nav {
   nav {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 4px;
     font-size: 16px;
 
     a {
@@ -116,11 +113,14 @@ aside.nav {
       width: 100%;
       padding: 12px 16px;
       transition: all 482ms cubic-bezier(0.4, 0, 0.2, 1);
+      color: var(--gds-sys-color-content-content);
 
-      &:hover,
+      &:hover {
+        background-color: var(--gds-sys-color-state-layers-state-black);
+      }
+
       &.active {
-        background-color: var(--border-color);
-        color: var(--color-black);
+        background-color: var(--gds-sys-color-container-container-dim1);
       }
     }
   }

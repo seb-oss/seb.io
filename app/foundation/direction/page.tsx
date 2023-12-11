@@ -4,12 +4,8 @@ export default function Direction() {
   return (
     <div className="layout core">
       <section>
-        <h2>Direction</h2>
-        <div>
-          <Link href="/foundation">Foundation</Link>
-          <Link href="/foundation/accessibility">Accessibility</Link>
-          <Link href="/foundation/direction">Direction</Link>
-        </div>
+        <h1>Direction</h1>
+        <p>Work in progress.</p>
       </section>
     </div>
   )

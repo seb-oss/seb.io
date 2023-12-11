@@ -1,9 +1,24 @@
 import Link from "next/link"
+import Pattern from "@/core/blocks/pattern/pattern"
 import { allComponents, Component } from "content"
 
 function ComponentCard(component: Component) {
-  return <Link href={component.url_path}>{component.title}</Link>
+  return (
+    <Link href={component.url_path}>
+      <Pattern>
+        <div
+          dangerouslySetInnerHTML={{ __html: component.figma_hero_svg.svg }}
+        />
+      </Pattern>
+      <div>{component.title}</div>
+      <p>{component.summary}</p>
+    </Link>
+  )
 }
+
+// function ComponentCard(component: Component) {
+//   return <Link href={component.url_path}>{component.title}</Link>
+// }
 
 export default function Components() {
   const filteredComponents = allComponents.filter(
@@ -16,9 +31,11 @@ export default function Components() {
 
   return (
     <div className="layout core">
-      <section>
-        <h2>Components</h2>
-        <div>
+      <section className="home-components">
+        <h2>
+          <Link href="/components">Components</Link>
+        </h2>
+        <div className="component-list">
           {components.map((component, idx) => (
             <ComponentCard key={idx} {...component} />
           ))}

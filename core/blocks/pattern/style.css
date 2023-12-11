@@ -41,8 +41,7 @@ figure.preview {
 
   p {
     margin: 0;
-    opacity: 0.5;
-    font-size: 12px;
+    font-size: 14px;
   }
 
   /* Only for the demo */
@@ -66,8 +65,7 @@ figure.preview {
   & ~ span {
     content: attr(data-caption);
     display: flex;
-    font-size: 12px;
-    opacity: 0.5;
+    font-size: 14px;
     margin-top: 2ex;
   }
 }
