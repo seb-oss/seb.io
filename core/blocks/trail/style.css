@@ -6,6 +6,7 @@
   ul {
     display: flex;
     flex-direction: row;
+    align-items: center;
     gap: 10px;
 
     span {
@@ -17,7 +18,6 @@
       opacity: 0.4;
 
       &:not(.active) {
-        /* text-decoration: underline; */
         text-underline-offset: 3px;
         opacity: 0.8;
       }
