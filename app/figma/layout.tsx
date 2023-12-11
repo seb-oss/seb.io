@@ -134,10 +134,10 @@ export default function ComponentLayout({
             type="module"
           ></Script>
           <Playground component="input" story-id="2" />
-
+          <br />
+          <br />
+          <br />
           <FigmaApi node={"2433-442"} />
-          {/* {children} */}
-          {/* <Taber component={url_path} /> */}
         </div>
         {tocComponent}
       </article>
