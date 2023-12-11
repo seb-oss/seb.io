@@ -89,7 +89,13 @@ export default function ComponentLayout({
                 {tagsArray.slice(0, MAX_VISIBLE_TAGS).map((tag, index) => (
                   <div key={tag}>{tag}</div>
                 ))}
-                {extraTagsCount > 0 && <div>···</div>}
+                {extraTagsCount > 0 && (
+                  <div className="more">
+                    <svg viewBox="0 0 18 4">
+                      <path d="M11 2C11 3.10417 10.1042 4 9 4C7.89583 4 7 3.10417 7 2C7 0.895833 7.89583 0 9 0C10.1042 0 11 0.895833 11 2ZM16 0C14.8958 0 14 0.895833 14 2C14 3.10417 14.8958 4 16 4C17.1042 4 18 3.10417 18 2C18 0.895833 17.1042 0 16 0ZM2 0C0.895833 0 0 0.895833 0 2C0 3.10417 0.895833 4 2 4C3.10417 4 4 3.10417 4 2C4 0.895833 3.10417 0 2 0Z" />
+                    </svg>
+                  </div>
+                )}
               </menu>
             </div>
           </div>
