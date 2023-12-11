@@ -70,7 +70,6 @@ header.main {
     padding: 0 16px;
     transition: var(--transition);
     color: currentColor;
-    outline: none;
 
     &.active {
       border-color: color-mix(in srgb, var(--color-black), transparent 60%);

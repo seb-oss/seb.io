@@ -23,9 +23,19 @@
     -webkit-text-size-adjust: 100%;
   }
 
-  p, li {
+  p,
+  li {
     > a {
       text-decoration: underline;
+    }
+  }
+
+  * {
+    &:focus-visible {
+      outline-offset: 2px;
+      outline-color: currentColor;
+      outline-width: 2px;
+      outline-style: solid;
     }
   }
 
