@@ -1,7 +1,7 @@
 .dont {
-  --_cl: hsla(9, 100%, 36%, 1);
-  --_bg: hsla(13, 100%, 98%, 1);
-  --_br: hsla(9, 100%, 36%, 1);
+  --_cl: var(--gds-sys-color-container-container-negative);
+  --_bg: var(--gds-sys-color-status-negative-negative-bright);
+  --_br: var(--gds-sys-color-container-container-negative);
   --_fs: 14px;
   --_gp: 8px;
   --_pd: 8px;
