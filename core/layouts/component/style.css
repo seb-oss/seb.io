@@ -240,8 +240,7 @@
       margin-block-start: 1lh;
 
       figcaption {
-        font-size: 12px;
-        opacity: 0.5;
+        font-size: 14px;
         margin-block-start: 1lh;
         margin-bottom: 1lh;
       }
@@ -264,7 +263,6 @@
     figure:not(:has(iframe)) {
       figcaption {
         font-size: 12px;
-        opacity: 0.5;
         margin-block-start: 1lh;
         margin-bottom: 1lh;
       }
@@ -283,7 +281,6 @@
 
   footer {
     font-size: 12px;
-    opacity: 0.5;
     margin-block-start: 40px;
   }
 
