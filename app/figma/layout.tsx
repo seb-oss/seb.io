@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { notFound, usePathname, useRouter } from "next/navigation"
+import Script from "next/script"
 import Col from "@/core/blocks/mdx/col/col"
 import FigmaProto from "@/core/blocks/mdx/figma/figmaProto"
 import FigmaSVG from "@/core/blocks/mdx/figma/figmaSVG"
@@ -128,7 +129,13 @@ export default function ComponentLayout({
               />
             </Col>
           </Row>
+          <Script
+            src={"/playground-elements/playground-elements.mjs"}
+            type="module"
+          ></Script>
           <Playground component="input" story-id="2" />
+
+          <FigmaApi node={"2433-442"} />
           {/* {children} */}
           {/* <Taber component={url_path} /> */}
         </div>

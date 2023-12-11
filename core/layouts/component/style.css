@@ -49,6 +49,7 @@
       gap: 20px;
       position: relative;
       font-size: 14px;
+      /* flex-wrap: wrap; */
 
       > div {
         display: flex;
@@ -71,7 +72,7 @@
           padding: 4px 8px;
           border-radius: 4px;
           background-color: var(--border-color);
-          /* font-weight: 600; */
+          white-space: nowrap;
         }
 
         menu {
@@ -81,9 +82,13 @@
           font-size: 14px;
 
           div {
+            display: flex;
+            align-items: center;
             padding: 6px 12px;
             border-radius: 200px;
             border: 1px solid var(--gds-sys-color-stroke-stroke);
+            white-space: nowrap;
+            word-break: normal;
 
             &.more {
               display: flex;
@@ -251,7 +256,7 @@
         background-color: transparent !important;
         transition: var(--transition);
         transition-delay: 1s;
-        pointer-events: none;
+        /* pointer-events: none; */
         user-select: none;
       }
     }
