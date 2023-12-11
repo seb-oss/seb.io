@@ -1,6 +1,10 @@
-import { use, useEffect, useRef } from "react"
+import { useEffect, useRef } from "react"
 
 import "./styles.css"
+
+interface PlaygroundPreviewElement extends HTMLElement {
+  project: string | HTMLDivElement
+}
 
 declare global {
   namespace JSX {
@@ -14,10 +18,8 @@ declare global {
         HTMLElement
       >
       "playground-preview": React.DetailedHTMLProps<
-        React.HTMLAttributes<HTMLElement> & {
-          project: string
-        },
-        HTMLElement
+        React.HTMLAttributes<PlaygroundPreviewElement>,
+        PlaygroundPreviewElement
       >
       "playground-file-editor": React.DetailedHTMLProps<
         React.HTMLAttributes<HTMLElement>,
@@ -29,20 +31,13 @@ declare global {
 
 function Playground(props: any) {
   const projectRef = useRef<HTMLDivElement>(null)
-  const previewRef = useRef<
-    React.DetailedHTMLProps<
-      React.HTMLAttributes<HTMLElement> & {
-        project: string | HTMLDivElement
-      },
-      HTMLElement
-    >
-  >(null)
+  const previewRef = useRef<PlaygroundPreviewElement>(null)
 
   useEffect(() => {
     if (previewRef.current && projectRef.current) {
       previewRef.current.project = projectRef.current
     }
-  })
+  }, [])
 
   return (
     <>
