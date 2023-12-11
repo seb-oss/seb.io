@@ -43,7 +43,7 @@ export default function Sidebar({
 
   return (
     <aside className={`nav ${!isNavOpen ? "hidden" : ""}`}>
-      <details>
+      <details open={path.includes("/component")}>
         <summary>
           <Link
             className={path.includes("/component") ? "active" : ""}
@@ -59,8 +59,7 @@ export default function Sidebar({
           ))}
         </nav>
       </details>
-      {/* <hr /> */}
-      <details>
+      <details open={path.includes("/foundation")}>
         <summary>
           <Link
             className={path.includes("/foundation") ? "active" : ""}
@@ -85,8 +84,13 @@ export default function Sidebar({
           </Link>
         </nav>
       </details>
-      {/* <hr /> */}
-      <details>
+      <details
+        open={
+          path.includes("/about") ||
+          path.includes("/changelog") ||
+          path.includes("/status")
+        }
+      >
         <summary>
           <Link className={path == "/about" ? "active" : ""} href="/about">
             About

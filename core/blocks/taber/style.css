@@ -6,12 +6,20 @@
   right: 0;
   bottom: 40px;
   border-radius: 200px;
-  background-color: color-mix(in srgb, var(--color-white), transparent 20%);
+  background-color: color-mix(
+    in srgb,
+    var(--gds-sys-color-container-container-dim1),
+    transparent 10%
+  );
+  /* background-color: color-mix(in srgb, var(--color-white), transparent 10%); */
+  /* border: 1px solid color-mix(in srgb, var(--color-black), transparent 94%); */
+  /* box-shadow: ; */
+  box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15),
+    0px 1px 2px 0px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(20px);
-  border: 1px solid color-mix(in srgb, var(--color-black), transparent 94%);
   display: flex;
-  gap: 5px;
-  padding: 10px;
+  gap: 4px;
+  padding: 4px;
   z-index: 4;
   font-size: 14px;
   width: max-content;
@@ -20,19 +28,22 @@
 
   & a {
     display: flex;
-    color: color-mix(in srgb, var(--color-black), transparent 40%);
+    color: var(--gds-sys-color-content-content);
+    /* color: color-mix(in srgb, var(--color-black), transparent 40%); */
     align-items: center;
     gap: 10px;
     padding: 12px 20px;
     transition: all 0.4s;
+    border-radius: 100px;
 
     &.active,
     &:hover {
-      color: color-mix(in srgb, var(--color-black), transparent 0%);
-      background-color: color-mix(in srgb, var(--color-black), transparent 96%);
+      color: var(--gds-sys-color-content-content-inverse);
+      /* color: color-mix(in srgb, var(--color-black), transparent 0%); */
+      background-color: var(--gds-sys-color-container-container-shade1);
+      /* background-color: color-mix(in srgb, var(--color-black), transparent 96%); */
 
       padding: 12px 20px;
-      border-radius: 100px;
     }
 
     svg {

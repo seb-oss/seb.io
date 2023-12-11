@@ -2,7 +2,8 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: max-content;
+  /* width: max-content; */
+  max-width: 1180px;
   padding: 64px;
   margin-inline: auto;
   --border-color: color-mix(in srgb, var(--color-black), transparent 90%);
@@ -71,6 +72,7 @@
           display: flex;
           flex-direction: row;
           gap: 1ch;
+          font-size: 14px;
 
           div {
             padding: 10px 20px;
@@ -101,9 +103,7 @@
       max-width: max-content;
 
       main {
-        /* max-width: 830px; */
-        inline-size: 830px;
-        /* min-width: 950px; */
+        /* inline-size: 830px; */
 
         p {
           text-wrap: balance;
@@ -120,7 +120,8 @@
       padding-block-start: 40px;
       position: sticky;
       top: 80px;
-      min-width: 180px;
+      min-width: 200px;
+      max-width: 200px;
     }
 
     h2 {
@@ -166,14 +167,13 @@
       padding-top: 24px;
 
       li {
-        padding-left: 3ch;
+        padding-left: 2ch;
         position: relative;
 
         &::before {
-          content: "—";
+          content: "•";
           position: absolute;
           left: 0;
-          opacity: 0.4;
         }
       }
     }

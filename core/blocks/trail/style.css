@@ -1,7 +1,8 @@
 .trail {
   display: flex;
   margin-block-end: 40px;
-  font-size: 12px;
+  font-size: 14px;
+  line-height: 1.25;
 
   ul {
     display: flex;
@@ -9,18 +10,13 @@
     align-items: center;
     gap: 10px;
 
-    span {
-      opacity: 0.4;
-    }
-
     li {
       text-transform: capitalize;
       text-underline-offset: 3px;
-      opacity: 0.4;
 
-      &:not(.active) {
+      /* &:not(.active) {
         opacity: 0.8;
-      }
+      } */
 
       &.active {
         a {

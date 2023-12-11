@@ -37,8 +37,8 @@ export default function Home() {
   return (
     <div className="layout core">
       <Hero
-        heading="Design and build beautiful, usable products with Green Design System"
-        preamble="Green Design System is the latest version of SEB’s open-source design system. Welcome to a new era of digital banking."
+        heading="Designed to bring unity to our digital experiences."
+        preamble="Green design system is more than a polished user interface, its places the user at the very forefront of design, usability and accessibility."
       />
       <section className="home-components">
         <h2>

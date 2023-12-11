@@ -1,11 +1,11 @@
 footer.main-footer {
-  padding: 64px;
+  padding: 40px;
   border-top: 1px solid var(--gds-sys-color-stroke-stroke-variant2);
   font-weight: 400;
   font-size: 12px;
   display: flex;
   flex-direction: column;
-  gap: 100px;
+  gap: 32px;
   width: 100%;
   font-size: 16px;
 

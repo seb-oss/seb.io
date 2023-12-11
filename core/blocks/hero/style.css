@@ -1,12 +1,13 @@
 .hero {
   --mix: color-mix(in srgb, currentColor, transparent 96%);
   display: flex;
-  min-height: 80vh;
+  min-height: calc(100vh - 150px);
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-end;
-  padding-bottom: 5.25rem;
-  margin-bottom: 7.5rem;
+  padding-block-end: 0;
+  /* padding-bottom: 5.25rem; */
+  /* margin-bottom: 7.5rem; */
 
   h1 {
     font-size: 82px;
