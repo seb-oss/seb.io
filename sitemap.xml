@@ -2,19 +2,19 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://seb.io</loc>
-<lastmod>2023-12-11T08:41:10.178Z</lastmod>
+<lastmod>2023-12-11T09:39:52.640Z</lastmod>
 <changefreq>yearly</changefreq>
 <priority>1</priority>
 </url>
 <url>
 <loc>https://seb.io/components</loc>
-<lastmod>2023-12-11T08:41:10.178Z</lastmod>
+<lastmod>2023-12-11T09:39:52.640Z</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.8</priority>
 </url>
 <url>
 <loc>https://seb.io/foundation</loc>
-<lastmod>2023-12-11T08:41:10.178Z</lastmod>
+<lastmod>2023-12-11T09:39:52.640Z</lastmod>
 <changefreq>weekly</changefreq>
 <priority>0.5</priority>
 </url>
