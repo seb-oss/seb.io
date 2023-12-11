@@ -9,9 +9,9 @@ var __decorateClass = (decorators, target, key, kind) => {
     __defProp(target, key, result);
   return result;
 };
-var __accessCheck = (obj, member, msg3) => {
+var __accessCheck = (obj, member, msg5) => {
   if (!member.has(obj))
-    throw TypeError("Cannot " + msg3);
+    throw TypeError("Cannot " + msg5);
 };
 var __privateGet = (obj, member, getter) => {
   __accessCheck(obj, member, "read from private field");
@@ -61,9 +61,6 @@ function constrainSlots(self) {
     });
   });
 }
-
-// libs/core/src/utils/helpers/id.ts
-var randomId = () => "gds-" + Math.random().toString(36).substring(2, 9);
 
 // libs/core/src/components/icon/icon.ts
 import { LitElement, html, unsafeCSS } from "lit";
@@ -257,7 +254,7 @@ div.gds-ripple-effect {
 // libs/core/src/utils/helpers/custom-element-scoping.ts
 import { html as litHtml } from "lit";
 import { customElement as customElement2 } from "lit/decorators.js";
-var VER_SUFFIX = "-463ffc";
+var VER_SUFFIX = "-3390ae";
 var elementLookupTable = /* @__PURE__ */ new Map();
 var gdsCustomElement = (tagName) => {
   if (globalThis.GDS_DISABLE_VERSIONED_ELEMENTS) {
@@ -281,7 +278,7 @@ function applyElementScoping(strings, ...values) {
 }
 var replaceTags = (inStr) => inStr.map((s) => {
   for (const [key, value] of elementLookupTable.entries()) {
-    s = s.split(key).join(value);
+    s = s.replace(new RegExp(`${key}(?![-a-z])`, "mg"), value);
   }
   return s;
 });
@@ -343,7 +340,7 @@ import { unsafeCSS as unsafeCSS3 } from "lit";
 // dist/libs/tokens/internal/pallet.css
 var pallet_default = `/**
  * Do not edit directly
- * Generated on Wed, 15 Nov 2023 14:45:36 GMT
+ * Generated on Mon, 11 Dec 2023 16:16:01 GMT
  */
 
 :host {
@@ -455,7 +452,7 @@ var pallet_default = `/**
 // dist/libs/tokens/internal/theme/light.css
 var light_default = `/**
  * Do not edit directly
- * Generated on Wed, 15 Nov 2023 14:45:36 GMT
+ * Generated on Mon, 11 Dec 2023 16:16:01 GMT
  */
 
 :host {
@@ -639,7 +636,7 @@ var tokens_default = `:host {
   /* Transitions */
   --gds-sys-transition-easing: cubic-bezier(0.46, 0.03, 0.52, 0.96);
   --gds-sys-transition-properties: all;
-  --gds-sys-transition-duration: 0.3s;
+  --gds-sys-transition-duration: 0.15s;
   --gds-sys-transition-delay: 0s;
   --gds-sys-transition-timing-function: var(--gds-sys-transition-easing);
   --gds-sys-transition: var(--gds-sys-transition-properties)
@@ -800,9 +797,10 @@ var a11y_default = `/* Styles for dark mode */
 
 /* Backdrop */
 
-@supports (backdrop-filter: blur(20px)) {
+@supports ((-webkit-backdrop-filter: blur(20px)) or (backdrop-filter: blur(20px))) {
   :host([blur]) gds-blur {
-    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
   }
 }
 `;
@@ -1149,8 +1147,8 @@ function watch(propertyName, options) {
     const { update } = proto;
     const watchedProperties = Array.isArray(propertyName) ? propertyName : [propertyName];
     proto.update = function(changedProps) {
-      watchedProperties.forEach((property15) => {
-        const key = property15;
+      watchedProperties.forEach((property16) => {
+        const key = property16;
         if (changedProps.has(key)) {
           const oldValue = changedProps.get(key);
           const newValue = this[key];
@@ -1217,8 +1215,9 @@ var GdsFormControlElement = class extends LitElement3 {
     this.name = "";
     /**
      * Event handler for the form reset event.
+     * Can be overridden by subclasses to rcustomize the reset value.
      */
-    this.#handleFormReset = () => {
+    this._handleFormReset = () => {
       this.value = void 0;
     };
     this.#internals = this.attachInternals();
@@ -1247,11 +1246,11 @@ var GdsFormControlElement = class extends LitElement3 {
   }
   connectedCallback() {
     super.connectedCallback();
-    this.#internals.form?.addEventListener("reset", this.#handleFormReset);
+    this.#internals.form?.addEventListener("reset", this._handleFormReset);
   }
   disconnectedCallback() {
     super.disconnectedCallback();
-    this.#internals.form?.removeEventListener("reset", this.#handleFormReset);
+    this.#internals.form?.removeEventListener("reset", this._handleFormReset);
   }
   __handleValidityChange() {
     this.#internals.setValidity(
@@ -1273,7 +1272,6 @@ var GdsFormControlElement = class extends LitElement3 {
   __handleValueChange() {
     this.#internals.setFormValue(this.value);
   }
-  #handleFormReset;
 };
 __decorateClass([
   property({
@@ -1384,17 +1382,16 @@ GdsButton = __decorateClass([
 ], GdsButton);
 
 // libs/core/src/components/dropdown/dropdown.ts
-import { property as property6 } from "lit/decorators.js";
+import { property as property6, query as query3, queryAsync } from "lit/decorators.js";
 import { unsafeHTML } from "lit/directives/unsafe-html.js";
 import { when as when2 } from "lit/directives/when.js";
 import { ifDefined } from "lit/directives/if-defined.js";
-import { createRef as createRef3, ref as ref3 } from "lit/directives/ref.js";
 import { msg as msg2, str, updateWhenLocaleChanges } from "@lit/localize";
 import "reflect-metadata";
 
 // libs/core/src/primitives/listbox/listbox.ts
-import { LitElement as LitElement5 } from "lit";
-import { property as property4 } from "lit/decorators.js";
+import { LitElement as LitElement4 } from "lit";
+import { property as property3 } from "lit/decorators.js";
 import { createRef, ref } from "lit/directives/ref.js";
 
 // libs/core/src/utils/helpers/transitional-styles.ts
@@ -1431,15 +1428,207 @@ var TransitionalStyles = class _TransitionalStyles {
   }
 };
 
+// libs/core/src/primitives/listbox/listbox.ts
+import "reflect-metadata";
+
+// libs/core/src/primitives/listbox/listbox.styles.ts
+import { css } from "lit";
+var style = css`
+  :host {
+    display: flex;
+    flex-direction: column;
+  }
+`;
+var listbox_styles_default = style;
+
+// libs/core/src/controllers/listbox-kb-nav-controller.ts
+var ListboxKbNavController = class {
+  constructor(host) {
+    this.#keyboardNavigationHandler = (e) => {
+      const targetItem = e.target;
+      if (!this.host.navigableItems.includes(targetItem))
+        return;
+      let handled = false;
+      if (e.key === "ArrowDown") {
+        const nextItemIndex = this.host.navigableItems.indexOf(targetItem) + 1;
+        const nextItem = this.host.navigableItems[nextItemIndex];
+        nextItem?.focus();
+        handled = true;
+      } else if (e.key === "ArrowUp") {
+        const prevOptionIndex = this.host.navigableItems.indexOf(targetItem) - 1;
+        const prevItem = this.host.navigableItems[prevOptionIndex];
+        prevItem?.focus();
+        handled = true;
+      } else if (e.key === "Home") {
+        this.host.navigableItems[0]?.focus();
+        handled = true;
+      } else if (e.key === "End") {
+        this.host.navigableItems[this.host.navigableItems.length - 1]?.focus();
+        handled = true;
+      } else {
+        const key = e.key.toLowerCase();
+        if (key.length !== 1) {
+          return;
+        }
+        const isLetter = key >= "a" && key <= "z";
+        const isNumber = key >= "0" && key <= "9";
+        if (isLetter || isNumber) {
+          const firstMatch = this.host.navigableItems.find((el) => {
+            const text = el.textContent?.trim().toLowerCase();
+            return text?.startsWith(key);
+          });
+          firstMatch?.focus();
+          handled = true;
+        }
+      }
+      if (handled) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    };
+    ;
+    (this.host = host).addController(this);
+  }
+  hostConnected() {
+    this.host.addEventListener("keydown", this.#keyboardNavigationHandler);
+  }
+  hostDisconnected() {
+    this.host.removeEventListener("keydown", this.#keyboardNavigationHandler);
+  }
+  #keyboardNavigationHandler;
+};
+
+// libs/core/src/utils/helpers/unwrap-slots.ts
+function unwrap(slotRef) {
+  let slot = slotRef;
+  while (slot.assignedElements().length > 0 && slot.assignedElements()[0].nodeName === "SLOT") {
+    slot = slot.assignedElements()[0];
+  }
+  return slot;
+}
+
+// libs/core/src/primitives/listbox/listbox.ts
+var _slotRef, _handleSelect;
+var GdsListbox = class extends LitElement4 {
+  constructor() {
+    super();
+    this.multiple = false;
+    this.compareWith = (a, b) => a === b;
+    __privateAdd(this, _slotRef, createRef());
+    __privateAdd(this, _handleSelect, (e) => {
+      const option = e.target;
+      if (this.multiple)
+        option.selected = !option.selected;
+      else {
+        option.selected = true;
+        Array.from(this.options).forEach((el) => {
+          if (el !== option)
+            el.selected = false;
+        });
+      }
+      ;
+      this.ariaActiveDescendantElement = option;
+      this.dispatchEvent(
+        new CustomEvent("change", {
+          bubbles: false,
+          composed: false
+        })
+      );
+    });
+    new ListboxKbNavController(this);
+  }
+  get navigableItems() {
+    return this.visibleOptionElements;
+  }
+  /**
+   * Returns a list of all `gds-option` elements in the listbox.
+   */
+  get options() {
+    if (!__privateGet(this, _slotRef).value)
+      return [];
+    return unwrap(__privateGet(this, _slotRef).value).assignedElements().filter(
+      (o) => !o.hasAttribute("isplaceholder")
+    ) || [];
+  }
+  /**
+   * Returns a list of all visible `gds-option` elements in the listbox.
+   */
+  get visibleOptionElements() {
+    return this.options.filter((el) => !el.hidden);
+  }
+  /**
+   * Returns a list of all visible `gds-option` elements in the listbox.
+   */
+  get visibleSelectedOptionElements() {
+    return this.options.filter((el) => el.selected && !el.hidden);
+  }
+  /**
+   * Returns a list of all selected `gds-option` elements in the listbox.
+   */
+  get selection() {
+    return this.options.filter((el) => el.selected);
+  }
+  set selection(values) {
+    this.options.forEach((el) => {
+      el.selected = values.some((v) => this.compareWith(v, el.value));
+    });
+  }
+  connectedCallback() {
+    super.connectedCallback();
+    this.setAttribute("role", "listbox");
+    TransitionalStyles.instance.apply(this, "gds-listbox");
+    this.addEventListener("gds-select", __privateGet(this, _handleSelect));
+  }
+  /**
+   * Focuses the first selected option in the listbox.
+   * If no option is selected, the first visible option is focused.
+   */
+  focus() {
+    ;
+    (this.visibleSelectedOptionElements[0] || this.visibleOptionElements[0])?.focus();
+  }
+  render() {
+    return html2`<slot ${ref(__privateGet(this, _slotRef))}></slot>`;
+  }
+  _rerenderOptions() {
+    this.options.forEach((el) => {
+      el.requestUpdate();
+    });
+  }
+};
+_slotRef = new WeakMap();
+_handleSelect = new WeakMap();
+GdsListbox.styles = listbox_styles_default;
+__decorateClass([
+  property3({
+    type: Boolean,
+    reflect: true,
+    attribute: "aria-multiselectable",
+    converter: {
+      fromAttribute: Boolean,
+      toAttribute: (value) => value.toString()
+    }
+  })
+], GdsListbox.prototype, "multiple", 2);
+__decorateClass([
+  property3()
+], GdsListbox.prototype, "compareWith", 2);
+__decorateClass([
+  watch("multiple")
+], GdsListbox.prototype, "_rerenderOptions", 1);
+GdsListbox = __decorateClass([
+  gdsCustomElement("gds-listbox")
+], GdsListbox);
+
 // libs/core/src/primitives/listbox/option.ts
-import { LitElement as LitElement4, html as html5 } from "lit";
-import { property as property3 } from "lit/decorators.js";
+import { LitElement as LitElement5, html as html5 } from "lit";
+import { property as property4 } from "lit/decorators.js";
 import { when } from "lit/directives/when.js";
 import { classMap as classMap2 } from "lit/directives/class-map.js";
 
 // libs/core/src/primitives/listbox/option.styles.ts
-import { css } from "lit";
-var style = css`
+import { css as css2 } from "lit";
+var style2 = css2`
   :host {
     padding: 0.5 1rem;
     cursor: pointer;
@@ -1449,37 +1638,60 @@ var style = css`
     background-color: grey;
   }
 `;
-var option_styles_default = style;
+var option_styles_default = style2;
 
 // libs/core/src/primitives/listbox/option.ts
 import "reflect-metadata";
+
+// libs/core/src/mixins/focusable.ts
+var Focusable = (superClass) => {
+  class HighlightableElement extends superClass {
+    constructor() {
+      super(...arguments);
+      this.onblur = (e) => {
+        this.setAttribute("tabindex", "-1");
+        this.dispatchEvent(
+          new FocusEvent("gds-blur", {
+            bubbles: true,
+            composed: true,
+            relatedTarget: e.relatedTarget
+          })
+        );
+      };
+      this.onfocus = (e) => {
+        this.dispatchEvent(
+          new FocusEvent("gds-focus", {
+            bubbles: true,
+            composed: true,
+            relatedTarget: e.relatedTarget
+          })
+        );
+      };
+    }
+    focus(options) {
+      this.setAttribute("tabindex", "0");
+      super.focus(options);
+      if (document.activeElement !== this) {
+        const iv = setInterval(() => {
+          if (document.activeElement === this)
+            clearInterval(iv);
+          super.focus(options);
+        }, 10);
+      }
+    }
+  }
+  return HighlightableElement;
+};
+
+// libs/core/src/primitives/listbox/option.ts
 var _hidden, _emitSelect, emitSelect_fn;
-var GdsOption = class extends LitElement4 {
+var GdsOption = class extends Focusable(LitElement5) {
   constructor() {
     super();
     __privateAdd(this, _emitSelect);
     __privateAdd(this, _hidden, false);
     this.selected = false;
     this.isPlaceholder = false;
-    this.onblur = (e) => {
-      this.setAttribute("tabindex", "-1");
-      this.dispatchEvent(
-        new FocusEvent("gds-blur", {
-          bubbles: true,
-          composed: true,
-          relatedTarget: e.relatedTarget
-        })
-      );
-    };
-    this.onfocus = (e) => {
-      this.dispatchEvent(
-        new FocusEvent("gds-focus", {
-          bubbles: true,
-          composed: true,
-          relatedTarget: e.relatedTarget
-        })
-      );
-    };
     this.addEventListener("click", __privateMethod(this, _emitSelect, emitSelect_fn));
     this.addEventListener("keydown", (e) => {
       if (e.key !== "Enter" && e.key !== " ")
@@ -1520,22 +1732,6 @@ var GdsOption = class extends LitElement4 {
       this.setAttribute("aria-hidden", "false");
     }
   }
-  /**
-   * Focuses the option.
-   *
-   * @param options - Focus options
-   */
-  focus(options) {
-    this.setAttribute("tabindex", "0");
-    super.focus(options);
-    if (document.activeElement !== this) {
-      const iv = setInterval(() => {
-        if (document.activeElement === this)
-          clearInterval(iv);
-        super.focus(options);
-      }, 10);
-    }
-  }
   render() {
     const isMultiple = this.parentElement.multiple;
     const checkbox = html5`<span
@@ -1565,22 +1761,22 @@ emitSelect_fn = function() {
 };
 GdsOption.styles = option_styles_default;
 __decorateClass([
-  property3()
+  property4()
 ], GdsOption.prototype, "value", 2);
 __decorateClass([
-  property3({
+  property4({
     attribute: "aria-hidden",
     reflect: true
   })
 ], GdsOption.prototype, "hidden", 1);
 __decorateClass([
-  property3({
+  property4({
     attribute: "aria-selected",
     reflect: true
   })
 ], GdsOption.prototype, "selected", 2);
 __decorateClass([
-  property3({ type: Boolean, reflect: true })
+  property4({ type: Boolean, reflect: true })
 ], GdsOption.prototype, "isPlaceholder", 2);
 __decorateClass([
   watch("isplaceholder")
@@ -1589,1297 +1785,18 @@ GdsOption = __decorateClass([
   gdsCustomElement("gds-option")
 ], GdsOption);
 
-// libs/core/src/primitives/listbox/listbox.ts
-import "reflect-metadata";
-
-// libs/core/src/primitives/listbox/listbox.styles.ts
-import { css as css2 } from "lit";
-var style2 = css2`
-  :host {
-    display: flex;
-    flex-direction: column;
-  }
-`;
-var listbox_styles_default = style2;
-
-// libs/core/src/primitives/listbox/listbox.ts
-var _slotRef, _handleSelect, _keyboardNavigationHandler;
-var GdsListbox = class extends LitElement5 {
-  constructor() {
-    super();
-    this.multiple = false;
-    this.compareWith = (a, b) => a === b;
-    __privateAdd(this, _slotRef, createRef());
-    __privateAdd(this, _handleSelect, (e) => {
-      const option = e.target;
-      if (this.multiple)
-        option.selected = !option.selected;
-      else {
-        option.selected = true;
-        Array.from(this.options).forEach((el) => {
-          if (el !== option)
-            el.selected = false;
-        });
-      }
-      ;
-      this.ariaActiveDescendantElement = option;
-      this.dispatchEvent(
-        new CustomEvent("change", {
-          bubbles: false,
-          composed: false
-        })
-      );
-    });
-    __privateAdd(this, _keyboardNavigationHandler, (e) => {
-      if (!(e.target instanceof GdsOption))
-        return;
-      let handled = false;
-      if (e.key === "ArrowDown") {
-        const nextOptionIndex = this.visibleOptionElements.indexOf(e.target) + 1;
-        const nextItem = this.visibleOptionElements[nextOptionIndex];
-        nextItem?.focus();
-        handled = true;
-      } else if (e.key === "ArrowUp") {
-        const prevOptionIndex = this.visibleOptionElements.indexOf(e.target) - 1;
-        const prevItem = this.visibleOptionElements[prevOptionIndex];
-        prevItem?.focus();
-        handled = true;
-      } else if (e.key === "Home") {
-        this.visibleOptionElements[0]?.focus();
-        handled = true;
-      } else if (e.key === "End") {
-        this.visibleOptionElements[this.visibleOptionElements.length - 1]?.focus();
-        handled = true;
-      } else {
-        const key = e.key.toLowerCase();
-        if (key.length !== 1) {
-          return;
-        }
-        const isLetter = key >= "a" && key <= "z";
-        const isNumber = key >= "0" && key <= "9";
-        if (isLetter || isNumber) {
-          const firstMatch = this.visibleOptionElements.find((el) => {
-            const text = el.textContent?.trim().toLowerCase();
-            return text?.startsWith(key);
-          });
-          firstMatch?.focus();
-          handled = true;
-        }
-      }
-      if (handled) {
-        e.preventDefault();
-        e.stopPropagation();
-      }
-    });
-  }
-  /**
-   * Returns a list of all `gds-option` elements in the listbox.
-   */
-  get options() {
-    let slot = __privateGet(this, _slotRef).value;
-    if (!slot)
-      return [];
-    while (slot.assignedElements().length > 0 && slot.assignedElements()[0].nodeName === "SLOT") {
-      slot = slot.assignedElements()[0];
-    }
-    return slot.assignedElements().filter(
-      (o) => !o.hasAttribute("isplaceholder")
-    ) || [];
-  }
-  /**
-   * Returns a list of all visible `gds-option` elements in the listbox.
-   */
-  get visibleOptionElements() {
-    return this.options.filter((el) => !el.hidden);
-  }
-  /**
-   * Returns a list of all visible `gds-option` elements in the listbox.
-   */
-  get visibleSelectedOptionElements() {
-    return this.options.filter((el) => el.selected && !el.hidden);
-  }
-  /**
-   * Returns a list of all selected `gds-option` elements in the listbox.
-   */
-  get selection() {
-    return this.options.filter((el) => el.selected);
-  }
-  set selection(values) {
-    this.options.forEach((el) => {
-      el.selected = values.some((v) => this.compareWith(v, el.value));
-    });
-  }
-  connectedCallback() {
-    super.connectedCallback();
-    this.setAttribute("role", "listbox");
-    TransitionalStyles.instance.apply(this, "gds-listbox");
-    this.addEventListener("keydown", __privateGet(this, _keyboardNavigationHandler));
-    this.addEventListener("gds-select", __privateGet(this, _handleSelect));
-  }
-  /**
-   * Focuses the first selected option in the listbox.
-   * If no option is selected, the first visible option is focused.
-   */
-  focus() {
-    ;
-    (this.visibleSelectedOptionElements[0] || this.visibleOptionElements[0])?.focus();
-  }
-  render() {
-    return html2`<slot ${ref(__privateGet(this, _slotRef))}></slot>`;
-  }
-  _rerenderOptions() {
-    this.options.forEach((el) => {
-      el.requestUpdate();
-    });
-  }
-};
-_slotRef = new WeakMap();
-_handleSelect = new WeakMap();
-_keyboardNavigationHandler = new WeakMap();
-GdsListbox.styles = listbox_styles_default;
-__decorateClass([
-  property4({
-    type: Boolean,
-    reflect: true,
-    attribute: "aria-multiselectable",
-    converter: {
-      fromAttribute: Boolean,
-      toAttribute: (value) => value.toString()
-    }
-  })
-], GdsListbox.prototype, "multiple", 2);
-__decorateClass([
-  property4()
-], GdsListbox.prototype, "compareWith", 2);
-__decorateClass([
-  watch("multiple")
-], GdsListbox.prototype, "_rerenderOptions", 1);
-GdsListbox = __decorateClass([
-  gdsCustomElement("gds-listbox")
-], GdsListbox);
-
 // libs/core/src/primitives/popover/popover.ts
-import { LitElement as LitElement6, html as html6, unsafeCSS as unsafeCSS7 } from "lit";
-import { property as property5 } from "lit/decorators.js";
+import { LitElement as LitElement6, html as html6, unsafeCSS as unsafeCSS5 } from "lit";
+import { property as property5, state } from "lit/decorators.js";
+import { classMap as classMap3 } from "lit/directives/class-map.js";
 import { msg } from "@lit/localize";
 import { createRef as createRef2, ref as ref2 } from "lit/directives/ref.js";
-
-// node_modules/@floating-ui/utils/dist/floating-ui.utils.mjs
-var min = Math.min;
-var max = Math.max;
-var round = Math.round;
-var floor = Math.floor;
-var createCoords = (v) => ({
-  x: v,
-  y: v
-});
-var oppositeSideMap = {
-  left: "right",
-  right: "left",
-  bottom: "top",
-  top: "bottom"
-};
-var oppositeAlignmentMap = {
-  start: "end",
-  end: "start"
-};
-function evaluate(value, param) {
-  return typeof value === "function" ? value(param) : value;
-}
-function getSide(placement) {
-  return placement.split("-")[0];
-}
-function getAlignment(placement) {
-  return placement.split("-")[1];
-}
-function getOppositeAxis(axis) {
-  return axis === "x" ? "y" : "x";
-}
-function getAxisLength(axis) {
-  return axis === "y" ? "height" : "width";
-}
-function getSideAxis(placement) {
-  return ["top", "bottom"].includes(getSide(placement)) ? "y" : "x";
-}
-function getAlignmentAxis(placement) {
-  return getOppositeAxis(getSideAxis(placement));
-}
-function getAlignmentSides(placement, rects, rtl) {
-  if (rtl === void 0) {
-    rtl = false;
-  }
-  const alignment = getAlignment(placement);
-  const alignmentAxis = getAlignmentAxis(placement);
-  const length = getAxisLength(alignmentAxis);
-  let mainAlignmentSide = alignmentAxis === "x" ? alignment === (rtl ? "end" : "start") ? "right" : "left" : alignment === "start" ? "bottom" : "top";
-  if (rects.reference[length] > rects.floating[length]) {
-    mainAlignmentSide = getOppositePlacement(mainAlignmentSide);
-  }
-  return [mainAlignmentSide, getOppositePlacement(mainAlignmentSide)];
-}
-function getExpandedPlacements(placement) {
-  const oppositePlacement = getOppositePlacement(placement);
-  return [getOppositeAlignmentPlacement(placement), oppositePlacement, getOppositeAlignmentPlacement(oppositePlacement)];
-}
-function getOppositeAlignmentPlacement(placement) {
-  return placement.replace(/start|end/g, (alignment) => oppositeAlignmentMap[alignment]);
-}
-function getSideList(side, isStart, rtl) {
-  const lr = ["left", "right"];
-  const rl = ["right", "left"];
-  const tb = ["top", "bottom"];
-  const bt = ["bottom", "top"];
-  switch (side) {
-    case "top":
-    case "bottom":
-      if (rtl)
-        return isStart ? rl : lr;
-      return isStart ? lr : rl;
-    case "left":
-    case "right":
-      return isStart ? tb : bt;
-    default:
-      return [];
-  }
-}
-function getOppositeAxisPlacements(placement, flipAlignment, direction, rtl) {
-  const alignment = getAlignment(placement);
-  let list = getSideList(getSide(placement), direction === "start", rtl);
-  if (alignment) {
-    list = list.map((side) => side + "-" + alignment);
-    if (flipAlignment) {
-      list = list.concat(list.map(getOppositeAlignmentPlacement));
-    }
-  }
-  return list;
-}
-function getOppositePlacement(placement) {
-  return placement.replace(/left|right|bottom|top/g, (side) => oppositeSideMap[side]);
-}
-function expandPaddingObject(padding) {
-  return {
-    top: 0,
-    right: 0,
-    bottom: 0,
-    left: 0,
-    ...padding
-  };
-}
-function getPaddingObject(padding) {
-  return typeof padding !== "number" ? expandPaddingObject(padding) : {
-    top: padding,
-    right: padding,
-    bottom: padding,
-    left: padding
-  };
-}
-function rectToClientRect(rect) {
-  return {
-    ...rect,
-    top: rect.y,
-    left: rect.x,
-    right: rect.x + rect.width,
-    bottom: rect.y + rect.height
-  };
-}
-
-// node_modules/@floating-ui/core/dist/floating-ui.core.mjs
-function computeCoordsFromPlacement(_ref, placement, rtl) {
-  let {
-    reference,
-    floating
-  } = _ref;
-  const sideAxis = getSideAxis(placement);
-  const alignmentAxis = getAlignmentAxis(placement);
-  const alignLength = getAxisLength(alignmentAxis);
-  const side = getSide(placement);
-  const isVertical = sideAxis === "y";
-  const commonX = reference.x + reference.width / 2 - floating.width / 2;
-  const commonY = reference.y + reference.height / 2 - floating.height / 2;
-  const commonAlign = reference[alignLength] / 2 - floating[alignLength] / 2;
-  let coords;
-  switch (side) {
-    case "top":
-      coords = {
-        x: commonX,
-        y: reference.y - floating.height
-      };
-      break;
-    case "bottom":
-      coords = {
-        x: commonX,
-        y: reference.y + reference.height
-      };
-      break;
-    case "right":
-      coords = {
-        x: reference.x + reference.width,
-        y: commonY
-      };
-      break;
-    case "left":
-      coords = {
-        x: reference.x - floating.width,
-        y: commonY
-      };
-      break;
-    default:
-      coords = {
-        x: reference.x,
-        y: reference.y
-      };
-  }
-  switch (getAlignment(placement)) {
-    case "start":
-      coords[alignmentAxis] -= commonAlign * (rtl && isVertical ? -1 : 1);
-      break;
-    case "end":
-      coords[alignmentAxis] += commonAlign * (rtl && isVertical ? -1 : 1);
-      break;
-  }
-  return coords;
-}
-var computePosition = async (reference, floating, config) => {
-  const {
-    placement = "bottom",
-    strategy = "absolute",
-    middleware = [],
-    platform: platform2
-  } = config;
-  const validMiddleware = middleware.filter(Boolean);
-  const rtl = await (platform2.isRTL == null ? void 0 : platform2.isRTL(floating));
-  let rects = await platform2.getElementRects({
-    reference,
-    floating,
-    strategy
-  });
-  let {
-    x,
-    y
-  } = computeCoordsFromPlacement(rects, placement, rtl);
-  let statefulPlacement = placement;
-  let middlewareData = {};
-  let resetCount = 0;
-  for (let i = 0; i < validMiddleware.length; i++) {
-    const {
-      name,
-      fn
-    } = validMiddleware[i];
-    const {
-      x: nextX,
-      y: nextY,
-      data,
-      reset
-    } = await fn({
-      x,
-      y,
-      initialPlacement: placement,
-      placement: statefulPlacement,
-      strategy,
-      middlewareData,
-      rects,
-      platform: platform2,
-      elements: {
-        reference,
-        floating
-      }
-    });
-    x = nextX != null ? nextX : x;
-    y = nextY != null ? nextY : y;
-    middlewareData = {
-      ...middlewareData,
-      [name]: {
-        ...middlewareData[name],
-        ...data
-      }
-    };
-    if (reset && resetCount <= 50) {
-      resetCount++;
-      if (typeof reset === "object") {
-        if (reset.placement) {
-          statefulPlacement = reset.placement;
-        }
-        if (reset.rects) {
-          rects = reset.rects === true ? await platform2.getElementRects({
-            reference,
-            floating,
-            strategy
-          }) : reset.rects;
-        }
-        ({
-          x,
-          y
-        } = computeCoordsFromPlacement(rects, statefulPlacement, rtl));
-      }
-      i = -1;
-      continue;
-    }
-  }
-  return {
-    x,
-    y,
-    placement: statefulPlacement,
-    strategy,
-    middlewareData
-  };
-};
-async function detectOverflow(state, options) {
-  var _await$platform$isEle;
-  if (options === void 0) {
-    options = {};
-  }
-  const {
-    x,
-    y,
-    platform: platform2,
-    rects,
-    elements,
-    strategy
-  } = state;
-  const {
-    boundary = "clippingAncestors",
-    rootBoundary = "viewport",
-    elementContext = "floating",
-    altBoundary = false,
-    padding = 0
-  } = evaluate(options, state);
-  const paddingObject = getPaddingObject(padding);
-  const altContext = elementContext === "floating" ? "reference" : "floating";
-  const element = elements[altBoundary ? altContext : elementContext];
-  const clippingClientRect = rectToClientRect(await platform2.getClippingRect({
-    element: ((_await$platform$isEle = await (platform2.isElement == null ? void 0 : platform2.isElement(element))) != null ? _await$platform$isEle : true) ? element : element.contextElement || await (platform2.getDocumentElement == null ? void 0 : platform2.getDocumentElement(elements.floating)),
-    boundary,
-    rootBoundary,
-    strategy
-  }));
-  const rect = elementContext === "floating" ? {
-    ...rects.floating,
-    x,
-    y
-  } : rects.reference;
-  const offsetParent = await (platform2.getOffsetParent == null ? void 0 : platform2.getOffsetParent(elements.floating));
-  const offsetScale = await (platform2.isElement == null ? void 0 : platform2.isElement(offsetParent)) ? await (platform2.getScale == null ? void 0 : platform2.getScale(offsetParent)) || {
-    x: 1,
-    y: 1
-  } : {
-    x: 1,
-    y: 1
-  };
-  const elementClientRect = rectToClientRect(platform2.convertOffsetParentRelativeRectToViewportRelativeRect ? await platform2.convertOffsetParentRelativeRectToViewportRelativeRect({
-    rect,
-    offsetParent,
-    strategy
-  }) : rect);
-  return {
-    top: (clippingClientRect.top - elementClientRect.top + paddingObject.top) / offsetScale.y,
-    bottom: (elementClientRect.bottom - clippingClientRect.bottom + paddingObject.bottom) / offsetScale.y,
-    left: (clippingClientRect.left - elementClientRect.left + paddingObject.left) / offsetScale.x,
-    right: (elementClientRect.right - clippingClientRect.right + paddingObject.right) / offsetScale.x
-  };
-}
-var flip = function(options) {
-  if (options === void 0) {
-    options = {};
-  }
-  return {
-    name: "flip",
-    options,
-    async fn(state) {
-      var _middlewareData$arrow, _middlewareData$flip;
-      const {
-        placement,
-        middlewareData,
-        rects,
-        initialPlacement,
-        platform: platform2,
-        elements
-      } = state;
-      const {
-        mainAxis: checkMainAxis = true,
-        crossAxis: checkCrossAxis = true,
-        fallbackPlacements: specifiedFallbackPlacements,
-        fallbackStrategy = "bestFit",
-        fallbackAxisSideDirection = "none",
-        flipAlignment = true,
-        ...detectOverflowOptions
-      } = evaluate(options, state);
-      if ((_middlewareData$arrow = middlewareData.arrow) != null && _middlewareData$arrow.alignmentOffset) {
-        return {};
-      }
-      const side = getSide(placement);
-      const isBasePlacement = getSide(initialPlacement) === initialPlacement;
-      const rtl = await (platform2.isRTL == null ? void 0 : platform2.isRTL(elements.floating));
-      const fallbackPlacements = specifiedFallbackPlacements || (isBasePlacement || !flipAlignment ? [getOppositePlacement(initialPlacement)] : getExpandedPlacements(initialPlacement));
-      if (!specifiedFallbackPlacements && fallbackAxisSideDirection !== "none") {
-        fallbackPlacements.push(...getOppositeAxisPlacements(initialPlacement, flipAlignment, fallbackAxisSideDirection, rtl));
-      }
-      const placements2 = [initialPlacement, ...fallbackPlacements];
-      const overflow = await detectOverflow(state, detectOverflowOptions);
-      const overflows = [];
-      let overflowsData = ((_middlewareData$flip = middlewareData.flip) == null ? void 0 : _middlewareData$flip.overflows) || [];
-      if (checkMainAxis) {
-        overflows.push(overflow[side]);
-      }
-      if (checkCrossAxis) {
-        const sides2 = getAlignmentSides(placement, rects, rtl);
-        overflows.push(overflow[sides2[0]], overflow[sides2[1]]);
-      }
-      overflowsData = [...overflowsData, {
-        placement,
-        overflows
-      }];
-      if (!overflows.every((side2) => side2 <= 0)) {
-        var _middlewareData$flip2, _overflowsData$filter;
-        const nextIndex = (((_middlewareData$flip2 = middlewareData.flip) == null ? void 0 : _middlewareData$flip2.index) || 0) + 1;
-        const nextPlacement = placements2[nextIndex];
-        if (nextPlacement) {
-          return {
-            data: {
-              index: nextIndex,
-              overflows: overflowsData
-            },
-            reset: {
-              placement: nextPlacement
-            }
-          };
-        }
-        let resetPlacement = (_overflowsData$filter = overflowsData.filter((d) => d.overflows[0] <= 0).sort((a, b) => a.overflows[1] - b.overflows[1])[0]) == null ? void 0 : _overflowsData$filter.placement;
-        if (!resetPlacement) {
-          switch (fallbackStrategy) {
-            case "bestFit": {
-              var _overflowsData$map$so;
-              const placement2 = (_overflowsData$map$so = overflowsData.map((d) => [d.placement, d.overflows.filter((overflow2) => overflow2 > 0).reduce((acc, overflow2) => acc + overflow2, 0)]).sort((a, b) => a[1] - b[1])[0]) == null ? void 0 : _overflowsData$map$so[0];
-              if (placement2) {
-                resetPlacement = placement2;
-              }
-              break;
-            }
-            case "initialPlacement":
-              resetPlacement = initialPlacement;
-              break;
-          }
-        }
-        if (placement !== resetPlacement) {
-          return {
-            reset: {
-              placement: resetPlacement
-            }
-          };
-        }
-      }
-      return {};
-    }
-  };
-};
-async function convertValueToCoords(state, options) {
-  const {
-    placement,
-    platform: platform2,
-    elements
-  } = state;
-  const rtl = await (platform2.isRTL == null ? void 0 : platform2.isRTL(elements.floating));
-  const side = getSide(placement);
-  const alignment = getAlignment(placement);
-  const isVertical = getSideAxis(placement) === "y";
-  const mainAxisMulti = ["left", "top"].includes(side) ? -1 : 1;
-  const crossAxisMulti = rtl && isVertical ? -1 : 1;
-  const rawValue = evaluate(options, state);
-  let {
-    mainAxis,
-    crossAxis,
-    alignmentAxis
-  } = typeof rawValue === "number" ? {
-    mainAxis: rawValue,
-    crossAxis: 0,
-    alignmentAxis: null
-  } : {
-    mainAxis: 0,
-    crossAxis: 0,
-    alignmentAxis: null,
-    ...rawValue
-  };
-  if (alignment && typeof alignmentAxis === "number") {
-    crossAxis = alignment === "end" ? alignmentAxis * -1 : alignmentAxis;
-  }
-  return isVertical ? {
-    x: crossAxis * crossAxisMulti,
-    y: mainAxis * mainAxisMulti
-  } : {
-    x: mainAxis * mainAxisMulti,
-    y: crossAxis * crossAxisMulti
-  };
-}
-var offset = function(options) {
-  if (options === void 0) {
-    options = 0;
-  }
-  return {
-    name: "offset",
-    options,
-    async fn(state) {
-      const {
-        x,
-        y
-      } = state;
-      const diffCoords = await convertValueToCoords(state, options);
-      return {
-        x: x + diffCoords.x,
-        y: y + diffCoords.y,
-        data: diffCoords
-      };
-    }
-  };
-};
-
-// node_modules/@floating-ui/utils/dom/dist/floating-ui.utils.dom.mjs
-function getNodeName(node) {
-  if (isNode(node)) {
-    return (node.nodeName || "").toLowerCase();
-  }
-  return "#document";
-}
-function getWindow(node) {
-  var _node$ownerDocument;
-  return (node == null ? void 0 : (_node$ownerDocument = node.ownerDocument) == null ? void 0 : _node$ownerDocument.defaultView) || window;
-}
-function getDocumentElement(node) {
-  var _ref;
-  return (_ref = (isNode(node) ? node.ownerDocument : node.document) || window.document) == null ? void 0 : _ref.documentElement;
-}
-function isNode(value) {
-  return value instanceof Node || value instanceof getWindow(value).Node;
-}
-function isElement(value) {
-  return value instanceof Element || value instanceof getWindow(value).Element;
-}
-function isHTMLElement(value) {
-  return value instanceof HTMLElement || value instanceof getWindow(value).HTMLElement;
-}
-function isShadowRoot(value) {
-  if (typeof ShadowRoot === "undefined") {
-    return false;
-  }
-  return value instanceof ShadowRoot || value instanceof getWindow(value).ShadowRoot;
-}
-function isOverflowElement(element) {
-  const {
-    overflow,
-    overflowX,
-    overflowY,
-    display
-  } = getComputedStyle2(element);
-  return /auto|scroll|overlay|hidden|clip/.test(overflow + overflowY + overflowX) && !["inline", "contents"].includes(display);
-}
-function isTableElement(element) {
-  return ["table", "td", "th"].includes(getNodeName(element));
-}
-function isContainingBlock(element) {
-  const webkit = isWebKit();
-  const css6 = getComputedStyle2(element);
-  return css6.transform !== "none" || css6.perspective !== "none" || (css6.containerType ? css6.containerType !== "normal" : false) || !webkit && (css6.backdropFilter ? css6.backdropFilter !== "none" : false) || !webkit && (css6.filter ? css6.filter !== "none" : false) || ["transform", "perspective", "filter"].some((value) => (css6.willChange || "").includes(value)) || ["paint", "layout", "strict", "content"].some((value) => (css6.contain || "").includes(value));
-}
-function getContainingBlock(element) {
-  let currentNode = getParentNode(element);
-  while (isHTMLElement(currentNode) && !isLastTraversableNode(currentNode)) {
-    if (isContainingBlock(currentNode)) {
-      return currentNode;
-    } else {
-      currentNode = getParentNode(currentNode);
-    }
-  }
-  return null;
-}
-function isWebKit() {
-  if (typeof CSS === "undefined" || !CSS.supports)
-    return false;
-  return CSS.supports("-webkit-backdrop-filter", "none");
-}
-function isLastTraversableNode(node) {
-  return ["html", "body", "#document"].includes(getNodeName(node));
-}
-function getComputedStyle2(element) {
-  return getWindow(element).getComputedStyle(element);
-}
-function getNodeScroll(element) {
-  if (isElement(element)) {
-    return {
-      scrollLeft: element.scrollLeft,
-      scrollTop: element.scrollTop
-    };
-  }
-  return {
-    scrollLeft: element.pageXOffset,
-    scrollTop: element.pageYOffset
-  };
-}
-function getParentNode(node) {
-  if (getNodeName(node) === "html") {
-    return node;
-  }
-  const result = (
-    // Step into the shadow DOM of the parent of a slotted node.
-    node.assignedSlot || // DOM Element detected.
-    node.parentNode || // ShadowRoot detected.
-    isShadowRoot(node) && node.host || // Fallback.
-    getDocumentElement(node)
-  );
-  return isShadowRoot(result) ? result.host : result;
-}
-function getNearestOverflowAncestor(node) {
-  const parentNode = getParentNode(node);
-  if (isLastTraversableNode(parentNode)) {
-    return node.ownerDocument ? node.ownerDocument.body : node.body;
-  }
-  if (isHTMLElement(parentNode) && isOverflowElement(parentNode)) {
-    return parentNode;
-  }
-  return getNearestOverflowAncestor(parentNode);
-}
-function getOverflowAncestors(node, list, traverseIframes) {
-  var _node$ownerDocument2;
-  if (list === void 0) {
-    list = [];
-  }
-  if (traverseIframes === void 0) {
-    traverseIframes = true;
-  }
-  const scrollableAncestor = getNearestOverflowAncestor(node);
-  const isBody = scrollableAncestor === ((_node$ownerDocument2 = node.ownerDocument) == null ? void 0 : _node$ownerDocument2.body);
-  const win = getWindow(scrollableAncestor);
-  if (isBody) {
-    return list.concat(win, win.visualViewport || [], isOverflowElement(scrollableAncestor) ? scrollableAncestor : [], win.frameElement && traverseIframes ? getOverflowAncestors(win.frameElement) : []);
-  }
-  return list.concat(scrollableAncestor, getOverflowAncestors(scrollableAncestor, [], traverseIframes));
-}
-
-// node_modules/@floating-ui/dom/dist/floating-ui.dom.mjs
-function getCssDimensions(element) {
-  const css6 = getComputedStyle2(element);
-  let width = parseFloat(css6.width) || 0;
-  let height = parseFloat(css6.height) || 0;
-  const hasOffset = isHTMLElement(element);
-  const offsetWidth = hasOffset ? element.offsetWidth : width;
-  const offsetHeight = hasOffset ? element.offsetHeight : height;
-  const shouldFallback = round(width) !== offsetWidth || round(height) !== offsetHeight;
-  if (shouldFallback) {
-    width = offsetWidth;
-    height = offsetHeight;
-  }
-  return {
-    width,
-    height,
-    $: shouldFallback
-  };
-}
-function unwrapElement(element) {
-  return !isElement(element) ? element.contextElement : element;
-}
-function getScale(element) {
-  const domElement = unwrapElement(element);
-  if (!isHTMLElement(domElement)) {
-    return createCoords(1);
-  }
-  const rect = domElement.getBoundingClientRect();
-  const {
-    width,
-    height,
-    $
-  } = getCssDimensions(domElement);
-  let x = ($ ? round(rect.width) : rect.width) / width;
-  let y = ($ ? round(rect.height) : rect.height) / height;
-  if (!x || !Number.isFinite(x)) {
-    x = 1;
-  }
-  if (!y || !Number.isFinite(y)) {
-    y = 1;
-  }
-  return {
-    x,
-    y
-  };
-}
-var noOffsets = /* @__PURE__ */ createCoords(0);
-function getVisualOffsets(element) {
-  const win = getWindow(element);
-  if (!isWebKit() || !win.visualViewport) {
-    return noOffsets;
-  }
-  return {
-    x: win.visualViewport.offsetLeft,
-    y: win.visualViewport.offsetTop
-  };
-}
-function shouldAddVisualOffsets(element, isFixed, floatingOffsetParent) {
-  if (isFixed === void 0) {
-    isFixed = false;
-  }
-  if (!floatingOffsetParent || isFixed && floatingOffsetParent !== getWindow(element)) {
-    return false;
-  }
-  return isFixed;
-}
-function getBoundingClientRect(element, includeScale, isFixedStrategy, offsetParent) {
-  if (includeScale === void 0) {
-    includeScale = false;
-  }
-  if (isFixedStrategy === void 0) {
-    isFixedStrategy = false;
-  }
-  const clientRect = element.getBoundingClientRect();
-  const domElement = unwrapElement(element);
-  let scale = createCoords(1);
-  if (includeScale) {
-    if (offsetParent) {
-      if (isElement(offsetParent)) {
-        scale = getScale(offsetParent);
-      }
-    } else {
-      scale = getScale(element);
-    }
-  }
-  const visualOffsets = shouldAddVisualOffsets(domElement, isFixedStrategy, offsetParent) ? getVisualOffsets(domElement) : createCoords(0);
-  let x = (clientRect.left + visualOffsets.x) / scale.x;
-  let y = (clientRect.top + visualOffsets.y) / scale.y;
-  let width = clientRect.width / scale.x;
-  let height = clientRect.height / scale.y;
-  if (domElement) {
-    const win = getWindow(domElement);
-    const offsetWin = offsetParent && isElement(offsetParent) ? getWindow(offsetParent) : offsetParent;
-    let currentIFrame = win.frameElement;
-    while (currentIFrame && offsetParent && offsetWin !== win) {
-      const iframeScale = getScale(currentIFrame);
-      const iframeRect = currentIFrame.getBoundingClientRect();
-      const css6 = getComputedStyle2(currentIFrame);
-      const left = iframeRect.left + (currentIFrame.clientLeft + parseFloat(css6.paddingLeft)) * iframeScale.x;
-      const top = iframeRect.top + (currentIFrame.clientTop + parseFloat(css6.paddingTop)) * iframeScale.y;
-      x *= iframeScale.x;
-      y *= iframeScale.y;
-      width *= iframeScale.x;
-      height *= iframeScale.y;
-      x += left;
-      y += top;
-      currentIFrame = getWindow(currentIFrame).frameElement;
-    }
-  }
-  return rectToClientRect({
-    width,
-    height,
-    x,
-    y
-  });
-}
-function convertOffsetParentRelativeRectToViewportRelativeRect(_ref) {
-  let {
-    rect,
-    offsetParent,
-    strategy
-  } = _ref;
-  const isOffsetParentAnElement = isHTMLElement(offsetParent);
-  const documentElement = getDocumentElement(offsetParent);
-  if (offsetParent === documentElement) {
-    return rect;
-  }
-  let scroll = {
-    scrollLeft: 0,
-    scrollTop: 0
-  };
-  let scale = createCoords(1);
-  const offsets = createCoords(0);
-  if (isOffsetParentAnElement || !isOffsetParentAnElement && strategy !== "fixed") {
-    if (getNodeName(offsetParent) !== "body" || isOverflowElement(documentElement)) {
-      scroll = getNodeScroll(offsetParent);
-    }
-    if (isHTMLElement(offsetParent)) {
-      const offsetRect = getBoundingClientRect(offsetParent);
-      scale = getScale(offsetParent);
-      offsets.x = offsetRect.x + offsetParent.clientLeft;
-      offsets.y = offsetRect.y + offsetParent.clientTop;
-    }
-  }
-  return {
-    width: rect.width * scale.x,
-    height: rect.height * scale.y,
-    x: rect.x * scale.x - scroll.scrollLeft * scale.x + offsets.x,
-    y: rect.y * scale.y - scroll.scrollTop * scale.y + offsets.y
-  };
-}
-function getClientRects(element) {
-  return Array.from(element.getClientRects());
-}
-function getWindowScrollBarX(element) {
-  return getBoundingClientRect(getDocumentElement(element)).left + getNodeScroll(element).scrollLeft;
-}
-function getDocumentRect(element) {
-  const html16 = getDocumentElement(element);
-  const scroll = getNodeScroll(element);
-  const body = element.ownerDocument.body;
-  const width = max(html16.scrollWidth, html16.clientWidth, body.scrollWidth, body.clientWidth);
-  const height = max(html16.scrollHeight, html16.clientHeight, body.scrollHeight, body.clientHeight);
-  let x = -scroll.scrollLeft + getWindowScrollBarX(element);
-  const y = -scroll.scrollTop;
-  if (getComputedStyle2(body).direction === "rtl") {
-    x += max(html16.clientWidth, body.clientWidth) - width;
-  }
-  return {
-    width,
-    height,
-    x,
-    y
-  };
-}
-function getViewportRect(element, strategy) {
-  const win = getWindow(element);
-  const html16 = getDocumentElement(element);
-  const visualViewport = win.visualViewport;
-  let width = html16.clientWidth;
-  let height = html16.clientHeight;
-  let x = 0;
-  let y = 0;
-  if (visualViewport) {
-    width = visualViewport.width;
-    height = visualViewport.height;
-    const visualViewportBased = isWebKit();
-    if (!visualViewportBased || visualViewportBased && strategy === "fixed") {
-      x = visualViewport.offsetLeft;
-      y = visualViewport.offsetTop;
-    }
-  }
-  return {
-    width,
-    height,
-    x,
-    y
-  };
-}
-function getInnerBoundingClientRect(element, strategy) {
-  const clientRect = getBoundingClientRect(element, true, strategy === "fixed");
-  const top = clientRect.top + element.clientTop;
-  const left = clientRect.left + element.clientLeft;
-  const scale = isHTMLElement(element) ? getScale(element) : createCoords(1);
-  const width = element.clientWidth * scale.x;
-  const height = element.clientHeight * scale.y;
-  const x = left * scale.x;
-  const y = top * scale.y;
-  return {
-    width,
-    height,
-    x,
-    y
-  };
-}
-function getClientRectFromClippingAncestor(element, clippingAncestor, strategy) {
-  let rect;
-  if (clippingAncestor === "viewport") {
-    rect = getViewportRect(element, strategy);
-  } else if (clippingAncestor === "document") {
-    rect = getDocumentRect(getDocumentElement(element));
-  } else if (isElement(clippingAncestor)) {
-    rect = getInnerBoundingClientRect(clippingAncestor, strategy);
-  } else {
-    const visualOffsets = getVisualOffsets(element);
-    rect = {
-      ...clippingAncestor,
-      x: clippingAncestor.x - visualOffsets.x,
-      y: clippingAncestor.y - visualOffsets.y
-    };
-  }
-  return rectToClientRect(rect);
-}
-function hasFixedPositionAncestor(element, stopNode) {
-  const parentNode = getParentNode(element);
-  if (parentNode === stopNode || !isElement(parentNode) || isLastTraversableNode(parentNode)) {
-    return false;
-  }
-  return getComputedStyle2(parentNode).position === "fixed" || hasFixedPositionAncestor(parentNode, stopNode);
-}
-function getClippingElementAncestors(element, cache) {
-  const cachedResult = cache.get(element);
-  if (cachedResult) {
-    return cachedResult;
-  }
-  let result = getOverflowAncestors(element, [], false).filter((el) => isElement(el) && getNodeName(el) !== "body");
-  let currentContainingBlockComputedStyle = null;
-  const elementIsFixed = getComputedStyle2(element).position === "fixed";
-  let currentNode = elementIsFixed ? getParentNode(element) : element;
-  while (isElement(currentNode) && !isLastTraversableNode(currentNode)) {
-    const computedStyle = getComputedStyle2(currentNode);
-    const currentNodeIsContaining = isContainingBlock(currentNode);
-    if (!currentNodeIsContaining && computedStyle.position === "fixed") {
-      currentContainingBlockComputedStyle = null;
-    }
-    const shouldDropCurrentNode = elementIsFixed ? !currentNodeIsContaining && !currentContainingBlockComputedStyle : !currentNodeIsContaining && computedStyle.position === "static" && !!currentContainingBlockComputedStyle && ["absolute", "fixed"].includes(currentContainingBlockComputedStyle.position) || isOverflowElement(currentNode) && !currentNodeIsContaining && hasFixedPositionAncestor(element, currentNode);
-    if (shouldDropCurrentNode) {
-      result = result.filter((ancestor) => ancestor !== currentNode);
-    } else {
-      currentContainingBlockComputedStyle = computedStyle;
-    }
-    currentNode = getParentNode(currentNode);
-  }
-  cache.set(element, result);
-  return result;
-}
-function getClippingRect(_ref) {
-  let {
-    element,
-    boundary,
-    rootBoundary,
-    strategy
-  } = _ref;
-  const elementClippingAncestors = boundary === "clippingAncestors" ? getClippingElementAncestors(element, this._c) : [].concat(boundary);
-  const clippingAncestors = [...elementClippingAncestors, rootBoundary];
-  const firstClippingAncestor = clippingAncestors[0];
-  const clippingRect = clippingAncestors.reduce((accRect, clippingAncestor) => {
-    const rect = getClientRectFromClippingAncestor(element, clippingAncestor, strategy);
-    accRect.top = max(rect.top, accRect.top);
-    accRect.right = min(rect.right, accRect.right);
-    accRect.bottom = min(rect.bottom, accRect.bottom);
-    accRect.left = max(rect.left, accRect.left);
-    return accRect;
-  }, getClientRectFromClippingAncestor(element, firstClippingAncestor, strategy));
-  return {
-    width: clippingRect.right - clippingRect.left,
-    height: clippingRect.bottom - clippingRect.top,
-    x: clippingRect.left,
-    y: clippingRect.top
-  };
-}
-function getDimensions(element) {
-  return getCssDimensions(element);
-}
-function getRectRelativeToOffsetParent(element, offsetParent, strategy) {
-  const isOffsetParentAnElement = isHTMLElement(offsetParent);
-  const documentElement = getDocumentElement(offsetParent);
-  const isFixed = strategy === "fixed";
-  const rect = getBoundingClientRect(element, true, isFixed, offsetParent);
-  let scroll = {
-    scrollLeft: 0,
-    scrollTop: 0
-  };
-  const offsets = createCoords(0);
-  if (isOffsetParentAnElement || !isOffsetParentAnElement && !isFixed) {
-    if (getNodeName(offsetParent) !== "body" || isOverflowElement(documentElement)) {
-      scroll = getNodeScroll(offsetParent);
-    }
-    if (isOffsetParentAnElement) {
-      const offsetRect = getBoundingClientRect(offsetParent, true, isFixed, offsetParent);
-      offsets.x = offsetRect.x + offsetParent.clientLeft;
-      offsets.y = offsetRect.y + offsetParent.clientTop;
-    } else if (documentElement) {
-      offsets.x = getWindowScrollBarX(documentElement);
-    }
-  }
-  return {
-    x: rect.left + scroll.scrollLeft - offsets.x,
-    y: rect.top + scroll.scrollTop - offsets.y,
-    width: rect.width,
-    height: rect.height
-  };
-}
-function getTrueOffsetParent(element, polyfill) {
-  if (!isHTMLElement(element) || getComputedStyle2(element).position === "fixed") {
-    return null;
-  }
-  if (polyfill) {
-    return polyfill(element);
-  }
-  return element.offsetParent;
-}
-function getOffsetParent(element, polyfill) {
-  const window2 = getWindow(element);
-  if (!isHTMLElement(element)) {
-    return window2;
-  }
-  let offsetParent = getTrueOffsetParent(element, polyfill);
-  while (offsetParent && isTableElement(offsetParent) && getComputedStyle2(offsetParent).position === "static") {
-    offsetParent = getTrueOffsetParent(offsetParent, polyfill);
-  }
-  if (offsetParent && (getNodeName(offsetParent) === "html" || getNodeName(offsetParent) === "body" && getComputedStyle2(offsetParent).position === "static" && !isContainingBlock(offsetParent))) {
-    return window2;
-  }
-  return offsetParent || getContainingBlock(element) || window2;
-}
-var getElementRects = async function(_ref) {
-  let {
-    reference,
-    floating,
-    strategy
-  } = _ref;
-  const getOffsetParentFn = this.getOffsetParent || getOffsetParent;
-  const getDimensionsFn = this.getDimensions;
-  return {
-    reference: getRectRelativeToOffsetParent(reference, await getOffsetParentFn(floating), strategy),
-    floating: {
-      x: 0,
-      y: 0,
-      ...await getDimensionsFn(floating)
-    }
-  };
-};
-function isRTL(element) {
-  return getComputedStyle2(element).direction === "rtl";
-}
-var platform = {
-  convertOffsetParentRelativeRectToViewportRelativeRect,
-  getDocumentElement,
-  getClippingRect,
-  getOffsetParent,
-  getElementRects,
-  getClientRects,
-  getDimensions,
-  getScale,
-  isElement,
-  isRTL
-};
-function observeMove(element, onMove) {
-  let io = null;
-  let timeoutId;
-  const root = getDocumentElement(element);
-  function cleanup() {
-    clearTimeout(timeoutId);
-    io && io.disconnect();
-    io = null;
-  }
-  function refresh(skip, threshold) {
-    if (skip === void 0) {
-      skip = false;
-    }
-    if (threshold === void 0) {
-      threshold = 1;
-    }
-    cleanup();
-    const {
-      left,
-      top,
-      width,
-      height
-    } = element.getBoundingClientRect();
-    if (!skip) {
-      onMove();
-    }
-    if (!width || !height) {
-      return;
-    }
-    const insetTop = floor(top);
-    const insetRight = floor(root.clientWidth - (left + width));
-    const insetBottom = floor(root.clientHeight - (top + height));
-    const insetLeft = floor(left);
-    const rootMargin = -insetTop + "px " + -insetRight + "px " + -insetBottom + "px " + -insetLeft + "px";
-    const options = {
-      rootMargin,
-      threshold: max(0, min(1, threshold)) || 1
-    };
-    let isFirstUpdate = true;
-    function handleObserve(entries) {
-      const ratio = entries[0].intersectionRatio;
-      if (ratio !== threshold) {
-        if (!isFirstUpdate) {
-          return refresh();
-        }
-        if (!ratio) {
-          timeoutId = setTimeout(() => {
-            refresh(false, 1e-7);
-          }, 100);
-        } else {
-          refresh(false, ratio);
-        }
-      }
-      isFirstUpdate = false;
-    }
-    try {
-      io = new IntersectionObserver(handleObserve, {
-        ...options,
-        // Handle <iframe>s
-        root: root.ownerDocument
-      });
-    } catch (e) {
-      io = new IntersectionObserver(handleObserve, options);
-    }
-    io.observe(element);
-  }
-  refresh(true);
-  return cleanup;
-}
-function autoUpdate(reference, floating, update, options) {
-  if (options === void 0) {
-    options = {};
-  }
-  const {
-    ancestorScroll = true,
-    ancestorResize = true,
-    elementResize = typeof ResizeObserver === "function",
-    layoutShift = typeof IntersectionObserver === "function",
-    animationFrame = false
-  } = options;
-  const referenceEl = unwrapElement(reference);
-  const ancestors = ancestorScroll || ancestorResize ? [...referenceEl ? getOverflowAncestors(referenceEl) : [], ...getOverflowAncestors(floating)] : [];
-  ancestors.forEach((ancestor) => {
-    ancestorScroll && ancestor.addEventListener("scroll", update, {
-      passive: true
-    });
-    ancestorResize && ancestor.addEventListener("resize", update);
-  });
-  const cleanupIo = referenceEl && layoutShift ? observeMove(referenceEl, update) : null;
-  let reobserveFrame = -1;
-  let resizeObserver = null;
-  if (elementResize) {
-    resizeObserver = new ResizeObserver((_ref) => {
-      let [firstEntry] = _ref;
-      if (firstEntry && firstEntry.target === referenceEl && resizeObserver) {
-        resizeObserver.unobserve(floating);
-        cancelAnimationFrame(reobserveFrame);
-        reobserveFrame = requestAnimationFrame(() => {
-          resizeObserver && resizeObserver.observe(floating);
-        });
-      }
-      update();
-    });
-    if (referenceEl && !animationFrame) {
-      resizeObserver.observe(referenceEl);
-    }
-    resizeObserver.observe(floating);
-  }
-  let frameId;
-  let prevRefRect = animationFrame ? getBoundingClientRect(reference) : null;
-  if (animationFrame) {
-    frameLoop();
-  }
-  function frameLoop() {
-    const nextRefRect = getBoundingClientRect(reference);
-    if (prevRefRect && (nextRefRect.x !== prevRefRect.x || nextRefRect.y !== prevRefRect.y || nextRefRect.width !== prevRefRect.width || nextRefRect.height !== prevRefRect.height)) {
-      update();
-    }
-    prevRefRect = nextRefRect;
-    frameId = requestAnimationFrame(frameLoop);
-  }
-  update();
-  return () => {
-    ancestors.forEach((ancestor) => {
-      ancestorScroll && ancestor.removeEventListener("scroll", update);
-      ancestorResize && ancestor.removeEventListener("resize", update);
-    });
-    cleanupIo && cleanupIo();
-    resizeObserver && resizeObserver.disconnect();
-    resizeObserver = null;
-    if (animationFrame) {
-      cancelAnimationFrame(frameId);
-    }
-  };
-}
-var computePosition2 = (reference, floating, options) => {
-  const cache = /* @__PURE__ */ new Map();
-  const mergedOptions = {
-    platform,
-    ...options
-  };
-  const platformWithCache = {
-    ...mergedOptions.platform,
-    _c: cache
-  };
-  return computePosition(reference, floating, {
-    ...mergedOptions,
-    platform: platformWithCache
-  });
-};
+import {
+  computePosition,
+  autoUpdate,
+  offset,
+  flip
+} from "@floating-ui/dom";
 
 // libs/core/src/primitives/popover/topLayerOverTransforms.middleware.ts
 var topLayerOverTransforms = () => ({
@@ -2929,7 +1846,7 @@ var topLayerOverTransforms = () => ({
       floating.dispatchEvent(dialogAncestorQueryEvent);
     }
     let overTransforms = false;
-    const containingBlock = getContainingBlock2(reference);
+    const containingBlock = getContainingBlock(reference);
     if (containingBlock !== null && !isWindow(containingBlock)) {
       overTransforms = true;
     }
@@ -2959,25 +1876,25 @@ var topLayerOverTransforms = () => ({
     };
   }
 });
-function getContainingBlock2(element) {
-  let currentNode = getParentNode2(element);
-  if (isShadowRoot2(currentNode)) {
+function getContainingBlock(element) {
+  let currentNode = getParentNode(element);
+  if (isShadowRoot(currentNode)) {
     currentNode = currentNode.host;
   }
-  while (isHTMLElement2(currentNode) && !isLastTraversableNode2(currentNode)) {
-    if (isContainingBlock2(currentNode)) {
+  while (isHTMLElement(currentNode) && !isLastTraversableNode(currentNode)) {
+    if (isContainingBlock(currentNode)) {
       return currentNode;
     } else {
       const parent = currentNode.assignedSlot ? currentNode.assignedSlot : currentNode.parentNode;
-      currentNode = isShadowRoot2(parent) ? parent.host : parent;
+      currentNode = isShadowRoot(parent) ? parent.host : parent;
     }
   }
   return null;
 }
-function isLastTraversableNode2(node) {
-  return ["html", "body", "#document"].includes(getNodeName2(node));
+function isLastTraversableNode(node) {
+  return ["html", "body", "#document"].includes(getNodeName(node));
 }
-function isContainingBlock2(element) {
+function isContainingBlock(element) {
   const isFirefox = /firefox/i.test(getUAString());
   if (element.tagName === "dialog") {
     return true;
@@ -2992,31 +1909,31 @@ function getUAString() {
   }
   return navigator.userAgent;
 }
-function getParentNode2(node) {
-  if (getNodeName2(node) === "html") {
+function getParentNode(node) {
+  if (getNodeName(node) === "html") {
     return node;
   }
   return (
     // this is a quicker (but less type safe) way to save quite some bytes from the bundle
     node.assignedSlot || // step into the shadow DOM of the parent of a slotted node
     node.parentNode || // DOM Element detected
-    (isShadowRoot2(node) ? node.host : null) || // ShadowRoot detected
-    getDocumentElement2(node)
+    (isShadowRoot(node) ? node.host : null) || // ShadowRoot detected
+    getDocumentElement(node)
   );
 }
-function getNodeName2(node) {
+function getNodeName(node) {
   return isWindow(node) ? "" : node ? (node.nodeName || "").toLowerCase() : "";
 }
-function getDocumentElement2(node) {
-  return ((isNode2(node) ? node.ownerDocument : node.document) || window.document).documentElement;
+function getDocumentElement(node) {
+  return ((isNode(node) ? node.ownerDocument : node.document) || window.document).documentElement;
 }
-function isNode2(value) {
-  return value instanceof getWindow2(value).Node;
+function isNode(value) {
+  return value instanceof getWindow(value).Node;
 }
 function isWindow(value) {
   return value && value.document && value.location && value.alert && value.setInterval;
 }
-function getWindow2(node) {
+function getWindow(node) {
   if (node == null) {
     return window;
   }
@@ -3026,16 +1943,16 @@ function getWindow2(node) {
   }
   return node;
 }
-function isShadowRoot2(node) {
+function isShadowRoot(node) {
   if (typeof ShadowRoot === "undefined") {
     return false;
   }
-  const OwnElement = getWindow2(node).ShadowRoot;
+  const OwnElement = getWindow(node).ShadowRoot;
   const testNode = node;
   return node instanceof OwnElement || testNode instanceof ShadowRoot;
 }
-function isHTMLElement2(value) {
-  return value instanceof getWindow2(value).HTMLElement;
+function isHTMLElement(value) {
+  return value instanceof getWindow(value).HTMLElement;
 }
 
 // libs/core/src/primitives/popover/popover.styles.ts
@@ -3050,7 +1967,7 @@ var style3 = css3`
 var popover_styles_default = style3;
 
 // libs/core/src/primitives/popover/popover.ts
-var _dialogElementRef, _handleCloseButton, _registerTriggerEvents, registerTriggerEvents_fn, _unregisterTriggerEvents, unregisterTriggerEvents_fn, _autoPositionCleanup, _registerAutoPositioning, registerAutoPositioning_fn, _triggerKeyDownListener, _focusFirstSlottedChild, _clickOutsideListener;
+var _dialogElementRef, _autoPositionCleanupFn, _isMobileViewport, _handleCloseButton, _registerTriggerEvents, registerTriggerEvents_fn, _unregisterTriggerEvents, unregisterTriggerEvents_fn, _registerAutoPositioning, registerAutoPositioning_fn, _triggerKeyDownListener, _focusFirstSlottedChild, _clickOutsideListener;
 var GdsPopover = class extends LitElement6 {
   constructor() {
     super(...arguments);
@@ -3058,16 +1975,22 @@ var GdsPopover = class extends LitElement6 {
     __privateAdd(this, _unregisterTriggerEvents);
     __privateAdd(this, _registerAutoPositioning);
     this.open = false;
-    this.trigger = void 0;
+    this.triggerRef = Promise.resolve(void 0);
     this.label = void 0;
+    this.placement = "bottom-start";
+    this._trigger = void 0;
+    this._isVirtKbVisible = false;
+    // A reference to the dialog element used to make the popover modal
     __privateAdd(this, _dialogElementRef, createRef2());
+    // A function that removes the Floating UI auto positioning. This gets called when we switch to mobile view layout.
+    __privateAdd(this, _autoPositionCleanupFn, void 0);
+    __privateAdd(this, _isMobileViewport, false);
     __privateAdd(this, _handleCloseButton, (e) => {
       e.stopPropagation();
       e.preventDefault();
       this.open = false;
-      setTimeout(() => this.trigger?.focus(), 250);
+      setTimeout(() => this._trigger?.focus(), 250);
     });
-    __privateAdd(this, _autoPositionCleanup, void 0);
     /**
      * ArrowDown on the trigger element will trigger the popover by default, and escape will close it.
      */
@@ -3100,8 +2023,15 @@ var GdsPopover = class extends LitElement6 {
       }
     });
   }
+  _handleTriggerRefChanged() {
+    this.triggerRef.then((el) => {
+      if (el)
+        this._trigger = el;
+    });
+  }
   _handleTriggerChanged() {
     __privateMethod(this, _registerTriggerEvents, registerTriggerEvents_fn).call(this);
+    __privateMethod(this, _registerAutoPositioning, registerAutoPositioning_fn).call(this);
   }
   connectedCallback() {
     super.connectedCallback();
@@ -3114,13 +2044,27 @@ var GdsPopover = class extends LitElement6 {
         e.stopImmediatePropagation();
       }
     });
+    this.addEventListener("focusin", (e) => {
+      const t = e.target;
+      if (t.tagName === "INPUT" || t.tagName === "TEXTAREA") {
+        this._isVirtKbVisible = true;
+      } else {
+        this._isVirtKbVisible = false;
+      }
+    });
+    this.addEventListener("blurin", (_) => {
+      this._isVirtKbVisible = false;
+    });
   }
   disconnectedCallback() {
     super.disconnectedCallback();
     __privateMethod(this, _unregisterTriggerEvents, unregisterTriggerEvents_fn).call(this);
   }
   render() {
-    return html6`<dialog ${ref2(__privateGet(this, _dialogElementRef))}>
+    return html6`<dialog
+      class="${classMap3({ "v-kb-visible": this._isVirtKbVisible })}"
+      ${ref2(__privateGet(this, _dialogElementRef))}
+    >
       <header>
         <h2>${this.label}</h2>
         <button
@@ -3166,10 +2110,12 @@ var GdsPopover = class extends LitElement6 {
   }
   _handleMobileLayout(matches) {
     var _a;
+    __privateSet(this, _isMobileViewport, matches);
     if (matches) {
-      (_a = __privateGet(this, _autoPositionCleanup)) == null ? void 0 : _a.call(this);
+      (_a = __privateGet(this, _autoPositionCleanupFn)) == null ? void 0 : _a.call(this);
       __privateGet(this, _dialogElementRef).value?.style.removeProperty("left");
       __privateGet(this, _dialogElementRef).value?.style.removeProperty("top");
+      __privateGet(this, _dialogElementRef).value?.style.removeProperty("minWidth");
       this.updateComplete.then(() => {
         if (this.open)
           __privateGet(this, _dialogElementRef).value?.showModal();
@@ -3182,27 +2128,31 @@ var GdsPopover = class extends LitElement6 {
   }
 };
 _dialogElementRef = new WeakMap();
+_autoPositionCleanupFn = new WeakMap();
+_isMobileViewport = new WeakMap();
 _handleCloseButton = new WeakMap();
 _registerTriggerEvents = new WeakSet();
 registerTriggerEvents_fn = function() {
-  this.trigger?.addEventListener("keydown", __privateGet(this, _triggerKeyDownListener));
+  this._trigger?.addEventListener("keydown", __privateGet(this, _triggerKeyDownListener));
 };
 _unregisterTriggerEvents = new WeakSet();
 unregisterTriggerEvents_fn = function() {
   var _a;
-  this.trigger?.removeEventListener("keydown", __privateGet(this, _triggerKeyDownListener));
-  (_a = __privateGet(this, _autoPositionCleanup)) == null ? void 0 : _a.call(this);
+  this._trigger?.removeEventListener("keydown", __privateGet(this, _triggerKeyDownListener));
+  (_a = __privateGet(this, _autoPositionCleanupFn)) == null ? void 0 : _a.call(this);
 };
-_autoPositionCleanup = new WeakMap();
 _registerAutoPositioning = new WeakSet();
 registerAutoPositioning_fn = function() {
-  const referenceEl = this.trigger;
+  const referenceEl = this._trigger;
   const floatingEl = __privateGet(this, _dialogElementRef).value;
-  if (!referenceEl || !floatingEl)
+  if (!referenceEl || !floatingEl || __privateGet(this, _isMobileViewport))
     return;
-  __privateSet(this, _autoPositionCleanup, autoUpdate(referenceEl, floatingEl, () => {
-    computePosition2(referenceEl, floatingEl, {
-      placement: "bottom-start",
+  if (__privateGet(this, _autoPositionCleanupFn)) {
+    __privateGet(this, _autoPositionCleanupFn).call(this);
+  }
+  __privateSet(this, _autoPositionCleanupFn, autoUpdate(referenceEl, floatingEl, () => {
+    computePosition(referenceEl, floatingEl, {
+      placement: this.placement,
       middleware: [offset(8), flip(), topLayerOverTransforms()],
       strategy: "fixed"
     }).then(
@@ -3217,18 +2167,30 @@ registerAutoPositioning_fn = function() {
 _triggerKeyDownListener = new WeakMap();
 _focusFirstSlottedChild = new WeakMap();
 _clickOutsideListener = new WeakMap();
-GdsPopover.styles = unsafeCSS7(popover_styles_default);
+GdsPopover.styles = unsafeCSS5(popover_styles_default);
 __decorateClass([
   property5({ type: Boolean, reflect: true })
 ], GdsPopover.prototype, "open", 2);
 __decorateClass([
   property5()
-], GdsPopover.prototype, "trigger", 2);
+], GdsPopover.prototype, "triggerRef", 2);
 __decorateClass([
   property5()
 ], GdsPopover.prototype, "label", 2);
 __decorateClass([
-  watch("trigger")
+  property5()
+], GdsPopover.prototype, "placement", 2);
+__decorateClass([
+  state()
+], GdsPopover.prototype, "_trigger", 2);
+__decorateClass([
+  state()
+], GdsPopover.prototype, "_isVirtKbVisible", 2);
+__decorateClass([
+  watch("triggerRef")
+], GdsPopover.prototype, "_handleTriggerRefChanged", 1);
+__decorateClass([
+  watch("_trigger")
 ], GdsPopover.prototype, "_handleTriggerChanged", 1);
 __decorateClass([
   watch("open")
@@ -3257,16 +2219,10 @@ var style4 = css4`
 var dropdown_styles_default = style4;
 
 // libs/core/src/components/dropdown/dropdown.ts
-var _listboxRef, _triggerRef, _searchInputRef, _optionElements, _listboxId, _triggerId, _handleSearchFieldKeyUp, _handleSearchFieldKeyDown, _handleListboxKeyDown, _handleOptionFocusChange, _registerPopoverTrigger, registerPopoverTrigger_fn, _handleSelectionChange, handleSelectionChange_fn, _registerAutoCloseListener, registerAutoCloseListener_fn, _unregisterAutoCloseListener, unregisterAutoCloseListener_fn, _blurCloseListener, _tabCloseListener;
+var _optionElements, _handleSearchFieldKeyUp, _handleSearchFieldKeyDown, _handleListboxKeyDown, _handleOptionFocusChange, _handleSelectionChange, handleSelectionChange_fn, _registerAutoCloseListener, registerAutoCloseListener_fn, _unregisterAutoCloseListener, unregisterAutoCloseListener_fn, _blurCloseListener, _tabCloseListener;
 var GdsDropdown = class extends GdsFormControlElement {
   constructor() {
     super();
-    /**
-     * Registers the trigger button of the dropdown to the popover.
-     *
-     * @param el The popover element.
-     */
-    __privateAdd(this, _registerPopoverTrigger);
     /**
      * Selects an option in the dropdown.
      *
@@ -3282,19 +2238,14 @@ var GdsDropdown = class extends GdsFormControlElement {
     this.compareWith = (a, b) => a === b;
     this.searchFilter = (q, o) => o.innerHTML.toLowerCase().includes(q.toLowerCase());
     // Private members
-    __privateAdd(this, _listboxRef, createRef3());
-    __privateAdd(this, _triggerRef, createRef3());
-    __privateAdd(this, _searchInputRef, createRef3());
     __privateAdd(this, _optionElements, void 0);
-    __privateAdd(this, _listboxId, randomId());
-    __privateAdd(this, _triggerId, randomId());
     /**
      * Event handler for filtering the options in the dropdown.
      *
      * @param e The keyboard event.
      */
     __privateAdd(this, _handleSearchFieldKeyUp, (e) => {
-      const input = __privateGet(this, _searchInputRef).value;
+      const input = this.elSearchInput;
       const options = Array.from(__privateGet(this, _optionElements));
       options.forEach((o) => o.hidden = false);
       if (!input.value)
@@ -3311,7 +2262,7 @@ var GdsDropdown = class extends GdsFormControlElement {
     __privateAdd(this, _handleSearchFieldKeyDown, (e) => {
       if (e.key === "ArrowDown" || e.key === "Tab") {
         e.preventDefault();
-        __privateGet(this, _listboxRef).value?.focus();
+        this.elListbox?.focus();
         return;
       }
     });
@@ -3322,12 +2273,12 @@ var GdsDropdown = class extends GdsFormControlElement {
     __privateAdd(this, _handleListboxKeyDown, (e) => {
       if (e.key === "Tab" && this.searchable) {
         e.preventDefault();
-        __privateGet(this, _searchInputRef).value?.focus();
+        this.elSearchInput?.focus();
         return;
       }
     });
     __privateAdd(this, _handleOptionFocusChange, (e) => {
-      const triggerButton = __privateGet(this, _triggerRef).value;
+      const triggerButton = this.elTriggerBtn;
       if (triggerButton)
         triggerButton.ariaActiveDescendantElement = e.target;
     });
@@ -3343,7 +2294,7 @@ var GdsDropdown = class extends GdsFormControlElement {
       if (e.key === "Tab" && !this.searchable) {
         e.preventDefault();
         this.open = false;
-        __privateGet(this, _triggerRef).value?.focus();
+        this.elTriggerBtn?.focus();
       }
     });
     constrainSlots(this);
@@ -3397,20 +2348,19 @@ var GdsDropdown = class extends GdsFormControlElement {
     return html2`
       ${when2(
       this.label,
-      () => html2`<label for="${__privateGet(this, _triggerId)}">${this.label}</label>`
+      () => html2`<label for="trigger">${this.label}</label>`
     )}
 
       <span class="form-info"><slot name="sub-label"></slot></span>
 
       <button
-        id="${__privateGet(this, _triggerId)}"
+        id="trigger"
         @click="${() => this.open = !this.open}"
         aria-haspopup="listbox"
         role="combobox"
-        aria-owns="${__privateGet(this, _listboxId)}"
-        aria-controls="${__privateGet(this, _listboxId)}"
+        aria-owns="listbox"
+        aria-controls="listbox"
         aria-expanded="${this.open}"
-        ${ref3(__privateGet(this, _triggerRef))}
       >
         <slot name="trigger">
           <span>${unsafeHTML(this.displayValue)}</span>
@@ -3422,26 +2372,25 @@ var GdsDropdown = class extends GdsFormControlElement {
       <gds-popover
         .label=${this.label}
         .open=${this.open}
+        .triggerRef=${this.elTriggerBtnAsync}
         @gds-ui-state=${(e) => this.open = e.detail.open}
-        ${ref3(__privateMethod(this, _registerPopoverTrigger, registerPopoverTrigger_fn))}
       >
         ${when2(
       this.searchable,
       () => html2`<input
+            id="searchinput"
             type="text"
             aria-label="${msg2("Filter available options")}"
             placeholder="${msg2("Search")}"
-            ${ref3(__privateGet(this, _searchInputRef))}
             @keydown=${__privateGet(this, _handleSearchFieldKeyDown)}
             @keyup=${__privateGet(this, _handleSearchFieldKeyUp)}
           />`
     )}
 
         <gds-listbox
-          id="${__privateGet(this, _listboxId)}"
+          id="listbox"
           .multiple="${ifDefined(this.multiple)}"
           .compareWith="${this.compareWith}"
-          ${ref3(__privateGet(this, _listboxRef))}
           @change="${__privateMethod(this, _handleSelectionChange, handleSelectionChange_fn)}"
           @gds-focus="${__privateGet(this, _handleOptionFocusChange)}"
           @keydown=${__privateGet(this, _handleListboxKeyDown)}
@@ -3467,7 +2416,7 @@ var GdsDropdown = class extends GdsFormControlElement {
     }
   }
   _handleValueChange() {
-    const listbox = __privateGet(this, _listboxRef).value;
+    const listbox = this.elListbox;
     if (listbox) {
       if (Array.isArray(this.value))
         listbox.selection = this.value;
@@ -3482,7 +2431,7 @@ var GdsDropdown = class extends GdsFormControlElement {
       __privateMethod(this, _registerAutoCloseListener, registerAutoCloseListener_fn).call(this);
     else {
       __privateMethod(this, _unregisterAutoCloseListener, unregisterAutoCloseListener_fn).call(this);
-      __privateGet(this, _searchInputRef).value && (__privateGet(this, _searchInputRef).value.value = "");
+      this.elSearchInput && (this.elSearchInput.value = "");
     }
     this.dispatchEvent(
       new CustomEvent("gds-ui-state", {
@@ -3493,26 +2442,14 @@ var GdsDropdown = class extends GdsFormControlElement {
     );
   }
 };
-_listboxRef = new WeakMap();
-_triggerRef = new WeakMap();
-_searchInputRef = new WeakMap();
 _optionElements = new WeakMap();
-_listboxId = new WeakMap();
-_triggerId = new WeakMap();
 _handleSearchFieldKeyUp = new WeakMap();
 _handleSearchFieldKeyDown = new WeakMap();
 _handleListboxKeyDown = new WeakMap();
 _handleOptionFocusChange = new WeakMap();
-_registerPopoverTrigger = new WeakSet();
-registerPopoverTrigger_fn = function(el) {
-  if (el) {
-    const popover = el;
-    popover.trigger = __privateGet(this, _triggerRef).value;
-  }
-};
 _handleSelectionChange = new WeakSet();
 handleSelectionChange_fn = function() {
-  const listbox = __privateGet(this, _listboxRef).value;
+  const listbox = this.elListbox;
   if (!listbox)
     return;
   if (this.multiple)
@@ -3520,7 +2457,7 @@ handleSelectionChange_fn = function() {
   else {
     this.value = listbox.selection[0]?.value;
     this.open = false;
-    setTimeout(() => __privateGet(this, _triggerRef).value?.focus(), 0);
+    setTimeout(() => this.elTriggerBtn?.focus(), 0);
   }
   this.dispatchEvent(
     new CustomEvent("change", {
@@ -3568,6 +2505,18 @@ __decorateClass([
   property6()
 ], GdsDropdown.prototype, "searchFilter", 2);
 __decorateClass([
+  query3("#trigger")
+], GdsDropdown.prototype, "elTriggerBtn", 2);
+__decorateClass([
+  queryAsync("#trigger")
+], GdsDropdown.prototype, "elTriggerBtnAsync", 2);
+__decorateClass([
+  query3("#listbox")
+], GdsDropdown.prototype, "elListbox", 2);
+__decorateClass([
+  query3("#searchinput")
+], GdsDropdown.prototype, "elSearchInput", 2);
+__decorateClass([
   observeLightDOM()
 ], GdsDropdown.prototype, "_handleLightDOMChange", 1);
 __decorateClass([
@@ -3581,7 +2530,7 @@ GdsDropdown = __decorateClass([
 ], GdsDropdown);
 
 // libs/core/src/components/form/form.ts
-import { LitElement as LitElement7, html as html7, unsafeCSS as unsafeCSS8 } from "lit";
+import { LitElement as LitElement7, html as html7, unsafeCSS as unsafeCSS6 } from "lit";
 import { customElement as customElement3 } from "lit/decorators.js";
 
 // libs/core/src/components/form/style/form.styles.scss
@@ -3625,13 +2574,25 @@ gds-input .main:hover {
 gds-input .main:focus-within:has(input:focus-visible) {
   border-radius: 8px;
 }
+gds-input .main:has(input:not(:-moz-placeholder-shown)) {
+  border-color: currentColor;
+}
 gds-input .main:focus-within, gds-input .main:has(input:not(:placeholder-shown)) {
   border-color: currentColor;
+}
+gds-input .main:has(input:not(:-moz-placeholder-shown)) .base label {
+  font-size: 12px;
+  top: 0;
+  transform: translateY(-5px);
 }
 gds-input .main:focus-within .base label, gds-input .main:has(input:not(:placeholder-shown)) .base label {
   font-size: 12px;
   top: 0;
   transform: translateY(-5px);
+}
+gds-input .main:has(input:not(:-moz-placeholder-shown)) .base input {
+  opacity: 1;
+  transform: translateY(0);
 }
 gds-input .main:focus-within .base input, gds-input .main:has(input:not(:placeholder-shown)) .base input {
   opacity: 1;
@@ -3643,40 +2604,79 @@ gds-input .main gds-icon {
 gds-input .main input[type=number]::-webkit-inner-spin-button {
   display: none;
 }
+gds-input .main:has(input:focus-visible:valid:not(:-moz-placeholder-shown)) {
+  background-color: var(--gds-color-green-98);
+  border-color: var(--gds-color-green-50);
+  color: var(--gds-color-green-50);
+}
 gds-input .main:has(input:focus-visible:valid:not(:placeholder-shown)) {
   background-color: var(--gds-color-green-98);
   border-color: var(--gds-color-green-50);
   color: var(--gds-color-green-50);
 }
+gds-input .main:has(input:focus-visible:valid:not(:-moz-placeholder-shown)) input {
+  color: currentColor;
+}
 gds-input .main:has(input:focus-visible:valid:not(:placeholder-shown)) input {
   color: currentColor;
+}
+gds-input .main:has(input:focus-visible:valid:not(:-moz-placeholder-shown)) .base::after {
+  background-color: var(--gds-color-green-85);
 }
 gds-input .main:has(input:focus-visible:valid:not(:placeholder-shown)) .base::after {
   background-color: var(--gds-color-green-85);
 }
+gds-input .main:has(input:focus-visible:valid:not(:-moz-placeholder-shown)) gds-icon {
+  color: var(--gds-color-green-50);
+}
 gds-input .main:has(input:focus-visible:valid:not(:placeholder-shown)) gds-icon {
   color: var(--gds-color-green-50);
+}
+gds-input .main:has(input:valid:not(:-moz-placeholder-shown)) {
+  border-color: transparent;
+  border-bottom-color: var(--gds-color-green-50);
 }
 gds-input .main:has(input:valid:not(:placeholder-shown)) {
   border-color: transparent;
   border-bottom-color: var(--gds-color-green-50);
+}
+gds-input .main:has(input:focus-visible:invalid:not(:-moz-placeholder-shown)) {
+  background-color: var(--gds-color-red-98);
+  border-color: var(--gds-color-red-50);
+  color: var(--gds-color-red-50);
 }
 gds-input .main:has(input:focus-visible:invalid:not(:placeholder-shown)) {
   background-color: var(--gds-color-red-98);
   border-color: var(--gds-color-red-50);
   color: var(--gds-color-red-50);
 }
+gds-input .main:has(input:focus-visible:invalid:not(:-moz-placeholder-shown)) input {
+  color: currentColor;
+}
 gds-input .main:has(input:focus-visible:invalid:not(:placeholder-shown)) input {
   color: currentColor;
+}
+gds-input .main:has(input:focus-visible:invalid:not(:-moz-placeholder-shown)) .base::after {
+  background-color: var(--gds-color-red-85);
 }
 gds-input .main:has(input:focus-visible:invalid:not(:placeholder-shown)) .base::after {
   background-color: var(--gds-color-red-85);
 }
+gds-input .main:has(input:focus-visible:invalid:not(:-moz-placeholder-shown)) + .support {
+  color: currentColor;
+}
 gds-input .main:has(input:focus-visible:invalid:not(:placeholder-shown)) + .support {
   color: currentColor;
 }
+gds-input .main:has(input:focus-visible:invalid:not(:-moz-placeholder-shown)) gds-icon {
+  color: var(--gds-color-red-50);
+}
 gds-input .main:has(input:focus-visible:invalid:not(:placeholder-shown)) gds-icon {
   color: var(--gds-color-red-50);
+}
+gds-input .main:has(input:invalid:not(:-moz-placeholder-shown)) {
+  border-color: transparent;
+  border-bottom-color: var(--gds-color-red-50);
 }
 gds-input .main:has(input:invalid:not(:placeholder-shown)) {
   border-color: transparent;
@@ -3694,6 +2694,7 @@ gds-input .main .base label {
   background-color: transparent;
   display: block;
   font-size: 16px;
+  height: -moz-max-content;
   height: max-content;
   inset: 0;
   line-height: 20px;
@@ -3704,7 +2705,9 @@ gds-input .main .base label {
   width: 100%;
 }
 gds-input .main .base input {
-  appearance: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
   background-color: transparent;
   border: 0;
   border-radius: 0;
@@ -3723,6 +2726,9 @@ gds-input .main .base input {
   transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
   width: 100%;
 }
+gds-input .main .base input::-moz-placeholder {
+  font-family: inherit;
+}
 gds-input .main .base input::placeholder {
   font-family: inherit;
 }
@@ -3730,7 +2736,8 @@ gds-input .main .base input:focus:not(:focus-visible) {
   outline: none;
 }
 gds-input .main .base input::-webkit-inner-spin-button, gds-input .main .base input::-webkit-calendar-picker-indicator {
-  appearance: none;
+  -webkit-appearance: none;
+          appearance: none;
   background-color: rgb(195, 0, 255);
   background-image: none;
   height: 100%;
@@ -4051,7 +3058,7 @@ var GdsForm = class extends LitElement7 {
 `;
   }
 };
-GdsForm.styles = unsafeCSS8(form_styles_default);
+GdsForm.styles = unsafeCSS6(form_styles_default);
 GdsForm.shadowRootOptions = {
   mode: "open",
   delegatesFocus: true
@@ -4061,96 +3068,489 @@ GdsForm = __decorateClass([
 ], GdsForm);
 
 // libs/core/src/components/input/input.ts
-import { LitElement as LitElement9, html as html9, unsafeCSS as unsafeCSS10 } from "lit";
-import { customElement as customElement5, property as property8 } from "lit/decorators.js";
-import { when as when4 } from "lit/directives/when.js";
+import { unsafeCSS as unsafeCSS7 } from "lit";
+import { property as property7, query as query4, queryAsync as queryAsync2 } from "lit/decorators.js";
+import { until } from "lit/directives/until.js";
+import { nothing as nothing2 } from "lit/html.js";
+import { when as when3 } from "lit/directives/when.js";
+import { msg as msg3 } from "@lit/localize";
+
+// libs/core/src/utils/directives/forward-attributes.ts
+import { Directive, PartType, directive } from "lit/directive.js";
+import { nothing } from "lit/html.js";
+var ForwardAttributesDirective = class extends Directive {
+  constructor(partInfo) {
+    super(partInfo);
+    if (partInfo.type !== PartType.ELEMENT) {
+      throw new Error(
+        "The `forwardAttributes` directive must be used in element bindings"
+      );
+    }
+  }
+  render(_filter) {
+    return nothing;
+  }
+  update(part, [filter]) {
+    const element = part.element;
+    const host = part.options?.host;
+    Array.from(host.attributes).forEach((attr) => {
+      if (filter(attr)) {
+        element.setAttribute(attr.name, attr.value);
+      }
+    });
+  }
+};
+var forwardAttributes = directive(ForwardAttributesDirective);
 
 // libs/core/src/components/input/style/input.styles.css
-var input_styles_default = `@layer gds-input, type-safe, tokens, a11y, containment, shell, core, parts, types;
+var input_styles_default = `@layer tokens, a11y, base;
 
-/* 
+@layer tokens {
+  :host {
+    --_color-bg: var(--gds-sys-color-container-container);
 
-input:user-valid {
-  border-color:  green;
+    --_color-border: var(--gds-sys-color-stroke-stroke);
+    --_border-radius: .5rem;
+    --_border-width: 0.0625rem;
+    --_border-width-hover: 0.125rem;
+
+    --_color-outline-alpha: 60%;
+    --_color-outline: color-mix(
+      in srgb,
+      var(--_color-border),
+      transparent var(--_color-outline-alpha)
+    );
+
+    --_transition: var(--gds-sys-transition);
+    --_lh: 1.25;
+    --_core-min-block-size: 3.5rem;
+    --_gap: .5rem;
+    --_padding-block: .625rem;
+    --_padding-inline: 1rem;
+    --_core-icon-size: 1.5rem;
+    --_textarea-min-block-size: 2rem;
+  }
 }
 
-*/
-
-@layer gds-input {
-  @layer type-safe {
-    @property --gds-input-width {
-      syntax: '<length-percentage>';
-      initial-value: 30cqi;
-      inherits: false;
+@layer a11y {
+  /* @media (prefers-color-scheme: dark) {
+    :host {
+      --_color-bg: var(--_color-bg-dark);
     }
-    @property --gds-textarea-lines {
-      syntax: '<length>';
-      initial-value: 1;
-      inherits: true;
+  } */
+
+  @media (prefers-reduced-motion: reduce) {
+    :host {
+      --_transition: none;
     }
   }
 
+  @media (prefers-reduced-transparency: reduce) {
+    :host {
+      --_transparency: 1;
+    }
+  }
+
+  /* @media (prefers-contrast: more) {
+    :host {
+      --_color-bg: hsla(60, 4%, 96%, 1);
+      --_color-outline-alpha: 0%;
+    }
+  } */
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  :host {
+    display: block;
+    position: relative;
+  }
+
+  .head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-inline-end: 1rem;
+  }
+
+  label {
+    font-weight: 400;
+    transition: var(--_transition);
+  }
+
+  .foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-inline-end: 1rem;
+
+    gds-badge {
+      align-self: flex-end;
+    }
+  }
+
+  .supporting-text, .error-text {
+    font-size: .875rem;
+  }
+
+  slot[name="extended-supporting-text"] {
+    display: block;
+    font-size: .875rem;
+    background-color: #eee;
+    margin-top: 0.5rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid #ccc;
+    opacity: 0;
+    transition: var(--_transition);
+
+    [aria-hidden="false"] & {
+      opacity: 1;
+    }
+  }
+
+  div.extended-supporting-text {
+    /* max-height: 0; */
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: var(--_transition);
+
+    & > * {
+      overflow: hidden;
+    }
+
+    &[aria-hidden="false"] {
+      /* max-height: 500px; */
+      opacity: 1;
+      grid-template-rows: 1fr;
+    }
+  }
+
+  input[type='number']::-webkit-inner-spin-button {
+    display: none;
+  }
+
+  input {
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+    background-color: transparent;
+    border: 0;
+    width: 100%;
+    overflow: hidden;
+    margin: unset;
+    outline: none;
+    padding: unset;
+    height: -moz-max-content;
+    height: max-content;
+    /* caret-color: accent;
+    caret-shape: underscore; */
+    box-sizing: border-box;
+    font-size: var(--_fs);
+    line-height: var(--_lh);
+    transition: var(--_transition);
+
+    &::-moz-placeholder {
+      font-family: inherit;
+    }
+
+    &::placeholder {
+      font-family: inherit;
+    }
+
+    &:focus:not(:focus-visible) {
+      outline: none;
+    }
+
+    &::-webkit-inner-spin-button,
+    &::-webkit-calendar-picker-indicator {
+      -webkit-appearance: none;
+              appearance: none;
+      background-color: rgb(195, 0, 255);
+      background-image: none;
+      height: 100%;
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 40px;
+    }
+  }
+
+  .field {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: var(--_gap);
+
+    cursor: text;
+
+    block-size: -moz-max-content;
+
+    block-size: max-content;
+    /* min-inline-size: var(--_width); */
+    min-block-size: var(--_core-min-block-size);
+
+    background-color: var(--_color-bg);
+
+    border: var(--_border-width-hover) solid transparent;
+    border-block-end-color: transparent;
+    border-start-end-radius: var(--_border-radius);
+    border-start-start-radius: var(--_border-radius);
+
+    box-shadow: 0 var(--_border-width) 0
+      var(--_color-border);
+    padding-block: var(--_padding-block);
+    padding-inline: var(--_padding-inline);
+    margin-block: var(--_gap);
+
+    position: relative;
+
+    transition: var(--_transition);
+
+    outline-style: solid;
+    outline-offset: var(--_border-width);
+    outline-width: var(--_border-width-hover);
+    outline-color: transparent;
+
+    &:focus:not(:focus-visible) {
+      outline: none;
+    }
+
+    &:hover {
+      --_border-width: var(--_border-width-hover);
+    }
+
+    &:has(input:focus) {
+      --_border-width: var(--_border-width-hover);
+      outline-color: var(--_color-outline);
+      border-radius: var(--_border-radius);
+      border: var(--_border-width) solid var(--_color-border);
+      box-shadow: none;
+      transition: var(--_transition);
+    }
+  }
+
+  :host(:invalid) .field {
+    --_color-bg: var(--gds-sys-color-status-negative-negative-bright);
+    --_color-border: var(--gds-sys-color-stroke-stroke-negative);
+    --_color-outline: var(--gds-sys-color-stroke-stroke-negative);
+    color: var(--gds-sys-color-status-negative-on-negative-bright);
+  }
+  :host(:invalid) .error-text {
+    color: var(--gds-sys-color-status-negative-on-negative-bright);
+  }
+  :host(:invalid) label {
+    color: var(--gds-sys-color-status-negative-on-negative-bright);
+  }
+}
+`;
+
+// libs/core/src/components/input/input.ts
+var _forwardableAttrs, _handleOnInput, _handleFieldClick, _handleClearBtnClick, _handleSupportingTextBtnClick, _showRemainingChars, showRemainingChars_get, _remainingCharsBadge, remainingCharsBadge_get, _extendedSupportingTextBtn, extendedSupportingTextBtn_get;
+var GdsInput = class extends GdsFormControlElement {
+  constructor() {
+    super();
+    __privateAdd(this, _showRemainingChars);
+    __privateAdd(this, _remainingCharsBadge);
+    /**
+     * Returns a promise that resolves when the DOM query for the extended supporting text slot has resolved.
+     * If the slot is empty, an empty template is returned, otherwise the support text toggle button is returned.
+     */
+    __privateAdd(this, _extendedSupportingTextBtn);
+    this.value = "";
+    this.label = "";
+    this.supportingText = "";
+    this.showExtendedSupportingText = false;
+    this.clearable = false;
+    this.maxlength = Number.MAX_SAFE_INTEGER;
+    // Any attribute name added here will get forwarded to the native <input> element.
+    __privateAdd(this, _forwardableAttrs, (attr) => ["type", "placeholder", "required"].includes(attr.name));
+    __privateAdd(this, _handleOnInput, (e) => {
+      this.value = e.target.value;
+    });
+    __privateAdd(this, _handleFieldClick, () => {
+      this.elInput.focus();
+    });
+    __privateAdd(this, _handleClearBtnClick, () => {
+      this.value = "";
+    });
+    __privateAdd(this, _handleSupportingTextBtnClick, () => this.showExtendedSupportingText = !this.showExtendedSupportingText);
+    /**
+     * Event handler for the form reset event.
+     */
+    this._handleFormReset = () => {
+      this.value = "";
+    };
+    constrainSlots(this);
+  }
+  render() {
+    return html2`
+      <div class="head">
+        <label for="input">${this.label}</label>
+        ${until(__privateGet(this, _extendedSupportingTextBtn, extendedSupportingTextBtn_get), nothing2)}
+      </div>
+
+      <div class="supporting-text">${this.supportingText}</div>
+
+      <div
+        class="extended-supporting-text"
+        aria-hidden="${!this.showExtendedSupportingText}"
+      >
+        <div><slot name="extended-supporting-text"></slot></div>
+      </div>
+
+      <div class="field" @click=${__privateGet(this, _handleFieldClick)}>
+        <slot name="icon" gds-allow="gds-icon"></slot>
+        <input
+          @input=${__privateGet(this, _handleOnInput)}
+          .value=${this.value}
+          id="input"
+          ${forwardAttributes(__privateGet(this, _forwardableAttrs))}
+        />
+        <slot name="badge" gds-allow="gds-badge"></slot>
+        ${when3(
+      this.clearable && this.value.length > 0,
+      () => html2`
+            <gds-button
+              size="small"
+              variant="tertiary"
+              aria-label="${msg3("Clear input")}"
+              @click=${__privateGet(this, _handleClearBtnClick)}
+            >
+              <gds-icon name="x"></gds-icon>
+            </gds-button>
+          `
+    )}
+      </div>
+
+      <div class="foot">
+        <div>
+          ${when3(
+      this.invalid,
+      () => html2`<span class="error-text">Error information</span>`
+    )}
+        </div>
+        ${when3(__privateGet(this, _showRemainingChars, showRemainingChars_get), () => __privateGet(this, _remainingCharsBadge, remainingCharsBadge_get))}
+      </div>
+    `;
+  }
+};
+_forwardableAttrs = new WeakMap();
+_handleOnInput = new WeakMap();
+_handleFieldClick = new WeakMap();
+_handleClearBtnClick = new WeakMap();
+_handleSupportingTextBtnClick = new WeakMap();
+_showRemainingChars = new WeakSet();
+showRemainingChars_get = function() {
+  return this.maxlength < Number.MAX_SAFE_INTEGER;
+};
+_remainingCharsBadge = new WeakSet();
+remainingCharsBadge_get = function() {
+  const remaining = this.maxlength - this.value.length;
+  let variant;
+  if (remaining < 0) {
+    variant = "error";
+  } else if (remaining < 20) {
+    variant = "warning";
+  } else {
+    variant = "success";
+  }
+  return html2`<gds-badge variant="${variant}">${remaining}</gds-badge>`;
+};
+_extendedSupportingTextBtn = new WeakSet();
+extendedSupportingTextBtn_get = function() {
+  return this.elExtendedSupportingTextSlot.then((slot) => {
+    if (slot.assignedElements().length === 0) {
+      return html2``;
+    }
+    return html2`
+        <gds-button
+          size="small"
+          variant="tertiary"
+          aria-label="${msg3("Show extended supporting text")}"
+          @click=${__privateGet(this, _handleSupportingTextBtnClick)}
+        >
+          <gds-icon name="info"></gds-icon>
+        </gds-button>
+      `;
+  });
+};
+GdsInput.styles = [tokens, unsafeCSS7(input_styles_default)];
+__decorateClass([
+  property7()
+], GdsInput.prototype, "value", 2);
+__decorateClass([
+  property7()
+], GdsInput.prototype, "label", 2);
+__decorateClass([
+  property7({ attribute: "supporting-text" })
+], GdsInput.prototype, "supportingText", 2);
+__decorateClass([
+  property7({
+    attribute: "show-extended-supporting-text",
+    type: Boolean,
+    reflect: true
+  })
+], GdsInput.prototype, "showExtendedSupportingText", 2);
+__decorateClass([
+  property7({ type: Boolean })
+], GdsInput.prototype, "clearable", 2);
+__decorateClass([
+  property7({ type: Number })
+], GdsInput.prototype, "maxlength", 2);
+__decorateClass([
+  query4("input")
+], GdsInput.prototype, "elInput", 2);
+__decorateClass([
+  queryAsync2('slot[name="extended-supporting-text"]')
+], GdsInput.prototype, "elExtendedSupportingTextSlot", 2);
+GdsInput = __decorateClass([
+  gdsCustomElement("gds-input")
+], GdsInput);
+
+// libs/core/src/components/input/helper/helper.ts
+import { LitElement as LitElement10, html as html10, unsafeCSS as unsafeCSS10 } from "lit";
+import { customElement as customElement6, property as property10 } from "lit/decorators.js";
+import { ifDefined as ifDefined2 } from "lit/directives/if-defined.js";
+import { when as when5 } from "lit/directives/when.js";
+
+// libs/core/src/components/input/helper/style/helper.styles.css
+var helper_styles_default = `@layer gds-input-helper, tokens, a11y, containment, shell, core, parts;
+
+@layer gds-input-helper {
   @layer tokens {
     :host {
-      --gds-input-color: hsla(60, 4%, 50%, 1);
-      --gds-input-color-border: hsla(60, 4%, 50%, 1);
-      --gds-input-color-outline-alpha: 60%;
-      --gds-input-color-outline: color-mix(
-        in srgb,
-        var(--gds-input-color-border),
-        transparent var(--gds-input-color-outline-alpha)
-      );
-      --gds-input-color-bg: hsla(60, 4%, 95%, 1);
-      --gds-input-color-bg-dark: hsla(60, 4%, 95%, 1);
-      --gds-input-width: 30cqi;
-      --gds-input-transition-property: all;
-      --gds-input-transition-duration: 150ms;
-      --gds-input-transition-function: cubic-bezier(0.4, 0, 0.2, 1);
-      --gds-input-transition: var(--gds-input-transition-property)
-        var(--gds-input-transition-duration)
-        var(--gds-input-transition-function);
-      --gds-input-border-radius: 8px;
-      --gds-input-border-width: 2px;
-      --gds-input-fs: 16px;
-      --gds-input-lh: 1.25;
-      /* --gds-input-lh: 1.333333333; */
-      /* --gds-input-lh: 1.25; */
-      --gds-input-core-base-fs: 16px;
-      --gds-input-core-base-focus-fs: 12px;
-      --gds-input-core-min-block-size: 56px;
-      --gds-input-gap: 8px;
-      --gds-input-core-gap: 8px;
-      --gds-input-padding-block: 10px;
-      --gds-input-padding-inline: 16px;
-      --gds-input-core-icon-size: 24px;
-      --gds-input-textarea-min-block-size: 32px;
-      --gds-input-label-translate: 5px;
+      --gds-input-helper-bg: hsla(60, 4%, 95%, 1);
+      --gds-input-helper-br-width: 2px;
     }
   }
 
   @layer a11y {
     @media (prefers-color-scheme: dark) {
       :host {
-        --gds-input-color-bg: var(--gds-input-color-bg-dark);
+        --gds-input-helper-bg: var(--gds-input-helper-bg-dark);
       }
     }
 
     @media (prefers-reduced-motion: reduce) {
       :host {
-        --gds-input-transition: none;
+        --gds-input-helper-motion: 0;
       }
     }
 
     @media (prefers-reduced-transparency: reduce) {
       :host {
-        --gds-input-transparency: 1;
+        --gds-input-helper-transparency: 1;
       }
     }
 
     @media (prefers-contrast: more) {
       :host {
-        --gds-input-color-bg: hsla(60, 4%, 96%, 1);
-        --gds-input-color-outline-alpha: 0%;
+        --gds-input-helper-contrast: 1;
       }
     }
   }
@@ -4160,13 +3560,13 @@ input:user-valid {
       display: contents;
     }
 
-    .gds-input {
+    .gds-input-helper {
       contain: layout;
-      container-name: gds-input;
+      container-name: gds-input-helper;
       container-type: inline-size;
       isolation: isolate;
 
-      @container gds-input (width < 30ch) {
+      @container gds-input-helper (width < 30ch) {
         .gds-input-badge {
           display: none;
         }
@@ -4179,343 +3579,96 @@ input:user-valid {
   }
 
   @layer shell {
-    .gds-input {
+    .gds-input-helper {
       display: flex;
       flex-direction: column;
-      gap: var(--gds-input-gap);
-      min-inline-size: var(--gds-input-width);
+      justify-content: space-between;
     }
   }
 
   @layer core {
-    .gds-input-core {
-      align-items: center;
-      background-color: var(--gds-input-color-bg);
-      border: var(--gds-input-border-width) solid transparent;
-      border-block-end-color: transparent;
-      border-start-end-radius: var(--gds-input-border-radius);
-      border-start-start-radius: var(--gds-input-border-radius);
-      box-shadow: 0 var(--gds-input-border-width) 0
-        var(--gds-input-color-border);
-      display: flex;
-      gap: var(--gds-input-core-gap);
-      padding-block: var(--gds-input-padding-block);
-      padding-inline: var(--gds-input-padding-inline);
-      position: relative;
-      transition: var(--gds-input-transition);
-      block-size: max-content;
-      min-block-size: var(--gds-input-core-min-block-size);
-      outline-style: solid;
-      outline-offset: var(--gds-input-border-width);
-      outline-width: calc(var(--gds-input-border-width) / 2);
-      outline-color: transparent;
-
-      &:focus-within {
-        outline-color: var(--gds-input-color-outline);
-      }
-
-      &:focus:not(:focus-visible) {
-        outline: none;
-      }
-
-      &:hover {
-        box-shadow: 0 var(--gds-input-border-width) 0 currentColor;
-      }
-
-      & input[readonly] {
-        user-select: none;
-        pointer-events: none;
-      }
-
-      &:focus-within:has(select),
-      &:focus-within:has(textarea:focus-visible),
-      &:focus-within:has(input:focus-visible),
-      &:focus-within:has([readonly]) {
-        border-radius: var(--gds-input-border-radius);
-        box-shadow: none;
-      }
-
-      &:has(select option:not([hidden]):checked),
-      &:focus-within:has(textarea:placeholder-shown),
-      &:focus-within:has(input:placeholder-shown) {
-        box-shadow: none;
-        border-radius: var(--gds-input-border-radius);
-      }
-
-      &:focus-within,
-      &:has(select option:not([hidden]):checked),
-      &:has(textarea:not(:placeholder-shown)),
-      &:has(input:not(:placeholder-shown, [readonly])) {
-        border-color: currentColor;
-
-        .gds-input-core-base {
-          & label {
-            font-size: var(--gds-input-core-base-focus-fs);
-            height: var(--gds-input-core-base-focus-fs);
-          }
-          & select,
-          & input,
-          & textarea {
-            opacity: 1;
-            transform: translateY(10px);
-
-            :host([rows]) & {
-              /* padding-block-end: 10px; */
-            }
-          }
+    .gds-input-helper {
+      &:has(slot[name='badge']),
+      &:has(slot[name='action']) {
+        .gds-input-helper-header {
+          padding-inline-end: 8px;
         }
-      }
-
-      & gds-icon {
-        --gds-input-transition-property: color;
-        transition: var(--gds-input-transition);
-      }
-
-      & input[type='number']::-webkit-inner-spin-button {
-        display: none;
-      }
-
-      /* Valid */
-
-      &:has(textarea:focus-visible:valid:not(:placeholder-shown)),
-      &:has(input:focus-visible:valid:not(:placeholder-shown)) {
-        background-color: var(--gds-color-green-98);
-        border-color: var(--gds-color-green-50);
-        color: var(--gds-color-green-50);
-
-        & select,
-        & textare,
-        & input {
-          color: currentColor;
-        }
-
-        & .gds-input-core-base::after {
-          background-color: var(--gds-color-green-85);
-        }
-
-        & gds-icon {
-          color: var(--gds-color-green-50);
-        }
-      }
-
-      &:has(textarea:valid:not(:placeholder-shown)),
-      &:has(input:valid:not(:placeholder-shown)) {
-        border-color: transparent;
-        box-shadow: 0 var(--gds-input-border-width) 0 var(--gds-color-green-50);
-      }
-
-      &:focus-within:has(textarea:focus-visible),
-      &:focus-within:has(input:focus-visible),
-      &:has(textarea:focus-visible),
-      &:has(input:focus-visible) {
-        box-shadow: none;
-      }
-
-      &:not(:focus-within):has(textarea:valid:not(:placeholder-shown)),
-      &:not(:focus-within):has(input:valid:not(:placeholder-shown)) {
-        border-color: transparent;
-        box-shadow: 0 var(--gds-input-border-width) 0 var(--gds-color-green-50);
-      }
-
-      /* Invalid */
-
-      &:has(textarea:focus-visible:invalid:not(:placeholder-shown)),
-      &:has(input:focus-visible:invalid:not(:placeholder-shown)) {
-        background-color: var(--gds-color-red-98);
-        border-color: var(--gds-color-red-50);
-        color: var(--gds-color-red-50);
-
-        & textare,
-        & input {
-          color: currentColor;
-        }
-
-        & .gds-input-core-base::after {
-          background-color: var(--gds-color-red-85);
-        }
-
-        & gds-icon {
-          color: var(--gds-color-red-50);
-        }
-      }
-
-      &:has(textarea:invalid:not(:placeholder-shown)),
-      &:has(input:invalid:not(:placeholder-shown)) {
-        border-color: transparent;
-        box-shadow: 0 var(--gds-input-border-width) 0 var(--gds-color-red-50);
-      }
-
-      &:focus-within:has(textarea:focus-visible),
-      &:focus-within:has(input:focus-visible),
-      &:has(textarea:focus-visible),
-      &:has(input:focus-visible) {
-        box-shadow: none;
-      }
-
-      &:not(:focus-within):has(textarea:invalid:not(:placeholder-shown)),
-      &:not(:focus-within):has(input:invalid:not(:placeholder-shown)) {
-        border-color: transparent;
-        box-shadow: 0 var(--gds-input-border-width) 0 var(--gds-color-red-50);
-      }
-
-      /* Base */
-
-      .gds-input-core-base {
-        display: flex;
-        flex-direction: column;
-        position: relative;
-        width: 100%;
-        min-block-size: 32px;
-
-        & label {
-          display: flex;
-          align-items: center;
-          background-color: transparent;
-          width: 100%;
-          height: 32px;
-          position: absolute;
-          line-height: 1;
-          font-size: var(--gds-input-core-base-fs);
-          transition: var(--gds-input-transition);
-          /* background-color: aqua; */
-
-          :host([rows]) & {
-            /* background-color: orange; */
-          }
-        }
-
-        & select,
-        & input,
-        & textarea {
-          appearance: none;
-          background-color: transparent;
-          border: 0;
-          border-radius: 0;
-          display: flex;
-          font-family: inherit;
-          overflow: hidden;
-          margin: unset;
-          outline: none;
-          padding: unset;
-          width: 100%;
-          height: max-content;
-          caret-color: accent;
-          caret-shape: underscore;
-          box-sizing: border-box;
-          font-size: var(--gds-input-fs);
-          line-height: var(--gds-input-lh);
-          transition: var(--gds-input-transition);
-          opacity: 0;
-          /* background-color: teal; */
-
-          &::placeholder {
-            font-family: inherit;
-          }
-
-          &:focus:not(:focus-visible) {
-            outline: none;
-          }
-
-          &::-webkit-inner-spin-button,
-          &::-webkit-calendar-picker-indicator {
-            appearance: none;
-            background-color: rgb(195, 0, 255);
-            background-image: none;
-            height: 100%;
-            position: absolute;
-            right: 0;
-            top: 0;
-            width: 40px;
-          }
-        }
-
-        & textarea {
-          resize: none;
-          overflow: hidden;
-          transition: unset;
-          min-height: calc(1lh * var(--gds-textarea-lines));
-          max-height: calc(1lh * var(--gds-textarea-lines));
-          /* background-color: rgb(10, 207, 141); */
-
-          :host([rows]) & {
-            transform: translateY(10px);
-            /* background-color: orangered; */
-          }
-        }
-      }
-
-      &:has(.gds-input-core-trail-button) {
-        padding-inline-end: calc(var(--gds-input-padding-inline) / 2);
       }
 
       @layer parts {
-        .gds-input-badge {
-          pointer-events: none;
-          transition: var(--gds-input-transition);
-        }
-
-        .gds-input-core-lead,
-        .gds-input-core-trail {
-          align-items: center;
-          aspect-ratio: 1/1;
+        .gds-input-helper-header {
           display: flex;
-          block-size: var(--gds-input-core-icon-size);
-          inline-size: var(--gds-input-core-icon-size);
-          justify-content: center;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+          border-left: var(--gds-input-helper-br-width) solid transparent;
+          border-right: var(--gds-input-helper-br-width) solid transparent;
+          padding-inline: 18px;
+          min-height: 32px;
+
+          .gds-input-helper-options {
+            align-items: center;
+            margin-inline-start: auto;
+            display: flex;
+            gap: 8px;
+          }
         }
 
-        .gds-input-core-lead {
-          justify-content: flex-start;
+        .gds-input-helper-title {
+          font-size: 14px;
+          -webkit-user-select: none;
+             -moz-user-select: none;
+                  user-select: none;
+
+          &.gds-input-helper-action {
+            cursor: pointer;
+            -webkit-appearance: none;
+               -moz-appearance: none;
+                    appearance: none;
+            padding: unset;
+            border: unset;
+            background: unset;
+            outline-offset: 6px;
+            outline-color: transparent;
+            outline-width: 2px;
+            outline-style: solid;
+            font-family: inherit;
+            font-size: 14px;
+
+            &:focus {
+              outline-color: currentColor;
+              border-radius: 200px;
+
+              &:not(:focus-visible) {
+                outline-color: transparent;
+              }
+            }
+          }
         }
 
-        .gds-input-core-trail {
-          height: auto;
-          width: max-content;
+        .gds-input-helper-content {
+          border: 1px solid hsla(60, 4%, 80%, 1);
+          background-color: hsla(60, 4%, 95%, 1);
+          font-size: 14px;
+          gap: 8px;
+          line-height: 1.4;
+          margin-block-start: 8px;
+          padding: 12px 16px;
+          border-radius: 4px;
+          -webkit-user-select: auto;
+             -moz-user-select: auto;
+                  user-select: auto;
         }
       }
     }
   }
 }
-
-:host([type='textarea']) .gds-input-core {
-  align-items: flex-start;
-  .gds-input-core-lead,
-  .gds-input-core-base,
-  .gds-input-badge,
-  .gds-input-core-trail {
-    min-block-size: var(--gds-input-textarea-min-block-size);
-    display: flex;
-    align-items: center;
-  }
-}
-
-/* The double select style */
-
-:host([type='duo']) .gds-input-core-base-duo {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-
-  input {
-    flex: 1;
-    max-width: 50%;
-  }
-}
-
-/* [selected] */
-/* [selected] */
-/* [selected] */
-/* [selected] */
-/* [selected] */
-/* [selected] */
-/* [selected] */
-/* [selected] */
 `;
 
 // libs/core/src/components/badge/badge.ts
-import { LitElement as LitElement8, html as html8, unsafeCSS as unsafeCSS9 } from "lit";
-import { customElement as customElement4, property as property7 } from "lit/decorators.js";
-import { when as when3 } from "lit/directives/when.js";
+import { LitElement as LitElement8, html as html8, unsafeCSS as unsafeCSS8 } from "lit";
+import { customElement as customElement4, property as property8 } from "lit/decorators.js";
+import { when as when4 } from "lit/directives/when.js";
 
 // libs/core/src/components/badge/style/badge.styles.css
 var badge_styles_default = `@layer gds-badge, shell, tokens, a11y, variants, types;
@@ -4634,6 +3787,7 @@ var badge_styles_default = `@layer gds-badge, shell, tokens, a11y, variants, typ
       white-space: nowrap;
       text-overflow: ellipsis;
       text-transform: uppercase;
+      max-width: -moz-max-content;
       max-width: max-content;
       display: flex;
       align-items: center;
@@ -4717,7 +3871,7 @@ var GdsBadge = class extends LitElement8 {
   // }
   render() {
     const hasIconSlot = this.querySelector('[slot="icon"]') !== null;
-    const content = html8`${when3(
+    const content = html8`${when4(
       hasIconSlot,
       () => html8`<slot name="icon" gds-allow="gds-icon"></slot>`
     )}${this.slotLabel()}`;
@@ -4725,475 +3879,27 @@ var GdsBadge = class extends LitElement8 {
   }
 };
 _internals = new WeakMap();
-GdsBadge.styles = unsafeCSS9(badge_styles_default);
+GdsBadge.styles = unsafeCSS8(badge_styles_default);
 GdsBadge.shadowRootOptions = {
   mode: "open",
   delegatesFocus: true
 };
 __decorateClass([
-  property7({ type: String, reflect: true, attribute: "variant" })
+  property8({ type: String, reflect: true, attribute: "variant" })
 ], GdsBadge.prototype, "variant", 2);
 __decorateClass([
-  property7({ type: String, reflect: true, attribute: "type" })
+  property8({ type: String, reflect: true, attribute: "type" })
 ], GdsBadge.prototype, "type", 2);
 __decorateClass([
-  property7({ type: String, reflect: true, attribute: "icon" })
+  property8({ type: String, reflect: true, attribute: "icon" })
 ], GdsBadge.prototype, "icon", 2);
 GdsBadge = __decorateClass([
   customElement4("gds-badge")
 ], GdsBadge);
 
-// libs/core/src/components/input/input.ts
-var _internals2;
-var GdsInput = class extends LitElement9 {
-  constructor() {
-    super();
-    // Private members
-    __privateAdd(this, _internals2, void 0);
-    this.lead = null;
-    this.trail = null;
-    this.label = "Label";
-    this.hasInvalidState = false;
-    this.inputElement = null;
-    this.exludeAttr = ["placeholder", "id", "label"];
-    __privateSet(this, _internals2, this.attachInternals());
-    constrainSlots(this);
-  }
-  slotLabel() {
-    return this.textContent ? html9`<slot part="label" gds-allow="#text"></slot>` : "";
-  }
-  slotLead() {
-    return html9`
-      <div class="gds-input-core-lead">
-        <slot name="lead" gds-allow="gds-icon"></slot>
-      </div>
-    `;
-  }
-  updated(changedProperties) {
-    super.updated(changedProperties);
-    if (changedProperties.has("trail")) {
-      this.updateParentClass();
-    }
-  }
-  updateParentClass() {
-    const trailSlotElement = this.renderRoot.querySelector(
-      'slot[name="trail"]'
-    );
-    const assignedElements = trailSlotElement.assignedElements({
-      flatten: true
-    });
-    const parentElement = this.renderRoot.querySelector(
-      ".gds-input-core-trail"
-    );
-    if (assignedElements.some((element) => element.tagName === "GDS-BUTTON")) {
-      parentElement?.classList.add("gds-input-core-trail-button");
-    } else {
-      parentElement?.classList.remove("gds-input-core-trail-button");
-    }
-  }
-  slotTrail() {
-    const trailSlotContent = this.querySelector('[slot="trail"]');
-    const hasButtonTag = trailSlotContent && trailSlotContent.tagName.toLowerCase() === "gds-button";
-    const inputValue = this.renderRoot?.querySelector("#input")?.value.trim();
-    if (this.hasInvalidState && hasButtonTag) {
-      const slottedIcon = trailSlotContent?.querySelector('[slot="circle"]');
-      if (slottedIcon) {
-        slottedIcon.setAttribute("name", "warning");
-        const buttonParent = slottedIcon.parentElement;
-        if (buttonParent) {
-          buttonParent.setAttribute("set", "negative");
-        }
-      }
-    }
-    if (inputValue === "") {
-      console.log("inputValue is empty");
-    }
-    return html9`
-      <div class="gds-input-core-trail">
-        ${this.hasInvalidState && !hasButtonTag ? html9` <gds-icon name="warning"></gds-icon> ` : html9` <slot name="trail" gds-allow="gds-icon gds-button"></slot> `}
-      </div>
-    `;
-  }
-  slotOptions() {
-    const optionElements = Array.from(this.querySelectorAll("option"));
-    const optgroupElements = Array.from(this.querySelectorAll("optgroup"));
-    const hasOptgroup = optgroupElements.length > 0;
-    const ungroupedOptions = optionElements.filter(
-      (option) => option.parentElement && option.parentElement.tagName !== "OPTGROUP"
-    );
-    return html9`
-      ${optgroupElements.map(
-      (optgroup) => html9`
-          <optgroup label="${optgroup.label}">
-            ${Array.from(optgroup.children).map(
-        (option) => html9` <option>${option.textContent}</option> `
-      )}
-          </optgroup>
-        `
-    )}
-      ${ungroupedOptions.map(
-      (option) => html9` <option>${option.textContent}</option> `
-    )}
-    `;
-  }
-  slotBase() {
-    const inputElement = this.renderRoot?.querySelector("#input");
-    const rows = inputElement?.getAttribute("rows");
-    const maxRows = rows || "1";
-    inputElement?.style.setProperty("--gds-textarea-lines", maxRows.toString());
-    let prevMaxRows = 1;
-    const handleInput = () => {
-      const inputElement2 = this.renderRoot?.querySelector("#input");
-      const inputValue = inputElement2?.value.trim();
-      if (inputValue === "") {
-        this.hasInvalidState = false;
-        inputElement2?.style.setProperty("--gds-textarea-lines", "0");
-      } else {
-        this.hasInvalidState = inputElement2?.checkValidity() === false;
-      }
-      const lines = (this.renderRoot?.querySelector("#input")?.value.split("\n").length || 1).toString();
-      const minRows = inputElement2?.getAttribute("rows") ? parseInt(inputElement2.getAttribute("rows")) : 1;
-      prevMaxRows = Math.max(
-        minRows,
-        lines?.length > prevMaxRows ? lines.length : prevMaxRows
-      );
-      const maxRows2 = Math.max(minRows, parseInt(lines));
-      inputElement2?.setAttribute("rows", prevMaxRows.toString());
-      inputElement2?.style.setProperty(
-        "--gds-textarea-lines",
-        maxRows2.toString()
-      );
-    };
-    const inputType = this.getAttribute("type")?.toLowerCase() || "";
-    const validInputTypes = [
-      "text",
-      "textarea",
-      "select",
-      "select-native",
-      "duo"
-    ];
-    const hasInput = validInputTypes.includes(inputType);
-    if (inputType === "select-native") {
-      return html9`
-        <div class="gds-input-core-base">
-          <label for="input">${this.label}</label>
-          <select id="input" title="test">
-            <option disabled selected hidden>Select your option</option>
-            ${this.slotOptions()}
-          </select>
-        </div>
-      `;
-    }
-    return html9`
-      <div class="gds-input-core-base">
-        <label for="input">${this.label}</label>
-        ${!hasInput || inputType === "text" ? html9` <input id="input" @input="${handleInput}" placeholder=" " /> ` : inputType === "textarea" ? html9`
-              <textarea
-                id="input"
-                @input="${handleInput}"
-                @change="${handleInput}"
-                @keyup="${handleInput}"
-                @keydown="${handleInput}"
-                placeholder=" "
-                autocomplete="off"
-                autocorrect="off"
-                autocapitalize="off"
-                rows="${rows || "1"}"
-                spellcheck="false"
-              ></textarea>
-            ` : inputType === "select" ? html9`
-              <input
-                part="input"
-                type="text"
-                autocomplete="off"
-                spellcheck="false"
-                autocapitalize="off"
-                readonly=""
-                aria-controls="listbox"
-                aria-haspopup="listbox"
-                aria-labelledby="label"
-                aria-describedby="help-text"
-                role="combobox"
-                tabindex="0"
-                value="Selected item"
-                aria-expanded="false"
-                aria-disabled="false"
-              />
-            ` : inputType === "select-nativeer" ? html9`
-              <!-- Options for multi select type -->
-              <select id="input" title="test">
-                <option disabled selected hidden>Select your option</option>
-                <slot name="options"></slot>
-              </select>
-              <!-- <optgroup label="Group 1">
-              <option>Option Slot 1</option>
-              <option>Option Slot 2</option>
-              <option>Option Slot 3</option>
-            </optgroup>
-            <optgroup label="Group 2">
-              <option>Option Slot 3</option>
-              <option>Option Slot 4</option>
-              <option>Option Slot 5</option>
-            </optgroup>
-          </select> -->
-              <!-- <select multiple="true" placeholder=" ">
-            <option value="" disabled selected hidden>Select your option</option>
-            <option>Option Slot 1</option>
-            <option>Option Slot 2</option>
-            <option>Option Slot 3</option>
-            <option>Option Slot 4</option>
-          </select> -->
-            ` : inputType === "duo" ? html9`
-              <div class="gds-input-core-base-duo">
-                <input
-                  type="text"
-                  id="duo-primary"
-                  placeholder="Primary"
-                  part="primary"
-                  readonly="readonly"
-                  tabindex="-1"
-                  aria-controls="listbox"
-                  aria-haspopup="listbox"
-                  aria-labelledby="label"
-                  aria-describedby="help-text"
-                  role="combobox"
-                />
-                <input
-                  type="text"
-                  id="duo-secondary"
-                  placeholder="Secondary"
-                  part="secondary"
-                  readonly="readonly"
-                  tabindex="-1"
-                  aria-controls="listbox"
-                  aria-haspopup="listbox"
-                  aria-labelledby="label"
-                  aria-describedby="help-text"
-                  role="combobox"
-                />
-              </div>
-            ` : ""}
-      </div>
-    `;
-  }
-  slotBadge() {
-    return html9`
-      <div class="gds-input-badge">
-        <slot name="badge" gds-allow="gds-badge"></slot>
-      </div>
-    `;
-  }
-  reflectAttributesToInput() {
-    if (this.inputElement) {
-      const attributes = this.attributes;
-      for (let i = 0; i < attributes.length; i++) {
-        const attribute = attributes[i];
-        if (!this.exludeAttr.includes(attribute.name)) {
-          this.inputElement.setAttribute(attribute.name, attribute.value);
-        }
-      }
-    }
-  }
-  update(changedProperties) {
-    super.update(changedProperties);
-    if (!this.inputElement) {
-      this.inputElement = this.shadowRoot?.getElementById(
-        "input"
-      );
-    }
-    this.reflectAttributesToInput();
-  }
-  render() {
-    const hasLeadSlot = this.querySelector('[slot="lead"]') !== null;
-    const hasTrailSlot = this.querySelector('[slot="trail"]') !== null;
-    const hasBadgeSlot = this.querySelector('[slot="badge"]') !== null;
-    const content = html9`${when4(
-      hasLeadSlot,
-      () => this.slotLead()
-    )}${this.slotBase()}${when4(hasBadgeSlot, () => this.slotBadge())}${when4(
-      hasTrailSlot,
-      () => this.slotTrail()
-    )}`;
-    return html9`
-      <div class="gds-input">
-        <div class="gds-input-core">${content}</div>
-        <slot name="helper" gds-allow="gds-input-helper"></slot>
-      </div>
-    `;
-  }
-};
-_internals2 = new WeakMap();
-GdsInput.styles = unsafeCSS10(input_styles_default);
-GdsInput.shadowRootOptions = {
-  mode: "open",
-  delegatesFocus: true
-};
-__decorateClass([
-  property8({ type: String, reflect: true })
-], GdsInput.prototype, "lead", 2);
-__decorateClass([
-  property8({ type: String, reflect: true })
-], GdsInput.prototype, "trail", 2);
-__decorateClass([
-  property8({ type: String, reflect: true, attribute: "label" })
-], GdsInput.prototype, "label", 2);
-__decorateClass([
-  property8({ type: Boolean })
-], GdsInput.prototype, "hasInvalidState", 2);
-GdsInput = __decorateClass([
-  customElement5("gds-input")
-], GdsInput);
-
-// libs/core/src/components/input/helper/helper.ts
-import { LitElement as LitElement11, html as html11, unsafeCSS as unsafeCSS12 } from "lit";
-import { customElement as customElement7, property as property10 } from "lit/decorators.js";
-import { ifDefined as ifDefined2 } from "lit/directives/if-defined.js";
-import { when as when5 } from "lit/directives/when.js";
-
-// libs/core/src/components/input/helper/style/helper.styles.css
-var helper_styles_default = `@layer gds-input-helper, tokens, a11y, containment, shell, core, parts;
-
-@layer gds-input-helper {
-  @layer tokens {
-    :host {
-      --gds-input-helper-bg: hsla(60, 4%, 95%, 1);
-      --gds-input-helper-br-width: 2px;
-    }
-  }
-
-  @layer a11y {
-    @media (prefers-color-scheme: dark) {
-      :host {
-        --gds-input-helper-bg: var(--gds-input-helper-bg-dark);
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      :host {
-        --gds-input-helper-motion: 0;
-      }
-    }
-
-    @media (prefers-reduced-transparency: reduce) {
-      :host {
-        --gds-input-helper-transparency: 1;
-      }
-    }
-
-    @media (prefers-contrast: more) {
-      :host {
-        --gds-input-helper-contrast: 1;
-      }
-    }
-  }
-
-  @layer containment {
-    :host {
-      display: contents;
-    }
-
-    .gds-input-helper {
-      contain: layout;
-      container-name: gds-input-helper;
-      container-type: inline-size;
-      isolation: isolate;
-
-      @container gds-input-helper (width < 30ch) {
-        .gds-input-badge {
-          display: none;
-        }
-      }
-
-      > * {
-        box-sizing: border-box;
-      }
-    }
-  }
-
-  @layer shell {
-    .gds-input-helper {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-  }
-
-  @layer core {
-    .gds-input-helper {
-      &:has(slot[name='badge']),
-      &:has(slot[name='action']) {
-        .gds-input-helper-header {
-          padding-inline-end: 8px;
-        }
-      }
-
-      @layer parts {
-        .gds-input-helper-header {
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          justify-content: space-between;
-          border-left: var(--gds-input-helper-br-width) solid transparent;
-          border-right: var(--gds-input-helper-br-width) solid transparent;
-          padding-inline: 18px;
-          min-height: 32px;
-
-          .gds-input-helper-options {
-            align-items: center;
-            margin-inline-start: auto;
-            display: flex;
-            gap: 8px;
-          }
-        }
-
-        .gds-input-helper-title {
-          font-size: 14px;
-          user-select: none;
-
-          &.gds-input-helper-action {
-            cursor: pointer;
-            appearance: none;
-            padding: unset;
-            border: unset;
-            background: unset;
-            outline-offset: 6px;
-            outline-color: transparent;
-            outline-width: 2px;
-            outline-style: solid;
-            font-family: inherit;
-            font-size: 14px;
-
-            &:focus {
-              outline-color: currentColor;
-              border-radius: 200px;
-
-              &:not(:focus-visible) {
-                outline-color: transparent;
-              }
-            }
-          }
-        }
-
-        .gds-input-helper-content {
-          border: 1px solid hsla(60, 4%, 80%, 1);
-          background-color: hsla(60, 4%, 95%, 1);
-          font-size: 14px;
-          gap: 8px;
-          line-height: 1.4;
-          margin-block-start: 8px;
-          padding: 12px 16px;
-          border-radius: 4px;
-          user-select: auto;
-        }
-      }
-    }
-  }
-}
-`;
-
 // libs/core/src/components/tooltip/tooltip.ts
-import { LitElement as LitElement10, html as html10, unsafeCSS as unsafeCSS11 } from "lit";
-import { customElement as customElement6, property as property9 } from "lit/decorators.js";
+import { LitElement as LitElement9, html as html9, unsafeCSS as unsafeCSS9 } from "lit";
+import { customElement as customElement5, property as property9 } from "lit/decorators.js";
 
 // libs/core/src/components/tooltip/style/tooltip.styles.css
 var tooltip_styles_default = `@layer gds-tooltip, tokens, a11y, parts, position, trigger, keyframes;
@@ -5243,7 +3949,9 @@ var tooltip_styles_default = `@layer gds-tooltip, tokens, a11y, parts, position,
       &::after {
         font-size: var(--gds-tooltip-fs);
         line-height: 1;
-        user-select: none;
+        -webkit-user-select: none;
+           -moz-user-select: none;
+                user-select: none;
         pointer-events: none;
         position: absolute;
         display: none;
@@ -5266,6 +3974,7 @@ var tooltip_styles_default = `@layer gds-tooltip, tokens, a11y, parts, position,
         padding-inline: 2ch;
         padding-block: 1.5ex;
         max-inline-size: 50ch;
+        min-inline-size: -moz-max-content;
         min-inline-size: max-content;
         z-index: 1000;
         offset-anchor: center top;
@@ -5391,7 +4100,7 @@ var tooltip_styles_default = `@layer gds-tooltip, tokens, a11y, parts, position,
 `;
 
 // libs/core/src/components/tooltip/tooltip.ts
-var GdsTooltip = class extends LitElement10 {
+var GdsTooltip = class extends LitElement9 {
   constructor() {
     super(...arguments);
     this.open = false;
@@ -5399,7 +4108,7 @@ var GdsTooltip = class extends LitElement10 {
     this.position = null;
   }
   render() {
-    return html10`
+    return html9`
       <div 
         class="gds-tooltip" 
         content=${this.content}
@@ -5411,7 +4120,7 @@ var GdsTooltip = class extends LitElement10 {
     `;
   }
 };
-GdsTooltip.styles = unsafeCSS11(tooltip_styles_default);
+GdsTooltip.styles = unsafeCSS9(tooltip_styles_default);
 GdsTooltip.shadowRootOptions = {
   mode: "open",
   delegatesFocus: true
@@ -5426,19 +4135,19 @@ __decorateClass([
   property9({ type: String, reflect: true, attribute: "position" })
 ], GdsTooltip.prototype, "position", 2);
 GdsTooltip = __decorateClass([
-  customElement6("gds-tooltip")
+  customElement5("gds-tooltip")
 ], GdsTooltip);
 
 // libs/core/src/components/input/helper/helper.ts
-var _internals3;
-var GdsInputHelper = class extends LitElement11 {
+var _internals2;
+var GdsInputHelper = class extends LitElement10 {
   constructor() {
     super();
-    __privateAdd(this, _internals3, void 0);
+    __privateAdd(this, _internals2, void 0);
     this.isContentVisible = false;
     this.helperTooltip = null;
     this.helperLabel = null;
-    __privateSet(this, _internals3, this.attachInternals());
+    __privateSet(this, _internals2, this.attachInternals());
     constrainSlots(this);
   }
   connectedCallback() {
@@ -5466,13 +4175,13 @@ var GdsInputHelper = class extends LitElement11 {
         slottedIcon.setAttribute("name", "info");
       }
     }
-    return this.helperTooltip == null ? html11`
+    return this.helperTooltip == null ? html10`
           <slot
             name="action"
             @click=${this.toggleContent}
             gds-allow="gds-button"
           ></slot>
-        ` : html11`
+        ` : html10`
           <gds-tooltip content="${this.helperTooltip}" position="up">
             <slot
               name="action"
@@ -5487,7 +4196,7 @@ var GdsInputHelper = class extends LitElement11 {
    * @returns {TemplateResult} The badge slot.
    */
   slotBadge() {
-    return html11` <slot name="badge" gds-allow="gds-badge"></slot> `;
+    return html10` <slot name="badge" gds-allow="gds-badge"></slot> `;
   }
   /**
    * Returns the content slot.
@@ -5495,7 +4204,7 @@ var GdsInputHelper = class extends LitElement11 {
    */
   slotContent() {
     const slotContentNotEmpty = this.textContent?.trim() && this.isContentVisible && this.textContent?.trim() !== " ";
-    return slotContentNotEmpty ? html11`
+    return slotContentNotEmpty ? html10`
           <div class="gds-input-helper-content">
             <slot part="content" gds-allow="#text"></slot>
           </div>
@@ -5508,12 +4217,12 @@ var GdsInputHelper = class extends LitElement11 {
     const hasAction = this.querySelector('[slot="action"]') !== null;
     const hasTooltip = this.helperTooltip !== null;
     const hasLabel = this.helperLabel !== null;
-    return html11`
+    return html10`
       <div class="gds-input-helper">
         <div class="gds-input-helper-header">
           <!-- ${when5(
       hasLabel,
-      () => html11`
+      () => html10`
               <span
                 class="gds-input-helper-title ${hasContent ? "gds-input-helper-action" : ""}"
                 @click=${this.toggleContent}
@@ -5524,15 +4233,15 @@ var GdsInputHelper = class extends LitElement11 {
     )} -->
           ${when5(
       hasLabel,
-      () => html11`
-              ${hasContent ? html11`
+      () => html10`
+              ${hasContent ? html10`
                     <button
                       class="gds-input-helper-title gds-input-helper-action"
                       @click=${this.toggleContent}
                     >
                       ${this.helperLabel}
                     </button>
-                  ` : html11`
+                  ` : html10`
                     <span class="gds-input-helper-title">
                       ${this.helperLabel}
                     </span>
@@ -5544,7 +4253,7 @@ var GdsInputHelper = class extends LitElement11 {
             ${when5(hasAction, () => this.slotIcon())}
             ${when5(
       !hasAction && !hasTooltip && hasContent,
-      () => html11`
+      () => html10`
                 <gds-button
                   variant="circle tertiary"
                   effect="ripple"
@@ -5558,7 +4267,7 @@ var GdsInputHelper = class extends LitElement11 {
     )}
             ${when5(
       !hasAction && hasContent && hasTooltip,
-      () => html11`
+      () => html10`
                 <gds-tooltip content="${this.helperTooltip}" position="up">
                   <gds-button
                     variant="circle tertiary"
@@ -5579,8 +4288,8 @@ var GdsInputHelper = class extends LitElement11 {
     `;
   }
 };
-_internals3 = new WeakMap();
-GdsInputHelper.styles = unsafeCSS12(helper_styles_default);
+_internals2 = new WeakMap();
+GdsInputHelper.styles = unsafeCSS10(helper_styles_default);
 GdsInputHelper.shadowRootOptions = {
   mode: "open",
   delegatesFocus: true
@@ -5595,12 +4304,12 @@ __decorateClass([
   property10({ type: String, reflect: true, attribute: "label" })
 ], GdsInputHelper.prototype, "helperLabel", 2);
 GdsInputHelper = __decorateClass([
-  customElement7("gds-input-helper")
+  customElement6("gds-input-helper")
 ], GdsInputHelper);
 
 // libs/core/src/components/input/checkbox/checkbox.ts
-import { LitElement as LitElement12, html as html12, unsafeCSS as unsafeCSS13 } from "lit";
-import { customElement as customElement8 } from "lit/decorators.js";
+import { LitElement as LitElement11, html as html11, unsafeCSS as unsafeCSS11 } from "lit";
+import { customElement as customElement7 } from "lit/decorators.js";
 
 // libs/core/src/components/input/checkbox/checkbox.css
 var checkbox_default = `:host {
@@ -5755,15 +4464,15 @@ var checkbox_default = `:host {
 `;
 
 // libs/core/src/components/input/checkbox/checkbox.ts
-var _internals4;
-var GdsCheckbox = class extends LitElement12 {
+var _internals3;
+var GdsCheckbox = class extends LitElement11 {
   constructor() {
     super();
     // Private members
-    __privateAdd(this, _internals4, void 0);
+    __privateAdd(this, _internals3, void 0);
     this.inputElement = null;
     this.exludeAttr = ["id", "label"];
-    __privateSet(this, _internals4, this.attachInternals());
+    __privateSet(this, _internals3, this.attachInternals());
     constrainSlots(this);
   }
   reflectAttributesToInput() {
@@ -5787,26 +4496,26 @@ var GdsCheckbox = class extends LitElement12 {
     this.reflectAttributesToInput();
   }
   render() {
-    return html12`
+    return html11`
       <label class="gds-checkbox">
         <input id="checkbox" type="checkbox" />
       </label>
     `;
   }
 };
-_internals4 = new WeakMap();
-GdsCheckbox.styles = unsafeCSS13(checkbox_default);
+_internals3 = new WeakMap();
+GdsCheckbox.styles = unsafeCSS11(checkbox_default);
 GdsCheckbox.shadowRootOptions = {
   mode: "open",
   delegatesFocus: true
 };
 GdsCheckbox = __decorateClass([
-  customElement8("gds-checkbox")
+  customElement7("gds-checkbox")
 ], GdsCheckbox);
 
 // libs/core/src/components/input/radio/radio.ts
-import { LitElement as LitElement14, html as html14, unsafeCSS as unsafeCSS15 } from "lit";
-import { customElement as customElement10 } from "lit/decorators.js";
+import { LitElement as LitElement13, html as html13, unsafeCSS as unsafeCSS13 } from "lit";
+import { customElement as customElement9 } from "lit/decorators.js";
 
 // libs/core/src/components/input/radio/radio.css
 var radio_default = `:host {
@@ -5965,25 +4674,27 @@ var radio_default = `:host {
 }
 
 .gds-radio-group {
-  appearance: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
   border: 0;
   padding: 0;
 }
 `;
 
 // libs/core/src/components/input/radio/radio-group.ts
-import { LitElement as LitElement13, html as html13 } from "lit";
-import { customElement as customElement9, property as property12 } from "lit/decorators.js";
-var _internals5;
-var GdsRadioGroup = class extends LitElement13 {
+import { LitElement as LitElement12, html as html12 } from "lit";
+import { customElement as customElement8, property as property12 } from "lit/decorators.js";
+var _internals4;
+var GdsRadioGroup = class extends LitElement12 {
   constructor() {
     super();
     // Private members
-    __privateAdd(this, _internals5, void 0);
+    __privateAdd(this, _internals4, void 0);
     this.label = "Label";
     this.inputElement = null;
     this.exludeAttr = ["id", "label"];
-    __privateSet(this, _internals5, this.attachInternals());
+    __privateSet(this, _internals4, this.attachInternals());
     constrainSlots(this);
   }
   reflectAttributesToInput() {
@@ -6007,7 +4718,7 @@ var GdsRadioGroup = class extends LitElement13 {
     this.reflectAttributesToInput();
   }
   render() {
-    return html13`
+    return html12`
       <fieldset
         class="gds-radio-group"
         role="radiogroup"
@@ -6019,7 +4730,7 @@ var GdsRadioGroup = class extends LitElement13 {
     `;
   }
 };
-_internals5 = new WeakMap();
+_internals4 = new WeakMap();
 // static styles = unsafeCSS(styles)
 GdsRadioGroup.shadowRootOptions = {
   mode: "open",
@@ -6029,19 +4740,19 @@ __decorateClass([
   property12({ type: String, reflect: true, attribute: "label" })
 ], GdsRadioGroup.prototype, "label", 2);
 GdsRadioGroup = __decorateClass([
-  customElement9("gds-radio-group")
+  customElement8("gds-radio-group")
 ], GdsRadioGroup);
 
 // libs/core/src/components/input/radio/radio.ts
-var _internals6;
-var GdsRadio = class extends LitElement14 {
+var _internals5;
+var GdsRadio = class extends LitElement13 {
   constructor() {
     super();
     // Private members
-    __privateAdd(this, _internals6, void 0);
+    __privateAdd(this, _internals5, void 0);
     this.inputElement = null;
     this.exludeAttr = ["id", "label"];
-    __privateSet(this, _internals6, this.attachInternals());
+    __privateSet(this, _internals5, this.attachInternals());
     constrainSlots(this);
   }
   reflectAttributesToInput() {
@@ -6071,7 +4782,7 @@ var GdsRadio = class extends LitElement14 {
     }
   }
   render() {
-    return html14`
+    return html13`
       <label class="gds-radio">
         <input id="radio" type="radio" />
       </label>
@@ -6079,19 +4790,19 @@ var GdsRadio = class extends LitElement14 {
     `;
   }
 };
-_internals6 = new WeakMap();
-GdsRadio.styles = unsafeCSS15(radio_default);
+_internals5 = new WeakMap();
+GdsRadio.styles = unsafeCSS13(radio_default);
 GdsRadio.shadowRootOptions = {
   mode: "open",
   delegatesFocus: true
 };
 GdsRadio = __decorateClass([
-  customElement10("gds-radio")
+  customElement9("gds-radio")
 ], GdsRadio);
 
 // libs/core/src/components/input/switch/switch.ts
-import { LitElement as LitElement15, html as html15, unsafeCSS as unsafeCSS16 } from "lit";
-import { customElement as customElement11 } from "lit/decorators.js";
+import { LitElement as LitElement14, html as html14, unsafeCSS as unsafeCSS14 } from "lit";
+import { customElement as customElement10 } from "lit/decorators.js";
 
 // libs/core/src/components/input/switch/switch.css
 var switch_default = `:host {
@@ -6193,15 +4904,15 @@ var switch_default = `:host {
 `;
 
 // libs/core/src/components/input/switch/switch.ts
-var _internals7;
-var GdsSwitch = class extends LitElement15 {
+var _internals6;
+var GdsSwitch = class extends LitElement14 {
   constructor() {
     super();
     // Private members
-    __privateAdd(this, _internals7, void 0);
+    __privateAdd(this, _internals6, void 0);
     this.inputElement = null;
     this.exludeAttr = ["id", "label"];
-    __privateSet(this, _internals7, this.attachInternals());
+    __privateSet(this, _internals6, this.attachInternals());
     constrainSlots(this);
   }
   reflectAttributesToInput() {
@@ -6225,31 +4936,193 @@ var GdsSwitch = class extends LitElement15 {
     this.reflectAttributesToInput();
   }
   render() {
-    return html15`
+    return html14`
       <label class="gds-switch">
         <input id="switch" type="checkbox" />
       </label>
     `;
   }
 };
-_internals7 = new WeakMap();
-GdsSwitch.styles = unsafeCSS16(switch_default);
+_internals6 = new WeakMap();
+GdsSwitch.styles = unsafeCSS14(switch_default);
 GdsSwitch.shadowRootOptions = {
   mode: "open",
   delegatesFocus: true
 };
 GdsSwitch = __decorateClass([
-  customElement11("gds-switch")
+  customElement10("gds-switch")
 ], GdsSwitch);
+
+// libs/core/src/components/context-menu/context-menu.ts
+import { LitElement as LitElement16 } from "lit";
+import { msg as msg4 } from "@lit/localize";
+import { classMap as classMap4 } from "lit-html/directives/class-map.js";
+import { property as property15, queryAsync as queryAsync3 } from "lit/decorators.js";
+
+// libs/core/src/primitives/menu/menu.ts
+import { LitElement as LitElement15 } from "lit";
+import { createRef as createRef3, ref as ref3 } from "lit/directives/ref.js";
+var _slotRef2;
+var GdsMenu = class extends LitElement15 {
+  constructor() {
+    super();
+    __privateAdd(this, _slotRef2, createRef3());
+    new ListboxKbNavController(this);
+  }
+  connectedCallback() {
+    super.connectedCallback();
+    this.setAttribute("role", "menu");
+    TransitionalStyles.instance.apply(this, "gds-listbox");
+  }
+  get navigableItems() {
+    if (!__privateGet(this, _slotRef2).value)
+      return [];
+    return unwrap(__privateGet(this, _slotRef2).value).assignedElements().filter(
+      (o) => !o.hasAttribute("isplaceholder")
+    ) || [];
+  }
+  /**
+   * Focuses the first item in the menu.
+   */
+  focus() {
+    this.navigableItems[0]?.focus();
+  }
+  render() {
+    return html2`<slot ${ref3(__privateGet(this, _slotRef2))}></slot>`;
+  }
+};
+_slotRef2 = new WeakMap();
+GdsMenu = __decorateClass([
+  gdsCustomElement("gds-menu")
+], GdsMenu);
+
+// libs/core/src/components/context-menu/context-menu.ts
+var _handleItemClick, handleItemClick_fn;
+var GdsContextMenu = class extends LitElement16 {
+  constructor() {
+    super();
+    __privateAdd(this, _handleItemClick);
+    this.open = false;
+    this.buttonLabel = msg4("Open context menu");
+    this.label = "";
+    this.placement = "bottom-start";
+    constrainSlots(this);
+  }
+  connectedCallback() {
+    super.connectedCallback();
+    TransitionalStyles.instance.apply(this, "gds-context-menu");
+    this.addEventListener("keydown", (e) => {
+      if (this.open && e.key == "Tab") {
+        e.preventDefault();
+        this.open = false;
+        this.elTriggerBtn.then((el) => el.focus());
+      }
+    });
+  }
+  render() {
+    return html2`<button
+        id="trigger"
+        class="ghost border-0 small ${classMap4({ highlighted: this.open })}"
+        aria-label="${this.buttonLabel}"
+        aria-haspopup="menu"
+        aria-controls="menu"
+        aria-expanded=${this.open}
+        @click=${() => this.open = !this.open}
+      >
+        <slot name="trigger">
+          <i class="sg-icon sg-icon-ellipsis"></i>
+        </slot>
+      </button>
+      <gds-popover
+        id="menu"
+        .open=${this.open}
+        .triggerRef=${this.elTriggerBtn}
+        .label=${this.label}
+        .placement=${this.placement}
+        @gds-ui-state=${(e) => this.open = e.detail.open}
+      >
+        <gds-menu
+          aria-label=${this.label}
+          @gds-menu-item-click=${__privateMethod(this, _handleItemClick, handleItemClick_fn)}
+        >
+          <slot allow="gds-menu-item"></slot>
+        </gds-menu>
+      </gds-popover>`;
+  }
+};
+_handleItemClick = new WeakSet();
+handleItemClick_fn = function() {
+  this.open = false;
+};
+GdsContextMenu.shadowRootOptions = {
+  mode: "open",
+  delegatesFocus: true
+};
+__decorateClass([
+  property15({ type: Boolean, reflect: true })
+], GdsContextMenu.prototype, "open", 2);
+__decorateClass([
+  property15()
+], GdsContextMenu.prototype, "buttonLabel", 2);
+__decorateClass([
+  property15()
+], GdsContextMenu.prototype, "label", 2);
+__decorateClass([
+  property15()
+], GdsContextMenu.prototype, "placement", 2);
+__decorateClass([
+  queryAsync3("#trigger")
+], GdsContextMenu.prototype, "elTriggerBtn", 2);
+GdsContextMenu = __decorateClass([
+  gdsCustomElement("gds-context-menu")
+], GdsContextMenu);
+
+// libs/core/src/primitives/menu/menu-item.ts
+import { LitElement as LitElement17 } from "lit";
+var _handleOnClick;
+var GdsMenuItem = class extends Focusable(LitElement17) {
+  constructor() {
+    super(...arguments);
+    __privateAdd(this, _handleOnClick, () => {
+      this.dispatchEvent(
+        new CustomEvent("gds-menu-item-click", {
+          bubbles: true,
+          composed: true
+        })
+      );
+    });
+  }
+  connectedCallback() {
+    super.connectedCallback();
+    this.setAttribute("role", "menuitem");
+    this.addEventListener("keydown", (e) => {
+      if (e.key !== "Enter" && e.key !== " ")
+        return;
+      e.preventDefault();
+      this.click();
+    });
+    this.addEventListener("click", __privateGet(this, _handleOnClick));
+    TransitionalStyles.instance.apply(this, "gds-option");
+  }
+  render() {
+    return html2`<slot></slot>`;
+  }
+};
+_handleOnClick = new WeakMap();
+GdsMenuItem = __decorateClass([
+  gdsCustomElement("gds-menu-item")
+], GdsMenuItem);
 export {
   GdsBadge,
   GdsButton,
   GdsCheckbox,
+  GdsContextMenu,
   GdsDropdown,
   GdsForm,
   GdsIcon,
   GdsInput,
   GdsInputHelper,
+  GdsMenuItem,
   GdsOption,
   GdsRadio,
   GdsRadioGroup,
