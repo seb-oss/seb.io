@@ -15,12 +15,28 @@
             flex-direction: column;
             flex-grow: 1;
             gap: 100px;
-            padding: 40px;
-            margin-block-end: 7.5rem;
+            padding: 1rem 1rem 4rem;
+            @media screen and (min-width: 48rem) {
+              padding: 2.5rem 2.5rem 7.5rem;
+            }
+
+            .home h2 {
+              font-size: 1.75rem;
+              font-style: normal;
+              font-weight: 400;
+              line-height: 1.28571;
+            }
 
             .component-list {
               a {
-                inline-size: calc(100% / 3 - 80px);
+                @media screen and (min-width: 36rem) {
+                  inline-size: calc(100% / 2 - 20px);
+                }
+
+                @media screen and (min-width: 48rem) {
+                  inline-size: calc(100% / 3 - 40px);
+                }
+
                 background-color: color-mix(
                   in srgb,
                   var(--color-black),
@@ -73,16 +89,26 @@
             .home-resources {
               .list {
                 display: flex;
-                flex-direction: row;
-                gap: 40px;
+                gap: 1rem;
+                flex-direction: column;
+
+                @media screen  and (min-width: 62rem) {
+                  flex-direction: row;
+                  gap: 2rem;
+                }
               }
 
               .cta-home {
                 display: flex;
-                inline-size: calc(100% / 3 - 40px);
+
+                  flex-direction: row;
+
+                @media screen and (min-width: 62rem) {
+                  inline-size: calc(100% / 3 - 1rem);
+                }
+
                 padding: 24px;
                 gap: 24px;
-                flex-direction: row;
                 align-items: center;
                 justify-content: space-between;
                 border-radius: 12px;
@@ -146,7 +172,12 @@
 
             .home-quote {
               display: flex;
-              flex-direction: row;
+              flex-direction: column;
+
+              @media screen and (min-width: 62rem) {
+                flex-direction: row;
+              }
+
               gap: 32px;
 
               > * {

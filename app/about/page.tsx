@@ -53,11 +53,9 @@ export default function About() {
               <h2 id="what-is-green" className="heading-medium">What is Green?</h2>
             </Col>
             <Col xs={12} md={6}>
-              <p className="paragraph-medium text-secondary">A design system is a set of standards to manage design at
+              <p className="paragraph-medium text-secondary">Green design system is a set of standards to manage design at
                 scale by reducing redundancy while creating a shared language and visual consistency across different
-                pages and channels. <Link
-                  href="https://www.nngroup.com/articles/design-systems-101/" target="_blank">Therese Fessenden</Link>
-              </p>
+                pages and channels.</p>
               <p className="paragraph-medium text-secondary">In order to have velocity when building digital products
                 and keep a cohesive user experience cross channels and platforms designers and developers should use the
                 Green Design System.</p>

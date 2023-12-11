@@ -1,11 +1,17 @@
 footer.main-footer {
-  padding: 64px;
+  padding: 3rem 1rem;
+  gap: 4rem;
+
+  @media screen and (min-width: 768px) {
+    padding: 4rem;
+    gap: 6.25rem;
+  }
+
   border-top: 1px solid var(--gds-sys-color-stroke-stroke-variant2);
   font-weight: 400;
   font-size: 12px;
   display: flex;
   flex-direction: column;
-  gap: 100px;
   width: 100%;
   font-size: 16px;
 
@@ -22,7 +28,17 @@ footer.main-footer {
 
   .content {
     display: flex;
-    gap: 100px;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    @media screen and (min-width: 768px) {
+      gap: 6.25rem;
+    }
+
+    .col {
+      width: calc(100% / 2 - 1rem);
+    }
+
     nav {
       ul {
         display: flex;

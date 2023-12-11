@@ -3,6 +3,7 @@ import Hero from "@/core/blocks/hero/hero"
 import FigmaSVG from "@/core/blocks/mdx/figma/figmaSVG"
 import Pattern from "@/core/blocks/pattern/pattern"
 import { allComponents, Component } from "content"
+import {Grid, Row, Col} from "react-flexbox-grid"
 
 function ComponentCard(component: Component) {
   return (
@@ -35,7 +36,7 @@ export default function Home() {
     .sort((a, b) => a.title.localeCompare(b.title))
 
   return (
-    <div className="layout core">
+    <div className="layout core home">
       <Hero
         heading="Design and build beautiful, usable products with Green Design System"
         preamble="Green Design System is the latest version of SEB’s open-source design system. Welcome to a new era of digital banking."
