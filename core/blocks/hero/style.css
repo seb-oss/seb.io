@@ -6,24 +6,30 @@
   align-items: flex-start;
   justify-content: flex-end;
   padding-block-end: 0;
-  /* padding-bottom: 5.25rem; */
-  /* margin-bottom: 7.5rem; */
-
+  
   h1 {
-    font-size: 82px;
+    font-size: 2rem;
     line-height: 1.12;
     margin-bottom: 1ex;
     text-wrap: balance;
     max-width: 35ch;
+
+    @media screen and (min-width: 62rem) {
+      font-size: 5.125rem;
+    }
   }
 
   p {
     color: var(--gds-sys-color-content-content-secondary);
-    font-size: 32px;
+    font-size: 1.25rem;
     line-height: 1.25;
     text-wrap: balance;
     max-width: 45ch;
     font-weight: 400;
+
+    @media screen and (min-width: 62rem) {
+      font-size: 2rem;
+    }
   }
 }
 

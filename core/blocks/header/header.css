@@ -18,7 +18,11 @@ header.main {
   z-index: 5;
   max-block-size: var(--header-height);
   block-size: var(--header-height);
-  padding-inline: 24px;
+  padding-inline: 1rem;
+
+  @media screen and (min-width: 36rem) {
+    padding-inline: 1.5rem;
+  }
 
   .logo {
     display: flex;
@@ -112,6 +116,10 @@ header.main {
     min-block-size: max-content;
     cursor: pointer;
     transition: all 286ms var(--transition);
+
+    @media screen and (max-width: calc(36rem - 1px)) {
+      display: none;
+    }
 
     svg {
       width: 14px;

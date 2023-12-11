@@ -1,9 +1,11 @@
-import React, { KeyboardEvent } from "react"
+import React, { KeyboardEvent, useRef } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { allComponents, Component } from "content"
 
 import "./style.css"
+
+import { log } from "console"
 
 export default function Sidebar({
   isNavOpen,
@@ -21,6 +23,7 @@ export default function Sidebar({
       <Link
         className={path == component.url_path ? "active" : ""}
         href={component.url_path}
+        onClick={checkIfMenuShouldClose}
       >
         {component.title}
       </Link>
@@ -41,13 +44,27 @@ export default function Sidebar({
     )
   }
 
+  const SideBarRef = useRef<HTMLDivElement>(null)
+
+  const checkIfMenuShouldClose = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const { current } = SideBarRef
+    if (
+      current &&
+      window.innerWidth < 992 &&
+      !current.classList.contains("hidden")
+    ) {
+      toggleNav()
+    }
+  }
+
   return (
-    <aside className={`nav ${!isNavOpen ? "hidden" : ""}`}>
+    <aside className={`nav ${!isNavOpen ? "hidden" : ""}`} ref={SideBarRef}>
       <details open={path.includes("/component")}>
         <summary>
           <Link
             className={path.includes("/component") ? "active" : ""}
             href="/components"
+            onClick={checkIfMenuShouldClose}
           >
             Components
           </Link>
@@ -64,6 +81,7 @@ export default function Sidebar({
           <Link
             className={path.includes("/foundation") ? "active" : ""}
             href="/foundation"
+            onClick={checkIfMenuShouldClose}
           >
             Foundation
           </Link>
@@ -73,14 +91,9 @@ export default function Sidebar({
           <Link
             className={path == "/foundation/accessibility" ? "active" : ""}
             href="/foundation/accessibility"
+            onClick={checkIfMenuShouldClose}
           >
             Accessibility
-          </Link>
-          <Link
-            className={path == "/foundation/direction" ? "active" : ""}
-            href="/foundation/direction"
-          >
-            Direction
           </Link>
         </nav>
       </details>
@@ -92,7 +105,11 @@ export default function Sidebar({
         }
       >
         <summary>
-          <Link className={path == "/about" ? "active" : ""} href="/about">
+          <Link
+            className={path == "/about" ? "active" : ""}
+            href="/about"
+            onClick={checkIfMenuShouldClose}
+          >
             About
           </Link>
           <Arrow />
@@ -104,7 +121,11 @@ export default function Sidebar({
           >
             Changelog
           </Link>
-          <Link className={path == "/status" ? "active" : ""} href="/status">
+          <Link
+            className={path == "/status" ? "active" : ""}
+            href="/status"
+            onClick={checkIfMenuShouldClose}
+          >
             Status
           </Link>
         </nav>

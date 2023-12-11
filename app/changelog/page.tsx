@@ -9,35 +9,34 @@ import { Mdx } from "@/core/blocks/mdx";
 
 function ChangelogCard(changelog: Changelog) {
 
-  // console.log(changelog)
   return (
     <article id={changelog.version} className="log">
       <aside>
-        <span>{changelog.version}</span>
+        <div>{changelog.version}</div>
         <time dateTime={changelog.date}>
           {format(parseISO(changelog.date), "LL.d.yy")}
         </time>
       </aside>
-      <main>
+      <div>
         <h2>
           <Link href={changelog.url_path}>
             {changelog.title}
           </Link>
         </h2>
-                <Mdx code={changelog.body.code} globals={{ url_path: changelog.url_path }} />
-              </main>
-            </article>
-          );
-        }
+        <p>{changelog.summary}</p>
+      </div>
+    </article>
+  );
+}
 
-        export default function Changelog() {
+  export default function Changelog() {
   const changelogs = allChangelogs.sort((a, b) =>
     compareDesc(new Date(a.date), new Date(b.date))
   );
 
   return (
     <Layout  >
-      <h1>Changelogs</h1>
+      <h1 className="heading-medium">Changelogs</h1>
       <section>
         {changelogs.map((changelog, idx) => (
           <ChangelogCard key={idx}  {...changelog} />

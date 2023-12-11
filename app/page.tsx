@@ -3,6 +3,7 @@ import Hero from "@/core/blocks/hero/hero"
 import FigmaSVG from "@/core/blocks/mdx/figma/figmaSVG"
 import Pattern from "@/core/blocks/pattern/pattern"
 import { allComponents, Component } from "content"
+import { Col, Grid, Row } from "react-flexbox-grid"
 
 function ComponentCard(component: Component) {
   return (
@@ -35,7 +36,7 @@ export default function Home() {
     .sort((a, b) => a.title.localeCompare(b.title))
 
   return (
-    <div className="layout core">
+    <div className="layout core home">
       <Hero
         heading="Designed to bring unity to our digital experiences."
         preamble="Green design system is more than a polished user interface, its places the user at the very forefront of design, usability and accessibility."

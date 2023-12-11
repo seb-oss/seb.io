@@ -29,6 +29,7 @@ export default function Component({ params }: { params: { slug: string } }) {
       <Script
         src={"/playground-elements/playground-elements.mjs"}
         type="module"
+        crossOrigin="anonymous"
       ></Script>
       <Mdx code={body.code} globals={{ slug }} />
     </>

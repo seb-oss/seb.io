@@ -28,14 +28,8 @@ export default function Changelog({ params }: { params: { slug: string } }) {
     <Layout>
       <section>
         <article id={changelog.version} className="log">
-          <aside>
-            <span>{changelog.version}</span>
-            <time dateTime={changelog.date}>
-              {format(parseISO(changelog.date), "LL.d.yy")}
-            </time>
-          </aside>
           <main>
-            <h2>{changelog.title}</h2>
+            <h1>{changelog.title}</h1>
             <Mdx code={body.code} globals={{ slug }} />
           </main>
         </article>

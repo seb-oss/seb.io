@@ -12,9 +12,9 @@ import Dont from "./dont/dont"
 import FigmaProto from "./figma/figmaProto"
 import FigmaSVG from "./figma/figmaSVG"
 import IMG from "./image/image"
+import Playground from "./playground/playground"
 import Refs from "./refs/refs"
 import Row from "./row/row"
-import Playground from "./playground/playground"
 
 const components = {
   FigmaSVG,
@@ -38,8 +38,8 @@ export function Mdx({
   const Component = useMDXComponent(code, globals)
 
   return (
-    <main>
+    <div>
       <Component components={components} />
-    </main>
+    </div>
   )
 }
