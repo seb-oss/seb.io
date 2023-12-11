@@ -1,4 +1,4 @@
-import './styles.css';
+import "./styles.css"
 
 declare global {
   namespace JSX {
@@ -30,11 +30,11 @@ function Playground(props: any) {
     <>
       <playground-project
         id="story-project"
-        project-src="/stories/story-project.json"
+        project-src={`/stories/${props.component}/project.json`}
       ></playground-project>
       <playground-preview project="story-project"> </playground-preview>
     </>
   )
 }
 
-  export default Playground
+export default Playground
