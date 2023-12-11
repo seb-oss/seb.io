@@ -181,6 +181,7 @@
     img {
       border-radius: 8px;
       margin-block: 2ex;
+      border: 1px solid color-mix(in srgb, var(--color-black), transparent 94%);
     }
 
     .col img {

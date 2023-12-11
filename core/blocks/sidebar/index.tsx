@@ -1,3 +1,4 @@
+import React, { KeyboardEvent } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { allComponents, Component } from "content"
@@ -32,7 +33,7 @@ export default function Sidebar({
 
   const Arrow = () => {
     return (
-      <span>
+      <span aria-label="Expand" tabIndex={0}>
         <svg viewBox="0 0 24 24">
           <polyline points="6 9 12 15 18 9"></polyline>
         </svg>

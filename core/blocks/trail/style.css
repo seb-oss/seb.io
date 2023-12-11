@@ -10,16 +10,23 @@
     gap: 10px;
 
     span {
-      opacity: 0.6;
+      opacity: 0.4;
     }
 
     li {
       text-transform: capitalize;
-      opacity: 0.6;
+      text-underline-offset: 3px;
+      opacity: 0.4;
 
       &:not(.active) {
-        text-underline-offset: 3px;
         opacity: 0.8;
+      }
+
+      &.active {
+        a {
+          pointer-events: none;
+          text-decoration: none;
+        }
       }
     }
   }

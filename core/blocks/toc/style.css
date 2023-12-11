@@ -27,7 +27,7 @@ aside.toc {
       transition: all 0.4s;
       border-left: 1px solid transparent;
       margin-left: -1px;
-      opacity: 0.8;
+      opacity: 0.4;
 
       &.active {
         opacity: 1;
