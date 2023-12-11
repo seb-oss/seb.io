@@ -1,9 +1,10 @@
-import Layout from "@/core/layouts/component"
+import Link from "next/link"
 
 export default function NotFound() {
   return (
-    <Layout>
-      <h1>404 - Page Not Found</h1>
-    </Layout>
+    <div className="layout core 404">
+      <h1 className="heading-medium">404 - Page Not Found</h1>
+      <Link href={"/components"}>Go to components</Link>
+    </div>
   )
 }
