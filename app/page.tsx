@@ -3,7 +3,7 @@ import Hero from "@/core/blocks/hero/hero"
 import FigmaSVG from "@/core/blocks/mdx/figma/figmaSVG"
 import Pattern from "@/core/blocks/pattern/pattern"
 import { allComponents, Component } from "content"
-import {Grid, Row, Col} from "react-flexbox-grid"
+import { Col, Grid, Row } from "react-flexbox-grid"
 
 function ComponentCard(component: Component) {
   return (

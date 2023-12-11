@@ -1,6 +1,7 @@
 .layout.core.about {
   display: flex;
   flex-direction: row;
+  position: relative;
 
   .container-fluid {
     position: relative;
