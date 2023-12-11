@@ -72,11 +72,6 @@
               flex-direction: column;
               gap: 24px;
 
-              /* h2 {
-                font-size: 28px;
-                line-height: 1.25;
-              } */
-
               div {
                 display: flex;
                 flex-wrap: wrap;
