@@ -48,7 +48,6 @@ export default function Sidebar({
 
   const checkIfMenuShouldClose = (e: React.MouseEvent<HTMLAnchorElement>) => {
     const { current } = SideBarRef
-    console.log(window.innerWidth)
     if (
       current &&
       window.innerWidth < 992 &&
@@ -95,13 +94,6 @@ export default function Sidebar({
             onClick={checkIfMenuShouldClose}
           >
             Accessibility
-          </Link>
-          <Link
-            className={path == "/foundation/direction" ? "active" : ""}
-            href="/foundation/direction"
-            onClick={checkIfMenuShouldClose}
-          >
-            Direction
           </Link>
         </nav>
       </details>

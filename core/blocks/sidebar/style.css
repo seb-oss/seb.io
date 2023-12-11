@@ -3,7 +3,7 @@ aside.nav {
   display: flex;
   position: fixed;
   height: 100%;
-  z-index: 9999;
+  z-index: 4;
   background: var(--gds-sys-color-background-background);
   flex-direction: column;
   top: var(--header-height);
@@ -18,7 +18,6 @@ aside.nav {
     max-height: calc(100vh - var(--header-height));
     block-size: 100vh;
   }
-
 
   details {
     &[open] {

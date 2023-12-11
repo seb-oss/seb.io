@@ -12,19 +12,19 @@ function ChangelogCard(changelog: Changelog) {
   return (
     <article id={changelog.version} className="log">
       <aside>
-        <span>{changelog.version}</span>
+        <div>{changelog.version}</div>
         <time dateTime={changelog.date}>
           {format(parseISO(changelog.date), "LL.d.yy")}
         </time>
       </aside>
-      <main>
+      <div>
         <h2>
           <Link href={changelog.url_path}>
             {changelog.title}
           </Link>
         </h2>
-        <Mdx code={changelog.body.code} globals={{ url_path: changelog.url_path }} />
-      </main>
+        <p>{changelog.summary}</p>
+      </div>
     </article>
   );
 }
