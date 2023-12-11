@@ -1,10 +1,10 @@
 .layout.component {
+  --_padding: 64px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  /* width: max-content; */
-  max-width: 1180px;
-  padding: 64px;
+  max-width: calc(1180px + (var(--_padding) * 2));
+  padding: var(--_padding);
   margin-inline: auto;
   --border-color: color-mix(in srgb, var(--color-black), transparent 90%);
 
@@ -48,24 +48,30 @@
       flex-direction: row;
       gap: 20px;
       position: relative;
-      font-size: 10px;
+      font-size: 14px;
 
       > div {
         display: flex;
         flex-direction: column;
+        justify-content: center;
         gap: 10px;
+        block-size: 100%;
 
         &::before {
           content: attr(title);
           display: flex;
-          font-size: 10px;
-          opacity: 0.5;
+          font-size: 12px;
+          line-height: 1.25;
+          position: absolute;
+          top: -24px;
         }
 
         .status {
-          padding: 10px 20px;
+          text-transform: uppercase;
+          padding: 4px 8px;
           border-radius: 4px;
           background-color: var(--border-color);
+          /* font-weight: 600; */
         }
 
         menu {
@@ -75,9 +81,28 @@
           font-size: 14px;
 
           div {
-            padding: 10px 20px;
+            padding: 6px 12px;
             border-radius: 200px;
-            border: 1px solid var(--border-color);
+            border: 1px solid var(--gds-sys-color-stroke-stroke);
+
+            &.more {
+              display: flex;
+              height: 32px;
+              width: 32px;
+              padding: 0;
+              align-items: center;
+              justify-content: center;
+
+              svg {
+                fill: none;
+                width: 18px;
+                height: 4px;
+
+                path {
+                  fill: currentColor;
+                }
+              }
+            }
           }
         }
       }
@@ -100,7 +125,7 @@
       flex: 0 1 100%;
       font-size: 16px;
       line-height: 1.5;
-      max-width: max-content;
+      /* max-width: max-content; */
 
       main {
         /* inline-size: 830px; */
