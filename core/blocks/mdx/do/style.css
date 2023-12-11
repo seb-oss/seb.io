@@ -1,7 +1,7 @@
 .do {
-  --_cl: hsla(147, 100%, 21%, 1);
-  --_bg: hsla(115, 100%, 95%, 1);
-  --_br: hsla(147, 100%, 21%, 1);
+  --_cl: var(--gds-sys-color-accent-accent-green);
+  --_bg: var(--gds-sys-color-custom-custom-green-bright);
+  --_br: var(--gds-sys-color-accent-accent-green);
   --_fs: 14px;
   --_gp: 8px;
   --_pd: 8px;
