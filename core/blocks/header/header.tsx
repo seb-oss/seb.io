@@ -1,6 +1,6 @@
 "use client"
 
-import React, { forwardRef, useContext, useState } from "react"
+import React, { forwardRef, useContext, useEffect, useState } from "react"
 import Link from "next/link"
 
 import "./header.css"
@@ -12,6 +12,11 @@ export const Header = forwardRef(({ ...props }, ref) => {
   const { toggleCmd } = useContext(ThemeProviderContext)
   const { toggleNav, isNavOpen } = useContext(ThemeProviderContext)
   const [isWindows, setIsWindows] = useState(false)
+
+  useEffect(() => {
+    const userAgent = window.navigator.userAgent
+    setIsWindows(userAgent.indexOf("Windows") !== -1)
+  }, [])
 
   return (
     <header className="main">

@@ -273,6 +273,11 @@ export default function Cmdk({
     return () => clearTimeout(panelTimeout)
   }, [isOpen])
 
+  useEffect(() => {
+    const userAgent = window.navigator.userAgent
+    setIsWindows(userAgent.indexOf("Windows") !== -1)
+  }, [])
+
   return (
     <div className={`cmd ${isOpen ? "open" : ""}`} role="dialog">
       <main>
