@@ -2,6 +2,7 @@
 
 import React, { createContext, useEffect, useState } from "react"
 import Cmdk from "@/core/blocks/cmdk"
+import Cmdk2 from "@/core/blocks/cmdk2/cmdk2"
 import Favicon from "@/core/blocks/favicon/favicon"
 import { ThemeProvider as NextThemesProvider } from "next-themes"
 import { type ThemeProviderProps } from "next-themes/dist/types"
@@ -76,7 +77,8 @@ export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
           closeButton={true}
           duration={4428}
         />
-        <Cmdk isOpen={isOpen} toggleCmd={toggleCmd} />
+        <Cmdk2 isOpen={isOpen} toggleCmd={toggleCmd} />
+        {/* <Cmdk isOpen={isOpen} toggleCmd={toggleCmd} /> */}
       </ThemeProviderContext.Provider>
     </NextThemesProvider>
   )
