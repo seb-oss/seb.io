@@ -30,12 +30,17 @@ aside.nav {
 
     summary {
       list-style: none;
+      appearance: none;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 8px;
       cursor: pointer;
       transition: var(--transition);
+
+      &::-webkit-details-marker {
+        display: none !important;
+      }
 
       &:hover {
         span {
