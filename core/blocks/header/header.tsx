@@ -1,6 +1,6 @@
 "use client"
 
-import React, { forwardRef, useContext } from "react"
+import React, { forwardRef, useContext, useState } from "react"
 import Link from "next/link"
 
 import "./header.css"
@@ -11,6 +11,7 @@ import { ThemeToggle } from "@/utils/theme/toggle"
 export const Header = forwardRef(({ ...props }, ref) => {
   const { toggleCmd } = useContext(ThemeProviderContext)
   const { toggleNav, isNavOpen } = useContext(ThemeProviderContext)
+  const [isWindows, setIsWindows] = useState(false)
 
   return (
     <header className="main">
@@ -78,7 +79,7 @@ export const Header = forwardRef(({ ...props }, ref) => {
             <circle cx="11" cy="11" r="8"></circle>
             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
           </svg>
-          <span>⌘K</span>
+          <span>{isWindows ? "/" : "⌘K"}</span>
         </button>
         <Link
           className="github"

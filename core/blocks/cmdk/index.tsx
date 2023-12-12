@@ -36,6 +36,7 @@ export default function Cmdk({
   isOpen: boolean
   toggleCmd: () => void
 }) {
+  const [isWindows, setIsWindows] = useState(false)
   const [searchResults, setSearchResults] = useState<Document[]>(
     allDocuments as Document[]
   )
@@ -286,7 +287,11 @@ export default function Cmdk({
             ref={inputRef}
             id="search"
             type="text"
-            placeholder="⌘K — Search components & pages"
+            placeholder={
+              isWindows
+                ? "/ — Search components & pages"
+                : "⌘K — Search components & pages"
+            }
             onChange={handleSearch}
           />
           <button type="reset">
