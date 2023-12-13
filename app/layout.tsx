@@ -10,6 +10,13 @@ import { ThemeProvider, ThemeProviderContext } from "@/utils/theme/provider"
 
 const inter = Inter({ subsets: ["latin"] })
 
+export const metadata: Metadata = {
+  metadataBase: new URL("https://seb.io"),
+  openGraph: {
+    images: "/og-image.png",
+  },
+}
+
 export default function RootLayout({
   children,
 }: {

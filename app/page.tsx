@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    images: "/og-image.png",
+    images: "/og.png",
   },
   verification: {
     google: "vhAE3wh75Jg9hnVBtCn30CPNnXyzEw-JAcS9Q1LwewY",
