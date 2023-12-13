@@ -231,18 +231,6 @@ export default function Cmdk({
           setSearchResults(allDocuments as Document[])
           setFocusedIndex(-1)
         }
-      } else if (e.key === "ArrowUp") {
-        e.preventDefault()
-        setFocusedIndex((prevIndex) =>
-          prevIndex > 0 ? prevIndex - 1 : searchResults.length - 1
-        )
-        // console.log(focusedIndex)
-      } else if (e.key === "ArrowDown") {
-        e.preventDefault()
-        setFocusedIndex((prevIndex) =>
-          prevIndex < searchResults.length - 1 ? prevIndex + 1 : 0
-        )
-        // console.log(focusedIndex)
       }
     }
 
@@ -360,7 +348,7 @@ export default function Cmdk({
             />
           </svg>
           <div className="cmd-options">
-            <div>
+            {/* <div>
               Navigate
               <kbd>
                 <svg viewBox="0 0 24 24">
@@ -374,7 +362,7 @@ export default function Cmdk({
                   <polyline points="5 12 12 5 19 12"></polyline>
                 </svg>
               </kbd>
-            </div>
+            </div> */}
             <div>
               Select
               <kbd>

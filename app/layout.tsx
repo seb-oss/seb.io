@@ -10,22 +10,6 @@ import { ThemeProvider, ThemeProviderContext } from "@/utils/theme/provider"
 
 const inter = Inter({ subsets: ["latin"] })
 
-export const metadata: Metadata = {
-  metadataBase: new URL("https://seb.io"),
-  title: "Green Design System",
-  description: "Green Design System",
-  alternates: {
-    canonical: "/",
-    languages: {
-      "en-US": "/en-US",
-      "de-DE": "/de-DE",
-    },
-  },
-  openGraph: {
-    images: "/og-image.png",
-  },
-}
-
 export default function RootLayout({
   children,
 }: {

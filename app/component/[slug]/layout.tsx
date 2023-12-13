@@ -1,5 +1,7 @@
 "use client"
 
+import type { Metadata } from "next"
+import Head from "next/head"
 import Link from "next/link"
 import { notFound, usePathname, useRouter } from "next/navigation"
 import FigmaSVG from "@/core/blocks/mdx/figma/figmaSVG"

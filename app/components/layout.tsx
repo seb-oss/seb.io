@@ -2,8 +2,7 @@ import type { Metadata } from "next"
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://seb.io/components"),
-  title: "Components — Green ",
-  description: "Green Design System",
+  title: "Components — Green",
   alternates: {
     canonical: "/components",
   },
