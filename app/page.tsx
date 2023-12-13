@@ -13,13 +13,12 @@ export const metadata: Metadata = {
     "Green design system is more than a polished user interface, its places the user at the very forefront of design, usability and accessibility.",
   alternates: {
     canonical: "/",
-    // languages: {
-    //   "en-US": "/en-US",
-    //   "de-DE": "/de-DE",
-    // },
   },
   openGraph: {
     images: "/og-image.png",
+  },
+  verification: {
+    google: "vhAE3wh75Jg9hnVBtCn30CPNnXyzEw-JAcS9Q1Lwe",
   },
 }
 
