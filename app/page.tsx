@@ -1,10 +1,8 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import Hero from "@/core/blocks/hero/hero"
-import FigmaSVG from "@/core/blocks/mdx/figma/figmaSVG"
 import Pattern from "@/core/blocks/pattern/pattern"
 import { allComponents, Component } from "content"
-import { Col, Grid, Row } from "react-flexbox-grid"
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://seb.io"),
@@ -13,9 +11,6 @@ export const metadata: Metadata = {
     "Green design system is more than a polished user interface, its places the user at the very forefront of design, usability and accessibility.",
   alternates: {
     canonical: "/",
-  },
-  openGraph: {
-    images: "/og.png",
   },
   verification: {
     google: "vhAE3wh75Jg9hnVBtCn30CPNnXyzEw-JAcS9Q1LwewY",

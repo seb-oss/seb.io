@@ -1,14 +1,10 @@
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
-import localFont from "next/font/local"
 import Consent from "@/core/blocks/consent/consent"
 import Footer from "@/core/blocks/footer"
 import Header from "@/core/blocks/header/header"
 import Layout from "@/core/layouts/core"
 import SEBSAnsSerif from "@/utils/fonts/fonts"
-import { ThemeProvider, ThemeProviderContext } from "@/utils/theme/provider"
-
-const inter = Inter({ subsets: ["latin"] })
+import { ThemeProvider } from "@/utils/theme/provider"
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://seb.io"),
