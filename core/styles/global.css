@@ -4,6 +4,7 @@
 @import "motion.css";
 @import "typography.css";
 @import "utilities.css";
+@import "responsive.css";
 
 @layer core {
   :root {
