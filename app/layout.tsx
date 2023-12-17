@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import Alert from "@/core/blocks/alert/aler"
 import Consent from "@/core/blocks/consent/consent"
 import Footer from "@/core/blocks/footer"
 import Header from "@/core/blocks/header/header"
@@ -27,6 +28,7 @@ export default function RootLayout({
           enableColorScheme={false}
           enableSystem
         >
+          {/* <Alert /> */}
           <Header />
           <Layout>{children}</Layout>
           <Consent />
