@@ -76,7 +76,7 @@ export default function Home() {
           </Link>
           <Link
             className="cta-home"
-            href="https://sebgroup.com/sv/press/pressfoton"
+            href="https://brand.seb.se/point/en/seb/"
             target="_blank"
           >
             <span data-caption="Media Bank & Brand Guidelines">
