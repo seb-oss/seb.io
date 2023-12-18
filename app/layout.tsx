@@ -28,7 +28,7 @@ export default function RootLayout({
           enableColorScheme={false}
           enableSystem
         >
-          {/* <Alert /> */}
+          <Alert />
           <Header />
           <Layout>{children}</Layout>
           <Consent />
