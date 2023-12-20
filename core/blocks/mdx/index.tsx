@@ -12,6 +12,7 @@ import Dont from "./dont/dont"
 import FigmaProto from "./figma/figmaProto"
 import FigmaSVG from "./figma/figmaSVG"
 import IMG from "./image/image"
+import SE from "./lang/se"
 import Playground from "./playground/playground"
 import Refs from "./refs/refs"
 import Row from "./row/row"
@@ -26,6 +27,7 @@ const components = {
   Do,
   Dont,
   Refs,
+  SE,
 }
 
 export function Mdx({
