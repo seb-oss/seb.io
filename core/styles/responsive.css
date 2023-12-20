@@ -51,12 +51,12 @@
 
   header.main {
     position: fixed;
-    top: 40px;
+    top: 30px;
     width: 100%;
   }
 
   aside.nav {
-    top: calc(var(--header-height) + 40px);
+    top: calc(var(--header-height) + 30px);
   }
 }
 

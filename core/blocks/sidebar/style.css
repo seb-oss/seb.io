@@ -5,7 +5,7 @@
       display: flex;
       position: fixed;
       height: 100%;
-      z-index: 5;
+      z-index: 4;
       background: var(--gds-sys-color-background-background);
       flex-direction: column;
       top: var(--header-height);
@@ -54,6 +54,11 @@
             width: 100%;
             flex: 1;
             transition: var(--transition);
+            text-underline-offset: 6px;
+
+            &:hover {
+              text-decoration: underline solid 1px;
+            }
           }
 
           span {
@@ -89,7 +94,6 @@
 
       details a,
       .pill {
-        border-radius: 2000px;
         width: 100%;
         padding: 12px 16px;
         transition: var(--transition);
@@ -99,7 +103,7 @@
 
         &:hover,
         &.active {
-          background-color: var(--gds-sys-color-state-layers-state-black);
+          text-decoration: underline solid 1px;
         }
 
         svg,
@@ -115,18 +119,15 @@
         font-size: 16px;
 
         a {
-          border-radius: 2000px;
           width: 100%;
           padding: 12px 16px;
           transition: var(--transition);
           color: var(--gds-sys-color-content-content);
+          text-underline-offset: 6px;
 
-          &:hover {
-            background-color: var(--gds-sys-color-state-layers-state-black);
-          }
-
+          &:hover,
           &.active {
-            background-color: var(--gds-sys-color-container-container-dim1);
+            text-decoration: underline solid 1px;
           }
         }
       }
