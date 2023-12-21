@@ -254,7 +254,7 @@ div.gds-ripple-effect {
 // libs/core/src/utils/helpers/custom-element-scoping.ts
 import { html as litHtml } from "lit";
 import { customElement as customElement2 } from "lit/decorators.js";
-var VER_SUFFIX = "-3390ae";
+var VER_SUFFIX = "-955307";
 var elementLookupTable = /* @__PURE__ */ new Map();
 var gdsCustomElement = (tagName) => {
   if (globalThis.GDS_DISABLE_VERSIONED_ELEMENTS) {
@@ -340,7 +340,7 @@ import { unsafeCSS as unsafeCSS3 } from "lit";
 // dist/libs/tokens/internal/pallet.css
 var pallet_default = `/**
  * Do not edit directly
- * Generated on Mon, 11 Dec 2023 16:16:01 GMT
+ * Generated on Thu, 21 Dec 2023 12:33:19 GMT
  */
 
 :host {
@@ -452,7 +452,7 @@ var pallet_default = `/**
 // dist/libs/tokens/internal/theme/light.css
 var light_default = `/**
  * Do not edit directly
- * Generated on Mon, 11 Dec 2023 16:16:01 GMT
+ * Generated on Thu, 21 Dec 2023 12:33:19 GMT
  */
 
 :host {
@@ -1147,8 +1147,8 @@ function watch(propertyName, options) {
     const { update } = proto;
     const watchedProperties = Array.isArray(propertyName) ? propertyName : [propertyName];
     proto.update = function(changedProps) {
-      watchedProperties.forEach((property16) => {
-        const key = property16;
+      watchedProperties.forEach((property15) => {
+        const key = property15;
         if (changedProps.has(key)) {
           const oldValue = changedProps.get(key);
           const newValue = this[key];
@@ -1307,6 +1307,7 @@ var GdsButton = class extends GdsFormControlElement {
     this.variant = "primary";
     this.set = "neutral";
     this.size = "medium";
+    this.label = "";
     __privateAdd(this, _isIconButton, false);
     // Check if the button is an icon button.
     __privateAdd(this, _mainSlotChange, () => {
@@ -1339,6 +1340,7 @@ var GdsButton = class extends GdsFormControlElement {
         ?type="${this.type}"
         ?disabled="${this.disabled}"
         @click="${__privateGet(this, _handleClick)}"
+        aria-label="${this.label}"
       >
         <slot name="lead" gds-allow="gds-icon"></slot>
         <slot
@@ -1374,6 +1376,9 @@ __decorateClass([
 __decorateClass([
   property2({ reflect: true })
 ], GdsButton.prototype, "size", 2);
+__decorateClass([
+  property2()
+], GdsButton.prototype, "label", 2);
 __decorateClass([
   query2("slot:not([name])")
 ], GdsButton.prototype, "_mainSlot", 2);
@@ -2529,550 +2534,13 @@ GdsDropdown = __decorateClass([
   gdsCustomElement("gds-dropdown")
 ], GdsDropdown);
 
-// libs/core/src/components/form/form.ts
-import { LitElement as LitElement7, html as html7, unsafeCSS as unsafeCSS6 } from "lit";
-import { customElement as customElement3 } from "lit/decorators.js";
-
-// libs/core/src/components/form/style/form.styles.scss
-var form_styles_default = `@layer tokens, a11y, core, variants, sizes, sets, slotted;
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 48px;
-}
-
-gds-input {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-gds-input .main {
-  --border-color: hsla(60, 4%, 50%, 1);
-  align-items: center;
-  background-color: hsl(60, 4%, 95%);
-  background-position: bottom center;
-  background-repeat: repeat-x;
-  background-size: 100% 1px;
-  block-size: 56px;
-  border: 2px solid transparent;
-  border-bottom-color: hsl(60, 4%, 50%);
-  border-start-end-radius: 8px;
-  border-start-start-radius: 8px;
-  box-sizing: border-box;
-  display: flex;
-  gap: 8px;
-  min-block-size: 56px;
-  padding-block: 12px;
-  padding-inline: 16px;
-  position: relative;
-  transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-gds-input .main:hover {
-  background-size: 100% 2px;
-  border-bottom-color: #000;
-}
-gds-input .main:focus-within:has(input:focus-visible) {
-  border-radius: 8px;
-}
-gds-input .main:has(input:not(:-moz-placeholder-shown)) {
-  border-color: currentColor;
-}
-gds-input .main:focus-within, gds-input .main:has(input:not(:placeholder-shown)) {
-  border-color: currentColor;
-}
-gds-input .main:has(input:not(:-moz-placeholder-shown)) .base label {
-  font-size: 12px;
-  top: 0;
-  transform: translateY(-5px);
-}
-gds-input .main:focus-within .base label, gds-input .main:has(input:not(:placeholder-shown)) .base label {
-  font-size: 12px;
-  top: 0;
-  transform: translateY(-5px);
-}
-gds-input .main:has(input:not(:-moz-placeholder-shown)) .base input {
-  opacity: 1;
-  transform: translateY(0);
-}
-gds-input .main:focus-within .base input, gds-input .main:has(input:not(:placeholder-shown)) .base input {
-  opacity: 1;
-  transform: translateY(0);
-}
-gds-input .main gds-icon {
-  transition: color 150ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-gds-input .main input[type=number]::-webkit-inner-spin-button {
-  display: none;
-}
-gds-input .main:has(input:focus-visible:valid:not(:-moz-placeholder-shown)) {
-  background-color: var(--gds-color-green-98);
-  border-color: var(--gds-color-green-50);
-  color: var(--gds-color-green-50);
-}
-gds-input .main:has(input:focus-visible:valid:not(:placeholder-shown)) {
-  background-color: var(--gds-color-green-98);
-  border-color: var(--gds-color-green-50);
-  color: var(--gds-color-green-50);
-}
-gds-input .main:has(input:focus-visible:valid:not(:-moz-placeholder-shown)) input {
-  color: currentColor;
-}
-gds-input .main:has(input:focus-visible:valid:not(:placeholder-shown)) input {
-  color: currentColor;
-}
-gds-input .main:has(input:focus-visible:valid:not(:-moz-placeholder-shown)) .base::after {
-  background-color: var(--gds-color-green-85);
-}
-gds-input .main:has(input:focus-visible:valid:not(:placeholder-shown)) .base::after {
-  background-color: var(--gds-color-green-85);
-}
-gds-input .main:has(input:focus-visible:valid:not(:-moz-placeholder-shown)) gds-icon {
-  color: var(--gds-color-green-50);
-}
-gds-input .main:has(input:focus-visible:valid:not(:placeholder-shown)) gds-icon {
-  color: var(--gds-color-green-50);
-}
-gds-input .main:has(input:valid:not(:-moz-placeholder-shown)) {
-  border-color: transparent;
-  border-bottom-color: var(--gds-color-green-50);
-}
-gds-input .main:has(input:valid:not(:placeholder-shown)) {
-  border-color: transparent;
-  border-bottom-color: var(--gds-color-green-50);
-}
-gds-input .main:has(input:focus-visible:invalid:not(:-moz-placeholder-shown)) {
-  background-color: var(--gds-color-red-98);
-  border-color: var(--gds-color-red-50);
-  color: var(--gds-color-red-50);
-}
-gds-input .main:has(input:focus-visible:invalid:not(:placeholder-shown)) {
-  background-color: var(--gds-color-red-98);
-  border-color: var(--gds-color-red-50);
-  color: var(--gds-color-red-50);
-}
-gds-input .main:has(input:focus-visible:invalid:not(:-moz-placeholder-shown)) input {
-  color: currentColor;
-}
-gds-input .main:has(input:focus-visible:invalid:not(:placeholder-shown)) input {
-  color: currentColor;
-}
-gds-input .main:has(input:focus-visible:invalid:not(:-moz-placeholder-shown)) .base::after {
-  background-color: var(--gds-color-red-85);
-}
-gds-input .main:has(input:focus-visible:invalid:not(:placeholder-shown)) .base::after {
-  background-color: var(--gds-color-red-85);
-}
-gds-input .main:has(input:focus-visible:invalid:not(:-moz-placeholder-shown)) + .support {
-  color: currentColor;
-}
-gds-input .main:has(input:focus-visible:invalid:not(:placeholder-shown)) + .support {
-  color: currentColor;
-}
-gds-input .main:has(input:focus-visible:invalid:not(:-moz-placeholder-shown)) gds-icon {
-  color: var(--gds-color-red-50);
-}
-gds-input .main:has(input:focus-visible:invalid:not(:placeholder-shown)) gds-icon {
-  color: var(--gds-color-red-50);
-}
-gds-input .main:has(input:invalid:not(:-moz-placeholder-shown)) {
-  border-color: transparent;
-  border-bottom-color: var(--gds-color-red-50);
-}
-gds-input .main:has(input:invalid:not(:placeholder-shown)) {
-  border-color: transparent;
-  border-bottom-color: var(--gds-color-red-50);
-}
-gds-input .main > * {
-  box-sizing: border-box;
-}
-gds-input .main .base {
-  position: relative;
-  width: 100%;
-}
-gds-input .main .base label {
-  align-items: center;
-  background-color: transparent;
-  display: block;
-  font-size: 16px;
-  height: -moz-max-content;
-  height: max-content;
-  inset: 0;
-  line-height: 20px;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
-  width: 100%;
-}
-gds-input .main .base input {
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  background-color: transparent;
-  border: 0;
-  border-radius: 0;
-  border-radius: 0;
-  box-sizing: border-box;
-  display: flex;
-  font-family: inherit;
-  font-size: 16px;
-  height: 100%;
-  margin: unset;
-  opacity: 0;
-  outline: none;
-  padding: unset;
-  padding-top: 12px;
-  transform: translateY(5px);
-  transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
-  width: 100%;
-}
-gds-input .main .base input::-moz-placeholder {
-  font-family: inherit;
-}
-gds-input .main .base input::placeholder {
-  font-family: inherit;
-}
-gds-input .main .base input:focus:not(:focus-visible) {
-  outline: none;
-}
-gds-input .main .base input::-webkit-inner-spin-button, gds-input .main .base input::-webkit-calendar-picker-indicator {
-  -webkit-appearance: none;
-          appearance: none;
-  background-color: rgb(195, 0, 255);
-  background-image: none;
-  height: 100%;
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 40px;
-}
-gds-input .main .base[data-badge]::after {
-  background-color: #fff;
-  border-radius: 3px;
-  content: attr(data-badge);
-  display: flex;
-  font-size: 12px;
-  font-weight: bold;
-  letter-spacing: 0;
-  line-height: 1;
-  padding: 2px 4px;
-  pointer-events: none;
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-gds-input .main .lead,
-gds-input .main .trail {
-  align-items: center;
-  aspect-ratio: 1/1;
-  display: flex;
-  height: 24px;
-  justify-content: center;
-  width: 24px;
-}
-gds-input .main .lead {
-  justify-content: flex-start;
-}
-gds-input .main .trail {
-  justify-content: right;
-}
-gds-input .support {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding-inline: 18px;
-}
-gds-input .support:has([data-badge]) {
-  padding-inline-end: 0;
-}
-gds-input .support .icon {
-  align-items: center;
-  display: flex;
-  gap: 16px;
-}
-gds-input .support .icon[data-badge]::after {
-  background-color: hsl(108, 91%, 96%);
-  border-radius: 4px;
-  color: hsl(130, 40%, 30%);
-  content: attr(data-badge);
-  display: flex;
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 1;
-  padding: 6px 10px;
-}
-
-gds-input .main:has(textarea) {
-  block-size: auto;
-}
-gds-input .main:has(textarea) .base::before {
-  content: attr(data-value) " ";
-  visibility: hidden;
-  white-space: pre-wrap;
-}
-gds-input .main:has(textarea) .base textarea {
-  box-sizing: border-box;
-  display: flex;
-  height: 100%;
-  max-height: 100%;
-  max-width: 100%;
-  min-height: 100%;
-  min-width: 100%;
-  position: relative;
-  resize: none;
-  width: 100%;
-}`;
-
-// libs/core/src/components/form/form.ts
-var GdsForm = class extends LitElement7 {
-  // TODO:
-  // Might be neccessary to use something like the stopPropagation() event: 
-  // This behavior is known as "bubbling" or "propagation," where the click event on the <div> is propagated to its child elements, and the first focusable element receives focus.
-  render() {
-    return html7`
-    <form>
-      <gds-input>
-        <div class="main">
-          <div class="lead"><gds-icon name="calendar"></gds-icon></div>
-          <div class="base" data-badge="SEK">
-            <label for="input">Label</label>
-            <!-- <input type="text" id="input" placeholder=" " pattern="\S+.*" required/> -->
-            <!-- <input type="text" id="input" placeholder=" " pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" required/> -->
-            <input type="text" id="input" placeholder=" " minlength="3" pattern="[a-z]+" required/>
-          </div>  
-          <div class="trail"><gds-icon name="x"></gds-icon></div>
-        </div>
-        <div class="support">
-          <span>Only lowercase, min-length 3 characters</span>
-          <div class="icon" data-badge="120"><gds-icon name="info"></gds-icon></div>
-        </div>
-      </gds-input>
-      <gds-input>
-        <div class="main">
-          <div class="lead"><gds-icon name="hash"></gds-icon></div>
-          <div class="base" data-badge="SEK">
-            <label for="number">Number</label>
-            <input type="number" min="4" max="8" id="number" placeholder=" " required/>
-          </div>  
-          <div class="trail"><gds-icon name="x"></gds-icon></div>
-        </div>
-        <div class="support">
-          <span>Number type, range  min="4" max="8"</span>
-          <div class="icon"><gds-icon name="info"></gds-icon></div>
-        </div>
-      </gds-input>
-      <gds-input>
-        <div class="main">
-          <div class="lead"><gds-icon name="lock"></gds-icon></div>
-          <div class="base">
-            <label for="password">Password</label>
-            <input type="password" min="4" max="8" id="password" placeholder=" " required/>
-          </div>  
-          <div class="trail"><gds-icon name="eye"></gds-icon></div>
-        </div>
-        <div class="support">
-          <span>Password type</span>
-          <div class="icon"><gds-icon name="info"></gds-icon></div>
-        </div>
-      </gds-input>
-      <gds-input>
-        <div class="main">
-          <div class="lead"><gds-icon name="mail"></gds-icon></div>
-          <div class="base">
-            <label for="email">E-Mail</label>
-            <input type="email" min="4" max="8" id="email" placeholder=" " required/>
-          </div>  
-          <div class="trail"><gds-icon name="send"></gds-icon></div>
-        </div>
-        <div class="support">
-          <span>Email type</span>
-          <div class="icon"><gds-icon name="info"></gds-icon></div>
-        </div>
-      </gds-input>
-      <gds-input>
-        <div class="main">
-          <div class="lead"><gds-icon name="tel"></gds-icon></div>
-          <div class="base">
-            <label for="tel">Telephone</label>
-            <input type="tel" pattern="[0-9\+]{4,18}" id="tel" placeholder=" " required/>
-          </div>  
-          <div class="trail"><gds-icon name="x"></gds-icon></div>
-        </div>
-        <div class="support">
-          <span>Tel type, Pattern [0-9\+]{4,18}</span>
-          <div class="icon"><gds-icon name="info"></gds-icon></div>
-        </div>
-      </gds-input>
-      <gds-input>
-        <div class="main">
-          <div class="lead"><gds-icon name="calendar"></gds-icon></div>
-          <div class="base">
-            <label for="date">Date</label>
-            <input type="date" pattern="[0-9\+]{4,18}" id="date" placeholder=" "  required/>
-          </div>  
-          <div class="trail"><gds-icon name="x"></gds-icon></div>
-        </div>
-        <div class="support">
-          <span>Tel type, Pattern [0-9\+]{4,18}</span>
-          <div class="icon"><gds-icon name="info"></gds-icon></div>
-        </div>
-      </gds-input>
-      <gds-input>
-        <div class="main">
-          <div class="lead"><gds-icon name="calendar"></gds-icon></div>
-          <div class="base">
-            <label for="week">Week</label>
-            <input type="week" min="2018-W18" max="2018-W26" id="week" placeholder=" "  required/>
-          </div>  
-          <div class="trail"><gds-icon name="x"></gds-icon></div>
-        </div>
-        <div class="support">
-          <span>Tel type, Pattern [0-9\+]{4,18}</span>
-          <div class="icon"><gds-icon name="info"></gds-icon></div>
-        </div>
-      </gds-input>
-      <gds-input>
-        <div class="main">
-          <div class="lead"><gds-icon name="calendar"></gds-icon></div>
-          <div class="base">
-            <label for="time">Time</label>
-            <input type="time" min="09:00" max="18:00" id="time" placeholder=" "  required/>
-          </div>  
-          <div class="trail"><gds-icon name="x"></gds-icon></div>
-        </div>
-        <div class="support">
-          <span>Tel type, Pattern [0-9\+]{4,18}</span>
-          <div class="icon"><gds-icon name="info"></gds-icon></div>
-        </div>
-      </gds-input>
-      <gds-input>
-        <div class="main">
-          <div class="lead"><gds-icon name="calendar"></gds-icon></div>
-          <div class="base">
-            <label for="datetime-local">Datetime Local</label>
-            <input type="datetime-local" value="2018-06-12T19:30" min="2018-06-07T00:00" max="2018-06-14T00:00" id="datetime-local" placeholder=" "  required/>
-          </div>  
-          <div class="trail"><gds-icon name="x"></gds-icon></div>
-        </div>
-        <div class="support">
-          <span>Datetime local</span>
-          <div class="icon"><gds-icon name="info"></gds-icon></div>
-        </div>
-      </gds-input>
-      <gds-input>
-        <div class="main">
-          <div class="lead"><gds-icon name="calendar"></gds-icon></div>
-          <div class="base">
-            <label for="date">Date</label>
-            <input type="month" pattern="[0-9\+]{4,18}" id="date" placeholder=" "  required/>
-          </div>  
-          <div class="trail"><gds-icon name="x"></gds-icon></div>
-        </div>
-        <div class="support">
-          <span>Tel type, Pattern [0-9\+]{4,18}</span>
-          <div class="icon"><gds-icon name="info"></gds-icon></div>
-        </div>
-      </gds-input>
-      <gds-input>
-        <div class="main">
-          <div class="lead"><gds-icon name="search"></gds-icon></div>
-          <div class="base">
-            <label for="select">Select Search</label>
-            <input type="text" id="select" placeholder=" "  required/>
-          </div>  
-          <div class="trail"><gds-icon name="chevron-down"></gds-icon></div>
-        </div>
-        <div class="support">
-          <span>This is select with search</span>
-          <div class="icon"><gds-icon name="info"></gds-icon></div>
-        </div>
-      </gds-input>
-      <gds-input>
-        <div class="main">
-          <div class="lead"><gds-icon name="user"></gds-icon></div>
-          <div class="base">
-            <label for="select">Select Account</label>
-            <input type="text" id="select" placeholder=" "  required/>
-          </div>  
-          <div class="base" data-badge="SEK">
-            <label for="select">Select Account</label>
-            <input type="text" id="select" placeholder=" "  required/>
-          </div>  
-          <div class="trail"><gds-icon name="chevron-down"></gds-icon></div>
-        </div>
-        <div class="support">
-          <span>This is account select</span>
-          <div class="icon" data-badge="120"><gds-icon name="info"></gds-icon></div>
-        </div>
-      </gds-input>
-      <gds-input>
-        <div class="main">
-          <div class="lead"><gds-icon name="calendar"></gds-icon></div>
-          <div class="base" data-badge="SEK">
-            <label for="textarea">Freetext</label>
-            <textarea id="textarea" name="textarea" rows="1" minlength="10" maxlength="200" oninput="this.parentNode.dataset.value = this.value" required></textarea>
-          </div>  
-          <div class="trail" ><gds-icon name="x"></gds-icon></div>
-        </div>
-        <div class="support">
-          <span>Only lowercase, min-length 3 characters</span>
-          <div class="icon"><gds-icon name="info"></gds-icon></div>
-        </div>
-      </gds-input>
-      <gds-input>
-        <div class="main">
-          <div class="lead"><gds-icon name="calendar"></gds-icon></div>
-          <div class="base" data-badge="SEK">
-            <label for="span">Span with role</label>
-            <span role="textbox" id="span" contenteditable>hello</span>
-          </div>  
-          <div class="trail" ><gds-icon name="x"></gds-icon></div>
-        </div>
-        <div class="support">
-          <span>Only lowercase, min-length 3 characters</span>
-          <div class="icon"><gds-icon name="info"></gds-icon></div>
-        </div>
-      </gds-input>
-      <fieldset>
-        <legend>Type: Textarea</legend>
-        <label for="textarea">Textarea:</label>
-        <textarea id="textarea" placeholder=" " name="textarea" minlength="10" maxlength="200" required></textarea>
-        <!-- Requires a minimum length of 10, maximum length of 200 -->
-      </fieldset>
-
-      <fieldset>
-        <legend>Type: Submit</legend>
-        <input type="submit" id="submit" value="Submit" />
-        <!-- Triggering a form submission when clicked -->
-      </fieldset>
-      <fieldset>
-        <legend>Type: Range</legend>
-        <input type="range" id="volume" name="volume" min="0" max="11"/>
-        <!-- Triggering a form submission when clicked -->
-      </fieldset>
-    </form>
-
-
-`;
-  }
-};
-GdsForm.styles = unsafeCSS6(form_styles_default);
-GdsForm.shadowRootOptions = {
-  mode: "open",
-  delegatesFocus: true
-};
-GdsForm = __decorateClass([
-  customElement3("gds-form")
-], GdsForm);
-
 // libs/core/src/components/input/input.ts
-import { unsafeCSS as unsafeCSS7 } from "lit";
-import { property as property7, query as query4, queryAsync as queryAsync2 } from "lit/decorators.js";
+import { LitElement as LitElement7, unsafeCSS as unsafeCSS6 } from "lit";
+import { property as property7, queryAsync as queryAsync2 } from "lit/decorators.js";
 import { until } from "lit/directives/until.js";
 import { nothing as nothing2 } from "lit/html.js";
 import { when as when3 } from "lit/directives/when.js";
+import { choose } from "lit/directives/choose.js";
 import { msg as msg3 } from "@lit/localize";
 
 // libs/core/src/utils/directives/forward-attributes.ts
@@ -3102,8 +2570,8 @@ var ForwardAttributesDirective = class extends Directive {
 };
 var forwardAttributes = directive(ForwardAttributesDirective);
 
-// libs/core/src/components/input/style/input.styles.css
-var input_styles_default = `@layer tokens, a11y, base;
+// libs/core/src/components/input/input.styles.css
+var input_styles_default = `@layer tokens, a11y, base, simplified;
 
 @layer tokens {
   :host {
@@ -3128,7 +2596,7 @@ var input_styles_default = `@layer tokens, a11y, base;
     --_padding-block: .625rem;
     --_padding-inline: 1rem;
     --_core-icon-size: 1.5rem;
-    --_textarea-min-block-size: 2rem;
+    --_inner-height: 2rem;
   }
 }
 
@@ -3166,7 +2634,8 @@ var input_styles_default = `@layer tokens, a11y, base;
 
   :host {
     display: block;
-    position: relative;
+    contain: layout;
+    isolation: isolate;
   }
 
   .head {
@@ -3178,7 +2647,6 @@ var input_styles_default = `@layer tokens, a11y, base;
 
   label {
     font-weight: 400;
-    transition: var(--_transition);
   }
 
   .foot {
@@ -3189,6 +2657,10 @@ var input_styles_default = `@layer tokens, a11y, base;
 
     gds-badge {
       align-self: flex-end;
+    }
+
+    :first-child {
+      flex-grow: 1;
     }
   }
 
@@ -3213,7 +2685,6 @@ var input_styles_default = `@layer tokens, a11y, base;
   }
 
   div.extended-supporting-text {
-    /* max-height: 0; */
     display: grid;
     grid-template-rows: 0fr;
     transition: var(--_transition);
@@ -3223,7 +2694,6 @@ var input_styles_default = `@layer tokens, a11y, base;
     }
 
     &[aria-hidden="false"] {
-      /* max-height: 500px; */
       opacity: 1;
       grid-template-rows: 1fr;
     }
@@ -3233,7 +2703,7 @@ var input_styles_default = `@layer tokens, a11y, base;
     display: none;
   }
 
-  input {
+  input, textarea {
     -webkit-appearance: none;
        -moz-appearance: none;
             appearance: none;
@@ -3244,22 +2714,12 @@ var input_styles_default = `@layer tokens, a11y, base;
     margin: unset;
     outline: none;
     padding: unset;
-    height: -moz-max-content;
-    height: max-content;
-    /* caret-color: accent;
-    caret-shape: underscore; */
+    min-height: var(--_inner-height);
     box-sizing: border-box;
     font-size: var(--_fs);
     line-height: var(--_lh);
     transition: var(--_transition);
-
-    &::-moz-placeholder {
-      font-family: inherit;
-    }
-
-    &::placeholder {
-      font-family: inherit;
-    }
+    font-family: inherit;
 
     &:focus:not(:focus-visible) {
       outline: none;
@@ -3279,10 +2739,18 @@ var input_styles_default = `@layer tokens, a11y, base;
     }
   }
 
+  textarea {
+    resize: none;
+    overflow: hidden;
+    transition: unset;
+    min-height: max(var(--_inner-height), calc(1lh * var(--_lines)));
+    max-height: max(var(--_inner-height), calc(1lh * var(--_lines)));
+  }
+
   .field {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     gap: var(--_gap);
 
@@ -3291,7 +2759,6 @@ var input_styles_default = `@layer tokens, a11y, base;
     block-size: -moz-max-content;
 
     block-size: max-content;
-    /* min-inline-size: var(--_width); */
     min-block-size: var(--_core-min-block-size);
 
     background-color: var(--_color-bg);
@@ -3324,13 +2791,19 @@ var input_styles_default = `@layer tokens, a11y, base;
       --_border-width: var(--_border-width-hover);
     }
 
-    &:has(input:focus) {
+    &:has(input:focus, textarea:focus) {
       --_border-width: var(--_border-width-hover);
       outline-color: var(--_color-outline);
       border-radius: var(--_border-radius);
       border: var(--_border-width) solid var(--_color-border);
       box-shadow: none;
       transition: var(--_transition);
+    }
+
+    & slot {
+      display: flex;
+      height: var(--_inner-height);
+      align-items: center;
     }
   }
 
@@ -3347,38 +2820,122 @@ var input_styles_default = `@layer tokens, a11y, base;
     color: var(--gds-sys-color-status-negative-on-negative-bright);
   }
 }
+
+@layer simplified {
+  :host([variant="simplified"]) label {
+    align-items: center;
+    background-color: transparent;
+    display: block;
+    height: -moz-max-content;
+    height: max-content;
+    inset: 0;
+    width: 100%;
+
+    div {
+      line-height: var(--_lh);
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      transition: var(--_transition);
+    }
+  }
+
+  :host([variant="simplified"]) label:has(
+    input:not(:-moz-placeholder-shown, [readonly]),
+    textarea:not(:-moz-placeholder-shown, [readonly])) {
+    div {
+      font-size: 0.75rem;
+      top: 0.375rem;
+      font-weight: 500;
+      transform: translateY(
+        translateY(calc(0px - var(--gds-input-label-translate)))
+      );
+    }
+    input, textarea {
+      margin-top: 0.75rem;
+    }
+  }
+
+  :host([variant="simplified"]) label:has(
+    input:not(:placeholder-shown, [readonly]),
+    textarea:not(:placeholder-shown, [readonly])),
+  :host([variant="simplified"]) label:focus-within {
+    div {
+      font-size: 0.75rem;
+      top: 0.375rem;
+      font-weight: 500;
+      transform: translateY(
+        translateY(calc(0px - var(--gds-input-label-translate)))
+      );
+    }
+    input, textarea {
+      margin-top: 0.75rem;
+    }
+  }
+}
 `;
 
 // libs/core/src/components/input/input.ts
-var _forwardableAttrs, _handleOnInput, _handleFieldClick, _handleClearBtnClick, _handleSupportingTextBtnClick, _showRemainingChars, showRemainingChars_get, _remainingCharsBadge, remainingCharsBadge_get, _extendedSupportingTextBtn, extendedSupportingTextBtn_get;
+var _renderDefault, renderDefault_fn, _renderSimplified, renderSimplified_fn, _forwardableAttrs, _handleOnInput, _handleOnChange, _handleFieldClick, _handleClearBtnClick, _handleSupportingTextBtnClick, _renderNativeInput, renderNativeInput_fn, _renderNativeTextarea, renderNativeTextarea_fn, _renderSupportingText, renderSupportingText_fn, _renderExtendedSupportingText, renderExtendedSupportingText_fn, _renderClearButton, renderClearButton_fn, _shouldShowRemainingChars, shouldShowRemainingChars_get, _renderRemainingCharsBadge, renderRemainingCharsBadge_fn, _asyncRenderExtendedSupportingTextButton, asyncRenderExtendedSupportingTextButton_fn;
 var GdsInput = class extends GdsFormControlElement {
   constructor() {
     super();
-    __privateAdd(this, _showRemainingChars);
-    __privateAdd(this, _remainingCharsBadge);
+    // variant="default"
+    __privateAdd(this, _renderDefault);
+    // variant="simplified"
+    __privateAdd(this, _renderSimplified);
+    __privateAdd(this, _renderNativeInput);
+    __privateAdd(this, _renderNativeTextarea);
+    __privateAdd(this, _renderSupportingText);
+    __privateAdd(this, _renderExtendedSupportingText);
+    __privateAdd(this, _renderClearButton);
+    __privateAdd(this, _shouldShowRemainingChars);
+    __privateAdd(this, _renderRemainingCharsBadge);
     /**
      * Returns a promise that resolves when the DOM query for the extended supporting text slot has resolved.
      * If the slot is empty, an empty template is returned, otherwise the support text toggle button is returned.
      */
-    __privateAdd(this, _extendedSupportingTextBtn);
+    __privateAdd(this, _asyncRenderExtendedSupportingTextButton);
     this.value = "";
     this.label = "";
     this.supportingText = "";
     this.showExtendedSupportingText = false;
     this.clearable = false;
     this.maxlength = Number.MAX_SAFE_INTEGER;
+    this.variant = "default";
+    this.multiline = false;
     // Any attribute name added here will get forwarded to the native <input> element.
     __privateAdd(this, _forwardableAttrs, (attr) => ["type", "placeholder", "required"].includes(attr.name));
     __privateAdd(this, _handleOnInput, (e) => {
-      this.value = e.target.value;
+      const element = e.target;
+      this.value = element.value;
+    });
+    __privateAdd(this, _handleOnChange, (e) => {
+      const element = e.target;
+      this.value = element.value;
+      this.dispatchEvent(
+        new Event("change", {
+          bubbles: true,
+          composed: true
+        })
+      );
     });
     __privateAdd(this, _handleFieldClick, () => {
-      this.elInput.focus();
+      this.elInput.then((el) => el.focus());
     });
     __privateAdd(this, _handleClearBtnClick, () => {
       this.value = "";
     });
-    __privateAdd(this, _handleSupportingTextBtnClick, () => this.showExtendedSupportingText = !this.showExtendedSupportingText);
+    __privateAdd(this, _handleSupportingTextBtnClick, () => {
+      this.showExtendedSupportingText = !this.showExtendedSupportingText;
+      this.dispatchEvent(
+        new CustomEvent("gds-ui-state", {
+          bubbles: true,
+          composed: true,
+          detail: this.showExtendedSupportingText
+        })
+      );
+    });
     /**
      * Event handler for the form reset event.
      */
@@ -3387,69 +2944,170 @@ var GdsInput = class extends GdsFormControlElement {
     };
     constrainSlots(this);
   }
+  connectedCallback() {
+    super.connectedCallback();
+    this._setAutoHeight();
+  }
   render() {
-    return html2`
+    return html2`${choose(this.variant, [
+      ["default", () => __privateMethod(this, _renderDefault, renderDefault_fn).call(this)],
+      ["simplified", () => __privateMethod(this, _renderSimplified, renderSimplified_fn).call(this)]
+    ])}`;
+  }
+  _setAutoHeight() {
+    if (!this.multiline)
+      return;
+    this.elInput.then((element) => {
+      const lines = (element.value.split("\n").length || 1).toString();
+      element?.style.setProperty("--_lines", lines.toString());
+    });
+  }
+};
+_renderDefault = new WeakSet();
+renderDefault_fn = function() {
+  return html2`
       <div class="head">
         <label for="input">${this.label}</label>
-        ${until(__privateGet(this, _extendedSupportingTextBtn, extendedSupportingTextBtn_get), nothing2)}
+        ${until(__privateMethod(this, _asyncRenderExtendedSupportingTextButton, asyncRenderExtendedSupportingTextButton_fn).call(this), nothing2)}
       </div>
 
-      <div class="supporting-text">${this.supportingText}</div>
-
-      <div
-        class="extended-supporting-text"
-        aria-hidden="${!this.showExtendedSupportingText}"
-      >
-        <div><slot name="extended-supporting-text"></slot></div>
-      </div>
+      ${__privateMethod(this, _renderSupportingText, renderSupportingText_fn).call(this)} ${__privateMethod(this, _renderExtendedSupportingText, renderExtendedSupportingText_fn).call(this)}
 
       <div class="field" @click=${__privateGet(this, _handleFieldClick)}>
-        <slot name="icon" gds-allow="gds-icon"></slot>
-        <input
-          @input=${__privateGet(this, _handleOnInput)}
-          .value=${this.value}
-          id="input"
-          ${forwardAttributes(__privateGet(this, _forwardableAttrs))}
-        />
-        <slot name="badge" gds-allow="gds-badge"></slot>
+        <slot name="lead" gds-allow="gds-icon"></slot>
         ${when3(
-      this.clearable && this.value.length > 0,
-      () => html2`
-            <gds-button
-              size="small"
-              variant="tertiary"
-              aria-label="${msg3("Clear input")}"
-              @click=${__privateGet(this, _handleClearBtnClick)}
-            >
-              <gds-icon name="x"></gds-icon>
-            </gds-button>
-          `
-    )}
+    this.multiline,
+    () => html2`${__privateMethod(this, _renderNativeTextarea, renderNativeTextarea_fn).call(this)}`,
+    () => html2`${__privateMethod(this, _renderNativeInput, renderNativeInput_fn).call(this)}`
+  )}
+        <slot name="trail" gds-allow="gds-badge"></slot>
+        ${__privateMethod(this, _renderClearButton, renderClearButton_fn).call(this)}
       </div>
 
       <div class="foot">
         <div>
           ${when3(
-      this.invalid,
-      () => html2`<span class="error-text">Error information</span>`
-    )}
+    this.invalid,
+    () => html2`<span class="error-text">Error information</span>`
+  )}
         </div>
-        ${when3(__privateGet(this, _showRemainingChars, showRemainingChars_get), () => __privateGet(this, _remainingCharsBadge, remainingCharsBadge_get))}
+        ${when3(
+    __privateGet(this, _shouldShowRemainingChars, shouldShowRemainingChars_get),
+    () => __privateMethod(this, _renderRemainingCharsBadge, renderRemainingCharsBadge_fn).call(this)
+  )}
       </div>
     `;
-  }
+};
+_renderSimplified = new WeakSet();
+renderSimplified_fn = function() {
+  return html2`
+      <div class="field" @click=${__privateGet(this, _handleFieldClick)}>
+        <slot name="lead" gds-allow="gds-icon"></slot>
+        <label for="input">
+          <div>${this.label}</div>
+          ${when3(
+    this.multiline,
+    () => html2`${__privateMethod(this, _renderNativeTextarea, renderNativeTextarea_fn).call(this)}`,
+    () => html2`${__privateMethod(this, _renderNativeInput, renderNativeInput_fn).call(this)}`
+  )}
+        </label>
+        <slot name="trail" gds-allow="gds-badge"></slot>
+        ${__privateMethod(this, _renderClearButton, renderClearButton_fn).call(this)}
+      </div>
+
+      <div class="foot">
+        ${__privateMethod(this, _renderSupportingText, renderSupportingText_fn).call(this)}
+        ${when3(
+    __privateGet(this, _shouldShowRemainingChars, shouldShowRemainingChars_get),
+    () => __privateMethod(this, _renderRemainingCharsBadge, renderRemainingCharsBadge_fn).call(this)
+  )}
+        ${until(__privateMethod(this, _asyncRenderExtendedSupportingTextButton, asyncRenderExtendedSupportingTextButton_fn).call(this), nothing2)}
+      </div>
+
+      ${__privateMethod(this, _renderExtendedSupportingText, renderExtendedSupportingText_fn).call(this)}
+    `;
 };
 _forwardableAttrs = new WeakMap();
 _handleOnInput = new WeakMap();
+_handleOnChange = new WeakMap();
 _handleFieldClick = new WeakMap();
 _handleClearBtnClick = new WeakMap();
 _handleSupportingTextBtnClick = new WeakMap();
-_showRemainingChars = new WeakSet();
-showRemainingChars_get = function() {
+_renderNativeInput = new WeakSet();
+renderNativeInput_fn = function() {
+  return html2`
+      <input
+        @input=${__privateGet(this, _handleOnInput)}
+        @change=${__privateGet(this, _handleOnChange)}
+        .value=${this.value}
+        id="input"
+        aria-describedby="supporting-text"
+        placeholder=" "
+        ${forwardAttributes(__privateGet(this, _forwardableAttrs))}
+      />
+    `;
+};
+_renderNativeTextarea = new WeakSet();
+renderNativeTextarea_fn = function() {
+  return html2`
+      <textarea
+        @input=${__privateGet(this, _handleOnInput)}
+        @change=${__privateGet(this, _handleOnChange)}
+        .value=${this.value}
+        id="input"
+        aria-describedby="supporting-text"
+        placeholder=" "
+        ${forwardAttributes(__privateGet(this, _forwardableAttrs))}
+      ></textarea>
+    `;
+};
+_renderSupportingText = new WeakSet();
+renderSupportingText_fn = function() {
+  return html2`
+      <div class="supporting-text" id="supporting-text">
+        ${this.supportingText}
+      </div>
+    `;
+};
+_renderExtendedSupportingText = new WeakSet();
+renderExtendedSupportingText_fn = function() {
+  return html2`
+      <div
+        class="extended-supporting-text"
+        aria-hidden="${!this.showExtendedSupportingText}"
+        ?inert="${!this.showExtendedSupportingText}"
+      >
+        <div>
+          <slot
+            name="extended-supporting-text"
+            @slotchange=${() => this.requestUpdate()}
+          ></slot>
+        </div>
+      </div>
+    `;
+};
+_renderClearButton = new WeakSet();
+renderClearButton_fn = function() {
+  if (this.clearable && this.value.length > 0)
+    return html2`
+        <gds-button
+          size="small"
+          variant="tertiary"
+          label="${msg3("Clear input")}"
+          @click=${__privateGet(this, _handleClearBtnClick)}
+        >
+          <gds-icon name="x"></gds-icon>
+        </gds-button>
+      `;
+  else
+    return nothing2;
+};
+_shouldShowRemainingChars = new WeakSet();
+shouldShowRemainingChars_get = function() {
   return this.maxlength < Number.MAX_SAFE_INTEGER;
 };
-_remainingCharsBadge = new WeakSet();
-remainingCharsBadge_get = function() {
+_renderRemainingCharsBadge = new WeakSet();
+renderRemainingCharsBadge_fn = function() {
   const remaining = this.maxlength - this.value.length;
   let variant;
   if (remaining < 0) {
@@ -3461,25 +3119,29 @@ remainingCharsBadge_get = function() {
   }
   return html2`<gds-badge variant="${variant}">${remaining}</gds-badge>`;
 };
-_extendedSupportingTextBtn = new WeakSet();
-extendedSupportingTextBtn_get = function() {
+_asyncRenderExtendedSupportingTextButton = new WeakSet();
+asyncRenderExtendedSupportingTextButton_fn = async function() {
   return this.elExtendedSupportingTextSlot.then((slot) => {
-    if (slot.assignedElements().length === 0) {
-      return html2``;
-    }
-    return html2`
-        <gds-button
-          size="small"
-          variant="tertiary"
-          aria-label="${msg3("Show extended supporting text")}"
-          @click=${__privateGet(this, _handleSupportingTextBtnClick)}
-        >
-          <gds-icon name="info"></gds-icon>
-        </gds-button>
-      `;
+    if (slot.assignedElements().length > 0)
+      return html2`
+          <gds-button
+            size="small"
+            variant="tertiary"
+            label="${msg3("Show extended supporting text")}"
+            @click=${__privateGet(this, _handleSupportingTextBtnClick)}
+          >
+            <gds-icon name="info"></gds-icon>
+          </gds-button>
+        `;
+    else
+      return nothing2;
   });
 };
-GdsInput.styles = [tokens, unsafeCSS7(input_styles_default)];
+GdsInput.shadowRootOptions = {
+  ...LitElement7.shadowRootOptions,
+  delegatesFocus: true
+};
+GdsInput.styles = [tokens, unsafeCSS6(input_styles_default)];
 __decorateClass([
   property7()
 ], GdsInput.prototype, "value", 2);
@@ -3503,171 +3165,673 @@ __decorateClass([
   property7({ type: Number })
 ], GdsInput.prototype, "maxlength", 2);
 __decorateClass([
-  query4("input")
+  property7()
+], GdsInput.prototype, "variant", 2);
+__decorateClass([
+  property7({ type: Boolean })
+], GdsInput.prototype, "multiline", 2);
+__decorateClass([
+  queryAsync2("input, textarea")
 ], GdsInput.prototype, "elInput", 2);
 __decorateClass([
   queryAsync2('slot[name="extended-supporting-text"]')
 ], GdsInput.prototype, "elExtendedSupportingTextSlot", 2);
+__decorateClass([
+  watch("value")
+], GdsInput.prototype, "_setAutoHeight", 1);
 GdsInput = __decorateClass([
   gdsCustomElement("gds-input")
 ], GdsInput);
 
-// libs/core/src/components/input/helper/helper.ts
-import { LitElement as LitElement10, html as html10, unsafeCSS as unsafeCSS10 } from "lit";
-import { customElement as customElement6, property as property10 } from "lit/decorators.js";
-import { ifDefined as ifDefined2 } from "lit/directives/if-defined.js";
-import { when as when5 } from "lit/directives/when.js";
+// libs/core/src/components/checkbox/checkbox.ts
+import { LitElement as LitElement8, html as html7, unsafeCSS as unsafeCSS7 } from "lit";
+import { customElement as customElement3 } from "lit/decorators.js";
 
-// libs/core/src/components/input/helper/style/helper.styles.css
-var helper_styles_default = `@layer gds-input-helper, tokens, a11y, containment, shell, core, parts;
+// libs/core/src/components/checkbox/checkbox.css
+var checkbox_default = `:host {
+  --gds-checkbox-bg-color: hsl(0, 0%, 100%);
+  --gds-checkbox-border-color: hsla(60, 4%, 50%, 1);
+  --gds-checkbox-border-width: 2px;
+  --gds-checkbox-border-radius: 4px;
 
-@layer gds-input-helper {
-  @layer tokens {
-    :host {
-      --gds-input-helper-bg: hsla(60, 4%, 95%, 1);
-      --gds-input-helper-br-width: 2px;
+  --gds-checkbox-color-hover: hsla(60, 6%, 90%, 1);
+  --gds-checkbox-color-active: hsla(60, 4%, 85%, 1);
+
+  --gds-checkbox-checked-color: hsla(60, 4%, 20%, 1);
+  --gds-checkbox-color-tick: hsl(0, 0%, 100%);
+}
+
+.gds-checkbox {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: calc(var(--gds-checkbox-border-radius) * 2);
+  transition: all 248ms ease-in-out;
+  cursor: pointer;
+
+  & input {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    position: relative;
+    margin: unset;
+    padding: unset;
+    box-sizing: border-box;
+    cursor: pointer;
+    aspect-ratio: 1/1;
+    width: 16px;
+    height: 16px;
+    background-color: var(--gds-checkbox-bg-color);
+    border: var(--gds-checkbox-border-width) solid
+      var(--gds-checkbox-border-color);
+    border-radius: var(--gds-checkbox-border-radius);
+    transition: all 248ms cubic-bezier(0.2, 0.85, 0.32, 1.2);
+
+    &::after {
+      content: '';
+      width: 5px;
+      height: 8px;
+      border: var(--gds-checkbox-border-width) solid
+        var(--gds-checkbox-color-tick);
+      border-top: 0;
+      border-left: 0;
+      rotate: 43deg;
+      inset: 1px 0 0 3.5px;
+      position: absolute;
+      pointer-events: none;
+      box-sizing: border-box;
+      transition: all 248ms cubic-bezier(0.2, 0.85, 0.32, 1.2);
+      scale: 0.8;
+      opacity: 0;
+    }
+
+    &:checked {
+      color: var(--gds-checkbox-checked-color-tick);
+      border-color: var(--gds-checkbox-checked-color);
+      background-color: var(--gds-checkbox-checked-color);
+
+      &::after {
+        scale: 1;
+        opacity: 1;
+      }
+    }
+
+    &[indeterminate],
+    &:indeterminate {
+      &::after {
+        border-top: 0;
+        border-left: 0;
+        border-radius: 0;
+        width: 8px;
+        height: var(--gds-checkbox-border-width);
+        inset: 5px 0px 0px 2px;
+        rotate: 0deg;
+        opacity: 1;
+        scale: 1;
+      }
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
     }
   }
 
-  @layer a11y {
-    @media (prefers-color-scheme: dark) {
-      :host {
-        --gds-input-helper-bg: var(--gds-input-helper-bg-dark);
-      }
-    }
+  &:hover:has(input:not([disabled])) {
+    background-color: var(--gds-checkbox-color-hover);
+  }
 
-    @media (prefers-reduced-motion: reduce) {
-      :host {
-        --gds-input-helper-motion: 0;
-      }
-    }
-
-    @media (prefers-reduced-transparency: reduce) {
-      :host {
-        --gds-input-helper-transparency: 1;
-      }
-    }
-
-    @media (prefers-contrast: more) {
-      :host {
-        --gds-input-helper-contrast: 1;
-      }
+  &:active:has(input:not([disabled])) {
+    background-color: var(--gds-checkbox-color-active);
+    .gds-checkbox-core {
+      border-color: var(--gds-checkbox-checked-color);
     }
   }
 
-  @layer containment {
-    :host {
-      display: contents;
-    }
-
-    .gds-input-helper {
-      contain: layout;
-      container-name: gds-input-helper;
-      container-type: inline-size;
-      isolation: isolate;
-
-      @container gds-input-helper (width < 30ch) {
-        .gds-input-badge {
-          display: none;
-        }
-      }
-
-      > * {
-        box-sizing: border-box;
-      }
-    }
+  &:has(input:checked) {
+    background-color: var(--gds-checkbox-color-hover);
   }
 
-  @layer shell {
-    .gds-input-helper {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
+  &:has(input:disabled) {
+    cursor: not-allowed;
   }
 
-  @layer core {
-    .gds-input-helper {
-      &:has(slot[name='badge']),
-      &:has(slot[name='action']) {
-        .gds-input-helper-header {
-          padding-inline-end: 8px;
-        }
+  /* Invalid state */
+
+  &:has(input:invalid) {
+    --gds-checkbox-bg-color: hsla(13, 75%, 95%, 1);
+    --gds-checkbox-border-color: hsla(9, 75%, 38%, 1);
+    --gds-checkbox-color-hover: hsla(12, 75%, 91%, 1);
+    --gds-checkbox-color-active: hsla(12, 78%, 86%, 1);
+    --gds-checkbox-checked-color: hsla(9, 75%, 38%, 1);
+    --gds-checkbox-color-tick: hsla(0, 0%, 100%, 1);
+
+    & input {
+      &::after {
+        border-color: var(--gds-checkbox-color-tick);
       }
 
-      @layer parts {
-        .gds-input-helper-header {
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          justify-content: space-between;
-          border-left: var(--gds-input-helper-br-width) solid transparent;
-          border-right: var(--gds-input-helper-br-width) solid transparent;
-          padding-inline: 18px;
-          min-height: 32px;
-
-          .gds-input-helper-options {
-            align-items: center;
-            margin-inline-start: auto;
-            display: flex;
-            gap: 8px;
-          }
-        }
-
-        .gds-input-helper-title {
-          font-size: 14px;
-          -webkit-user-select: none;
-             -moz-user-select: none;
-                  user-select: none;
-
-          &.gds-input-helper-action {
-            cursor: pointer;
-            -webkit-appearance: none;
-               -moz-appearance: none;
-                    appearance: none;
-            padding: unset;
-            border: unset;
-            background: unset;
-            outline-offset: 6px;
-            outline-color: transparent;
-            outline-width: 2px;
-            outline-style: solid;
-            font-family: inherit;
-            font-size: 14px;
-
-            &:focus {
-              outline-color: currentColor;
-              border-radius: 200px;
-
-              &:not(:focus-visible) {
-                outline-color: transparent;
-              }
-            }
-          }
-        }
-
-        .gds-input-helper-content {
-          border: 1px solid hsla(60, 4%, 80%, 1);
-          background-color: hsla(60, 4%, 95%, 1);
-          font-size: 14px;
-          gap: 8px;
-          line-height: 1.4;
-          margin-block-start: 8px;
-          padding: 12px 16px;
-          border-radius: 4px;
-          -webkit-user-select: auto;
-             -moz-user-select: auto;
-                  user-select: auto;
-        }
+      &:checked {
+        color: var(--gds-checkbox-checked-color-tick);
+        border-color: var(--gds-checkbox-checked-color);
+        background-color: var(--gds-checkbox-checked-color);
       }
+    }
+
+    &:hover:has(input:not([disabled])) {
+      background-color: var(--gds-checkbox-color-hover);
+    }
+
+    &:active:has(input:not([disabled])) {
+      background-color: var(--gds-checkbox-color-active);
+      .gds-checkbox-core {
+        border-color: var(--gds-checkbox-checked-color);
+      }
+    }
+
+    &:has(input:checked) {
+      background-color: var(--gds-checkbox-color-hover);
     }
   }
 }
 `;
 
+// libs/core/src/components/checkbox/checkbox.ts
+var _internals;
+var GdsCheckbox = class extends LitElement8 {
+  constructor() {
+    super();
+    // Private members
+    __privateAdd(this, _internals, void 0);
+    this.inputElement = null;
+    this.exludeAttr = ["id", "label"];
+    __privateSet(this, _internals, this.attachInternals());
+    constrainSlots(this);
+  }
+  reflectAttributesToInput() {
+    if (this.inputElement) {
+      const attributes = this.attributes;
+      for (let i = 0; i < attributes.length; i++) {
+        const attribute = attributes[i];
+        if (!this.exludeAttr.includes(attribute.name)) {
+          this.inputElement.setAttribute(attribute.name, attribute.value);
+        }
+      }
+    }
+  }
+  update(changedProperties) {
+    super.update(changedProperties);
+    if (!this.inputElement) {
+      this.inputElement = this.shadowRoot?.getElementById(
+        "checkbox"
+      );
+    }
+    this.reflectAttributesToInput();
+  }
+  render() {
+    return html7`
+      <label class="gds-checkbox">
+        <input id="checkbox" type="checkbox" />
+      </label>
+    `;
+  }
+};
+_internals = new WeakMap();
+GdsCheckbox.styles = unsafeCSS7(checkbox_default);
+GdsCheckbox.shadowRootOptions = {
+  mode: "open",
+  delegatesFocus: true
+};
+GdsCheckbox = __decorateClass([
+  customElement3("gds-checkbox")
+], GdsCheckbox);
+
+// libs/core/src/components/radio/radio.ts
+import { LitElement as LitElement10, html as html9, unsafeCSS as unsafeCSS9 } from "lit";
+import { customElement as customElement5 } from "lit/decorators.js";
+
+// libs/core/src/components/radio/radio.css
+var radio_default = `:host {
+  --gds-checkbox-bg-color: hsl(0, 0%, 100%);
+  --gds-checkbox-border-color: hsla(60, 4%, 50%, 1);
+  --gds-checkbox-border-width: 1px;
+  --gds-checkbox-border-radius: 200px;
+
+  --gds-checkbox-color-hover: hsla(60, 6%, 90%, 1);
+  --gds-checkbox-color-active: hsla(60, 4%, 85%, 1);
+
+  --gds-checkbox-checked-color: hsla(60, 4%, 20%, 1);
+  --gds-checkbox-color-tick: hsl(0, 0%, 100%);
+
+  --gds-radio-transition: all 248ms ease-in-out;
+  --gds-radio-transition-input: all 248ms cubic-bezier(0.2, 0.85, 0.32, 1.2);
+}
+
+@media (prefers-color-scheme: dark) {
+  :host {
+    --gds-dark: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :host {
+    --gds-radio-transition: none;
+    --gds-radio-transition-input: none;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  :host {
+    --gds-input-transparency: 1;
+  }
+}
+
+@media (prefers-contrast: more) {
+  :host {
+    --gds-input-color-bg: hsla(60, 4%, 96%, 1);
+    --gds-input-color-outline-alpha: 0%;
+  }
+}
+
+.gds-radio {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--gds-checkbox-border-radius);
+  transition: var(--gds-radio-transition);
+  cursor: pointer;
+
+  & input {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    position: relative;
+    margin: unset;
+    padding: unset;
+    box-sizing: border-box;
+    cursor: pointer;
+    aspect-ratio: 1/1;
+    width: 16px;
+    height: 16px;
+    background-color: var(--gds-checkbox-bg-color);
+    border: var(--gds-checkbox-border-width) solid
+      var(--gds-checkbox-border-color);
+    border-radius: var(--gds-checkbox-border-radius);
+    transition: var(--gds-radio-transition-input);
+
+    &:checked {
+      border-color: var(--gds-checkbox-checked-color);
+      border-width: 4px;
+    }
+
+    &[indeterminate],
+    &:indeterminate {
+      &::after {
+        border-top: 0;
+        border-left: 0;
+        border-radius: 0;
+        width: 8px;
+        height: var(--gds-checkbox-border-width);
+        inset: 5px 0px 0px 2px;
+        rotate: 0deg;
+        opacity: 1;
+        scale: 1;
+      }
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+  }
+
+  &:hover:has(input:not([disabled])) {
+    background-color: var(--gds-checkbox-color-hover);
+  }
+
+  &:active:has(input:not([disabled])) {
+    background-color: var(--gds-checkbox-color-active);
+    .gds-checkbox-core {
+      border-color: var(--gds-checkbox-checked-color);
+    }
+  }
+
+  &:has(input:checked) {
+    background-color: var(--gds-checkbox-color-hover);
+  }
+
+  &:has(input:disabled) {
+    cursor: not-allowed;
+  }
+
+  /* Invalid state */
+
+  &:has(input:invalid) {
+    --gds-checkbox-bg-color: hsla(13, 75%, 95%, 1);
+    --gds-checkbox-border-color: hsla(9, 75%, 38%, 1);
+    --gds-checkbox-color-hover: hsla(12, 75%, 91%, 1);
+    --gds-checkbox-color-active: hsla(12, 78%, 86%, 1);
+    --gds-checkbox-checked-color: hsla(9, 75%, 38%, 1);
+    --gds-checkbox-color-tick: hsla(0, 0%, 100%, 1);
+
+    & input {
+      &::after {
+        border-color: var(--gds-checkbox-color-tick);
+      }
+
+      &:checked {
+        color: var(--gds-checkbox-checked-color-tick);
+        border-color: var(--gds-checkbox-checked-color);
+        background-color: var(--gds-checkbox-checked-color);
+      }
+    }
+
+    &:hover:has(input:not([disabled])) {
+      background-color: var(--gds-checkbox-color-hover);
+    }
+
+    &:active:has(input:not([disabled])) {
+      background-color: var(--gds-checkbox-color-active);
+      .gds-checkbox-core {
+        border-color: var(--gds-checkbox-checked-color);
+      }
+    }
+
+    &:has(input:checked) {
+      background-color: var(--gds-checkbox-color-hover);
+    }
+  }
+}
+
+.gds-radio-group {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: 0;
+  padding: 0;
+}
+`;
+
+// libs/core/src/components/radio/radio-group.ts
+import { LitElement as LitElement9, html as html8 } from "lit";
+import { customElement as customElement4, property as property9 } from "lit/decorators.js";
+var _internals2;
+var GdsRadioGroup = class extends LitElement9 {
+  constructor() {
+    super();
+    // Private members
+    __privateAdd(this, _internals2, void 0);
+    this.label = "Label";
+    this.inputElement = null;
+    this.exludeAttr = ["id", "label"];
+    __privateSet(this, _internals2, this.attachInternals());
+    constrainSlots(this);
+  }
+  reflectAttributesToInput() {
+    if (this.inputElement) {
+      const attributes = this.attributes;
+      for (let i = 0; i < attributes.length; i++) {
+        const attribute = attributes[i];
+        if (!this.exludeAttr.includes(attribute.name)) {
+          this.inputElement.setAttribute(attribute.name, attribute.value);
+        }
+      }
+    }
+  }
+  update(changedProperties) {
+    super.update(changedProperties);
+    if (!this.inputElement) {
+      this.inputElement = this.shadowRoot?.getElementById(
+        "radio"
+      );
+    }
+    this.reflectAttributesToInput();
+  }
+  render() {
+    return html8`
+      <fieldset
+        class="gds-radio-group"
+        role="radiogroup"
+        aria-labelledby="label"
+      >
+        <label>${this.label}</label>
+        <slot></slot>
+      </fieldset>
+    `;
+  }
+};
+_internals2 = new WeakMap();
+// static styles = unsafeCSS(styles)
+GdsRadioGroup.shadowRootOptions = {
+  mode: "open",
+  delegatesFocus: true
+};
+__decorateClass([
+  property9({ type: String, reflect: true, attribute: "label" })
+], GdsRadioGroup.prototype, "label", 2);
+GdsRadioGroup = __decorateClass([
+  customElement4("gds-radio-group")
+], GdsRadioGroup);
+
+// libs/core/src/components/radio/radio.ts
+var _internals3;
+var GdsRadio = class extends LitElement10 {
+  constructor() {
+    super();
+    // Private members
+    __privateAdd(this, _internals3, void 0);
+    this.inputElement = null;
+    this.exludeAttr = ["id", "label"];
+    __privateSet(this, _internals3, this.attachInternals());
+    constrainSlots(this);
+  }
+  reflectAttributesToInput() {
+    if (this.inputElement) {
+      const attributes = this.attributes;
+      for (let i = 0; i < attributes.length; i++) {
+        const attribute = attributes[i];
+        if (!this.exludeAttr.includes(attribute.name)) {
+          this.inputElement.setAttribute(attribute.name, attribute.value);
+        }
+      }
+    }
+  }
+  update(changedProperties) {
+    super.update(changedProperties);
+    if (!this.inputElement) {
+      this.inputElement = this.shadowRoot?.getElementById(
+        "radio"
+      );
+    }
+    this.reflectAttributesToInput();
+  }
+  handleClick() {
+    const radioGroup = this.closest("gds-radio-group");
+    if (radioGroup instanceof GdsRadioGroup) {
+      radioGroup.selectedValue = this.value;
+    }
+  }
+  render() {
+    return html9`
+      <label class="gds-radio">
+        <input id="radio" type="radio" />
+      </label>
+      <label for="radio">${this.textContent}</label>
+    `;
+  }
+};
+_internals3 = new WeakMap();
+GdsRadio.styles = unsafeCSS9(radio_default);
+GdsRadio.shadowRootOptions = {
+  mode: "open",
+  delegatesFocus: true
+};
+GdsRadio = __decorateClass([
+  customElement5("gds-radio")
+], GdsRadio);
+
+// libs/core/src/components/switch/switch.ts
+import { LitElement as LitElement11, html as html10, unsafeCSS as unsafeCSS10 } from "lit";
+import { customElement as customElement6 } from "lit/decorators.js";
+
+// libs/core/src/components/switch/switch.css
+var switch_default = `:host {
+  --gds-checkbox-bg-color: hsl(0, 0%, 100%);
+  --gds-checkbox-border-color: hsla(60, 4%, 20%, 1);
+  --gds-checkbox-border-width: 7.5px;
+  --gds-checkbox-border-radius: 200px;
+
+  --gds-checkbox-color-hover: hsla(60, 6%, 90%, 1);
+  --gds-checkbox-color-active: hsla(60, 4%, 85%, 1);
+
+  --gds-checkbox-checked-color: hsla(130, 40%, 30%, 1);
+  --gds-checkbox-color-tick: hsl(0, 0%, 100%);
+
+  --gds-switch-transition: all 548ms ease-in-out;
+  --gds-switch-animaton-on: 248ms;
+  --gds-switch-animaton-off: 248ms;
+  --gds-switch-animaton-transition: all 248ms cubic-bezier(0.2, 0.85, 0.32, 1.2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :host {
+    --gds-switch-transition: none;
+    --gds-switch-animaton-on: 0ms;
+    --gds-switch-animaton-off: 0ms;
+    --gds-switch-animaton-transition: none;
+  }
+}
+
+.gds-switch {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 64px;
+  height: 32px;
+  border-radius: var(--gds-checkbox-border-radius);
+  transition: var(--gds-switch-transition);
+  cursor: pointer;
+  background-color: var(--gds-checkbox-color-hover);
+
+  & input {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    position: relative;
+    margin: unset;
+    padding: unset;
+    box-sizing: border-box;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    background-color: var(--gds-checkbox-bg-color);
+    border: var(--gds-checkbox-border-width) solid
+      var(--gds-checkbox-border-color);
+    border-radius: var(--gds-checkbox-border-radius);
+    transition: var(--gds-switch-animaton-transition);
+
+    &:checked {
+      border-color: var(--gds-checkbox-checked-color);
+      animation: switch-on var(--gds-switch-animaton-on) forwards;
+    }
+
+    &:not(:checked) {
+      animation: switch-off var(--gds-switch-animaton-off) backwards;
+    }
+  }
+
+  &:has(input:checked) {
+    background-color: var(--gds-checkbox-checked-color);
+  }
+
+  &:has(input:disabled) {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+@keyframes switch-on {
+  to {
+    transform: translate3d(100%, 0, 0) scale(0.5);
+    width: 32px;
+    border-width: 0;
+  }
+}
+
+@keyframes switch-off {
+  from {
+    transform: translate3d(100%, 0, 0) scale(0.5);
+    width: 32px;
+    border-width: 0;
+  }
+  to {
+    transform: translate3d(0%, 0, 0) scale(1);
+    width: 32px;
+    border-width: 7.5px;
+  }
+}
+`;
+
+// libs/core/src/components/switch/switch.ts
+var _internals4;
+var GdsSwitch = class extends LitElement11 {
+  constructor() {
+    super();
+    // Private members
+    __privateAdd(this, _internals4, void 0);
+    this.inputElement = null;
+    this.exludeAttr = ["id", "label"];
+    __privateSet(this, _internals4, this.attachInternals());
+    constrainSlots(this);
+  }
+  reflectAttributesToInput() {
+    if (this.inputElement) {
+      const attributes = this.attributes;
+      for (let i = 0; i < attributes.length; i++) {
+        const attribute = attributes[i];
+        if (!this.exludeAttr.includes(attribute.name)) {
+          this.inputElement.setAttribute(attribute.name, attribute.value);
+        }
+      }
+    }
+  }
+  update(changedProperties) {
+    super.update(changedProperties);
+    if (!this.inputElement) {
+      this.inputElement = this.shadowRoot?.getElementById(
+        "switch"
+      );
+    }
+    this.reflectAttributesToInput();
+  }
+  render() {
+    return html10`
+      <label class="gds-switch">
+        <input id="switch" type="checkbox" />
+      </label>
+    `;
+  }
+};
+_internals4 = new WeakMap();
+GdsSwitch.styles = unsafeCSS10(switch_default);
+GdsSwitch.shadowRootOptions = {
+  mode: "open",
+  delegatesFocus: true
+};
+GdsSwitch = __decorateClass([
+  customElement6("gds-switch")
+], GdsSwitch);
+
 // libs/core/src/components/badge/badge.ts
-import { LitElement as LitElement8, html as html8, unsafeCSS as unsafeCSS8 } from "lit";
-import { customElement as customElement4, property as property8 } from "lit/decorators.js";
+import { LitElement as LitElement12, html as html11, unsafeCSS as unsafeCSS11 } from "lit";
+import { customElement as customElement7, property as property12 } from "lit/decorators.js";
 import { when as when4 } from "lit/directives/when.js";
 
 // libs/core/src/components/badge/style/badge.styles.css
@@ -3839,20 +4003,20 @@ var badge_styles_default = `@layer gds-badge, shell, tokens, a11y, variants, typ
 `;
 
 // libs/core/src/components/badge/badge.ts
-var _internals;
-var GdsBadge = class extends LitElement8 {
+var _internals5;
+var GdsBadge = class extends LitElement12 {
   constructor() {
     super();
     // Private members
-    __privateAdd(this, _internals, void 0);
+    __privateAdd(this, _internals5, void 0);
     this.variant = "";
     this.type = "";
     this.icon = "";
-    __privateSet(this, _internals, this.attachInternals());
+    __privateSet(this, _internals5, this.attachInternals());
     constrainSlots(this);
   }
   slotIcon() {
-    return html8` <slot name="icon" gds-allow="gds-icon"></slot> `;
+    return html11` <slot name="icon" gds-allow="gds-icon"></slot> `;
   }
   slotLabel() {
     const content = this.textContent?.trim() || "";
@@ -3860,9 +4024,9 @@ var GdsBadge = class extends LitElement8 {
     let label = content;
     if (this.type.toLowerCase() === "counter" && label.length > 4) {
       label = label.substring(0, 4);
-      return hasLabel ? html8`${label}` : "";
+      return hasLabel ? html11`${label}` : "";
     }
-    return hasLabel ? html8`<slot part="label" gds-allow="#text"></slot>` : "";
+    return hasLabel ? html11`<slot part="label" gds-allow="#text"></slot>` : "";
   }
   // slotLabel() {
   //   return this.textContent
@@ -3871,35 +4035,35 @@ var GdsBadge = class extends LitElement8 {
   // }
   render() {
     const hasIconSlot = this.querySelector('[slot="icon"]') !== null;
-    const content = html8`${when4(
+    const content = html11`${when4(
       hasIconSlot,
-      () => html8`<slot name="icon" gds-allow="gds-icon"></slot>`
+      () => html11`<slot name="icon" gds-allow="gds-icon"></slot>`
     )}${this.slotLabel()}`;
-    return html8`<div class="gds-badge">${content}</div>`;
+    return html11`<div class="gds-badge">${content}</div>`;
   }
 };
-_internals = new WeakMap();
-GdsBadge.styles = unsafeCSS8(badge_styles_default);
+_internals5 = new WeakMap();
+GdsBadge.styles = unsafeCSS11(badge_styles_default);
 GdsBadge.shadowRootOptions = {
   mode: "open",
   delegatesFocus: true
 };
 __decorateClass([
-  property8({ type: String, reflect: true, attribute: "variant" })
+  property12({ type: String, reflect: true, attribute: "variant" })
 ], GdsBadge.prototype, "variant", 2);
 __decorateClass([
-  property8({ type: String, reflect: true, attribute: "type" })
+  property12({ type: String, reflect: true, attribute: "type" })
 ], GdsBadge.prototype, "type", 2);
 __decorateClass([
-  property8({ type: String, reflect: true, attribute: "icon" })
+  property12({ type: String, reflect: true, attribute: "icon" })
 ], GdsBadge.prototype, "icon", 2);
 GdsBadge = __decorateClass([
-  customElement4("gds-badge")
+  customElement7("gds-badge")
 ], GdsBadge);
 
 // libs/core/src/components/tooltip/tooltip.ts
-import { LitElement as LitElement9, html as html9, unsafeCSS as unsafeCSS9 } from "lit";
-import { customElement as customElement5, property as property9 } from "lit/decorators.js";
+import { LitElement as LitElement13, html as html12, unsafeCSS as unsafeCSS12 } from "lit";
+import { customElement as customElement8, property as property13 } from "lit/decorators.js";
 
 // libs/core/src/components/tooltip/style/tooltip.styles.css
 var tooltip_styles_default = `@layer gds-tooltip, tokens, a11y, parts, position, trigger, keyframes;
@@ -4100,7 +4264,7 @@ var tooltip_styles_default = `@layer gds-tooltip, tokens, a11y, parts, position,
 `;
 
 // libs/core/src/components/tooltip/tooltip.ts
-var GdsTooltip = class extends LitElement9 {
+var GdsTooltip = class extends LitElement13 {
   constructor() {
     super(...arguments);
     this.open = false;
@@ -4108,7 +4272,7 @@ var GdsTooltip = class extends LitElement9 {
     this.position = null;
   }
   render() {
-    return html9`
+    return html12`
       <div 
         class="gds-tooltip" 
         content=${this.content}
@@ -4120,850 +4284,35 @@ var GdsTooltip = class extends LitElement9 {
     `;
   }
 };
-GdsTooltip.styles = unsafeCSS9(tooltip_styles_default);
+GdsTooltip.styles = unsafeCSS12(tooltip_styles_default);
 GdsTooltip.shadowRootOptions = {
   mode: "open",
   delegatesFocus: true
 };
 __decorateClass([
-  property9({ type: Boolean, reflect: true })
+  property13({ type: Boolean, reflect: true })
 ], GdsTooltip.prototype, "open", 2);
 __decorateClass([
-  property9({ type: String, reflect: true, attribute: "content" })
+  property13({ type: String, reflect: true, attribute: "content" })
 ], GdsTooltip.prototype, "content", 2);
 __decorateClass([
-  property9({ type: String, reflect: true, attribute: "position" })
+  property13({ type: String, reflect: true, attribute: "position" })
 ], GdsTooltip.prototype, "position", 2);
 GdsTooltip = __decorateClass([
-  customElement5("gds-tooltip")
+  customElement8("gds-tooltip")
 ], GdsTooltip);
 
-// libs/core/src/components/input/helper/helper.ts
-var _internals2;
-var GdsInputHelper = class extends LitElement10 {
-  constructor() {
-    super();
-    __privateAdd(this, _internals2, void 0);
-    this.isContentVisible = false;
-    this.helperTooltip = null;
-    this.helperLabel = null;
-    __privateSet(this, _internals2, this.attachInternals());
-    constrainSlots(this);
-  }
-  connectedCallback() {
-    super.connectedCallback();
-  }
-  /**
-   * Toggles the visibility of the content.
-   */
-  toggleContent() {
-    this.isContentVisible = !this.isContentVisible;
-  }
-  /**
-   * Returns the icon slot.
-   * @returns {TemplateResult} The icon slot.
-   */
-  slotIcon() {
-    const trailSlotContent = this.querySelector('[slot="action"]');
-    const slottedIcon = trailSlotContent?.querySelector(
-      '[slot="action"] gds-icon'
-    );
-    if (slottedIcon) {
-      if (this.isContentVisible) {
-        slottedIcon.setAttribute("name", "x");
-      } else {
-        slottedIcon.setAttribute("name", "info");
-      }
-    }
-    return this.helperTooltip == null ? html10`
-          <slot
-            name="action"
-            @click=${this.toggleContent}
-            gds-allow="gds-button"
-          ></slot>
-        ` : html10`
-          <gds-tooltip content="${this.helperTooltip}" position="up">
-            <slot
-              name="action"
-              @click=${this.toggleContent}
-              gds-allow="gds-button"
-            ></slot>
-          </gds-tooltip>
-        `;
-  }
-  /**
-   * Returns the badge slot.
-   * @returns {TemplateResult} The badge slot.
-   */
-  slotBadge() {
-    return html10` <slot name="badge" gds-allow="gds-badge"></slot> `;
-  }
-  /**
-   * Returns the content slot.
-   * @returns {TemplateResult} The content slot.
-   */
-  slotContent() {
-    const slotContentNotEmpty = this.textContent?.trim() && this.isContentVisible && this.textContent?.trim() !== " ";
-    return slotContentNotEmpty ? html10`
-          <div class="gds-input-helper-content">
-            <slot part="content" gds-allow="#text"></slot>
-          </div>
-        ` : null;
-  }
-  render() {
-    const getSlotContent = this.slotContent();
-    const hasContent = this.textContent?.trim() && this.textContent?.trim() !== " ";
-    const hasBadge = this.querySelector('[slot="badge"]') !== null;
-    const hasAction = this.querySelector('[slot="action"]') !== null;
-    const hasTooltip = this.helperTooltip !== null;
-    const hasLabel = this.helperLabel !== null;
-    return html10`
-      <div class="gds-input-helper">
-        <div class="gds-input-helper-header">
-          <!-- ${when5(
-      hasLabel,
-      () => html10`
-              <span
-                class="gds-input-helper-title ${hasContent ? "gds-input-helper-action" : ""}"
-                @click=${this.toggleContent}
-              >
-                ${this.helperLabel}
-              </span>
-            `
-    )} -->
-          ${when5(
-      hasLabel,
-      () => html10`
-              ${hasContent ? html10`
-                    <button
-                      class="gds-input-helper-title gds-input-helper-action"
-                      @click=${this.toggleContent}
-                    >
-                      ${this.helperLabel}
-                    </button>
-                  ` : html10`
-                    <span class="gds-input-helper-title">
-                      ${this.helperLabel}
-                    </span>
-                  `}
-            `
-    )}
-          <div class="gds-input-helper-options">
-            ${when5(hasBadge, () => this.slotBadge())}
-            ${when5(hasAction, () => this.slotIcon())}
-            ${when5(
-      !hasAction && !hasTooltip && hasContent,
-      () => html10`
-                <gds-button
-                  variant="circle tertiary"
-                  effect="ripple"
-                  size="small"
-                  slot="action"
-                  @click=${this.toggleContent}
-                >
-                  <gds-icon name="info" slot="circle" />
-                </gds-button>
-              `
-    )}
-            ${when5(
-      !hasAction && hasContent && hasTooltip,
-      () => html10`
-                <gds-tooltip content="${this.helperTooltip}" position="up">
-                  <gds-button
-                    variant="circle tertiary"
-                    effect="ripple"
-                    size="small"
-                    slot=""
-                    @click=${this.toggleContent}
-                  >
-                    <gds-icon name="info" slot="circle" />
-                  </gds-button>
-                </gds-tooltip>
-              `
-    )}
-          </div>
-        </div>
-        ${ifDefined2(getSlotContent)}
-      </div>
-    `;
-  }
-};
-_internals2 = new WeakMap();
-GdsInputHelper.styles = unsafeCSS10(helper_styles_default);
-GdsInputHelper.shadowRootOptions = {
-  mode: "open",
-  delegatesFocus: true
-};
-__decorateClass([
-  property10({ type: Boolean, reflect: true, attribute: "content-visible" })
-], GdsInputHelper.prototype, "isContentVisible", 2);
-__decorateClass([
-  property10({ type: String, reflect: true, attribute: "tooltip" })
-], GdsInputHelper.prototype, "helperTooltip", 2);
-__decorateClass([
-  property10({ type: String, reflect: true, attribute: "label" })
-], GdsInputHelper.prototype, "helperLabel", 2);
-GdsInputHelper = __decorateClass([
-  customElement6("gds-input-helper")
-], GdsInputHelper);
-
-// libs/core/src/components/input/checkbox/checkbox.ts
-import { LitElement as LitElement11, html as html11, unsafeCSS as unsafeCSS11 } from "lit";
-import { customElement as customElement7 } from "lit/decorators.js";
-
-// libs/core/src/components/input/checkbox/checkbox.css
-var checkbox_default = `:host {
-  --gds-checkbox-bg-color: hsl(0, 0%, 100%);
-  --gds-checkbox-border-color: hsla(60, 4%, 50%, 1);
-  --gds-checkbox-border-width: 2px;
-  --gds-checkbox-border-radius: 4px;
-
-  --gds-checkbox-color-hover: hsla(60, 6%, 90%, 1);
-  --gds-checkbox-color-active: hsla(60, 4%, 85%, 1);
-
-  --gds-checkbox-checked-color: hsla(60, 4%, 20%, 1);
-  --gds-checkbox-color-tick: hsl(0, 0%, 100%);
-}
-
-.gds-checkbox {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: calc(var(--gds-checkbox-border-radius) * 2);
-  transition: all 248ms ease-in-out;
-  cursor: pointer;
-
-  & input {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    position: relative;
-    margin: unset;
-    padding: unset;
-    box-sizing: border-box;
-    cursor: pointer;
-    aspect-ratio: 1/1;
-    width: 16px;
-    height: 16px;
-    background-color: var(--gds-checkbox-bg-color);
-    border: var(--gds-checkbox-border-width) solid
-      var(--gds-checkbox-border-color);
-    border-radius: var(--gds-checkbox-border-radius);
-    transition: all 248ms cubic-bezier(0.2, 0.85, 0.32, 1.2);
-
-    &::after {
-      content: '';
-      width: 5px;
-      height: 8px;
-      border: var(--gds-checkbox-border-width) solid
-        var(--gds-checkbox-color-tick);
-      border-top: 0;
-      border-left: 0;
-      rotate: 43deg;
-      inset: 1px 0 0 3.5px;
-      position: absolute;
-      pointer-events: none;
-      box-sizing: border-box;
-      transition: all 248ms cubic-bezier(0.2, 0.85, 0.32, 1.2);
-      scale: 0.8;
-      opacity: 0;
-    }
-
-    &:checked {
-      color: var(--gds-checkbox-checked-color-tick);
-      border-color: var(--gds-checkbox-checked-color);
-      background-color: var(--gds-checkbox-checked-color);
-
-      &::after {
-        scale: 1;
-        opacity: 1;
-      }
-    }
-
-    &[indeterminate],
-    &:indeterminate {
-      &::after {
-        border-top: 0;
-        border-left: 0;
-        border-radius: 0;
-        width: 8px;
-        height: var(--gds-checkbox-border-width);
-        inset: 5px 0px 0px 2px;
-        rotate: 0deg;
-        opacity: 1;
-        scale: 1;
-      }
-    }
-
-    &:disabled {
-      cursor: not-allowed;
-      opacity: 0.5;
-    }
-  }
-
-  &:hover:has(input:not([disabled])) {
-    background-color: var(--gds-checkbox-color-hover);
-  }
-
-  &:active:has(input:not([disabled])) {
-    background-color: var(--gds-checkbox-color-active);
-    .gds-checkbox-core {
-      border-color: var(--gds-checkbox-checked-color);
-    }
-  }
-
-  &:has(input:checked) {
-    background-color: var(--gds-checkbox-color-hover);
-  }
-
-  &:has(input:disabled) {
-    cursor: not-allowed;
-  }
-
-  /* Invalid state */
-
-  &:has(input:invalid) {
-    --gds-checkbox-bg-color: hsla(13, 75%, 95%, 1);
-    --gds-checkbox-border-color: hsla(9, 75%, 38%, 1);
-    --gds-checkbox-color-hover: hsla(12, 75%, 91%, 1);
-    --gds-checkbox-color-active: hsla(12, 78%, 86%, 1);
-    --gds-checkbox-checked-color: hsla(9, 75%, 38%, 1);
-    --gds-checkbox-color-tick: hsla(0, 0%, 100%, 1);
-
-    & input {
-      &::after {
-        border-color: var(--gds-checkbox-color-tick);
-      }
-
-      &:checked {
-        color: var(--gds-checkbox-checked-color-tick);
-        border-color: var(--gds-checkbox-checked-color);
-        background-color: var(--gds-checkbox-checked-color);
-      }
-    }
-
-    &:hover:has(input:not([disabled])) {
-      background-color: var(--gds-checkbox-color-hover);
-    }
-
-    &:active:has(input:not([disabled])) {
-      background-color: var(--gds-checkbox-color-active);
-      .gds-checkbox-core {
-        border-color: var(--gds-checkbox-checked-color);
-      }
-    }
-
-    &:has(input:checked) {
-      background-color: var(--gds-checkbox-color-hover);
-    }
-  }
-}
-`;
-
-// libs/core/src/components/input/checkbox/checkbox.ts
-var _internals3;
-var GdsCheckbox = class extends LitElement11 {
-  constructor() {
-    super();
-    // Private members
-    __privateAdd(this, _internals3, void 0);
-    this.inputElement = null;
-    this.exludeAttr = ["id", "label"];
-    __privateSet(this, _internals3, this.attachInternals());
-    constrainSlots(this);
-  }
-  reflectAttributesToInput() {
-    if (this.inputElement) {
-      const attributes = this.attributes;
-      for (let i = 0; i < attributes.length; i++) {
-        const attribute = attributes[i];
-        if (!this.exludeAttr.includes(attribute.name)) {
-          this.inputElement.setAttribute(attribute.name, attribute.value);
-        }
-      }
-    }
-  }
-  update(changedProperties) {
-    super.update(changedProperties);
-    if (!this.inputElement) {
-      this.inputElement = this.shadowRoot?.getElementById(
-        "checkbox"
-      );
-    }
-    this.reflectAttributesToInput();
-  }
-  render() {
-    return html11`
-      <label class="gds-checkbox">
-        <input id="checkbox" type="checkbox" />
-      </label>
-    `;
-  }
-};
-_internals3 = new WeakMap();
-GdsCheckbox.styles = unsafeCSS11(checkbox_default);
-GdsCheckbox.shadowRootOptions = {
-  mode: "open",
-  delegatesFocus: true
-};
-GdsCheckbox = __decorateClass([
-  customElement7("gds-checkbox")
-], GdsCheckbox);
-
-// libs/core/src/components/input/radio/radio.ts
-import { LitElement as LitElement13, html as html13, unsafeCSS as unsafeCSS13 } from "lit";
-import { customElement as customElement9 } from "lit/decorators.js";
-
-// libs/core/src/components/input/radio/radio.css
-var radio_default = `:host {
-  --gds-checkbox-bg-color: hsl(0, 0%, 100%);
-  --gds-checkbox-border-color: hsla(60, 4%, 50%, 1);
-  --gds-checkbox-border-width: 1px;
-  --gds-checkbox-border-radius: 200px;
-
-  --gds-checkbox-color-hover: hsla(60, 6%, 90%, 1);
-  --gds-checkbox-color-active: hsla(60, 4%, 85%, 1);
-
-  --gds-checkbox-checked-color: hsla(60, 4%, 20%, 1);
-  --gds-checkbox-color-tick: hsl(0, 0%, 100%);
-
-  --gds-radio-transition: all 248ms ease-in-out;
-  --gds-radio-transition-input: all 248ms cubic-bezier(0.2, 0.85, 0.32, 1.2);
-}
-
-@media (prefers-color-scheme: dark) {
-  :host {
-    --gds-dark: none;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  :host {
-    --gds-radio-transition: none;
-    --gds-radio-transition-input: none;
-  }
-}
-
-@media (prefers-reduced-transparency: reduce) {
-  :host {
-    --gds-input-transparency: 1;
-  }
-}
-
-@media (prefers-contrast: more) {
-  :host {
-    --gds-input-color-bg: hsla(60, 4%, 96%, 1);
-    --gds-input-color-outline-alpha: 0%;
-  }
-}
-
-.gds-radio {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: var(--gds-checkbox-border-radius);
-  transition: var(--gds-radio-transition);
-  cursor: pointer;
-
-  & input {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    position: relative;
-    margin: unset;
-    padding: unset;
-    box-sizing: border-box;
-    cursor: pointer;
-    aspect-ratio: 1/1;
-    width: 16px;
-    height: 16px;
-    background-color: var(--gds-checkbox-bg-color);
-    border: var(--gds-checkbox-border-width) solid
-      var(--gds-checkbox-border-color);
-    border-radius: var(--gds-checkbox-border-radius);
-    transition: var(--gds-radio-transition-input);
-
-    &:checked {
-      border-color: var(--gds-checkbox-checked-color);
-      border-width: 4px;
-    }
-
-    &[indeterminate],
-    &:indeterminate {
-      &::after {
-        border-top: 0;
-        border-left: 0;
-        border-radius: 0;
-        width: 8px;
-        height: var(--gds-checkbox-border-width);
-        inset: 5px 0px 0px 2px;
-        rotate: 0deg;
-        opacity: 1;
-        scale: 1;
-      }
-    }
-
-    &:disabled {
-      cursor: not-allowed;
-      opacity: 0.5;
-    }
-  }
-
-  &:hover:has(input:not([disabled])) {
-    background-color: var(--gds-checkbox-color-hover);
-  }
-
-  &:active:has(input:not([disabled])) {
-    background-color: var(--gds-checkbox-color-active);
-    .gds-checkbox-core {
-      border-color: var(--gds-checkbox-checked-color);
-    }
-  }
-
-  &:has(input:checked) {
-    background-color: var(--gds-checkbox-color-hover);
-  }
-
-  &:has(input:disabled) {
-    cursor: not-allowed;
-  }
-
-  /* Invalid state */
-
-  &:has(input:invalid) {
-    --gds-checkbox-bg-color: hsla(13, 75%, 95%, 1);
-    --gds-checkbox-border-color: hsla(9, 75%, 38%, 1);
-    --gds-checkbox-color-hover: hsla(12, 75%, 91%, 1);
-    --gds-checkbox-color-active: hsla(12, 78%, 86%, 1);
-    --gds-checkbox-checked-color: hsla(9, 75%, 38%, 1);
-    --gds-checkbox-color-tick: hsla(0, 0%, 100%, 1);
-
-    & input {
-      &::after {
-        border-color: var(--gds-checkbox-color-tick);
-      }
-
-      &:checked {
-        color: var(--gds-checkbox-checked-color-tick);
-        border-color: var(--gds-checkbox-checked-color);
-        background-color: var(--gds-checkbox-checked-color);
-      }
-    }
-
-    &:hover:has(input:not([disabled])) {
-      background-color: var(--gds-checkbox-color-hover);
-    }
-
-    &:active:has(input:not([disabled])) {
-      background-color: var(--gds-checkbox-color-active);
-      .gds-checkbox-core {
-        border-color: var(--gds-checkbox-checked-color);
-      }
-    }
-
-    &:has(input:checked) {
-      background-color: var(--gds-checkbox-color-hover);
-    }
-  }
-}
-
-.gds-radio-group {
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  border: 0;
-  padding: 0;
-}
-`;
-
-// libs/core/src/components/input/radio/radio-group.ts
-import { LitElement as LitElement12, html as html12 } from "lit";
-import { customElement as customElement8, property as property12 } from "lit/decorators.js";
-var _internals4;
-var GdsRadioGroup = class extends LitElement12 {
-  constructor() {
-    super();
-    // Private members
-    __privateAdd(this, _internals4, void 0);
-    this.label = "Label";
-    this.inputElement = null;
-    this.exludeAttr = ["id", "label"];
-    __privateSet(this, _internals4, this.attachInternals());
-    constrainSlots(this);
-  }
-  reflectAttributesToInput() {
-    if (this.inputElement) {
-      const attributes = this.attributes;
-      for (let i = 0; i < attributes.length; i++) {
-        const attribute = attributes[i];
-        if (!this.exludeAttr.includes(attribute.name)) {
-          this.inputElement.setAttribute(attribute.name, attribute.value);
-        }
-      }
-    }
-  }
-  update(changedProperties) {
-    super.update(changedProperties);
-    if (!this.inputElement) {
-      this.inputElement = this.shadowRoot?.getElementById(
-        "radio"
-      );
-    }
-    this.reflectAttributesToInput();
-  }
-  render() {
-    return html12`
-      <fieldset
-        class="gds-radio-group"
-        role="radiogroup"
-        aria-labelledby="label"
-      >
-        <label>${this.label}</label>
-        <slot></slot>
-      </fieldset>
-    `;
-  }
-};
-_internals4 = new WeakMap();
-// static styles = unsafeCSS(styles)
-GdsRadioGroup.shadowRootOptions = {
-  mode: "open",
-  delegatesFocus: true
-};
-__decorateClass([
-  property12({ type: String, reflect: true, attribute: "label" })
-], GdsRadioGroup.prototype, "label", 2);
-GdsRadioGroup = __decorateClass([
-  customElement8("gds-radio-group")
-], GdsRadioGroup);
-
-// libs/core/src/components/input/radio/radio.ts
-var _internals5;
-var GdsRadio = class extends LitElement13 {
-  constructor() {
-    super();
-    // Private members
-    __privateAdd(this, _internals5, void 0);
-    this.inputElement = null;
-    this.exludeAttr = ["id", "label"];
-    __privateSet(this, _internals5, this.attachInternals());
-    constrainSlots(this);
-  }
-  reflectAttributesToInput() {
-    if (this.inputElement) {
-      const attributes = this.attributes;
-      for (let i = 0; i < attributes.length; i++) {
-        const attribute = attributes[i];
-        if (!this.exludeAttr.includes(attribute.name)) {
-          this.inputElement.setAttribute(attribute.name, attribute.value);
-        }
-      }
-    }
-  }
-  update(changedProperties) {
-    super.update(changedProperties);
-    if (!this.inputElement) {
-      this.inputElement = this.shadowRoot?.getElementById(
-        "radio"
-      );
-    }
-    this.reflectAttributesToInput();
-  }
-  handleClick() {
-    const radioGroup = this.closest("gds-radio-group");
-    if (radioGroup instanceof GdsRadioGroup) {
-      radioGroup.selectedValue = this.value;
-    }
-  }
-  render() {
-    return html13`
-      <label class="gds-radio">
-        <input id="radio" type="radio" />
-      </label>
-      <label for="radio">${this.textContent}</label>
-    `;
-  }
-};
-_internals5 = new WeakMap();
-GdsRadio.styles = unsafeCSS13(radio_default);
-GdsRadio.shadowRootOptions = {
-  mode: "open",
-  delegatesFocus: true
-};
-GdsRadio = __decorateClass([
-  customElement9("gds-radio")
-], GdsRadio);
-
-// libs/core/src/components/input/switch/switch.ts
-import { LitElement as LitElement14, html as html14, unsafeCSS as unsafeCSS14 } from "lit";
-import { customElement as customElement10 } from "lit/decorators.js";
-
-// libs/core/src/components/input/switch/switch.css
-var switch_default = `:host {
-  --gds-checkbox-bg-color: hsl(0, 0%, 100%);
-  --gds-checkbox-border-color: hsla(60, 4%, 20%, 1);
-  --gds-checkbox-border-width: 7.5px;
-  --gds-checkbox-border-radius: 200px;
-
-  --gds-checkbox-color-hover: hsla(60, 6%, 90%, 1);
-  --gds-checkbox-color-active: hsla(60, 4%, 85%, 1);
-
-  --gds-checkbox-checked-color: hsla(130, 40%, 30%, 1);
-  --gds-checkbox-color-tick: hsl(0, 0%, 100%);
-
-  --gds-switch-transition: all 548ms ease-in-out;
-  --gds-switch-animaton-on: 248ms;
-  --gds-switch-animaton-off: 248ms;
-  --gds-switch-animaton-transition: all 248ms cubic-bezier(0.2, 0.85, 0.32, 1.2);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  :host {
-    --gds-switch-transition: none;
-    --gds-switch-animaton-on: 0ms;
-    --gds-switch-animaton-off: 0ms;
-    --gds-switch-animaton-transition: none;
-  }
-}
-
-.gds-switch {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  width: 64px;
-  height: 32px;
-  border-radius: var(--gds-checkbox-border-radius);
-  transition: var(--gds-switch-transition);
-  cursor: pointer;
-  background-color: var(--gds-checkbox-color-hover);
-
-  & input {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    position: relative;
-    margin: unset;
-    padding: unset;
-    box-sizing: border-box;
-    cursor: pointer;
-    width: 32px;
-    height: 32px;
-    background-color: var(--gds-checkbox-bg-color);
-    border: var(--gds-checkbox-border-width) solid
-      var(--gds-checkbox-border-color);
-    border-radius: var(--gds-checkbox-border-radius);
-    transition: var(--gds-switch-animaton-transition);
-
-    &:checked {
-      border-color: var(--gds-checkbox-checked-color);
-      animation: switch-on var(--gds-switch-animaton-on) forwards;
-    }
-
-    &:not(:checked) {
-      animation: switch-off var(--gds-switch-animaton-off) backwards;
-    }
-  }
-
-  &:has(input:checked) {
-    background-color: var(--gds-checkbox-checked-color);
-  }
-
-  &:has(input:disabled) {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-}
-
-@keyframes switch-on {
-  to {
-    transform: translate3d(100%, 0, 0) scale(0.5);
-    width: 32px;
-    border-width: 0;
-  }
-}
-
-@keyframes switch-off {
-  from {
-    transform: translate3d(100%, 0, 0) scale(0.5);
-    width: 32px;
-    border-width: 0;
-  }
-  to {
-    transform: translate3d(0%, 0, 0) scale(1);
-    width: 32px;
-    border-width: 7.5px;
-  }
-}
-`;
-
-// libs/core/src/components/input/switch/switch.ts
-var _internals6;
-var GdsSwitch = class extends LitElement14 {
-  constructor() {
-    super();
-    // Private members
-    __privateAdd(this, _internals6, void 0);
-    this.inputElement = null;
-    this.exludeAttr = ["id", "label"];
-    __privateSet(this, _internals6, this.attachInternals());
-    constrainSlots(this);
-  }
-  reflectAttributesToInput() {
-    if (this.inputElement) {
-      const attributes = this.attributes;
-      for (let i = 0; i < attributes.length; i++) {
-        const attribute = attributes[i];
-        if (!this.exludeAttr.includes(attribute.name)) {
-          this.inputElement.setAttribute(attribute.name, attribute.value);
-        }
-      }
-    }
-  }
-  update(changedProperties) {
-    super.update(changedProperties);
-    if (!this.inputElement) {
-      this.inputElement = this.shadowRoot?.getElementById(
-        "switch"
-      );
-    }
-    this.reflectAttributesToInput();
-  }
-  render() {
-    return html14`
-      <label class="gds-switch">
-        <input id="switch" type="checkbox" />
-      </label>
-    `;
-  }
-};
-_internals6 = new WeakMap();
-GdsSwitch.styles = unsafeCSS14(switch_default);
-GdsSwitch.shadowRootOptions = {
-  mode: "open",
-  delegatesFocus: true
-};
-GdsSwitch = __decorateClass([
-  customElement10("gds-switch")
-], GdsSwitch);
-
 // libs/core/src/components/context-menu/context-menu.ts
-import { LitElement as LitElement16 } from "lit";
+import { LitElement as LitElement15 } from "lit";
 import { msg as msg4 } from "@lit/localize";
 import { classMap as classMap4 } from "lit-html/directives/class-map.js";
-import { property as property15, queryAsync as queryAsync3 } from "lit/decorators.js";
+import { property as property14, queryAsync as queryAsync3 } from "lit/decorators.js";
 
 // libs/core/src/primitives/menu/menu.ts
-import { LitElement as LitElement15 } from "lit";
+import { LitElement as LitElement14 } from "lit";
 import { createRef as createRef3, ref as ref3 } from "lit/directives/ref.js";
 var _slotRef2;
-var GdsMenu = class extends LitElement15 {
+var GdsMenu = class extends LitElement14 {
   constructor() {
     super();
     __privateAdd(this, _slotRef2, createRef3());
@@ -4998,7 +4347,7 @@ GdsMenu = __decorateClass([
 
 // libs/core/src/components/context-menu/context-menu.ts
 var _handleItemClick, handleItemClick_fn;
-var GdsContextMenu = class extends LitElement16 {
+var GdsContextMenu = class extends LitElement15 {
   constructor() {
     super();
     __privateAdd(this, _handleItemClick);
@@ -5059,16 +4408,16 @@ GdsContextMenu.shadowRootOptions = {
   delegatesFocus: true
 };
 __decorateClass([
-  property15({ type: Boolean, reflect: true })
+  property14({ type: Boolean, reflect: true })
 ], GdsContextMenu.prototype, "open", 2);
 __decorateClass([
-  property15()
+  property14()
 ], GdsContextMenu.prototype, "buttonLabel", 2);
 __decorateClass([
-  property15()
+  property14()
 ], GdsContextMenu.prototype, "label", 2);
 __decorateClass([
-  property15()
+  property14()
 ], GdsContextMenu.prototype, "placement", 2);
 __decorateClass([
   queryAsync3("#trigger")
@@ -5078,9 +4427,9 @@ GdsContextMenu = __decorateClass([
 ], GdsContextMenu);
 
 // libs/core/src/primitives/menu/menu-item.ts
-import { LitElement as LitElement17 } from "lit";
+import { LitElement as LitElement16 } from "lit";
 var _handleOnClick;
-var GdsMenuItem = class extends Focusable(LitElement17) {
+var GdsMenuItem = class extends Focusable(LitElement16) {
   constructor() {
     super(...arguments);
     __privateAdd(this, _handleOnClick, () => {
@@ -5118,10 +4467,8 @@ export {
   GdsCheckbox,
   GdsContextMenu,
   GdsDropdown,
-  GdsForm,
   GdsIcon,
   GdsInput,
-  GdsInputHelper,
   GdsMenuItem,
   GdsOption,
   GdsRadio,
