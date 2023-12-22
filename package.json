@@ -32,6 +32,7 @@
     "next": "^14.0.3",
     "next-contentlayer": "^0.3.4",
     "next-themes": "^0.2.1",
+    "novel": "^0.1.22",
     "playground-elements": "^0.18.1",
     "react": "^18",
     "react-dom": "^18",

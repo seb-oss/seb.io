@@ -65,11 +65,14 @@ export default function Cmdk2({
       preventDefault: () => void
     }) => {
       const target = e.target
+      const shouldIgnoreSlash = target.closest(".editor")
       const inputElements = Array.from(
-        document.querySelectorAll("input--DIS, textarea--DIS")
+        document.querySelectorAll("div.editor, input--DIS, textarea--DIS")
       )
       if (
-        (e.key === "/" && inputElements.includes(target) === false) ||
+        (e.key === "/" &&
+          !shouldIgnoreSlash &&
+          inputElements.includes(target) === false) ||
         ((e.keyCode === 191 || e.keyCode === 75) && (e.metaKey || e.ctrlKey))
       ) {
         e.stopPropagation()

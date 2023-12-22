@@ -42,10 +42,15 @@ export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
       preventDefault: () => void
     }) => {
       const target = e.target
+      const shouldIgnoreSlash = target.closest(".editor")
       const inputElements = Array.from(
         document.querySelectorAll("input, textarea")
       )
-      if (e.key === "m" && inputElements.includes(target) === false) {
+      if (
+        e.key === "m" &&
+        !shouldIgnoreSlash &&
+        inputElements.includes(target) === false
+      ) {
         e.stopPropagation()
         toggleNav()
       }
