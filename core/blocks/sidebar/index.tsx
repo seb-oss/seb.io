@@ -62,7 +62,7 @@ export default function Sidebar({
       <details open={path.includes("/component")}>
         <summary>
           <Link
-            className={path.includes("/component") ? "active" : ""}
+            className={path === "/components" ? "active" : ""}
             href="/components"
             onClick={checkIfMenuShouldClose}
           >
@@ -79,7 +79,7 @@ export default function Sidebar({
       <details open={path.includes("/foundation")}>
         <summary>
           <Link
-            className={path.includes("/foundation") ? "active" : ""}
+            className={path === "/foundation" ? "active" : ""}
             href="/foundation"
             onClick={checkIfMenuShouldClose}
           >

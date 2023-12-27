@@ -21,7 +21,6 @@
           --_inline-padding: 2ch;
           align-items: center;
           display: flex;
-          transition: var(--transition);
           border-left: 1px solid transparent;
           margin-left: -1px;
           color: var(--gds-sys-color-content-content-secondary);
@@ -53,7 +52,8 @@
           &[data-level="4"] {
             margin-left: 2.5px;
             padding-left: var(--_inline-padding);
-            border-left: 1px solid var(--gds-sys-color-state-layers-state-black);
+            border-left: 1px solid
+              color-mix(in srgb, currentColor, transparent 80%);
             padding-block: 8px;
           }
 

@@ -102,6 +102,7 @@
         align-items: center;
 
         &:hover,
+        /* &.active:not(summary > a) > { */
         &.active {
           text-decoration: underline solid 1px;
         }
