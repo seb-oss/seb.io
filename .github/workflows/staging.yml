@@ -1,6 +1,4 @@
 # A workflow for deploying the seb.io site to a staging environment.
-#
-#
 name: Deploy to staging
 
 on:
@@ -87,20 +85,20 @@ jobs:
       CI_COMMIT_MESSAGE: Continuous Integration Build Artifacts
       CI_COMMIT_AUTHOR: Continuous Integration
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          repository: sebgroup/seb.io-staging
-          ref: main
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        repository: sebgroup/seb.io-staging
+        ref: main
 
-      - name: Get build artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: artifact
+    - name: Get build artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: artifact
 
-      -name: Push changes
-        run: |
-          git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
-          git config --global user.email "username@users.noreply.github.com"
-          git commit -a -m "${{ env.CI_COMMIT_MESSAGE }}"
-          git push
+    -name: Push changes
+      run: |
+        git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
+        git config --global user.email "username@users.noreply.github.com"
+        git commit -a -m "${{ env.CI_COMMIT_MESSAGE }}"
+        git push
