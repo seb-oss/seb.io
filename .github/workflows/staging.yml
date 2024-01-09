@@ -81,6 +81,7 @@ jobs:
           path: ./out/*
   deploy:
     runs-on: ubuntu-latest
+    needs: build
     env:
       CI_COMMIT_MESSAGE: Continuous Integration Build Artifacts
       CI_COMMIT_AUTHOR: Continuous Integration
@@ -90,6 +91,7 @@ jobs:
       with:
         repository: sebgroup/seb.io-staging
         ref: main
+        token: ${{ secrets.GH_TOKEN }}
 
     - name: Get build artifact
       uses: actions/download-artifact@v2
