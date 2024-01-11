@@ -26,7 +26,7 @@ const nextConfig = {
   experimental: {
     esmExternals: "loose",
   },
-  output: "export",
+  // output: "export",
 }
 
 module.exports = withContentlayer(nextConfig)
