@@ -84,10 +84,6 @@ export default function Home() {
             </span>
             <Chevron />
           </Link>
-          <Link className="cta-home" href="/">
-            <span data-caption="Designer">Get access to Figma</span>
-            <Chevron />
-          </Link>
         </div>
       </section>
       <section className="home-quote">
