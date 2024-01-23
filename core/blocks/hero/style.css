@@ -9,6 +9,10 @@
   justify-content: flex-end;
   padding-block-end: 0;
 
+  @media screen and (min-height: 2000px) and (orientation: portrait) {
+    min-height: 50vh;
+  }
+
   h1 {
     font-size: 2rem;
     line-height: 1.12;
