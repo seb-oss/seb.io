@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://seb.io"),
   title: "Green Design System",
   description:
-    "Green design system is more than a polished user interface, its places the user at the very forefront of design, usability and accessibility.",
+    "Green Design System is more than a polished user interface, its places the user at the very forefront of design, usability and accessibility.",
   alternates: {
     canonical: "/",
   },
@@ -51,7 +51,7 @@ export default function Home() {
     <div className="layout core home">
       <Hero
         heading="Designed to bring unity to our digital experiences."
-        preamble="Green design system is more than a polished user interface, its places the user at the very forefront of design, usability and accessibility."
+        preamble="Green Design System is more than a polished user interface, its places the user at the very forefront of design, usability and accessibility."
       />
       <section className="home-components">
         <h2>

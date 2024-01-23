@@ -212,6 +212,23 @@
             }
           }
 
+          ol {
+            list-style: inside;
+            padding-top: 24px;
+            counter-reset: list;
+
+            li {
+              position: relative;
+              counter-increment: list;
+              display: flex;
+              gap: 1ch;
+
+              &::before {
+                content: counter(list);
+              }
+            }
+          }
+
           img {
             border-radius: 8px;
             margin-block: 2ex;

@@ -205,6 +205,38 @@
                 line-height: 1.25 !important;
               }
             }
+
+            ul {
+              list-style: inside;
+
+              li {
+                padding-left: 2ch;
+                position: relative;
+
+                &::before {
+                  content: "•";
+                  position: absolute;
+                  left: 0;
+                }
+              }
+            }
+
+            ol {
+              list-style: inside;
+              counter-reset: list;
+
+              li {
+                padding-left: 2ch;
+                position: relative;
+                counter-increment: list;
+
+                &::before {
+                  content: counter(list);
+                  position: absolute;
+                  left: 0;
+                }
+              }
+            }
           }
 
           &.\34 04 {
