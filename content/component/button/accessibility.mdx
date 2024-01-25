@@ -10,6 +10,7 @@ All values we measure needs to pass in order to giva a check on the accessibilit
 ### Review
 **Review button, webcomponent 2023-12-11 - FAILED**
 
+{/* 
 | Values to measure      | Status       |
 | ---------------------- | ------------ |
 | Contrast               | Passed       |
@@ -18,6 +19,7 @@ All values we measure needs to pass in order to giva a check on the accessibilit
 | Darkmode               | Passed       |
 | Focus                  | Passed       |
 | Screen reader          | Passed       |
+ */}
 
 ### Important considerations
 
@@ -53,8 +55,18 @@ All values we measure needs to pass in order to giva a check on the accessibilit
 </Col>
 </Row>
 
-Code-example....
+``` html
+<!-- gds-button with visible text. Visible text acts as label by default. -->
+<gds-button>Label text</gds-button>
 
+<!-- gds-button with unique label. Label attribute overrides visible text. -->
+<gds-button label=”Apply for A”>Apply</gds-button>
+
+<!-- gds-button with only visible icon. Label attribute must be provided,
+     since there is no visible text. -->
+<gds-button label=”Close menu”>   <gds-icon name=”x”></gds-icon> </gds-button>
+```
 ### Resources
 
-## Do’s and dont’s
+- link 1
+- link 2
