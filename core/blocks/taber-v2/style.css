@@ -39,12 +39,13 @@
     border-bottom: 2px solid transparent;
     /* border-radius: 100px; */
 
-    &.active {
+    &.active,
+    &:hover {
       border-bottom-color: var(--gds-sys-color-primary-primary);
     }
 
-    &:hover:not(.active) {
-      border-bottom-color: transparent;
+    &:hover {
+      background-color: var(--gds-sys-color-container-container-dim1);
     }
 
     svg {
