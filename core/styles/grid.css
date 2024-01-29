@@ -1,0 +1,28 @@
+gds-grid {
+  display: flex;
+
+  &[columns="1"] {
+    --gds-grid-col: repeat(1, 1fr);
+  }
+  &[columns="2"] {
+    --gds-grid-col: repeat(2, 1fr);
+  }
+  &[columns="3"] {
+    --gds-grid-col: repeat(3, 1fr);
+  }
+  &[columns="4"] {
+    --gds-grid-col: repeat(4, 1fr);
+  }
+  &[columns="5"] {
+    --gds-grid-col: repeat(5, 1fr);
+  }
+  &[columns="6"] {
+    --gds-grid-col: repeat(6, 1fr);
+  }
+  &[columns="7"] {
+    --gds-grid-col: repeat(7, 1fr);
+  }
+  &[columns="8"] {
+    --gds-grid-col: repeat(8, 1fr);
+  }
+}
