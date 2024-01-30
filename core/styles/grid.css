@@ -26,3 +26,10 @@ gds-grid {
     --gds-grid-col: repeat(8, 1fr);
   }
 }
+
+gds-grid-test {
+  display: grid;
+  grid-row: span 4;
+  /* Using sub grid  */
+  grid-template-rows: subgrid;
+}
