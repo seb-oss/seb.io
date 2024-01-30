@@ -106,9 +106,9 @@ export default function ComponentLayout({
           <div dangerouslySetInnerHTML={{ __html: figma_hero_svg.svg }} />
         </Pattern>
       </header>
+      <Taber component={url_path} />
       <article>
         <div className="content">
-          <Taber component={url_path} />
           {children}
         </div>
         {tocComponent}
