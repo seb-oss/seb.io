@@ -3,12 +3,14 @@ declare namespace JSX {
       columns?: string;
       class?: string;
       debug?: boolean;
-      // Add any other props you want to allow here
+      "gap-v"?: string;
+      "gap-h"?: string;
+      padding?: string;
     }
   
     interface GdsCellProps extends React.HTMLAttributes<HTMLElement> {
       span?: string;
-      // Add the props you want to allow for gds-cell here
+      padding?: string;
     }
   
     interface IntrinsicElements {

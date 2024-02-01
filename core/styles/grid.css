@@ -4,21 +4,21 @@
   --gds-grid-col-end: -1;
   --gds-grid-col-gap: calc(1lh / 2);
   --gds-grid-row-gap: calc(1lh / 2);
+  --gds-gap-s: 20px;
+  --gds-gap-m: 40px;
+  --gds-gap-l: 60px;
 }
 
 gds-grid {
   display: grid;
-  grid-template-columns: var(--gds-grid-col);
   width: 100%;
+  grid-template-columns: var(--gds-grid-col);
+  padding: var(--gds-grid-pad-block);
 }
 
 gds-grid {
   grid-column-gap: var(--gds-grid-col-gap);
   grid-row-gap: var(--gds-grid-row-gap);
-
-  &[columns="8"] {
-    --gds-grid-col: repeat(8, 1fr);
-  }
 
   & > gds-cell {
     display: block;
@@ -26,6 +26,30 @@ gds-grid {
     appearance: none;
     -webkit-appearance: none;
   }
+}
+
+/* Spacings and gaps  */
+/* prettier-ignore */
+gds-grid {
+  &[gap-h="small"]      { --gds-grid-col-gap: var(--gds-gap-s) }
+  &[gap-h="medium"]     { --gds-grid-col-gap: var(--gds-gap-m) }
+  &[gap-h="large"]      { --gds-grid-col-gap: var(--gds-gap-l) }
+  &[gap-v="small"]      { --gds-grid-row-gap: var(--gds-gap-s) }
+  &[gap-v="medium"]     { --gds-grid-row-gap: var(--gds-gap-m) }
+  &[gap-v="large"]      { --gds-grid-row-gap: var(--gds-gap-l) }
+  &[padding="small"]    { padding: var(--gds-gap-s) }
+  &[padding="medium"]   { padding: var(--gds-gap-m) }
+  &[padding="large"]    { padding: var(--gds-gap-l) }
+}
+
+/* prettier-ignore */
+gds-grid > gds-cell {
+  &[padding="small"]    { padding: var(--gds-gap-s) }
+  &[padding="medium"]   { padding: var(--gds-gap-m) }
+  &[padding="large"]    { padding: var(--gds-gap-l) }
+
+  /* Add centering vercial and horizontal options */
+  /* Add aspect ratio options */
 }
 
 /* prettier-ignore */
@@ -131,8 +155,66 @@ gds-grid > gds-cell {
 }
 
 /* Grid Utils */
-/* prettier-ignore */
+
 gds-grid {
-  &[nogap] { grid-row-gap: 0 }
-  &[debug] > * { box-shadow: 0 0 0 1px hsl(6, 93%, 71%) }
+  counter-set: cell;
+
+  &[nogap] {
+    grid-row-gap: 0;
+  }
+
+  &[debug] {
+    box-shadow: inset 0 0 0 4px hsl(6, 93%, 71%);
+
+    & > * {
+      outline: 1px dashed hsl(6, 93%, 71%);
+      position: relative;
+
+      &::before {
+        content: counter(cell);
+        counter-increment: cell;
+        position: absolute;
+        top: 0;
+        left: -3ch;
+        font-size: 10px;
+        text-align: right;
+        width: 2ch;
+      }
+    }
+  }
 }
+
+/* Consider grid paddings on side */
+
+/* Consider grid flex instead of grid for older browsers */
+
+/* Aspect ratio for single cards     aspect-ratio: 1 / 1; */
+
+/* 
+
+Consider autofill min max rows with wrap 
+
+.grid {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 24px;
+}
+
+
+gds-cell {
+
+  center content horizontally 
+  center content vertically
+  max height
+  aspect ratio
+
+}
+*/
+
+/* Set max widths  */
+/* Set max widths  */
+/* Set max widths  */
+/* Set max widths  */
+/* Set max widths  */
+/* Set max widths  */
+/* Set max widths  */
+/* Set max widths  */
