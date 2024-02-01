@@ -2,6 +2,7 @@ declare namespace JSX {
     interface GdsGridProps extends React.HTMLAttributes<HTMLElement> {
       columns?: string;
       class?: string;
+      debug?: boolean;
       // Add any other props you want to allow here
     }
   
