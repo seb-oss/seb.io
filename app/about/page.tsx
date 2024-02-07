@@ -57,7 +57,7 @@ export default function About() {
           </Col>
           <Col xs={12} md={6}>
             <p className="paragraph-medium text-secondary">
-              Green design system is a set of standards to manage design at
+              Green Design System is a set of standards to manage design at
               scale by reducing redundancy while creating a shared language and
               visual consistency across different pages and channels.
             </p>
