@@ -133,13 +133,14 @@ export const Component = defineDocumentType(() => ({
                 const images = response.data.images
                 const imageUrl = Object.values(images)[0] as string
                 const svgResponse = await axios.get(imageUrl)
+                console.log(images)
 
                 return {
                   node: node,
                   svg: svgResponse.data,
                 }
               } catch (error) {
-                console.error(`Error fetching Figma SVG`)
+                console.error(`Error fetching Figma SVG`, error)
                 return {
                   node: node,
                   svg: "",
@@ -148,7 +149,7 @@ export const Component = defineDocumentType(() => ({
             })
           )
         } catch (error) {
-          console.error("Error processing Figma SVGS:")
+          console.error("Error processing Figma SVGS:", error)
         }
 
         return nodes
