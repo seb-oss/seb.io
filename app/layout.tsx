@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import Script from "next/script"
 import Alert from "@/core/blocks/alert/aler"
 import Consent from "@/core/blocks/consent/consent"
 import Footer from "@/core/blocks/footer"
