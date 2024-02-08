@@ -11,12 +11,13 @@ All values we measure need to pass in order to give a check on the accessibility
 **Review button, webcomponent 2023-12-11 - FAILED**
 - Contrast: Passed
 - Aria-label: Passed
-- Keyboard navigation: Failed - no visual trigger effect on space
+- Keyboard navigation: **Failed** <br />Enter key doesn’t trigger the visual pressed-state.
 - Darkmode: Passed
 - Focus: Passed
 - Screen reader: Passed
 
 {/* To be done: 
+=======
 | Values to measure      | Status       |
 | ---------------------- | ------------ |
 | Contrast               | Passed       |
@@ -49,6 +50,7 @@ Uses default navigation: trigger on key-up with space, trigger on enter on key-d
 </Row>
 
 #### Code examples for labelling
+
 ``` html
 <!-- gds-button with visible text. Visible text acts as label by default. -->
 <gds-button>Label text</gds-button>
