@@ -70,11 +70,7 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
         env:
           FIGMA_ACCESS_KEY: ${{ secrets.FIGMA_ACCESS_KEY }}
-          FIGMA_PROJECT_ID: ${{ secrets.FIGMA_PROJECT_ID }}
-
-      - name: Add .nojekyll file
-        run: touch ./out/.nojekyll
-
+          FIGMA_PROJECT_ID: ${{ secrets.FIGMA_PROJECT_ID_STAGING }}
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
@@ -86,22 +82,22 @@ jobs:
       CI_COMMIT_MESSAGE: Continuous Integration Deployment ${{ github.sha }}}
       CI_COMMIT_AUTHOR: Continuous Integration
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-      with:
-        repository: sebgroup/seb.io-staging
-        ref: main
-        token: ${{ secrets.GH_TOKEN }}
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          repository: sebgroup/seb.io-staging
+          ref: main
+          token: ${{ secrets.GH_TOKEN }}
 
-    - name: Get build artifact
-      uses: actions/download-artifact@v4
-      with:
-        name: artifact
+      - name: Get build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: artifact
 
-    - name: Push changes
-      run: |
-        git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
-        git config --global user.email "username@users.noreply.github.com"
-        git add .
-        git commit -m "${{ env.CI_COMMIT_MESSAGE }}"
-        git push
+      - name: Push changes
+        run: |
+          git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
+          git config --global user.email "username@users.noreply.github.com"
+          git add .
+          git commit -m "${{ env.CI_COMMIT_MESSAGE }}"
+          git push

@@ -64,7 +64,6 @@ figure.preview {
 
   & ~ span {
     content: attr(data-caption);
-    display: flex;
     font-size: 14px;
     margin-top: 2ex;
   }
