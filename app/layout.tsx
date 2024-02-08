@@ -35,7 +35,6 @@ export default function RootLayout({
           <Consent />
           <Footer />
         </ThemeProvider>
-
         <Script id="data-layer">
           {`window["dataLayer"] = {
             "pageName":"seb.io",
@@ -46,7 +45,6 @@ export default function RootLayout({
             "website":"seb.io",
           };`}
         </Script>
-        <Script src="https://content.seb.se/dsc/da/launch/public/30e54a9d6c99/f9d07ef22744/launch-89d260357525.min.js" />
       </body>
     </html>
   )
