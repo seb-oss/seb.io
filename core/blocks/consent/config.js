@@ -15,10 +15,7 @@ const pluginConfig = {
 
   onAccept: function (cookie) {
     if (window.CookieConsentApi.allowedCategory("analytics")) {
-      const script = document.createElement("script")
-      script.src =
-        "https://content.seb.se/dsc/da/launch/public/30e54a9d6c99/f9d07ef22744/launch-89d260357525.min.js"
-      document.head.appendChild(script)
+      // ...
     }
   },
 
