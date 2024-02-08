@@ -5,7 +5,7 @@ date: 2023-12-22
 ---
 
 ## Accessibility
-All values we measure needs to pass in order to giva a check on the accessibility on all our components.
+All values we measure need to pass in order to give a check on the accessibility on all our components.
 
 ### Review
 **Review button, webcomponent 2023-12-11 - FAILED**
@@ -43,28 +43,16 @@ Screen reader
 ### Important considerations
 
 #### Maintain semantic consistency
-<Row>
-<Col>
-    Do not use links instead of buttons. Buttons are intended for actions or operations (e.g., submitting forms, triggering actions), while links are intended for navigation to other pages or resources. Avoid using links for triggering actions, or buttons for navigation purposes.
-</Col>
-<Col>
-    
-</Col>
-</Row>
+
+Do not use links instead of buttons. Buttons are intended for actions or operations (e.g., submitting forms, triggering actions), while links are intended for navigation to other pages or resources. Avoid using links for triggering actions, or buttons for navigation purposes.
+
 ### Keyboard navigation
 
+### Labelling
 
-### Labeling
-<Row>
-<Col>
-    - Ensure buttons have discernible label text. If the button has no visible text, the label attribute must be used to provide an accessible label.
-    - If there are multiple buttons with the same text, such as *Apply*, the label attribute can be used to give each button a distinct label, such as *Apply for A, Apply for B*, etc.
-    
-</Col>
-<Col>
-    
-</Col>
-</Row>
+- Ensure buttons have discernible label text. If the button has no visible text, the label attribute must be used to provide an accessible label.
+- If there are multiple buttons with the same text, such as *Apply*, the label attribute can be used to give each button a distinct label, such as *Apply for A, Apply for B*, etc.
+
 <Row>
 <Col>
     <FigmaSVG node="259-4131" caption="Icon buttons with accessible labels, label attributes" />
@@ -74,6 +62,7 @@ Screen reader
 </Col>
 </Row>
 
+#### Code examples for labelling
 ``` html
 <!-- gds-button with visible text. Visible text acts as label by default. -->
 <gds-button>Label text</gds-button>
