@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import Script from "next/script"
 import Alert from "@/core/blocks/alert/aler"
 import Consent from "@/core/blocks/consent/consent"
 import Footer from "@/core/blocks/footer"
@@ -34,6 +35,16 @@ export default function RootLayout({
           <Consent />
           <Footer />
         </ThemeProvider>
+        <Script id="data-layer">
+          {`window["dataLayer"] = {
+            "pageName":"seb.io",
+            "pagetype":"StandardPage",
+            "language":"en",
+            "environment":"prod",
+            "project":"green",
+            "website":"seb.io",
+          };console.log(window["dataLayer"]);`}
+        </Script>
       </body>
     </html>
   )
