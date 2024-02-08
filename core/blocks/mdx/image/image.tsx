@@ -33,7 +33,7 @@ export default function CustomImage({
         )}
         <img alt={alt} {...props} />
       </picture>
-      {caption && <figcaption>{caption}</figcaption>}
+      {caption && <figcaption dangerouslySetInnerHTML={{ __html: caption }} />}
     </figure>
   )
 }
