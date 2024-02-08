@@ -43,7 +43,7 @@ export default function RootLayout({
             "environment":"prod",
             "project":"green",
             "website":"seb.io",
-          };console.log(window["dataLayer"]);`}
+          };`}
         </Script>
       </body>
     </html>
