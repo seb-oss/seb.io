@@ -54,7 +54,7 @@ export default function Code({ params }: { params: { slug: string } }) {
           __html: "globalThis.GDS_DISABLE_VERSIONED_ELEMENTS = true",
         }}
       />
-      <script src="/core-out.js"></script>
+      <script src="/core-out.js" defer></script>
       <Mdx code={body.code} globals={{}} />
     </>
   )
