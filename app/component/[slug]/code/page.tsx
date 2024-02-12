@@ -1,5 +1,6 @@
 import type { Metadata, ResolvingMetadata } from "next"
 import { notFound } from "next/navigation"
+import Script from "next/script"
 import { Mdx } from "@/core/blocks/mdx"
 import { allComponents } from "content"
 
@@ -46,5 +47,15 @@ export default function Code({ params }: { params: { slug: string } }) {
 
   const { body } = component
 
-  return <Mdx code={body.code} globals={{}} />
+  return (
+    <>
+      <script
+        dangerouslySetInnerHTML={{
+          __html: "globalThis.GDS_DISABLE_VERSIONED_ELEMENTS = true",
+        }}
+      />
+      <script src="/core-out.js"></script>
+      <Mdx code={body.code} globals={{}} />
+    </>
+  )
 }

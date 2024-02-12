@@ -73,13 +73,12 @@ export default function Component({ params }: { params: { slug: string } }) {
       <Head>
         <meta name="title" content={component.title} />
       </Head>
-
+      <Mdx code={body.code} globals={{ slug }} />
       <Script
         src={"/playground-elements/playground-elements.mjs"}
         type="module"
         crossOrigin="anonymous"
       ></Script>
-      <Mdx code={body.code} globals={{ slug }} />
     </>
   )
 }
