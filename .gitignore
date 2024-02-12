@@ -19,6 +19,7 @@
 
 # misc
 .idea
+.vscode
 .DS_Store
 *.pem
 
