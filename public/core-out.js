@@ -1921,7 +1921,7 @@ div.gds-ripple-effect {
     --gds-ripple-animation-name: none !important;
   }
 }`;
-  var VER_SUFFIX = "-gdsvsuffix";
+  var VER_SUFFIX = "-3ddbd4";
   var elementLookupTable = /* @__PURE__ */ new Map();
   var gdsCustomElement = (tagName) => {
     if (globalThis.GDS_DISABLE_VERSIONED_ELEMENTS) {

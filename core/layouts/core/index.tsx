@@ -10,7 +10,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const { toggleNav, isNavOpen } = useContext(ThemeProviderContext)
 
   return (
-    <main>
+    <main className={isNavOpen ? "nav-is-open" : ""}>
       {isNavOpen && <Sidebar toggleNav={toggleNav} isNavOpen={isNavOpen} />}
       {children}
     </main>
