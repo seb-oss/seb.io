@@ -6,6 +6,7 @@ import Image from "next/image"
 import { useMDXComponent } from "next-contentlayer/hooks"
 import { useTheme } from "next-themes"
 
+import Pattern from "../pattern/pattern"
 import Col from "./col/col"
 import Do from "./do/do"
 import Dont from "./dont/dont"
@@ -28,6 +29,7 @@ const components = {
   Dont,
   Refs,
   SE,
+  Pattern,
 }
 
 export function Mdx({
