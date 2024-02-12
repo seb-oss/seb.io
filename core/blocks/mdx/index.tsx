@@ -41,9 +41,5 @@ export function Mdx({
 }) {
   const Component = useMDXComponent(code, globals)
 
-  return (
-    <div>
-      <Component components={components} />
-    </div>
-  )
+  return <Component components={components} />
 }
