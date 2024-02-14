@@ -22,6 +22,7 @@ export default function ComponentLayout({
 }) {
   const { slug } = params
   const pathName = usePathname()
+  // const [isCoreOutLoaded, setIsCoreOutLoaded] = useState(false)
 
   const getComponent = (path: string) =>
     allComponents.find(
@@ -103,7 +104,15 @@ export default function ComponentLayout({
           </div>
         </div>
         <Pattern>
-          <div dangerouslySetInnerHTML={{ __html: figma_hero_svg.svg }} />
+          {preview?.trim() ?? "" ? (
+            <div
+              dangerouslySetInnerHTML={{
+                __html: `${preview}`,
+              }}
+            />
+          ) : (
+            <div dangerouslySetInnerHTML={{ __html: figma_hero_svg.svg }} />
+          )}
         </Pattern>
       </header>
       <article>
@@ -119,6 +128,10 @@ export default function ComponentLayout({
           {format(parseISO(last_edited), "d LLL, yyyy '/' HH:mm")}
         </time>
       </footer>
+      {/* <Script id="show-banner">
+        {`globalThis.GDS_DISABLE_VERSIONED_ELEMENTS = true`}
+      </Script>
+      <Script src="/core-out.js" onLoad={() => setIsCoreOutLoaded(true)} /> */}
     </Layout>
   )
 }
