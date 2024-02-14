@@ -1,13 +1,11 @@
 "use client"
 
-import React, { useEffect } from "react"
+import { useEffect } from "react"
 
 import pluginConfig from "./config"
 
 import "vanilla-cookieconsent"
 import "./style.css"
-
-// import "vanilla-cookieconsent/dist/cookieconsent.css"
 
 declare global {
   interface Window {
