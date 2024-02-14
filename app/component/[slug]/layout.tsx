@@ -128,10 +128,6 @@ export default function ComponentLayout({
           {format(parseISO(last_edited), "d LLL, yyyy '/' HH:mm")}
         </time>
       </footer>
-      {/* <Script id="show-banner">
-        {`globalThis.GDS_DISABLE_VERSIONED_ELEMENTS = true`}
-      </Script>
-      <Script src="/core-out.js" onLoad={() => setIsCoreOutLoaded(true)} /> */}
     </Layout>
   )
 }
