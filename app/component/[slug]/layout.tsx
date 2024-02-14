@@ -6,7 +6,7 @@ import Link from "next/link"
 import { notFound, usePathname, useRouter } from "next/navigation"
 import FigmaSVG from "@/core/blocks/mdx/figma/figmaSVG"
 import Pattern from "@/core/blocks/pattern/pattern"
-import Taber from "@/core/blocks/taber"
+import Taber from "@/core/blocks/taber-v2"
 import TOC from "@/core/blocks/toc/toc"
 import Trail from "@/core/blocks/trail/trail"
 import Layout from "@/core/layouts/component"
@@ -106,10 +106,10 @@ export default function ComponentLayout({
           <div dangerouslySetInnerHTML={{ __html: figma_hero_svg.svg }} />
         </Pattern>
       </header>
+      <Taber component={url_path} />
       <article>
         <div className="content">
           {children}
-          <Taber component={url_path} />
         </div>
         {tocComponent}
       </article>

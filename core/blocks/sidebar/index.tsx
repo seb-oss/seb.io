@@ -97,6 +97,39 @@ export default function Sidebar({
           </Link>
         </nav>
       </details>
+      <details open={path.includes("/ux-writing")}>
+        <summary>
+          <Link
+            className={path == "/ux-writing" ? "active" : ""}
+            href="/ux-writing"
+            onClick={checkIfMenuShouldClose}
+          >
+            UX writing
+          </Link>
+          <Arrow />
+        </summary>
+        <nav>
+          <Link
+            className={path == "/ux-writing/general" ? "active" : ""}
+            href="/ux-writing/general"
+          >
+            General
+          </Link>
+          <Link
+            className={path == "/ux-writing/english" ? "active" : ""}
+            href="/ux-writing/english"
+          >
+            English
+          </Link>
+          <Link
+            className={path == "/ux-writing/swedish" ? "active" : ""}
+            href="/ux-writing/swedish"
+            onClick={checkIfMenuShouldClose}
+          >
+            Swedish
+          </Link>
+        </nav>
+      </details>
       <details
         open={
           path.includes("/about") ||

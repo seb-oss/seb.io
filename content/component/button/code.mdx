@@ -4,5 +4,150 @@ global_id: buttoncode
 date: 2023-12-22
 ---
 
-## Coming soon
-This page will be updated with information soon.
+## Code
+
+### Examples
+
+#### Default button
+
+The defaut button har the prio primary and the style normal.
+
+<Pattern height="350px">
+  <gds-button>Send payment</gds-button>
+</Pattern>
+
+```html
+<gds-button>Send payment</gds-button>
+```
+
+#### Prio
+
+Buttons exist in three different prios, Primary, Secondary and Tertiary
+
+<Pattern height="350px">
+  <div style={{ display: "flex", gap: "1rem" }}>
+    <gds-button variant="primary">Send payment</gds-button>
+    <gds-button variant="secondary">Cancel</gds-button>
+    <gds-button variant="tertiary">More</gds-button>
+  </div>
+</Pattern>
+
+```html
+<gds-button variant="primary">Send payment</gds-button>
+<gds-button variant="secondary">Cancel</gds-button>
+<gds-button variant="tertiary">More</gds-button>
+```
+
+#### Styles
+
+Each prio button can have one of three styles, Neutral, Positive and Negative
+
+<Pattern height="350px">
+  <div style={{ display: "flex", gap: "1rem" }}>
+    <gds-button set="neutral">Submit</gds-button>
+    <gds-button set="positive">Approve</gds-button>
+    <gds-button set="negative">Revoke</gds-button>
+  </div>
+  <br />
+  <div style={{ display: "flex", gap: "1rem" }}>
+    <gds-button variant="secondary" set="neutral">Submit</gds-button>
+    <gds-button variant="secondary" set="positive">Approve</gds-button>
+    <gds-button variant="secondary" set="negative">Revoke</gds-button>
+  </div>
+  <br />
+  <div style={{ display: "flex", gap: "1rem" }}>
+    <gds-button variant="tertiary" set="neutral">Submit</gds-button>
+    <gds-button variant="tertiary" set="positive">Approve</gds-button>
+    <gds-button variant="tertiary" set="negative">Revoke</gds-button>
+  </div>
+</Pattern>
+```html
+    <!-- Primary -->
+    <gds-button set="neutral">Submit</gds-button>
+    <gds-button set="positive">Approve</gds-button>
+    <gds-button set="negative">Revoke</gds-button>
+    
+    <!-- Secondary -->
+    <gds-button variant="secondary" set="neutral">Submit</gds-button>
+    <gds-button variant="secondary" set="positive">Approve</gds-button>
+    <gds-button variant="secondary" set="negative">Revoke</gds-button>
+
+    <!-- Tertiary -->
+    <gds-button variant="tertiary" set="neutral">Submit</gds-button>
+    <gds-button variant="tertiary" set="positive">Approve</gds-button>
+    <gds-button variant="tertiary" set="negative">Revoke</gds-button>
+
+````
+
+#### Icons
+
+Buttons exist in three different prios, Primary, Secondary and Tertiary
+
+
+<Pattern height="350px">
+  <div style={{ display: "flex", gap: "1rem" }}>
+    <gds-button variant="primary"><gds-icon slot="lead" name="send" />Send payment</gds-button>
+    <gds-button variant="secondary"><gds-icon slot="trail" name="arrow-up" />Upload</gds-button>
+    <gds-button variant="tertiary"><gds-icon slot="lead" name="arrow-down" />Download</gds-button>
+  </div>
+</Pattern>
+
+```html
+<gds-button variant="primary"><gds-icon slot="lead" name="send" />Send payment</gds-button>
+<gds-button variant="secondary"><gds-icon slot="trail" name="arrow-up" />Upload</gds-button>
+<gds-button variant="primary" set="positive"><gds-icon slot="lead" name="arrow-down" />Download</gds-button>
+````
+
+#### Sizes
+
+Buttons can be small, medium or large. The default size is medium.
+
+<Pattern height="350px">
+  <div style={{ display: "flex", gap: "1rem" }}>
+    <gds-button size="small">Small</gds-button>
+    <gds-button>Medium</gds-button>
+    <gds-button size="large">Large</gds-button>
+  </div>
+</Pattern>
+
+```html
+<gds-button size="small">Small</gds-button>
+<gds-button>Medium</gds-button>
+<gds-button size="large">Large</gds-button>
+```
+
+#### Icon button
+
+If a single gds-icon is the only child of a button, it will render as a circular icon button.
+
+<Pattern height="350px">
+  <div style={{ display: "flex", gap: "1rem" }}>
+    <gds-button size="small"><gds-icon name="arrow" /></gds-button>
+    <gds-button><gds-icon name="arrow" /></gds-button>
+    <gds-button size="large"><gds-icon name="arrow" /></gds-button>
+  </div>
+</Pattern>
+
+```html
+<gds-button size="small"><gds-icon name="arrow" /></gds-button>
+<gds-button><gds-icon name="arrow" /></gds-button>
+<gds-button size="large"><gds-icon name="arrow" /></gds-button>
+```
+
+#### Disabled
+
+We don't encourage to use components with a disabled state but the button can be disabled if needed
+
+<Pattern height="350px">
+  <div style={{ display: "flex", gap: "1rem" }}>
+    <gds-button variant="primary" disabled>Send payment</gds-button>
+    <gds-button variant="secondary" disabled>Cancel</gds-button>
+    <gds-button variant="tertiary" disabled>More</gds-button>
+  </div>
+</Pattern>
+
+```html
+<gds-button variant="primary" disabled>Send payment</gds-button>
+<gds-button variant="secondary" disabled>Cancel</gds-button>
+<gds-button variant="tertiary" disabled>More</gds-button>
+```
