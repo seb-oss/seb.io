@@ -50,10 +50,9 @@ export default function Code({ params }: { params: { slug: string } }) {
   return (
     <>
       <Mdx code={body.code} globals={{}} />
-      <Script id="show-banner">
+      {/* <Script id="show-banner">
         {`globalThis.GDS_DISABLE_VERSIONED_ELEMENTS = true`}
-      </Script>
-      <Script src="/core-out.js"></Script>
+      </Script> */}
     </>
   )
 }

@@ -29,6 +29,7 @@ export const Component = defineDocumentType(() => ({
     tags: { type: "string", required: false },
     status: { type: "string", required: false },
     node: { type: "string", required: false },
+    preview: { type: "string", required: false },
   },
   computedFields: {
     url_path: {
