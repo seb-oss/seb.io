@@ -279,8 +279,8 @@ gds-cell {
     gap: 20px;
 
     .sidebar {
-      position: fixed;
-      top: 1;
+      position: sticky;
+      top: 0px;
       /* display: none; */
     }
 
