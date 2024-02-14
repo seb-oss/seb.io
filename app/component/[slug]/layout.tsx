@@ -1,10 +1,8 @@
 "use client"
 
-import type { Metadata } from "next"
-import Head from "next/head"
-import Link from "next/link"
-import { notFound, usePathname, useRouter } from "next/navigation"
-import FigmaSVG from "@/core/blocks/mdx/figma/figmaSVG"
+import { useState } from "react"
+import { notFound, usePathname } from "next/navigation"
+import Script from "next/script"
 import Pattern from "@/core/blocks/pattern/pattern"
 import Taber from "@/core/blocks/taber-v2"
 import TOC from "@/core/blocks/toc/toc"
@@ -22,6 +20,7 @@ export default function ComponentLayout({
 }) {
   const { slug } = params
   const pathName = usePathname()
+  // const [isCoreOutLoaded, setIsCoreOutLoaded] = useState(false)
 
   const getComponent = (path: string) =>
     allComponents.find(
@@ -43,13 +42,11 @@ export default function ComponentLayout({
     url_path,
     tags,
     status,
-    date,
     global_id,
     last_edited,
     summary,
-    body,
-    node,
     figma_hero_svg,
+    preview,
   } = component
 
   const pathsAndComponents = [
@@ -59,7 +56,6 @@ export default function ComponentLayout({
     { path: "/ux-text", component: componentUXText },
   ]
 
-  // default TOC component
   let tocComponent = <TOC headings={component?.headings} component={title} />
 
   for (let { path, component } of pathsAndComponents) {
@@ -73,6 +69,7 @@ export default function ComponentLayout({
   const MAX_VISIBLE_TAGS = 3
   const tagsArray = tags ? tags.split(", ") : []
   const extraTagsCount = Math.max(0, tagsArray.length - MAX_VISIBLE_TAGS)
+
   return (
     <Layout key={global_id}>
       <Trail home={"Home"} separator={<span> / </span>} activeClass="active" />
@@ -103,14 +100,20 @@ export default function ComponentLayout({
           </div>
         </div>
         <Pattern>
-          <div dangerouslySetInnerHTML={{ __html: figma_hero_svg.svg }} />
+          {preview?.trim() ?? "" ? (
+            <div
+              dangerouslySetInnerHTML={{
+                __html: `${preview}`,
+              }}
+            />
+          ) : (
+            <div dangerouslySetInnerHTML={{ __html: figma_hero_svg.svg }} />
+          )}
         </Pattern>
       </header>
       <Taber component={url_path} />
       <article>
-        <div className="content">
-          {children}
-        </div>
+        <div className="content">{children}</div>
         {tocComponent}
       </article>
       <footer>
@@ -119,6 +122,10 @@ export default function ComponentLayout({
           {format(parseISO(last_edited), "d LLL, yyyy '/' HH:mm")}
         </time>
       </footer>
+      {/* <Script id="show-banner">
+        {`globalThis.GDS_DISABLE_VERSIONED_ELEMENTS = true`}
+      </Script>
+      <Script src="/core-out.js" onLoad={() => setIsCoreOutLoaded(true)} /> */}
     </Layout>
   )
 }
