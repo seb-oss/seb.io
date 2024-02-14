@@ -243,6 +243,10 @@ gds-cell {
 
 /* The area type  */
 
+.grid-test {
+  width: 100%;
+}
+
 .app {
   display: grid;
   grid-template-areas:
@@ -281,7 +285,10 @@ gds-cell {
     .sidebar {
       position: sticky;
       top: 0px;
-      /* display: none; */
+
+      &:hover {
+        display: none;
+      }
     }
 
     .content {
@@ -313,4 +320,34 @@ gds-cell {
   .app-footer {
     grid-area: footer;
   }
+}
+
+/* Actual thing  */
+
+body {
+  display: grid;
+  grid-template-areas:
+    "alert alert alert"
+    "header header header"
+    "layout layout layout"
+    "footer footer footer";
+  grid-template-columns: auto 1fr auto;
+  grid-template-rows: max-content;
+  max-width: var(--max-width);
+}
+
+.alert {
+  grid-area: alert;
+}
+
+header.main {
+  grid-area: header;
+}
+
+body > main {
+  grid-area: layout;
+}
+
+.main-footer {
+  grid-area: footer;
 }
