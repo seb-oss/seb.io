@@ -110,10 +110,10 @@ export default function Sidebar({
         </summary>
         <nav>
           <Link
-            className={path == "/ux-writing/universal" ? "active" : ""}
-            href="/ux-writing/universal"
+            className={path == "/ux-writing/general" ? "active" : ""}
+            href="/ux-writing/general"
           >
-            Universal
+            General
           </Link>
           <Link
             className={path == "/ux-writing/english" ? "active" : ""}

@@ -41,23 +41,6 @@ export default function Writing() {
         </Row>
         <Row>
           <Col xs={12} md={10}>
-            <li>
-              <a href="https://svenska.se/" target="_blank" rel="noopener noreferrer">The Dictionary of the Swedish Academy</a> (Svenska Akademiens
-              ordlista, SAOL) for spelling, conjugation and inflection.
-            </li>
-            <li>
-              The Language {`Council's`} (Språkrådets) Swedish writing rules for
-              grammar, constructions, etc. The Language Council also has a <a href="https://www.isof.se/stod-och-sprakrad/spraktjanster/frageladan" target="_blank" rel="noopener noreferrer">question box</a> (in Swedish) where you will find many answers.
-            </li>
-            <li>
-              <a href="https://dataterm.termado.net/" target="_blank" rel="noopener noreferrer"> The Joint Group for Swedish Computer Terminology</a> (Svenska
-              datatermsgruppen) in matters that are missing from the Language
-              Council.
-            </li>
-          </Col>
-        </Row>
-        <Row>
-          <Col xs={12} md={10}>
             <h2>Written ID, our tone of voice</h2>
             <p>
               {" SEB's "} <a href="https://brand.seb.se/point/en/seb/component/default/82393">
