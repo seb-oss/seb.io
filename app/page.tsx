@@ -21,9 +21,17 @@ function ComponentCard(component: Component) {
   return (
     <Link href={component.url_path}>
       <Pattern>
-        <div
-          dangerouslySetInnerHTML={{ __html: component.figma_hero_svg.svg }}
-        />
+        {component.preview?.trim() ?? "" ? (
+          <div
+            dangerouslySetInnerHTML={{
+              __html: component.preview ?? "",
+            }}
+          />
+        ) : (
+          <div
+            dangerouslySetInnerHTML={{ __html: component.figma_hero_svg.svg }}
+          />
+        )}
       </Pattern>
       <div>{component.title}</div>
       <p>{component.summary}</p>

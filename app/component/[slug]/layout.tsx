@@ -20,7 +20,7 @@ export default function ComponentLayout({
 }) {
   const { slug } = params
   const pathName = usePathname()
-  const [isCoreOutLoaded, setIsCoreOutLoaded] = useState(false)
+  // const [isCoreOutLoaded, setIsCoreOutLoaded] = useState(false)
 
   const getComponent = (path: string) =>
     allComponents.find(
@@ -100,7 +100,7 @@ export default function ComponentLayout({
           </div>
         </div>
         <Pattern>
-          {isCoreOutLoaded && (preview?.trim() ?? "") !== "" ? (
+          {preview?.trim() ?? "" ? (
             <div
               dangerouslySetInnerHTML={{
                 __html: `${preview}`,
@@ -122,10 +122,10 @@ export default function ComponentLayout({
           {format(parseISO(last_edited), "d LLL, yyyy '/' HH:mm")}
         </time>
       </footer>
-      <Script id="show-banner">
+      {/* <Script id="show-banner">
         {`globalThis.GDS_DISABLE_VERSIONED_ELEMENTS = true`}
       </Script>
-      <Script src="/core-out.js" onLoad={() => setIsCoreOutLoaded(true)} />
+      <Script src="/core-out.js" onLoad={() => setIsCoreOutLoaded(true)} /> */}
     </Layout>
   )
 }
