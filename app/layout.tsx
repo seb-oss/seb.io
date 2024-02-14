@@ -30,6 +30,7 @@ export default function RootLayout({
     }
 
     if (
+      location.hostname === "seb.io" &&
       document.cookie
         .split("; ")
         .find((row) => row.startsWith("GDS Cookie Consent"))
