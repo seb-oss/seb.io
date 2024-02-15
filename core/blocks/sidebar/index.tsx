@@ -85,7 +85,9 @@ export default function Sidebar({
           >
             Foundation
           </Link>
-          <Arrow />
+          <Dev>
+            <Arrow />
+          </Dev>
         </summary>
         <Dev>
           <nav>
@@ -108,7 +110,9 @@ export default function Sidebar({
           >
             UX writing
           </Link>
-          <Arrow />
+          <Dev>
+            <Arrow />
+          </Dev>
         </summary>
         <Dev>
           <nav>
