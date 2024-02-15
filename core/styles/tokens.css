@@ -163,6 +163,57 @@
       );
       --transition: all 248ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
       --header-height: 72px;
+
+      /* Font sizes  */
+      --gds-fs-base: 100%; /* 16px is the default font size */
+      --gds-fs-display-large: 5.125rem; /* 82px / 16px = 5.125rem */
+      --gds-fs-display-medium: 4rem; /* 64px / 16px = 4rem */
+      --gds-fs-display-small: 2.5rem; /* 40px / 16px = 2.5rem */
+      --gds-fs-headline-large: 2rem; /* 32px / 16px = 2rem */
+      --gds-fs-headline-medium: 1.75rem; /* 28px / 16px = 1.75rem */
+      --gds-fs-headline-small: 1.5rem; /* 24px / 16px = 1.5rem */
+      --gds-fs-title-large: 1.375rem; /* 22px / 16px = 1.375rem */
+      --gds-fs-title-medium: 1rem; /* 16px / 16px = 1.6rem */
+      --gds-fs-title-small: 0.875rem; /* 14px / 16px = .875rem */
+      --gds-fs-body-large: 1rem; /* 16px / 16px = 1rem */
+      --gds-fs-body-medium: 0.875rem; /* 14px / 16px = .875rem */
+      --gds-fs-body-small: 0.75rem; /* 12px / 16px = .75rem */
+      --gds-fs-label-large: 1rem; /* 16px / 16px = 1rem */
+      --gds-fs-label-medium: 0.875rem; /* 14px / 16px = .875rem */
+      --gds-fs-label-small: 0.75rem; /* 12px / 16px = .75rem */
+      --gds-fs-label-information-large: 1rem; /* 16px / 16px = 1rem */
+      --gds-fs-label-information-medium: 0.875rem; /* 14px / 16px = .75rem */
+      --gds-fs-label-input-large: 1rem; /* 16px / 16px = 1rem */
+      --gds-fs-label-input-medium: 0.875rem; /* 14px / 16px = .875rem */
+      --gds-fs-label-overline: 0.875rem; /* 14px / 16px = .875rem */
+
+      /* Line heights */
+      --gds-lh-display-large: 1.1905; /* 98/82 */
+      --gds-lh-display-medium: 1.25; /* 80/64 */
+      --gds-lh-display-small: 1.3077; /* 52/40 */
+      --gds-lh-headline-large: 1.25; /* 40/32 */
+      --gds-lh-headline-medium: 1.125; /* 36/32 */
+      --gds-lh-headline-small: 1.2; /* 30/24 */
+      --gds-lh-title-large: 1.1071; /* 28/22 */
+      --gds-lh-title-medium: 1.5; /* 24/16 */
+      --gds-lh-title-small: 1.4286; /* 20/14 */
+      --gds-lh-body-large: 1.25; /* 20/16 */
+      --gds-lh-body-medium: 1.4286; /* 20/14 */
+      --gds-lh-body-small: 1.3333; /* 16/12 */
+      --gds-lh-label-large: 1.25; /* 20/16 */
+      --gds-lh-label-medium: 1.4286; /* 20/14 */
+      --gds-lh-label-small: 1.3333; /* 16/12 */
+      --gds-lh-label-information-large: 1.25; /* 20/16 */
+      --gds-lh-label-information-medium: 1.4286; /* 20/14 */
+      --gds-lh-label-input-large: 1.25; /* 20/16 */
+      --gds-lh-label-input-medium: 1.4286; /* 20/14 */
+      --gds-lh-label-overline: 1.1667; /* 18/14 */
+
+      /* Font weights */
+      --gds-fw-light: 300;
+      --gds-fw-regular: 400;
+      --gds-fw-medium: 500;
+      --gds-fw-bold: 700;
     }
 
     @media (prefers-color-scheme: dark) {

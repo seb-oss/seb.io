@@ -36,67 +36,131 @@
   }
 }
 
-/* Add font sizes */
-/* prettier-ignore */
-.gds-text {
-  /* prettier-ignore */
-  .gds-text-display-large             { font-size: large  }
-  .gds-text-display-medium            { font-size: medium }
-  .gds-text-display-small             { font-size: small  }
-  .gds-text-headline-large            { font-size: large  }
-  .gds-text-headline-medium           { font-size: medium }
-  .gds-text-headline-small            { font-size: small  }
-  .gds-text-title-large               { font-size: large  }
-  .gds-text-title-medium              { font-size: medium }
-  .gds-text-title-small               { font-size: small  }
-  .gds-text-body-large                { font-size: large  }
-  .gds-text-body-large-italic         { font-size: large  }
-  .gds-text-body-medium               { font-size: medium }
-  .gds-text-body-medium-italic        { font-size: medium }
-  .gds-text-body-small                { font-size: small  }
-  .gds-text-body-small-italic         { font-size: small  }
-  .gds-text-label-large               { font-size: large  }
-  .gds-text-label-medium              { font-size: large  }
-  .gds-text-label-small               { font-size: large  }
-  .gds-text-label-information-large   { font-size: large  }
-  .gds-text-label-information-medium  { font-size: large  }
-  .gds-text-label-input-large         { font-size: large  }
-  .gds-text-label-input-medium        { font-size: large  }
-  .gds-text-label-input-overline      { font-size: large  }
+/* 
 
+Add font sizes 
+
+*/
+
+.gds-fs-display-large {
+  font-size: var(--gds-fs-display-large);
+  line-height: var(--gds-lh-display-large);
 }
 
-/* prettier-ignore */
-:root {
-  --gds-fs-1: 82px;
-  --gds-fs-2: 64px;
-  --gds-fs-3: 40px;
-  --gds-fs-4: 32px;
-  --gds-fs-5: 28px;
-  --gds-fs-6: 24px;
-  --gds-fs-7: 20px;
-  --gds-fs-8: 16px;
-  --gds-fs-9: 14px;
-  --gds-fs-10: 12px;
+.gds-fs-display-medium {
+  font-size: var(--gds-fs-display-medium);
+  line-height: var(--gds-lh-display-medium);
+}
 
-  --gds-text-display-large:            var(--gds-fs-1)  ;
-  --gds-text-display-medium:           var(--gds-fs-2)  ;
-  --gds-text-display-small:            var(--gds-fs-3)  ;
-  --gds-text-headline-large:           var(--gds-fs-4)  ;
-  --gds-text-headline-medium:          var(--gds-fs-5)  ;
-  --gds-text-headline-small:           var(--gds-fs-6)  ;
-  --gds-text-title-large:              var(--gds-fs-7)  ;
-  --gds-text-title-medium:             var(--gds-fs-8)  ;
-  --gds-text-title-small:              var(--gds-fs-9)  ;
-  --gds-text-body-large:               var(--gds-fs-8)  ;
-  --gds-text-body-medium:              var(--gds-fs-9)  ;
-  --gds-text-body-small:               var(--gds-fs-10) ;
-  --gds-text-label-large:              var(--gds-fs-8)  ;
-  --gds-text-label-medium:             var(--gds-fs-9)  ;
-  --gds-text-label-small:              var(--gds-fs-10) ;
-  --gds-text-label-information-large:  var(--gds-fs-8)  ;
-  --gds-text-label-information-medium: var(--gds-fs-9)  ;
-  --gds-text-label-input-large:        var(--gds-fs-8)  ;
-  --gds-text-label-input-medium:       var(--gds-fs-9)  ;
-  --gds-text-label-input-overline:     var(--gds-fs-9)  ;
+.gds-fs-display-small {
+  font-size: var(--gds-fs-display-small);
+  line-height: var(--gds-lh-display-small);
+}
+
+.gds-fs-headline-large {
+  font-size: var(--gds-fs-headline-large);
+  line-height: var(--gds-lh-headline-large);
+}
+
+.gds-fs-headline-medium {
+  font-size: var(--gds-fs-headline-medium);
+  line-height: var(--gds-lh-headline-medium);
+}
+
+.gds-fs-headline-small {
+  font-size: var(--gds-fs-headline-small);
+  line-height: var(--gds-lh-headline-small);
+}
+
+.gds-fs-title-large {
+  font-size: var(--gds-fs-title-large);
+  line-height: var(--gds-lh-title-large);
+}
+
+.gds-fs-title-medium {
+  font-size: var(--gds-fs-title-medium);
+  line-height: var(--gds-lh-title-medium);
+}
+
+.gds-fs-title-small {
+  font-size: var(--gds-fs-title-small);
+  line-height: var(--gds-lh-title-small);
+}
+
+.gds-fs-body-large {
+  font-size: var(--gds-fs-body-large);
+  line-height: var(--gds-lh-body-large);
+}
+
+.gds-fs-body-large-italic {
+  font-size: var(--gds-fs-body-large);
+  line-height: var(--gds-lh-body-large);
+}
+
+.gds-fs-body-medium {
+  font-size: var(--gds-fs-body-medium);
+  line-height: var(--gds-lh-body-medium);
+}
+
+.gds-fs-body-medium-italic {
+  font-size: var(--gds-fs-body-medium);
+  line-height: var(--gds-lh-body-medium);
+}
+
+.gds-fs-body-small {
+  font-size: var(--gds-fs-body-small);
+  line-height: var(--gds-lh-body-small);
+}
+
+.gds-fs-body-small-italic {
+  font-size: var(--gds-fs-body-small);
+  line-height: var(--gds-lh-body-small);
+}
+
+.gds-fs-label-large {
+  font-size: var(--gds-fs-label-large);
+  line-height: var(--gds-lh-label-large);
+}
+
+.gds-fs-label-medium {
+  font-size: var(--gds-fs-label-medium);
+  line-height: var(--gds-lh-label-medium);
+}
+
+.gds-fs-label-small {
+  font-size: var(--gds-fs-label-small);
+  line-height: var(--gds-lh-label-small);
+}
+
+.gds-fs-label-information-large {
+  font-size: var(--gds-fs-label-information-large);
+  line-height: var(--gds-lh-label-information-large);
+}
+
+.gds-fs-label-information-medium {
+  font-size: var(--gds-fs-label-information-medium);
+  line-height: var(--gds-lh-label-information-medium);
+}
+
+.gds-fs-label-input-large {
+  font-size: var(--gds-fs-label-input-large);
+  line-height: var(--gds-lh-label-input-large);
+}
+
+.gds-fs-label-input-medium {
+  font-size: var(--gds-fs-label-input-medium);
+  line-height: var(--gds-lh-label-input-medium);
+}
+
+.gds-fs-label-input-overline {
+  font-size: var(--gds-fs-label-input-overline);
+  line-height: var(--gds-lh-label-input-overline);
+}
+
+/* Heading */
+
+/* Consider using clamps  */
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/clamp */
+.gds-clamp {
+  font-size: clamp(1rem, 2.5vw, 2rem);
 }
