@@ -35,7 +35,7 @@ export default function Writing() {
               This is particularly important in texts aimed at customers. Mistakes
               affect the {`reader's`} concentration on the content and understanding of
               the text. Because our texts are correct, our credibility with customers
-              and other visitors (=potential customers) increases. We follow:
+              and other visitors (=potential customers) increases.
             </p>
           </Col>
         </Row>
