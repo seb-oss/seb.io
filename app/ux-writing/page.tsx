@@ -25,7 +25,7 @@ export default function Writing() {
     <div className="layout core foundation">
       <Stack gap="5rem">
         <Hero
-          heading="Writing"
+          heading="UX writing"
           preamble="Regardless of where, when or how the customer meets us, the experience of SEB must be the same because each meeting contributes to how we are perceived. A positive customer experience opens the door to new business.
           "
         />
@@ -45,23 +45,21 @@ export default function Writing() {
             <p>
               {" SEB's "} <a href="https://brand.seb.se/point/en/seb/component/default/82393">
                 Written ID</a> is our guiding light, and it forms the basis for all our
-              communication, including UX writing.
+              communication, including UX writing. Our communication must show that we live and 
+              operate according to our language keys:
             </p>
-            <br />
-            This is the essence of Written ID:
-            <br />
             <br />
             <ul>
               <li>
-                We are people speaking to people. That’s why we prefer using an
+                <strong>Open and personal:</strong> We are people speaking to people. That’s why we prefer using an
                 informal, personal voice rather than an official one.
               </li>
               <li>
-                Our texts are clear and easy to grasp, and we start with what’s
+                <strong>Relevant and clear:</strong> Our texts are clear and easy to grasp, and we start with what’s
                 most important.
               </li>
               <li>
-                We have the engagement and energy; we share our drive with our
+                 <strong>Driven and engaged:</strong> We have the engagement and energy; we share our drive with our
                 customers. Linguistically that means our language is alert and
                 modern.
               </li>
