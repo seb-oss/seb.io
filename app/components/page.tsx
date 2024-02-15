@@ -5,19 +5,22 @@ import { allComponents, Component } from "content"
 function ComponentCard(component: Component) {
   return (
     <Link href={component.url_path}>
-      <Pattern>
-        {component.preview?.trim() ?? "" ? (
+      {component.preview?.trim() ?? "" ? (
+        <Pattern height="240">
           <div
             dangerouslySetInnerHTML={{
               __html: component.preview ?? "",
             }}
           />
-        ) : (
+        </Pattern>
+      ) : (
+        <Pattern height="240">
           <div
             dangerouslySetInnerHTML={{ __html: component.figma_hero_svg.svg }}
           />
-        )}
-      </Pattern>
+        </Pattern>
+      )}
+
       <div>{component.title}</div>
       <p>{component.summary}</p>
     </Link>
