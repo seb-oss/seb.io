@@ -214,6 +214,10 @@
       --gds-fw-regular: 400;
       --gds-fw-medium: 500;
       --gds-fw-bold: 700;
+
+      /* letter-spacing */
+      --gds-ls-normal: normal;
+      --gds-ls-narrow: -0.04ch;
     }
 
     @media (prefers-color-scheme: dark) {

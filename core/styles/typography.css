@@ -164,3 +164,15 @@ Add font sizes
 .gds-clamp {
   font-size: clamp(1rem, 2.5vw, 2rem);
 }
+
+/* 
+  Default font sizes
+  h1 {}
+  h2 {}
+  h3 {}
+  h4 {}
+  h5 {}
+  h6 {}
+  p {}
+  li {}
+*/
