@@ -1,0 +1,38 @@
+/* code block style */
+@layer core {
+  @layer layouts {
+    @layer component {
+      [data-rehype-pretty-code-fragment] pre {
+        border-radius: 8px;
+        padding: 30px 20px;
+        overflow-x: scroll;
+      }
+
+      [data-highlighted-line] {
+        background-color: rgba(254, 205, 211, 0.1);
+        border-radius: 80px;
+      }
+
+      code {
+        display: grid;
+
+        & > span {
+          padding-left: 2ch;
+          counter-increment: line;
+          gap: 1ch;
+
+          &:before {
+            display: inline-block;
+            text-align: left;
+            content: counter(line);
+            color: white;
+            font-variant-numeric: tabular-nums;
+            opacity: 0.2;
+            margin-right: 1ch;
+            width: 2ch;
+          }
+        }
+      }
+    }
+  }
+}

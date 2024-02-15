@@ -301,7 +301,7 @@
             }
           }
 
-          div[data-rehype-pretty-code-fragment] {
+          /* div[data-rehype-pretty-code-fragment] {
             margin-top: 20px;
 
             pre {
@@ -310,7 +310,7 @@
               border-radius: 8px;
               overflow-x: scroll;
             }
-          }
+          } */
         }
 
         footer {
