@@ -76,6 +76,10 @@ export default function RootLayout({
             "website":"seb.io",
           };`}
         </Script>
+        <Script id="show-banner">
+          {`globalThis.GDS_DISABLE_VERSIONED_ELEMENTS = true`}
+        </Script>
+        <Script src="/core-out.js" />
       </body>
     </html>
   )
