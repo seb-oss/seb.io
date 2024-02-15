@@ -254,6 +254,7 @@ gds-cell {
     "header header header"
     "layout layout layout"
     "footer footer footer";
+
   grid-template-columns: auto 1fr auto;
   grid-template-rows: max-content;
   max-width: var(--max-width);
