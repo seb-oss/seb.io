@@ -56,33 +56,122 @@ export default function Grid() {
       padding="small"
       columns="8"
     >
-      <gds-cell>1</gds-cell>
-      <gds-cell>2</gds-cell>
+      <gds-cell>
+        <h1>Title</h1>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.{" "}
+        </p>
+      </gds-cell>
+      <gds-cell>
+        <h2>Title H2</h2>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.{" "}
+        </p>
+      </gds-cell>
       <gds-cell span="4">
         <gds-grid columns="2">
-          <gds-cell>Sub grid</gds-cell>
-          <gds-cell>Sub Grid</gds-cell>
-          <gds-cell>Sub Grid</gds-cell>
-          <gds-cell>Sub Grid</gds-cell>
-          <gds-cell>Sub Grid</gds-cell>
-          <gds-cell>Sub Grid</gds-cell>
-          <gds-cell>Sub Grid</gds-cell>
+          <gds-cell>
+            <h3>Sub Grid Item</h3>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.{" "}
+            </p>
+          </gds-cell>
+          <gds-cell>
+            <h3>Sub Grid Item</h3>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.{" "}
+            </p>
+          </gds-cell>
+          <gds-cell>
+            <h3>Sub Grid Item</h3>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.{" "}
+            </p>
+          </gds-cell>
+          <gds-cell>
+            <h3>Sub Grid Item</h3>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.{" "}
+            </p>
+          </gds-cell>
         </gds-grid>
       </gds-cell>
-      <gds-cell padding="small">4</gds-cell>
-      <gds-cell>5</gds-cell>
-      <gds-cell>6</gds-cell>
-      <gds-cell>7</gds-cell>
-      <gds-cell>8</gds-cell>
-      <gds-cell>9</gds-cell>
-      <gds-cell>10</gds-cell>
-      <gds-cell>11</gds-cell>
-      <gds-cell>12</gds-cell>
-      <gds-cell>13</gds-cell>
-      <gds-cell>14</gds-cell>
-      <gds-cell>15</gds-cell>
-      <gds-cell>16</gds-cell>
-      <gds-cell>17</gds-cell>
+      <gds-cell padding="small">
+        <h3>I have custom padding</h3>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.{" "}
+        </p>
+      </gds-cell>
+      <gds-cell>
+        <h3>No padding basic</h3>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.{" "}
+        </p>
+      </gds-cell>
+      <gds-cell>
+        <h3>6 columns</h3>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+      </gds-cell>
+      <gds-cell>
+        <h3>7 columns</h3>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+      </gds-cell>
+      <gds-cell>
+        <h3>8 columns</h3>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+      </gds-cell>
+      <gds-cell>
+        <h3>9 columns</h3>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+      </gds-cell>
+      <gds-cell>
+        <h3>10 columns</h3>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+      </gds-cell>
+      <gds-cell>
+        <h3>11 columns</h3>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+      </gds-cell>
+      <gds-cell>
+        <h3>12 columns</h3>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+      </gds-cell>
+      <gds-cell>
+        <h3>13 columns</h3>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+      </gds-cell>
     </gds-grid>
   )
 }

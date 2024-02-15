@@ -35,3 +35,68 @@
     }
   }
 }
+
+/* Add font sizes */
+/* prettier-ignore */
+.gds-text {
+  /* prettier-ignore */
+  .gds-text-display-large             { font-size: large  }
+  .gds-text-display-medium            { font-size: medium }
+  .gds-text-display-small             { font-size: small  }
+  .gds-text-headline-large            { font-size: large  }
+  .gds-text-headline-medium           { font-size: medium }
+  .gds-text-headline-small            { font-size: small  }
+  .gds-text-title-large               { font-size: large  }
+  .gds-text-title-medium              { font-size: medium }
+  .gds-text-title-small               { font-size: small  }
+  .gds-text-body-large                { font-size: large  }
+  .gds-text-body-large-italic         { font-size: large  }
+  .gds-text-body-medium               { font-size: medium }
+  .gds-text-body-medium-italic        { font-size: medium }
+  .gds-text-body-small                { font-size: small  }
+  .gds-text-body-small-italic         { font-size: small  }
+  .gds-text-label-large               { font-size: large  }
+  .gds-text-label-medium              { font-size: large  }
+  .gds-text-label-small               { font-size: large  }
+  .gds-text-label-information-large   { font-size: large  }
+  .gds-text-label-information-medium  { font-size: large  }
+  .gds-text-label-input-large         { font-size: large  }
+  .gds-text-label-input-medium        { font-size: large  }
+  .gds-text-label-input-overline      { font-size: large  }
+
+}
+
+/* prettier-ignore */
+:root {
+  --gds-fs-1: 82px;
+  --gds-fs-2: 64px;
+  --gds-fs-3: 40px;
+  --gds-fs-4: 32px;
+  --gds-fs-5: 28px;
+  --gds-fs-6: 24px;
+  --gds-fs-7: 20px;
+  --gds-fs-8: 16px;
+  --gds-fs-9: 14px;
+  --gds-fs-10: 12px;
+
+  --gds-text-display-large:            var(--gds-fs-1)  ;
+  --gds-text-display-medium:           var(--gds-fs-2)  ;
+  --gds-text-display-small:            var(--gds-fs-3)  ;
+  --gds-text-headline-large:           var(--gds-fs-4)  ;
+  --gds-text-headline-medium:          var(--gds-fs-5)  ;
+  --gds-text-headline-small:           var(--gds-fs-6)  ;
+  --gds-text-title-large:              var(--gds-fs-7)  ;
+  --gds-text-title-medium:             var(--gds-fs-8)  ;
+  --gds-text-title-small:              var(--gds-fs-9)  ;
+  --gds-text-body-large:               var(--gds-fs-8)  ;
+  --gds-text-body-medium:              var(--gds-fs-9)  ;
+  --gds-text-body-small:               var(--gds-fs-10) ;
+  --gds-text-label-large:              var(--gds-fs-8)  ;
+  --gds-text-label-medium:             var(--gds-fs-9)  ;
+  --gds-text-label-small:              var(--gds-fs-10) ;
+  --gds-text-label-information-large:  var(--gds-fs-8)  ;
+  --gds-text-label-information-medium: var(--gds-fs-9)  ;
+  --gds-text-label-input-large:        var(--gds-fs-8)  ;
+  --gds-text-label-input-medium:       var(--gds-fs-9)  ;
+  --gds-text-label-input-overline:     var(--gds-fs-9)  ;
+}
