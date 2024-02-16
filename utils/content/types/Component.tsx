@@ -177,30 +177,32 @@ export const Component = defineDocumentType(() => ({
           )
 
           const images = response.data.images
+          console.log("images", images)
 
-          return nodes.map((node) => {
-            const imageUrl = node ? (images[node] as string) : undefined
-            if (imageUrl) {
-              return axios
-                .get(imageUrl)
-                .then((svgResponse) => ({
-                  node: node,
-                  svg: svgResponse.data,
-                }))
+          const fetchPromises = Object.entries(images).map(
+            ([node, imageUrl]) => {
+              return fetch(imageUrl as string)
+                .then((response) => response.text())
+                .then((svgData) => {
+                  const nodeIdWithHyphen = node.replace(":", "-") // Replace the colon with a hyphen
+                  return {
+                    node: nodeIdWithHyphen,
+                    svg: svgData,
+                    url: imageUrl,
+                  }
+                })
                 .catch((error) => {
-                  console.error(`Error fetching Figma SVG`)
+                  console.error(`Error fetching Figma SVG`, error)
                   return {
                     node: node,
                     svg: "",
                   }
                 })
-            } else {
-              return {
-                node: node,
-                svg: "",
-              }
             }
-          })
+          )
+
+          const svgData = await Promise.all(fetchPromises)
+          return svgData
         } catch (error) {
           console.error("Error processing Figma SVGS:")
           return nodes.map((node) => ({
