@@ -30,9 +30,10 @@ function ComponentCard(component: Component) {
         </Pattern>
       ) : (
         <Pattern height="240">
-          <div
+          Loading...
+          {/* <div
             dangerouslySetInnerHTML={{ __html: component.figma_hero_svg.svg }}
-          />
+          /> */}
         </Pattern>
       )}
       <div>{component.title}</div>
