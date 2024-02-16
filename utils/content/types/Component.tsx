@@ -77,85 +77,50 @@ export const Component = defineDocumentType(() => ({
           }),
     },
     last_edited: { type: "date", resolve: getLastEditedDate },
-    // figma_hero_svg: {
-    //   type: "json",
-    //   resolve: async (doc) => {
-    //     const node = doc.node
+    figma_hero_svg: {
+      type: "json",
+      resolve: async (doc) => {
+        const node = doc.node
 
-    //     try {
-    //       const response = await axios.get(
-    //         `https://api.figma.com/v1/images/${figmaProjectId}/?ids=${node}&format=svg`,
-    //         {
-    //           headers: {
-    //             "X-Figma-Token": figmaAccessKey,
-    //           },
-    //         }
-    //       )
+        try {
+          const response = await axios.get(
+            `https://api.figma.com/v1/images/${figmaProjectId}/?ids=${node}&format=svg`,
+            {
+              headers: {
+                "X-Figma-Token": figmaAccessKey,
+              },
+            }
+          )
 
-    //       const images = response.data.images
-    //       const imageUrl = Object.values(images)[0] as string
-    //       const svgResponse = await axios.get(imageUrl)
+          const images = response.data.images
+          const imageUrl = Object.values(images)[0] as string
 
-    //       return {
-    //         node: node,
-    //         svg: svgResponse.data,
-    //       }
-    //     } catch (error) {
-    //       console.error("Error fetching Figma hero SVG:")
-    //       // console.error("Error fetching Figma hero SVG:", error, node)
-    //       return {
-    //         node: node,
-    //         svg: "",
-    //       }
-    //     }
-    //   },
-    // },
-    // figma_svgs: {
-    //   type: "json",
-    //   resolve: async (doc) => {
-    //     const regXHeader = /node="(?<node>.+?)"/g
-    //     let nodes: { node: string | undefined; svg: any }[] = []
-
-    //     try {
-    //       nodes = await Promise.all(
-    //         Array.from(doc.body.raw.matchAll(regXHeader)).map(async (match) => {
-    //           const groups = match.groups
-    //           const node = groups?.node
-
-    //           try {
-    //             const response = await axios.get(
-    //               `https://api.figma.com/v1/images/${figmaProjectId}/?ids=${node}&format=svg`,
-    //               {
-    //                 headers: {
-    //                   "X-Figma-Token": figmaAccessKey,
-    //                 },
-    //               }
-    //             )
-
-    //             const images = response.data.images
-    //             const imageUrl = Object.values(images)[0] as string
-    //             const svgResponse = await axios.get(imageUrl)
-
-    //             return {
-    //               node: node,
-    //               svg: svgResponse.data,
-    //             }
-    //           } catch (error) {
-    //             console.error(`Error fetching Figma SVG`, error, node)
-    //             return {
-    //               node: node,
-    //               svg: "",
-    //             }
-    //           }
-    //         })
-    //       )
-    //     } catch (error) {
-    //       console.error("Error processing Figma SVGS:")
-    //     }
-
-    //     return nodes
-    //   },
-    // },
+          return fetch(imageUrl)
+            .then((response) => response.text())
+            .then((svgData) => {
+              const nodeIdWithHyphen = node?.replace(":", "-") // Replace the colon with a hyphen
+              return {
+                node: nodeIdWithHyphen,
+                svg: svgData,
+                url: imageUrl,
+              }
+            })
+            .catch((error) => {
+              console.error(`Error fetching Figma SVG`, error)
+              return {
+                node: node,
+                svg: "",
+              }
+            })
+        } catch (error) {
+          console.error("Error fetching Figma hero SVG:")
+          return {
+            node: node,
+            svg: "",
+          }
+        }
+      },
+    },
     figma_svgs: {
       type: "json",
       resolve: async (doc) => {

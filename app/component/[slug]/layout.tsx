@@ -45,7 +45,7 @@ export default function ComponentLayout({
     global_id,
     last_edited,
     summary,
-    // figma_hero_svg,
+    figma_hero_svg,
     preview,
   } = component
 
@@ -107,10 +107,7 @@ export default function ComponentLayout({
               }}
             />
           ) : (
-            <>
-              Loading...
-              {/* <div dangerouslySetInnerHTML={{ __html: figma_hero_svg.svg }} /> */}
-            </>
+            <div dangerouslySetInnerHTML={{ __html: figma_hero_svg.svg }} />
           )}
         </Pattern>
       </header>
