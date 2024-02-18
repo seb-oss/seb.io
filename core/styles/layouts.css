@@ -1,4 +1,23 @@
-@layer core {
+/* @layer core {
+  @layer layouts {
+    @layer main {
+      body {
+        display: grid;
+        grid-template-areas:
+          "alert alert alert"
+          "header header header"
+          "layout layout layout"
+          "footer footer footer";
+
+        grid-template-columns: auto 1fr auto;
+        grid-template-rows: max-content;
+        max-width: var(--max-width);
+      }
+    }
+  }
+} */
+
+/* @layer core {
   @layer layouts {
     @layer main {
       body > main {
@@ -194,12 +213,6 @@
                 flex: 1;
               }
 
-              /* h2 {
-                font-size: 28px;
-                line-height: 1.25;
-                color: ;
-              } */
-
               & > p {
                 font-size: 24px !important;
                 line-height: 1.25 !important;
@@ -238,12 +251,8 @@
               }
             }
           }
-
-          &.\34 04 {
-            min-height: 60vh;
-          }
         }
       }
     }
   }
-}
+} */

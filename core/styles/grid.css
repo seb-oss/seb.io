@@ -242,7 +242,7 @@ gds-cell {
 /* Set max widths  */
 
 /* The area type  */
-
+/* 
 .grid-test {
   width: 100%;
 }
@@ -321,10 +321,10 @@ gds-cell {
   .app-footer {
     grid-area: footer;
   }
-}
+} */
 
 /* Actual thing  */
-
+/* 
 body {
   display: grid;
   grid-template-areas:
@@ -351,4 +351,4 @@ body > main {
 
 .main-footer {
   grid-area: footer;
-}
+} */

@@ -2,6 +2,9 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import Hero from "@/core/blocks/hero/hero"
 import Pattern from "@/core/blocks/pattern/pattern"
+import Main from "@/core/layouts/article/article"
+import Layout from "@/core/layouts/content/content"
+import Content from "@/core/layouts/content/content"
 import { allComponents, Component } from "content"
 
 export const metadata: Metadata = {
@@ -58,7 +61,8 @@ export default function Home() {
     .sort((a, b) => a.title.localeCompare(b.title))
 
   return (
-    <div className="layout core home">
+    <Content>
+      {/* <div className="layout core home"> */}
       <Hero
         heading="Designed to bring unity to our digital experiences."
         preamble="Green Design System is more than a polished user interface, its places the user at the very forefront of design, usability and accessibility."
@@ -105,6 +109,6 @@ export default function Home() {
           across our entire product suite.
         </p>
       </section>
-    </div>
+    </Content>
   )
 }

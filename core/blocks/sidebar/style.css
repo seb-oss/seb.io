@@ -14,6 +14,7 @@
       border-right: 1px solid var(--border-color);
       width: 320px;
       min-width: 320px;
+      /* grid-area: sidebar; */
 
       @media screen and (min-width: 62rem) {
         position: sticky;

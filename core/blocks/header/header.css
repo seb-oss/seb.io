@@ -19,6 +19,7 @@ header.main {
   max-block-size: var(--header-height);
   block-size: var(--header-height);
   padding-inline: 1rem;
+  grid-area: header;
 
   @media screen and (min-width: 36rem) {
     padding-inline: 1.5rem;
