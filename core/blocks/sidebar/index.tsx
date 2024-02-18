@@ -1,11 +1,10 @@
-import React, { KeyboardEvent, useRef } from "react"
+import React, { KeyboardEvent, useContext, useRef } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import Dev from "@/utils/dev/dev"
 import { allComponents, Component } from "content"
 
 import "./style.css"
-
-import { log } from "console"
 
 export default function Sidebar({
   isNavOpen,
@@ -18,6 +17,7 @@ export default function Sidebar({
   const filteredComponents = allComponents.filter(
     (component) => component._raw.sourceFileName === "index.mdx"
   )
+
   function Component(component: Component) {
     return (
       <Link
@@ -85,17 +85,21 @@ export default function Sidebar({
           >
             Foundation
           </Link>
-          <Arrow />
+          <Dev>
+            <Arrow />
+          </Dev>
         </summary>
-        <nav>
-          <Link
-            className={path == "/foundation/accessibility" ? "active" : ""}
-            href="/foundation/accessibility"
-            onClick={checkIfMenuShouldClose}
-          >
-            Accessibility
-          </Link>
-        </nav>
+        <Dev>
+          <nav>
+            <Link
+              className={path == "/foundation/accessibility" ? "active" : ""}
+              href="/foundation/accessibility"
+              onClick={checkIfMenuShouldClose}
+            >
+              Accessibility
+            </Link>
+          </nav>
+        </Dev>
       </details>
       <details open={path.includes("/ux-writing")}>
         <summary>
@@ -106,29 +110,33 @@ export default function Sidebar({
           >
             UX writing
           </Link>
-          <Arrow />
+          <Dev>
+            <Arrow />
+          </Dev>
         </summary>
-        <nav>
-          <Link
-            className={path == "/ux-writing/general" ? "active" : ""}
-            href="/ux-writing/general"
-          >
-            General
-          </Link>
-          <Link
-            className={path == "/ux-writing/english" ? "active" : ""}
-            href="/ux-writing/english"
-          >
-            English
-          </Link>
-          <Link
-            className={path == "/ux-writing/swedish" ? "active" : ""}
-            href="/ux-writing/swedish"
-            onClick={checkIfMenuShouldClose}
-          >
-            Swedish
-          </Link>
-        </nav>
+        <Dev>
+          <nav>
+            <Link
+              className={path == "/ux-writing/general" ? "active" : ""}
+              href="/ux-writing/general"
+            >
+              General
+            </Link>
+            <Link
+              className={path == "/ux-writing/english" ? "active" : ""}
+              href="/ux-writing/english"
+            >
+              English
+            </Link>
+            <Link
+              className={path == "/ux-writing/swedish" ? "active" : ""}
+              href="/ux-writing/swedish"
+              onClick={checkIfMenuShouldClose}
+            >
+              Swedish
+            </Link>
+          </nav>
+        </Dev>
       </details>
       <details
         open={

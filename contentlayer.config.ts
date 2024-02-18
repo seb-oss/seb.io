@@ -4,6 +4,7 @@ import highlight from "rehype-highlight"
 import rehypePrettyCode from "rehype-pretty-code"
 import rehypeSlug from "rehype-slug"
 import remarkGfm from "remark-gfm"
+import { rehypePrettyCodeOptions } from "./utils/theme/code"
 
 import * as documentTypes from "./utils/content/types"
 import { contentDirPath } from "./utils/content/utils"
@@ -17,23 +18,24 @@ export default makeSource({
       rehypeSlug,
       [
         rehypePrettyCode,
-        {
-          onVisitLine(node: { children: string | any[] }) {
-            if (node.children.length === 0) {
-              node.children = [{ type: "text", value: " " }]
-            }
-          },
-          onVisitHighlightedLine(node: {
-            properties: { className: string[] }
-          }) {
-            node.properties.className.push("line--highlighted")
-          },
-          onVisitHighlightedWord(node: {
-            properties: { className: string[] }
-          }) {
-            node.properties.className = ["word--highlighted"]
-          },
-        },
+        // {
+        //   onVisitLine(node: { children: string | any[] }) {
+        //     if (node.children.length === 0) {
+        //       node.children = [{ type: "text", value: " " }]
+        //     }
+        //   },
+        //   onVisitHighlightedLine(node: {
+        //     properties: { className: string[] }
+        //   }) {
+        //     node.properties.className.push("line--highlighted")
+        //   },
+        //   onVisitHighlightedWord(node: {
+        //     properties: { className: string[] }
+        //   }) {
+        //     node.properties.className = ["word--highlighted"]
+        //   },
+        // },
+        rehypePrettyCodeOptions
       ],
       [
         rehypeAutolinkHeadings,
@@ -43,7 +45,7 @@ export default makeSource({
             className: ["anchor"],
           },
         },
-      ],
+      ]
     ],
   },
   onSuccess: async (importData) => {

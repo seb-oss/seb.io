@@ -5,6 +5,7 @@
 @import "typography.css";
 @import "utilities.css";
 @import "responsive.css";
+@import "syntax.css";
 @import "grid.css";
 
 @layer core {
