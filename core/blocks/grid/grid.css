@@ -91,6 +91,40 @@ gds-grid {
   }
 }
 
+gds-grid[automatic-columns] {
+  margin-top: 200px;
+  --grid-layout-gap: 10px;
+  --grid-column-count: 4; /* This gets overridden by an inline style. */
+  --grid-item--min-width: 200px; /* This gets overridden by an inline style. */
+
+  /**
+   * Calculated values.
+   */
+  --gap-count: calc(var(--grid-column-count) - 1);
+  --total-gap-width: calc(var(--gap-count) * var(--grid-layout-gap));
+  --grid-item--max-width: calc(
+    (100% - var(--total-gap-width)) / var(--grid-column-count)
+  );
+
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(max(var(--grid-item--min-width), var(--grid-item--max-width)), 1fr)
+  );
+  grid-gap: var(--grid-layout-gap);
+
+  > div {
+    padding: 30px;
+    border: 2px solid currentColor;
+
+    &[data-span="3"] {
+      grid-column-end: span 3 !important;
+      /* grid-column-start: 3 !important; */
+      border-color: red;
+    }
+  }
+}
+
 /*
  Spaning columns (1-24)
  Attribute: span
