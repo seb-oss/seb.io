@@ -1,46 +1,44 @@
 /* code block style */
 @layer core {
-  @layer layouts {
-    @layer component {
-      [data-rehype-pretty-code-fragment] {
-        margin-top: 1lh;
-        pre {
-          border-radius: 8px;
-          padding: 1lh;
-          overflow-x: scroll;
-          /* background-color: hsla(60, 4%, 20%, 1) !important; */
-          border: 1px solid hsla(222, 11%, 24%, 1) !important;
-        }
-
-        pre:has([data-line-numbers]) {
-          padding: 1lh 0;
-        }
+  @layer layout.component {
+    [data-rehype-pretty-code-fragment] {
+      margin-top: 1lh;
+      pre {
+        border-radius: 8px;
+        padding: 1lh;
+        overflow-x: scroll;
+        /* background-color: hsla(60, 4%, 20%, 1) !important; */
+        border: 1px solid hsla(222, 11%, 24%, 1) !important;
       }
 
-      [data-highlighted-line] {
-        background-color: hsla(222, 11%, 20%, 1);
-        box-shadow: inset 4px 0 0 0 rgb(127, 132, 142);
+      pre:has([data-line-numbers]) {
+        padding: 1lh 0;
       }
+    }
 
-      code {
-        display: grid;
+    [data-highlighted-line] {
+      background-color: hsla(222, 11%, 20%, 1);
+      box-shadow: inset 4px 0 0 0 rgb(127, 132, 142);
+    }
 
-        &[data-line-numbers] {
-          & > span {
-            padding-left: 2ch;
-            counter-increment: line;
-            gap: 1ch;
+    code {
+      display: grid;
 
-            &:before {
-              display: inline-block;
-              text-align: right;
-              content: counter(line);
-              color: white;
-              font-variant-numeric: tabular-nums;
-              opacity: 0.2;
-              margin-right: 2ch;
-              width: 2ch;
-            }
+      &[data-line-numbers] {
+        & > span {
+          padding-left: 2ch;
+          counter-increment: line;
+          gap: 1ch;
+
+          &:before {
+            display: inline-block;
+            text-align: right;
+            content: counter(line);
+            color: white;
+            font-variant-numeric: tabular-nums;
+            opacity: 0.2;
+            margin-right: 2ch;
+            width: 2ch;
           }
         }
       }

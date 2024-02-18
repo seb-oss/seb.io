@@ -7,7 +7,8 @@ import Alert from "@/core/blocks/alert/aler"
 import Consent from "@/core/blocks/consent/consent"
 import Footer from "@/core/blocks/footer"
 import Header from "@/core/blocks/header/header"
-import Layout from "@/core/layouts/core"
+import Article from "@/core/layouts/article/article"
+import Main from "@/core/layouts/main/main"
 import SEBSAnsSerif from "@/utils/fonts/fonts"
 import { ThemeProvider } from "@/utils/theme/provider"
 
@@ -60,11 +61,13 @@ export default function RootLayout({
           enableColorScheme={false}
           enableSystem
         >
-          <Alert />
-          <Header />
-          <Layout>{children}</Layout>
-          <Consent />
-          <Footer />
+          <Main>
+            <Alert />
+            <Header />
+            <Article>{children}</Article>
+            <Consent />
+            <Footer />
+          </Main>
         </ThemeProvider>
         <Script id="data-layer">
           {`window["dataLayer"] = {

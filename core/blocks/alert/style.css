@@ -10,17 +10,14 @@
   justify-content: space-between;
   align-items: center;
   gap: 20px;
+  grid-area: alert;
 
   span {
     margin-inline: auto;
   }
 
   svg {
-    width: 24px;
-    height: 24px;
-
-    path {
-      fill: currentColor;
-    }
+    min-width: 1lh;
+    min-height: 1lh;
   }
 }

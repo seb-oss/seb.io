@@ -1,18 +1,12 @@
-@layer core {
-  @layer layouts {
-    @layer component {
-      .row {
-        display: flex;
-        gap: 24px;
-        flex-direction: row;
-        margin-block-start: 2lh;
+.row {
+  display: flex;
+  gap: 24px;
+  flex-direction: row;
+  margin-block-start: 2lh;
 
-        .col {
-          display: flex;
-          flex: 1;
-          flex-direction: column;
-        }
-      }
-    }
+  .col {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
   }
 }
