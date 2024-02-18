@@ -24,6 +24,10 @@ export default function Grid({
   spaceH,
   columns = 12,
 }: GridProps) {
+  if (columns < 1 || columns > 24) {
+    throw new Error("The columns prop must be between 1 and 24.")
+  }
+
   const debug = useGridDebug()
   return (
     <gds-grid

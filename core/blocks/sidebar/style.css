@@ -12,7 +12,7 @@ aside.nav {
   border-right: 1px solid var(--border-color);
   width: 320px;
   min-width: 320px;
-  /* grid-area: sidebar; */
+  grid-area: sidebar;
 
   @media screen and (min-width: 62rem) {
     position: sticky;
@@ -101,14 +101,8 @@ aside.nav {
     align-items: center;
 
     &:hover,
-        /* &.active:not(summary > a) > { */
-        &.active {
+    &.active {
       text-decoration: underline solid 1px;
-    }
-
-    svg,
-    path {
-      fill: var(--gds-sys-color-content-content);
     }
   }
 

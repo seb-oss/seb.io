@@ -24,7 +24,7 @@ gds-grid {
   }
 }
 
-/* Spacings and gaps  */
+/* Spacings and gaps */
 /* prettier-ignore */
 gds-grid {
   &[gap-h="small"]      { --gds-grid-col-gap: var(--gds-gap-s) }
@@ -77,6 +77,18 @@ gds-grid {
   &[columns="22"] { --gds-grid-col: repeat(22, 1fr) }
   &[columns="23"] { --gds-grid-col: repeat(23, 1fr) }
   &[columns="24"] { --gds-grid-col: repeat(24, 1fr) }
+
+  @media (min-width: 600px) {
+    &[columns="3"]  { --gds-grid-col: repeat(1, 1fr)  }
+  }
+
+  @media (min-width: 900px) {
+    &[columns="3"]  { --gds-grid-col: repeat(1, 1fr)  }
+  }
+
+  @media (min-width: 1200px) {
+    &[columns="3"]  { --gds-grid-col: repeat(3, 1fr)  }
+  }
 }
 
 /*
@@ -112,11 +124,7 @@ gds-grid > gds-cell {
   &[span^="24"] { --gds-grid-col-start: 24  }
 }
 
-/* 
-span=...+width, span=...-end
-
-*/
-
+/* span=...+width, span=...-end */
 /* prettier-ignore */
 gds-grid > gds-cell {
   &[span$="+1"],  &[span="1"]                  { --gds-grid-col-end: 1  }
@@ -154,7 +162,6 @@ gds-grid > gds-cell {
 }
 
 /* Debug */
-
 gds-grid {
   &[debug] {
     counter-set: gds-cell;
