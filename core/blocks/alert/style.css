@@ -17,11 +17,7 @@
   }
 
   svg {
-    width: 24px;
-    height: 24px;
-
-    path {
-      fill: currentColor;
-    }
+    min-width: 1lh;
+    min-height: 1lh;
   }
 }

@@ -33,14 +33,10 @@ header.main {
     max-inline-size: max-content;
 
     svg {
-      display: flex;
       height: 24px;
       width: auto;
       fill: none;
-
-      path {
-        fill: currentColor;
-      }
+      stroke: none;
     }
   }
 
@@ -52,12 +48,6 @@ header.main {
 
     svg {
       height: 16px;
-      width: auto;
-      fill: none;
-      stroke: currentColor;
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
     }
   }
 
@@ -82,16 +72,6 @@ header.main {
 
     &:hover {
       border-color: color-mix(in srgb, var(--color-black), transparent 80%);
-    }
-
-    svg {
-      width: 14px;
-      height: 14px;
-      fill: none;
-      stroke: currentColor;
-      stroke-width: 2px;
-      stroke-linecap: round;
-      stroke-linejoin: round;
     }
   }
 

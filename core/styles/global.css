@@ -6,7 +6,6 @@
 @import "utilities.css";
 @import "responsive.css";
 @import "syntax.css";
-@import "grid.css";
 
 @layer core {
   html {
@@ -41,4 +40,6 @@
       outline-style: solid;
     }
   }
+
+  @layer blocks;
 }

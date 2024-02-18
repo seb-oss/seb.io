@@ -2,11 +2,6 @@
   --gds-grid-col: repeat(4, 1fr);
   --gds-grid-col-start: 1;
   --gds-grid-col-end: -1;
-  --gds-grid-col-gap: calc(1lh / 2);
-  --gds-grid-row-gap: calc(1lh / 2);
-  --gds-gap-s: 20px;
-  --gds-gap-m: 40px;
-  --gds-gap-l: 60px;
   --gds-debug-color: hsla(241, 100%, 66%, 0.4);
 }
 
@@ -38,9 +33,12 @@ gds-grid {
   &[gap-v="small"]      { --gds-grid-row-gap: var(--gds-gap-s) }
   &[gap-v="medium"]     { --gds-grid-row-gap: var(--gds-gap-m) }
   &[gap-v="large"]      { --gds-grid-row-gap: var(--gds-gap-l) }
-  &[padding="small"]    { padding: var(--gds-gap-s) }
-  &[padding="medium"]   { padding: var(--gds-gap-m) }
-  &[padding="large"]    { padding: var(--gds-gap-l) }
+  &[space-v="small"]    { padding-block: var(--gds-gap-s) }
+  &[space-v="medium"]   { padding-block: var(--gds-gap-m) }
+  &[space-v="large"]    { padding-block: var(--gds-gap-l) }
+  &[space-h="small"]    { padding-inline: var(--gds-gap-s) }
+  &[space-h="medium"]   { padding-inline: var(--gds-gap-m) }
+  &[space-h="large"]    { padding-inline: var(--gds-gap-l) }
 }
 
 /* prettier-ignore */
@@ -155,16 +153,11 @@ gds-grid > gds-cell {
   &[span="row"]                              { grid-column: 1 / -1 } 
 }
 
-/* Grid Utils */
+/* Debug */
 
 gds-grid {
-  counter-set: gds-cell;
-
-  &[nogap] {
-    grid-row-gap: 0;
-  }
-
   &[debug] {
+    counter-set: gds-cell;
     box-shadow: inset 0 0 0 4px var(--gds-debug-color);
 
     gds-cell {
@@ -194,161 +187,5 @@ gds-grid {
         content: counter(gds-cell);
       }
     }
-
-    &[columns="8"] {
-      background: linear-gradient(
-          to right,
-          transparent 200px,
-          var(--gds-debug-color) 10px
-        )
-        repeat-x center/10px 20px;
-    }
   }
 }
-
-/* Consider grid paddings on side */
-
-/* Consider grid flex instead of grid for older browsers */
-
-/* Aspect ratio for single cards     aspect-ratio: 1 / 1; */
-
-/* 
-
-Consider autofill min max rows with wrap 
-
-.grid {
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-    gap: 24px;
-}
-
-
-gds-cell {
-
-  center content horizontally 
-  center content vertically
-  max height
-  aspect ratio
-
-}
-*/
-
-/* Set max widths  */
-/* Set max widths  */
-/* Set max widths  */
-/* Set max widths  */
-/* Set max widths  */
-/* Set max widths  */
-/* Set max widths  */
-/* Set max widths  */
-
-/* The area type  */
-/* 
-.grid-test {
-  width: 100%;
-}
-
-.app {
-  display: grid;
-  grid-template-areas:
-    "alert alert alert"
-    "header header header"
-    "layout layout layout"
-    "footer footer footer";
-
-  grid-template-columns: auto 1fr auto;
-  grid-template-rows: max-content;
-  max-width: var(--max-width);
-  gap: 20px;
-  padding: 20px;
-
-  * {
-    padding: 2ex;
-    border: 1px solid black;
-  }
-
-  .app-alert {
-    grid-area: alert;
-  }
-
-  .app-header {
-    grid-area: header;
-  }
-
-  .app-layout {
-    grid-area: layout;
-    display: grid;
-
-    grid-template-areas: "sidebar content";
-    grid-template-columns: max-content;
-    grid-template-rows: max-content;
-    gap: 20px;
-
-    .sidebar {
-      position: sticky;
-      top: 0px;
-
-      &:hover {
-        display: none;
-      }
-    }
-
-    .content {
-      grid-area: content;
-      display: grid;
-      grid-template-areas:
-        "hero hero"
-        "secondary secondary"
-        "content toc";
-      gap: 20px;
-      margin: 0 auto;
-      max-width: 100%;
-
-      .hero {
-        grid-area: hero;
-      }
-      .secondary {
-        grid-area: secondary;
-      }
-      .content {
-        grid-area: content;
-      }
-      .toc {
-        grid-area: toc;
-      }
-    }
-  }
-
-  .app-footer {
-    grid-area: footer;
-  }
-} */
-
-/* Actual thing  */
-/* 
-body {
-  display: grid;
-  grid-template-areas:
-    "alert alert alert"
-    "header header header"
-    "layout layout layout"
-    "footer footer footer";
-  grid-template-columns: auto 1fr auto;
-  grid-template-rows: max-content;
-  max-width: var(--max-width);
-}
-
-.alert {
-  grid-area: alert;
-}
-
-header.main {
-  grid-area: header;
-}
-
-body > main {
-  grid-area: layout;
-}
-
-.main-footer {
-  grid-area: footer;
-} */

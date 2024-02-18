@@ -1,17 +1,25 @@
 "use client"
 
-import React, { useContext } from "react"
-import Sidebar from "@/core/blocks/sidebar"
-import { ThemeProviderContext } from "@/utils/theme/provider"
-
 import "@/core/layouts/content/content.css"
 
-export default function Content({ children }: { children: React.ReactNode }) {
-  const { toggleNav, isNavOpen } = useContext(ThemeProviderContext)
+type LayoutType =
+  | "home"
+  | "content"
+  | "component"
+  | "changelog"
+  | "search"
+  | "not-found"
+  | "article"
 
+export default function Content({
+  children,
+  layout,
+}: {
+  layout: LayoutType
+  children: React.ReactNode
+}) {
   return (
-    <section className="layout-content">
-      {/* {isNavOpen && <Sidebar toggleNav={toggleNav} isNavOpen={isNavOpen} />} */}
+    <section className={`layout-content ${`page-` + layout}`}>
       {children}
     </section>
   )

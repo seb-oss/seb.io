@@ -1,11 +1,11 @@
 import type { Metadata } from "next"
-import Link from "next/link"
+import ComponentList from "@/core/blocks/component-list/component-list"
+import Grid from "@/core/blocks/grid/grid"
 import Hero from "@/core/blocks/hero/hero"
-import Pattern from "@/core/blocks/pattern/pattern"
-import Main from "@/core/layouts/article/article"
-import Layout from "@/core/layouts/content/content"
+import RessourcesList from "@/core/blocks/resources-list/resources-list"
 import Content from "@/core/layouts/content/content"
-import { allComponents, Component } from "content"
+
+import "./page.css"
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://seb.io"),
@@ -20,95 +20,26 @@ export const metadata: Metadata = {
   },
 }
 
-function ComponentCard(component: Component) {
-  return (
-    <Link href={component.url_path}>
-      {component.preview?.trim() ?? "" ? (
-        <Pattern height="240">
-          <div
-            dangerouslySetInnerHTML={{
-              __html: component.preview ?? "",
-            }}
-          />
-        </Pattern>
-      ) : (
-        <Pattern height="240">
-          <div
-            dangerouslySetInnerHTML={{ __html: component.figma_hero_svg.svg }}
-          />
-        </Pattern>
-      )}
-      <div>{component.title}</div>
-      <p>{component.summary}</p>
-    </Link>
-  )
-}
-
-function Chevron() {
-  return (
-    <div>
-      <svg viewBox="0 0 24 24">
-        <line x1="5" y1="12" x2="19" y2="12"></line>
-        <polyline points="12 5 19 12 12 19"></polyline>
-      </svg>
-    </div>
-  )
-}
-
 export default function Home() {
-  const components = allComponents
-    .filter((component) => component._raw.sourceFileName === "index.mdx")
-    .sort((a, b) => a.title.localeCompare(b.title))
-
   return (
-    <Content>
-      {/* <div className="layout core home"> */}
-      <Hero
-        heading="Designed to bring unity to our digital experiences."
-        preamble="Green Design System is more than a polished user interface, its places the user at the very forefront of design, usability and accessibility."
-      />
-      <section className="home-components">
-        <h2>
-          <Link href="/components">Components</Link>
-        </h2>
-        <div className="component-list">
-          {components.map((component, idx) => (
-            <ComponentCard key={idx} {...component} />
-          ))}
-        </div>
-      </section>
-      <section className="home-resources">
-        <h2>Resources</h2>
-        <div className="list">
-          <Link
-            className="cta-home"
-            href="https://github.com/sebgroup/green"
-            target="_blank"
-          >
-            <span data-caption="Github">Start contributing now!</span>
-            <Chevron />
-          </Link>
-          <Link
-            className="cta-home"
-            href="https://brand.seb.se/point/en/seb/"
-            target="_blank"
-          >
-            <span data-caption="Media Bank & Brand Guidelines">
-              SEB Brand Hub
-            </span>
-            <Chevron />
-          </Link>
-        </div>
-      </section>
-      <section className="home-quote">
-        <h2>Empowering designers and developers</h2>
-        <p>
-          A framework with accessibility and usability rooted at its core, Green
-          Design System empowers designers and developers to create with speed
-          and precision. It ensures a seamless and consistent visual experience
-          across our entire product suite.
-        </p>
-      </section>
+    <Content layout="home">
+      <Grid columns={1} gapV="large" spaceV="large">
+        <Hero
+          heading="Designed to bring unity to our digital experiences."
+          preamble="Green Design System is more than a polished user interface, its places the user at the very forefront of design, usability and accessibility."
+        />
+        <ComponentList title="Components" />
+        <RessourcesList title="Resources" />
+        <Grid columns={2}>
+          <h2>Empowering designers and developers</h2>
+          <p className="gds-fs-headline-small color-secondary">
+            A framework with accessibility and usability rooted at its core,
+            Green Design System empowers designers and developers to create with
+            speed and precision. It ensures a seamless and consistent visual
+            experience across our entire product suite.
+          </p>
+        </Grid>
+      </Grid>
     </Content>
   )
 }

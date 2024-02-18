@@ -2,10 +2,8 @@
   @layer layout.content {
     .layout-content {
       grid-area: content;
-      display: grid;
-      grid-template-areas: "sidebar content";
-      grid-template-columns: max-content;
-      grid-template-rows: max-content;
+      max-inline-size: var(--max-width-xxl);
+      margin-inline: auto;
     }
   }
 }

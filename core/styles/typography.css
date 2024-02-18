@@ -157,22 +157,31 @@ Add font sizes
   line-height: var(--gds-lh-label-input-overline);
 }
 
-/* Heading */
-
-/* Consider using clamps  */
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/clamp */
+/* Clamp ————— https://developer.mozilla.org/en-US/docs/Web/CSS/clamp */
 .gds-clamp {
   font-size: clamp(1rem, 2.5vw, 2rem);
 }
 
-/* 
-  Default font sizes
-  h1 {}
-  h2 {}
-  h3 {}
-  h4 {}
-  h5 {}
-  h6 {}
-  p {}
-  li {}
-*/
+/* Heading */
+
+h1,
+.h1 {
+  font-size: var(--gds-fs-display-large);
+  line-height: var(--gds-lh-display-large);
+}
+
+h2,
+.h2 {
+  font-size: var(--gds-fs-headline-medium);
+  line-height: var(--gds-lh-headline-medium);
+}
+
+/* Paragraphs */
+p {
+  font-size: var(--gds-fs-body-large);
+  line-height: var(--gds-lh-body-large);
+
+  &.color-secondary {
+    color: var(--gds-sys-color-content-content-secondary);
+  }
+}

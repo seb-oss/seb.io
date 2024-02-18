@@ -225,7 +225,18 @@
       --breakpoint-lg: 62rem; /*  992px  */
       --breakpoint-xl: 75rem; /*  1200px */
 
+      /* Max Widths */
       --max-width: 100%;
+      --max-width-sm: 36rem; /*  576px  */
+      --max-width-md: 48rem; /*  768px  */
+      --max-width-lg: 62rem; /*  992px  */
+      --max-width-xl: 75rem; /*  1200px */
+      --max-width-xxl: 100rem; /*  1440px */
+
+      /* Gaps */
+      --gds-gap-s: 20px;
+      --gds-gap-m: 40px;
+      --gds-gap-l: 60px;
     }
 
     @media (prefers-color-scheme: dark) {
