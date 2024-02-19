@@ -3,7 +3,7 @@
   --gds-grid-col-start: 1;
   --gds-grid-col-end: -1;
   --gds-debug-color: hsla(241, 100%, 66%, 0.4);
-  --gds-grid-col-gap: 10px;
+  --gds-grid-col-gap: 0px;
 }
 
 gds-grid {
@@ -90,19 +90,23 @@ gds-grid {
   &[columns="22"] { --gds-c: 22; --gds-grid-col: repeat(var(--gds-c), 1fr) }
   &[columns="23"] { --gds-c: 23; --gds-grid-col: repeat(var(--gds-c), 1fr) }
   &[columns="24"] { --gds-c: 24; --gds-grid-col: repeat(var(--gds-c), 1fr) }
-
-  @media (min-width: 600px) {
-    &[columns="3"]  { --gds-grid-col: repeat(1, 1fr)  }
-  }
-
-  @media (min-width: 900px) {
-    &[columns="3"]  { --gds-grid-col: repeat(1, 1fr)  }
-  }
-
-  @media (min-width: 1200px) {
-    &[columns="3"]  { --gds-grid-col: repeat(3, 1fr)  }
-  }
 }
+
+/* Justify */
+/* prettier-ignore */
+gds-grid {
+  &[justify="start"]    { justify-items: start }
+  &[justify="end"]      { justify-items: end }
+  &[justify="center"]   { justify-items: center }
+  &[justify="between"]  { justify-items: space-between }
+  &[justify="around"]   { justify-items: space-around }
+  &[justify="evenly"]   { justify-items: space-evenly }
+}
+/* 
+grid-template-columns: repeat(auto-fill, minmax(auto, 1fr))
+grid-auto-columns: max-content;
+grid-template-columns: repeat(auto-fill, minmax(max-content, 1fr));  
+*/
 
 /*
  Spaning columns (1-24)
@@ -178,7 +182,8 @@ gds-grid > gds-cell {
 gds-grid {
   &[debug] {
     counter-set: gds-cell;
-    box-shadow: inset 0 0 0 4px var(--gds-debug-color);
+    outline: 1px dashed var(--gds-debug-color);
+    outline-offset: 4px;
 
     & > * {
       outline: 1px dashed var(--gds-debug-color);

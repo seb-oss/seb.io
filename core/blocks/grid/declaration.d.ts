@@ -7,6 +7,7 @@ declare namespace JSX {
       "gap-h"?: string;
       padding?: string;
       fluid?: boolean;
+      justify?: string;
     }
   
     interface GdsCellProps extends React.HTMLAttributes<HTMLElement> {

@@ -2,6 +2,7 @@
   @layer layout.content {
     .layout-content {
       grid-area: content;
+      inline-size: 100%;
       max-inline-size: var(--max-width-xxl);
       margin-inline: auto;
     }

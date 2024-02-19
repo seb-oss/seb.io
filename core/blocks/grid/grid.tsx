@@ -6,6 +6,7 @@ import useGridDebug from "@/utils/grid-debug/grid-debug"
 import "@/core/blocks/grid/grid.css"
 
 type GridGapSize = "small" | "medium" | "large"
+type GridJustify = "start" | "end" | "center" | "between" | "around" | "evenly"
 
 type GridProps = {
   children: React.ReactNode
@@ -15,6 +16,7 @@ type GridProps = {
   paddingH?: GridGapSize
   columns: number
   fluid?: boolean
+  justify?: GridJustify
 }
 
 export default function Grid({
@@ -25,6 +27,7 @@ export default function Grid({
   paddingH,
   columns = 12,
   fluid,
+  justify = "start",
 }: GridProps) {
   if (columns < 1 || columns > 24) {
     throw new Error("The columns prop must be between 1 and 24.")
@@ -40,6 +43,7 @@ export default function Grid({
       padding-h={paddingH}
       columns={columns.toString()}
       fluid={fluid}
+      justify={justify}
     >
       {children}
     </gds-grid>
