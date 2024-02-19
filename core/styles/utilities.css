@@ -35,5 +35,10 @@
       &[gap-inline="medium"] { --gds-gap-inline: var(--gds-gap-m) }
       &[gap-inline="large"]  { --gds-gap-inline: var(--gds-gap-l) }
     }
+
+    /* prettier-ignore */
+    [packed] {
+      max-width: max-content;
+    }
   }
 }

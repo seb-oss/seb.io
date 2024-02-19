@@ -101,6 +101,14 @@ gds-grid {
   &[justify="between"]  { justify-items: space-between }
   &[justify="around"]   { justify-items: space-around }
   &[justify="evenly"]   { justify-items: space-evenly }
+
+  /* Align */
+  &[align="start"]      { align-items: start }
+  &[align="end"]        { align-items: end }
+  &[align="center"]     { align-items: center }
+  &[align="between"]    { align-items: space-between }
+  &[align="around"]     { align-items: space-around }
+  &[align="evenly"]     { align-items: space-evenly }
 }
 /* 
 grid-template-columns: repeat(auto-fill, minmax(auto, 1fr))

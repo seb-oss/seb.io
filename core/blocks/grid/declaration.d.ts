@@ -8,6 +8,7 @@ declare namespace JSX {
       padding?: string;
       fluid?: boolean;
       justify?: string;
+      align?: string;
     }
   
     interface GdsCellProps extends React.HTMLAttributes<HTMLElement> {
