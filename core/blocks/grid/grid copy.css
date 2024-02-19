@@ -3,7 +3,7 @@
   --gds-grid-col-start: 1;
   --gds-grid-col-end: -1;
   --gds-debug-color: hsla(241, 100%, 66%, 0.4);
-  --gds-grid-col-gap: 10px;
+  --gds-grid-gap: 0;
 }
 
 gds-grid {
@@ -21,18 +21,21 @@ gds-grid {
     -webkit-appearance: none;
   }
 
-  &[fluid] {
-    --gds-grid-col-count: var(--gds-c);
-    --gds-grid-col-width: 200px;
-    --gap-count: calc(var(--gds-grid-col-count) - 1);
-    --total-gap-width: calc(var(--gap-count) * var(--gds-grid-col-gap));
-    --gds-grid-col-width-max: calc(
-      (100% - var(--total-gap-width)) / var(--gds-grid-col-count)
+  &[automatic-columns] {
+    --grid-layout-gap: 10px;
+    --grid-column-count: 4;
+    --grid-item--min-width: 200px;
+
+    /* Function */
+    --gap-count: calc(var(--grid-column-count) - 1);
+    --total-gap-width: calc(var(--gap-count) * var(--grid-layout-gap));
+    --grid-item--max-width: calc(
+      (100% - var(--total-gap-width)) / var(--grid-column-count)
     );
 
     grid-template-columns: repeat(
       auto-fill,
-      minmax(max(var(--gds-grid-col-width), var(--gds-grid-col-width-max)), 1fr)
+      minmax(max(var(--grid-item--min-width), var(--grid-item--max-width)), 1fr)
     );
   }
 }
@@ -46,12 +49,12 @@ gds-grid {
   &[gap-v="small"]      { --gds-grid-row-gap: var(--gds-gap-s) }
   &[gap-v="medium"]     { --gds-grid-row-gap: var(--gds-gap-m) }
   &[gap-v="large"]      { --gds-grid-row-gap: var(--gds-gap-l) }
-  &[padding-v="small"]    { padding-block: var(--gds-gap-s) }
-  &[padding-v="medium"]   { padding-block: var(--gds-gap-m) }
-  &[padding-v="large"]    { padding-block: var(--gds-gap-l) }
-  &[padding-h="small"]    { padding-inline: var(--gds-gap-s) }
-  &[padding-h="medium"]   { padding-inline: var(--gds-gap-m) }
-  &[padding-h="large"]    { padding-inline: var(--gds-gap-l) }
+  &[space-v="small"]    { padding-block: var(--gds-gap-s) }
+  &[space-v="medium"]   { padding-block: var(--gds-gap-m) }
+  &[space-v="large"]    { padding-block: var(--gds-gap-l) }
+  &[space-h="small"]    { padding-inline: var(--gds-gap-s) }
+  &[space-h="medium"]   { padding-inline: var(--gds-gap-m) }
+  &[space-h="large"]    { padding-inline: var(--gds-gap-l) }
 }
 
 /* prettier-ignore */
@@ -66,30 +69,30 @@ gds-grid > gds-cell {
 
 /* prettier-ignore */
 gds-grid {
-  &[columns="1"]  { --gds-c: 1;  --gds-grid-col: repeat(var(--gds-c), 1fr)  }
-  &[columns="2"]  { --gds-c: 2;  --gds-grid-col: repeat(var(--gds-c), 1fr)  }
-  &[columns="3"]  { --gds-c: 3;  --gds-grid-col: repeat(var(--gds-c), 1fr)  }
-  &[columns="4"]  { --gds-c: 4;  --gds-grid-col: repeat(var(--gds-c), 1fr)  }
-  &[columns="5"]  { --gds-c: 5;  --gds-grid-col: repeat(var(--gds-c), 1fr)  }
-  &[columns="6"]  { --gds-c: 6;  --gds-grid-col: repeat(var(--gds-c), 1fr)  }
-  &[columns="7"]  { --gds-c: 7;  --gds-grid-col: repeat(var(--gds-c), 1fr)  }
-  &[columns="8"]  { --gds-c: 8;  --gds-grid-col: repeat(var(--gds-c), 1fr)  }
-  &[columns="9"]  { --gds-c: 9;  --gds-grid-col: repeat(var(--gds-c), 1fr)  }
-  &[columns="10"] { --gds-c: 10; --gds-grid-col: repeat(var(--gds-c), 1fr) }
-  &[columns="11"] { --gds-c: 11; --gds-grid-col: repeat(var(--gds-c), 1fr) }
-  &[columns="12"] { --gds-c: 12; --gds-grid-col: repeat(var(--gds-c), 1fr) }
-  &[columns="13"] { --gds-c: 13; --gds-grid-col: repeat(var(--gds-c), 1fr) }
-  &[columns="14"] { --gds-c: 14; --gds-grid-col: repeat(var(--gds-c), 1fr) }
-  &[columns="15"] { --gds-c: 15; --gds-grid-col: repeat(var(--gds-c), 1fr) }
-  &[columns="16"] { --gds-c: 16; --gds-grid-col: repeat(var(--gds-c), 1fr) }
-  &[columns="17"] { --gds-c: 17; --gds-grid-col: repeat(var(--gds-c), 1fr) }
-  &[columns="18"] { --gds-c: 18; --gds-grid-col: repeat(var(--gds-c), 1fr) }
-  &[columns="19"] { --gds-c: 19; --gds-grid-col: repeat(var(--gds-c), 1fr) }
-  &[columns="20"] { --gds-c: 20; --gds-grid-col: repeat(var(--gds-c), 1fr) }
-  &[columns="21"] { --gds-c: 21; --gds-grid-col: repeat(var(--gds-c), 1fr) }
-  &[columns="22"] { --gds-c: 22; --gds-grid-col: repeat(var(--gds-c), 1fr) }
-  &[columns="23"] { --gds-c: 23; --gds-grid-col: repeat(var(--gds-c), 1fr) }
-  &[columns="24"] { --gds-c: 24; --gds-grid-col: repeat(var(--gds-c), 1fr) }
+  &[columns="1"]  { --gds-grid-col: repeat(1, 1fr)  }
+  &[columns="2"]  { --gds-grid-col: repeat(2, 1fr)  }
+  &[columns="3"]  { --gds-grid-col: repeat(3, 1fr)  }
+  &[columns="4"]  { --gds-grid-col: repeat(4, 1fr)  }
+  &[columns="5"]  { --gds-grid-col: repeat(5, 1fr)  }
+  &[columns="6"]  { --gds-grid-col: repeat(6, 1fr)  }
+  &[columns="7"]  { --gds-grid-col: repeat(7, 1fr)  }
+  &[columns="8"]  { --gds-grid-col: repeat(8, 1fr)  }
+  &[columns="9"]  { --gds-grid-col: repeat(9, 1fr)  }
+  &[columns="10"] { --gds-grid-col: repeat(10, 1fr) }
+  &[columns="11"] { --gds-grid-col: repeat(11, 1fr) }
+  &[columns="12"] { --gds-grid-col: repeat(12, 1fr) }
+  &[columns="13"] { --gds-grid-col: repeat(13, 1fr) }
+  &[columns="14"] { --gds-grid-col: repeat(14, 1fr) }
+  &[columns="15"] { --gds-grid-col: repeat(15, 1fr) }
+  &[columns="16"] { --gds-grid-col: repeat(16, 1fr) }
+  &[columns="17"] { --gds-grid-col: repeat(17, 1fr) }
+  &[columns="18"] { --gds-grid-col: repeat(18, 1fr) }
+  &[columns="19"] { --gds-grid-col: repeat(19, 1fr) }
+  &[columns="20"] { --gds-grid-col: repeat(20, 1fr) }
+  &[columns="21"] { --gds-grid-col: repeat(21, 1fr) }
+  &[columns="22"] { --gds-grid-col: repeat(22, 1fr) }
+  &[columns="23"] { --gds-grid-col: repeat(23, 1fr) }
+  &[columns="24"] { --gds-grid-col: repeat(24, 1fr) }
 
   @media (min-width: 600px) {
     &[columns="3"]  { --gds-grid-col: repeat(1, 1fr)  }
@@ -102,6 +105,37 @@ gds-grid {
   @media (min-width: 1200px) {
     &[columns="3"]  { --gds-grid-col: repeat(3, 1fr)  }
   }
+}
+
+gds-grid[automatic-columns] {
+  margin-top: 200px;
+  --grid-layout-gap: 10px;
+  --grid-column-count: 4;
+  --grid-item--min-width: 200px;
+
+  /* Function */
+  --gap-count: calc(var(--grid-column-count) - 1);
+  --total-gap-width: calc(var(--gap-count) * var(--grid-layout-gap));
+  --grid-item--max-width: calc(
+    (100% - var(--total-gap-width)) / var(--grid-column-count)
+  );
+
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(max(var(--grid-item--min-width), var(--grid-item--max-width)), 1fr)
+  );
+  grid-gap: var(--grid-layout-gap);
+
+  /* > div {
+    padding: 30px;
+    border: 2px solid currentColor;
+
+    &[data-span="3"] {
+      grid-column-end: span 3 !important;
+      border-color: red;
+    }
+  } */
 }
 
 /*
@@ -180,7 +214,7 @@ gds-grid {
     counter-set: gds-cell;
     box-shadow: inset 0 0 0 4px var(--gds-debug-color);
 
-    & > * {
+    gds-cell {
       outline: 1px dashed var(--gds-debug-color);
       position: relative;
 
