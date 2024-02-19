@@ -40,18 +40,18 @@ gds-grid {
 /* Spacings and gaps */
 /* prettier-ignore */
 gds-grid {
-  &[gap-h="small"]      { --gds-grid-col-gap: var(--gds-gap-s) }
-  &[gap-h="medium"]     { --gds-grid-col-gap: var(--gds-gap-m) }
-  &[gap-h="large"]      { --gds-grid-col-gap: var(--gds-gap-l) }
-  &[gap-v="small"]      { --gds-grid-row-gap: var(--gds-gap-s) }
-  &[gap-v="medium"]     { --gds-grid-row-gap: var(--gds-gap-m) }
-  &[gap-v="large"]      { --gds-grid-row-gap: var(--gds-gap-l) }
-  &[padding-v="small"]    { padding-block: var(--gds-gap-s) }
-  &[padding-v="medium"]   { padding-block: var(--gds-gap-m) }
-  &[padding-v="large"]    { padding-block: var(--gds-gap-l) }
-  &[padding-h="small"]    { padding-inline: var(--gds-gap-s) }
-  &[padding-h="medium"]   { padding-inline: var(--gds-gap-m) }
-  &[padding-h="large"]    { padding-inline: var(--gds-gap-l) }
+  &[gap-inline="small"]      { --gds-grid-col-gap: var(--gds-gap-s) }
+  &[gap-inline="medium"]     { --gds-grid-col-gap: var(--gds-gap-m) }
+  &[gap-inline="large"]      { --gds-grid-col-gap: var(--gds-gap-l) }
+  &[gap-block="small"]      { --gds-grid-row-gap: var(--gds-gap-s) }
+  &[gap-block="medium"]     { --gds-grid-row-gap: var(--gds-gap-m) }
+  &[gap-block="large"]      { --gds-grid-row-gap: var(--gds-gap-l) }
+  &[padding-block="small"]    { padding-block: var(--gds-gap-s) }
+  &[padding-block="medium"]   { padding-block: var(--gds-gap-m) }
+  &[padding-block="large"]    { padding-block: var(--gds-gap-l) }
+  &[padding-inline="small"]    { padding-inline: var(--gds-gap-s) }
+  &[padding-inline="medium"]   { padding-inline: var(--gds-gap-m) }
+  &[padding-inline="large"]    { padding-inline: var(--gds-gap-l) }
 }
 
 /* prettier-ignore */

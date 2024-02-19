@@ -3,8 +3,8 @@ declare namespace JSX {
       columns?: string;
       class?: string;
       debug?: boolean;
-      "gap-v"?: string;
-      "gap-h"?: string;
+      "gap-block"?: string;
+      "gap-inline"?: string;
       padding?: string;
       fluid?: boolean;
       justify?: string;

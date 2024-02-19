@@ -12,10 +12,10 @@ export default function GridPage() {
     <Content layout="content">
       <Grid
         columns={4}
-        gapH="large"
-        gapV="large"
-        paddingH="large"
-        paddingV="large"
+        gapInline="large"
+        gapBlock="large"
+        paddingInline="large"
+        paddingBlock="large"
         fluid
       >
         <div>

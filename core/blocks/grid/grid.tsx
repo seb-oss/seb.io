@@ -10,10 +10,10 @@ type GridJustify = "start" | "end" | "center" | "between" | "around" | "evenly"
 
 type GridProps = {
   children: React.ReactNode
-  gapV?: GridGapSize
-  gapH?: GridGapSize
-  paddingV?: GridGapSize
-  paddingH?: GridGapSize
+  gapBlock?: GridGapSize
+  gapInline?: GridGapSize
+  paddingBlock?: GridGapSize
+  paddingInline?: GridGapSize
   columns: number
   fluid?: boolean
   justify?: GridJustify
@@ -21,10 +21,10 @@ type GridProps = {
 
 export default function Grid({
   children,
-  gapV,
-  gapH,
-  paddingV,
-  paddingH,
+  gapBlock,
+  gapInline,
+  paddingBlock,
+  paddingInline,
   columns = 12,
   fluid,
   justify = "start",
@@ -37,10 +37,10 @@ export default function Grid({
   return (
     <gds-grid
       {...(debug ? { debug: true } : {})}
-      gap-v={gapV}
-      gap-h={gapH}
-      padding-v={paddingV}
-      padding-h={paddingH}
+      gap-block={gapBlock}
+      gap-inline={gapInline}
+      padding-block={paddingBlock}
+      padding-inline={paddingInline}
       columns={columns.toString()}
       fluid={fluid}
       justify={justify}

@@ -23,7 +23,12 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <Content layout="home">
-      <Grid columns={1} gapV="large" paddingH="large" paddingV="large">
+      <Grid
+        columns={1}
+        gapBlock="large"
+        paddingInline="large"
+        paddingBlock="large"
+      >
         <Hero
           heading="Designed to bring unity to our digital experiences."
           preamble="Green Design System is more than a polished user interface, its places the user at the very forefront of design, usability and accessibility."

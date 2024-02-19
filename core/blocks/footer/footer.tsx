@@ -11,12 +11,12 @@ export default function Footer() {
 
   return (
     <footer className="main-footer" padding-block="large">
-      <Grid columns={1} gapV="large" paddingH="medium">
+      <Grid columns={1} gapBlock="large" paddingInline="medium">
         <h2>Green Design System</h2>
         <Grid columns={5} justify="start" fluid>
           <nav>
             <ul>
-              <Grid columns={1} gapV="small">
+              <Grid columns={1} gapBlock="small">
                 <li>
                   <Link href="/about">About</Link>
                 </li>
@@ -31,7 +31,7 @@ export default function Footer() {
           </nav>
           <nav>
             <ul>
-              <Grid columns={1} gapV="small">
+              <Grid columns={1} gapBlock="small">
                 <li>
                   <Link href="https://github.com/sebgroup/green">Github</Link>
                 </li>
@@ -46,7 +46,7 @@ export default function Footer() {
           </nav>
           <nav>
             <ul>
-              <Grid columns={1} gapV="small">
+              <Grid columns={1} gapBlock="small">
                 <li>
                   <Link href="https://sebgroup.com/">SEB Group</Link>
                 </li>
