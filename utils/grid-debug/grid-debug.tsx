@@ -4,6 +4,11 @@ export default function useGridDebug() {
   const [debug, setDebug] = useState(false)
 
   useEffect(() => {
+    const isDev = process.env.NEXT_PUBLIC_DEV_ENV === "true"
+    if (!isDev) {
+      return
+    }
+
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Alt") {
         setDebug(true)
