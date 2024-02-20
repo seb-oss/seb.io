@@ -11,15 +11,15 @@ Mobile: 425px
   /* Desktop: 1024px - 2560px */
   /* prettier-ignore */
   gds-grid {
-    &[columns="1"]  { --gds-c: 1;  --gds-grid-col: repeat(var(--gds-c), 1fr)  }
-    &[columns="2"]  { --gds-c: 2;  --gds-grid-col: repeat(var(--gds-c), 1fr)  }
-    &[columns="3"]  { --gds-c: 3;  --gds-grid-col: repeat(var(--gds-c), 1fr)  }
-    &[columns="4"]  { --gds-c: 4;  --gds-grid-col: repeat(var(--gds-c), 1fr)  }
-    &[columns="5"]  { --gds-c: 5;  --gds-grid-col: repeat(var(--gds-c), 1fr)  }
-    &[columns="6"]  { --gds-c: 6;  --gds-grid-col: repeat(var(--gds-c), 1fr)  }
-    &[columns="7"]  { --gds-c: 7;  --gds-grid-col: repeat(var(--gds-c), 1fr)  }
-    &[columns="8"]  { --gds-c: 8;  --gds-grid-col: repeat(var(--gds-c), 1fr)  }
-    &[columns="9"]  { --gds-c: 9;  --gds-grid-col: repeat(var(--gds-c), 1fr)  }
+    &[columns="1"]  { --gds-c: 1;  --gds-grid-col: repeat(var(--gds-c), 1fr) }
+    &[columns="2"]  { --gds-c: 2;  --gds-grid-col: repeat(var(--gds-c), 1fr) }
+    &[columns="3"]  { --gds-c: 3;  --gds-grid-col: repeat(var(--gds-c), 1fr) }
+    &[columns="4"]  { --gds-c: 4;  --gds-grid-col: repeat(var(--gds-c), 1fr) }
+    &[columns="5"]  { --gds-c: 5;  --gds-grid-col: repeat(var(--gds-c), 1fr) }
+    &[columns="6"]  { --gds-c: 6;  --gds-grid-col: repeat(var(--gds-c), 1fr) }
+    &[columns="7"]  { --gds-c: 7;  --gds-grid-col: repeat(var(--gds-c), 1fr) }
+    &[columns="8"]  { --gds-c: 8;  --gds-grid-col: repeat(var(--gds-c), 1fr) }
+    &[columns="9"]  { --gds-c: 9;  --gds-grid-col: repeat(var(--gds-c), 1fr) }
     &[columns="10"] { --gds-c: 10; --gds-grid-col: repeat(var(--gds-c), 1fr) }
     &[columns="11"] { --gds-c: 11; --gds-grid-col: repeat(var(--gds-c), 1fr) }
     &[columns="12"] { --gds-c: 12; --gds-grid-col: repeat(var(--gds-c), 1fr) }
