@@ -3,5 +3,42 @@
     .text-secondary {
       color: var(--gds-sys-color-content-content-secondary);
     }
+
+    /* prettier-ignore */
+    [padding-block] {
+      padding-block: var(--gds-padding-block);
+      &[padding-block="small"]  { --gds-padding-block: var(--gds-gap-sm) }
+      &[padding-block="medium"] { --gds-padding-block: var(--gds-gap-md) }
+      &[padding-block="large"]  { --gds-padding-block: var(--gds-gap-lg) }
+    }
+
+    /* prettier-ignore */
+    [padding-inline] {
+      padding-inline: var(--gds-padding-inline);
+      &[padding-inline="small"]  { --gds-padding-inline: var(--gds-gap-sm) }
+      &[padding-inline="medium"] { --gds-padding-inline: var(--gds-gap-md) }
+      &[padding-inline="large"]  { --gds-padding-inline: var(--gds-gap-lg) }
+    }
+
+    /* prettier-ignore */
+    [gap-block] {
+      row-gap: var(--gds-gap-block);
+      &[gap-block="small"]  { --gds-gap-block: var(--gds-gap-sm) }
+      &[gap-block="medium"] { --gds-gap-block: var(--gds-gap-md) }
+      &[gap-block="large"]  { --gds-gap-block: var(--gds-gap-lg) }
+    }
+
+    /* prettier-ignore */
+    [gap-inline] {
+      column-gap: var(--gds-gap-inline);
+      &[gap-inline="small"]  { --gds-gap-inline: var(--gds-gap-sm) }
+      &[gap-inline="medium"] { --gds-gap-inline: var(--gds-gap-md) }
+      &[gap-inline="large"]  { --gds-gap-inline: var(--gds-gap-lg) }
+    }
+
+    /* prettier-ignore */
+    [packed] {
+      max-width: max-content;
+    }
   }
 }

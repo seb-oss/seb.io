@@ -37,10 +37,6 @@
     .sidebar {
       position: sticky;
       top: 0px;
-
-      &:hover {
-        display: none;
-      }
     }
 
     .content {

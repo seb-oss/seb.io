@@ -14,7 +14,14 @@ export default function ComponentList({ title }: { title: string }) {
   return (
     <section className="component-list">
       {title && <h2>{title}</h2>}
-      <Grid columns={3} gapH="medium" gapV="medium">
+      <Grid
+        columns={3}
+        // columns={{mobile: 2, tablet: 3, desktop: 4}}
+        mobile={2}
+        tablet={1}
+        gapInline="medium"
+        gapBlock="medium"
+      >
         {components.map((component, idx) => (
           <ComponentCard key={idx} {...component} />
         ))}

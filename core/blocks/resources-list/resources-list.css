@@ -1,5 +1,5 @@
 .resources-list {
   display: flex;
   flex-direction: column;
-  gap: var(--gds-gap-s);
+  gap: var(--gds-gap-sm);
 }

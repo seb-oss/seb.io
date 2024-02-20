@@ -21,9 +21,13 @@ export default function FigmaSVG({ caption, node, height }: FigmaSVGProps) {
     (svg_node: any) => svg_node.node === node
   )
 
+  // <Pattern caption={caption} height={height}>
+  // <div dangerouslySetInnerHTML={{ __html: svgSource?.svg }} />
+  // </Pattern>
+
   return (
-    <Pattern caption={caption} height={height}>
-      <div dangerouslySetInnerHTML={{ __html: svgSource?.svg }} />
+    <Pattern caption={caption} height={height} content={svgSource?.svg}>
+      {/* <div dangerouslySetInnerHTML={{ __html: svgSource?.svg }} /> */}
     </Pattern>
   )
 }

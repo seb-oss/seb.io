@@ -1,6 +1,12 @@
+import type { Metadata } from "next"
 import Content from "@/core/layouts/content/content"
 
 import "./page.css"
+
+export const metadata: Metadata = {
+  metadataBase: new URL("https://seb.io/demo/grid-area"),
+  title: "Demo Grid Area — Green Design System",
+}
 
 export default function GridArea() {
   return (

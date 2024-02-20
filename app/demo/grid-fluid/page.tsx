@@ -3,8 +3,8 @@ import Grid from "@/core/blocks/grid/grid"
 import Content from "@/core/layouts/content/content"
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://seb.io/demo/grid"),
-  title: "Demo Grid — Green Design System",
+  metadataBase: new URL("https://seb.io/demo/grid-fluid"),
+  title: "Demo Grid Fluid — Green Design System",
 }
 
 export default function GridPage() {
@@ -12,49 +12,50 @@ export default function GridPage() {
     <Content layout="content">
       <Grid
         columns={4}
-        paddingInline="large"
-        paddingBlock="large"
         gapInline="large"
         gapBlock="large"
+        paddingInline="large"
+        paddingBlock="large"
+        fluid
       >
         <div>
           <h2>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.{" "}
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </h2>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.{" "}
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
         </div>
         <div>
           <h2>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.{" "}
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </h2>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.{" "}
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
         </div>
         <div>
           <h2>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.{" "}
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </h2>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.{" "}
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
         </div>
         <div>
           <h2>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.{" "}
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </h2>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.{" "}
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
         </div>
       </Grid>

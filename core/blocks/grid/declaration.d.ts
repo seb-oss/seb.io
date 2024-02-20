@@ -3,9 +3,14 @@ declare namespace JSX {
       columns?: string;
       class?: string;
       debug?: boolean;
-      "gap-v"?: string;
-      "gap-h"?: string;
+      "gap-block"?: string;
+      "gap-inline"?: string;
       padding?: string;
+      fluid?: boolean;
+      justify?: string;
+      align?: string;
+      mobile?: string;
+      tablet?: string;
     }
   
     interface GdsCellProps extends React.HTMLAttributes<HTMLElement> {
