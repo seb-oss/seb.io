@@ -1,66 +1,71 @@
-/* @import "debug.css"; */
-/* @import "responsive.css"; */
+@layer grid, grid.desktop, grid.tablet, grid.mobile, grid.debug;
 
-:root {
-  --gds-grid-col: repeat(4, 1fr);
-  --gds-grid-col-start: 1;
-  --gds-grid-col-end: -1;
-  --gds-debug-color: hsla(241, 100%, 66%, 0.4);
-  --gds-debug-color-container: rgba(255, 82, 197, 0.4);
-  --gds-grid-col-gap: 0px;
-}
+@import "./debug.css" layer(grid.debug);
 
-gds-grid {
-  display: grid;
-  width: 100%;
-  grid-template-columns: var(--gds-grid-col);
-  grid-column-gap: var(--gds-grid-col-gap);
-  grid-row-gap: var(--gds-grid-row-gap);
-
-  /* This needs to be improved  */
-  & > gds-cell {
-    display: block;
-    -moz-appearance: none;
-    appearance: none;
-    -webkit-appearance: none;
+@layer grid {
+  :root {
+    --gds-grid-col: repeat(4, 1fr);
+    --gds-grid-col-start: 1;
+    --gds-grid-col-end: -1;
+    --gds-debug-color: hsla(241, 100%, 66%, 0.4);
+    --gds-debug-color-container: rgba(255, 82, 197, 0.4);
+    --gds-grid-col-gap: 0px;
   }
 
-  &[fluid] {
-    --gds-grid-col-count: var(--gds-c);
-    --gds-grid-col-width: 200px;
-    --gap-count: calc(var(--gds-grid-col-count) - 1);
-    --total-gap-width: calc(var(--gap-count) * var(--gds-grid-col-gap));
-    --gds-grid-col-width-max: calc(
-      (100% - var(--total-gap-width)) / var(--gds-grid-col-count)
-    );
+  gds-grid {
+    display: grid;
+    width: 100%;
+    grid-template-columns: var(--gds-grid-col);
+    grid-column-gap: var(--gds-grid-col-gap);
+    grid-row-gap: var(--gds-grid-row-gap);
 
-    grid-template-columns: repeat(
-      auto-fill,
-      minmax(max(var(--gds-grid-col-width), var(--gds-grid-col-width-max)), 1fr)
-    );
-    text-wrap: balance;
+    /* This needs to be improved  */
+    & > gds-cell {
+      display: block;
+      -moz-appearance: none;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+    &[fluid] {
+      --gds-grid-col-count: var(--gds-c);
+      --gds-grid-col-width: 200px;
+      --gap-count: calc(var(--gds-grid-col-count) - 1);
+      --total-gap-width: calc(var(--gap-count) * var(--gds-grid-col-gap));
+      --gds-grid-col-width-max: calc(
+        (100% - var(--total-gap-width)) / var(--gds-grid-col-count)
+      );
+
+      grid-template-columns: repeat(
+        auto-fill,
+        minmax(
+          max(var(--gds-grid-col-width), var(--gds-grid-col-width-max)),
+          1fr
+        )
+      );
+      text-wrap: balance;
+    }
   }
-}
 
-/* Spacings and gaps */
-/* prettier-ignore */
-gds-grid {
-  &[gap-inline="small"]      { --gds-grid-col-gap: var(--gds-gap-sm) }
-  &[gap-inline="medium"]     { --gds-grid-col-gap: var(--gds-gap-md) }
-  &[gap-inline="large"]      { --gds-grid-col-gap: var(--gds-gap-lg) }
-  &[gap-block="small"]      { --gds-grid-row-gap: var(--gds-gap-sm) }
-  &[gap-block="medium"]     { --gds-grid-row-gap: var(--gds-gap-md) }
-  &[gap-block="large"]      { --gds-grid-row-gap: var(--gds-gap-lg) }
-  &[padding-block="small"]    { padding-block: var(--gds-gap-sm) }
-  &[padding-block="medium"]   { padding-block: var(--gds-gap-md) }
-  &[padding-block="large"]    { padding-block: var(--gds-gap-lg) }
-  &[padding-inline="small"]    { padding-inline: var(--gds-gap-sm) }
-  &[padding-inline="medium"]   { padding-inline: var(--gds-gap-md) }
-  &[padding-inline="large"]    { padding-inline: var(--gds-gap-lg) }
-}
+  /* Spacings and gaps */
+  /* prettier-ignore */
+  gds-grid {
+    &[gap-inline="small"]      { --gds-grid-col-gap: var(--gds-gap-sm) }
+    &[gap-inline="medium"]     { --gds-grid-col-gap: var(--gds-gap-md) }
+    &[gap-inline="large"]      { --gds-grid-col-gap: var(--gds-gap-lg) }
+    &[gap-block="small"]      { --gds-grid-row-gap: var(--gds-gap-sm) }
+    &[gap-block="medium"]     { --gds-grid-row-gap: var(--gds-gap-md) }
+    &[gap-block="large"]      { --gds-grid-row-gap: var(--gds-gap-lg) }
+    &[padding-block="small"]    { padding-block: var(--gds-gap-sm) }
+    &[padding-block="medium"]   { padding-block: var(--gds-gap-md) }
+    &[padding-block="large"]    { padding-block: var(--gds-gap-lg) }
+    &[padding-inline="small"]    { padding-inline: var(--gds-gap-sm) }
+    &[padding-inline="medium"]   { padding-inline: var(--gds-gap-md) }
+    &[padding-inline="large"]    { padding-inline: var(--gds-gap-lg) }
+  }
 
-/* prettier-ignore */
-gds-grid > gds-cell {
+  /* prettier-ignore */
+  gds-grid > gds-cell {
   &[padding="small"]    { padding: var(--gds-gap-sm) }
   &[padding="medium"]   { padding: var(--gds-gap-md) }
   &[padding="large"]    { padding: var(--gds-gap-lg) }
@@ -69,37 +74,9 @@ gds-grid > gds-cell {
   /* Add aspect ratio options */
 }
 
-/* prettier-ignore */
-gds-grid {
-  &[columns="1"]  { --gds-c: 1;  --gds-grid-col: repeat(var(--gds-c), 1fr)  }
-  &[columns="2"]  { --gds-c: 2;  --gds-grid-col: repeat(var(--gds-c), 1fr)  }
-  &[columns="3"]  { --gds-c: 3;  --gds-grid-col: repeat(var(--gds-c), 1fr)  }
-  &[columns="4"]  { --gds-c: 4;  --gds-grid-col: repeat(var(--gds-c), 1fr)  }
-  &[columns="5"]  { --gds-c: 5;  --gds-grid-col: repeat(var(--gds-c), 1fr)  }
-  &[columns="6"]  { --gds-c: 6;  --gds-grid-col: repeat(var(--gds-c), 1fr)  }
-  &[columns="7"]  { --gds-c: 7;  --gds-grid-col: repeat(var(--gds-c), 1fr)  }
-  &[columns="8"]  { --gds-c: 8;  --gds-grid-col: repeat(var(--gds-c), 1fr)  }
-  &[columns="9"]  { --gds-c: 9;  --gds-grid-col: repeat(var(--gds-c), 1fr)  }
-  &[columns="10"] { --gds-c: 10; --gds-grid-col: repeat(var(--gds-c), 1fr) }
-  &[columns="11"] { --gds-c: 11; --gds-grid-col: repeat(var(--gds-c), 1fr) }
-  &[columns="12"] { --gds-c: 12; --gds-grid-col: repeat(var(--gds-c), 1fr) }
-  &[columns="13"] { --gds-c: 13; --gds-grid-col: repeat(var(--gds-c), 1fr) }
-  &[columns="14"] { --gds-c: 14; --gds-grid-col: repeat(var(--gds-c), 1fr) }
-  &[columns="15"] { --gds-c: 15; --gds-grid-col: repeat(var(--gds-c), 1fr) }
-  &[columns="16"] { --gds-c: 16; --gds-grid-col: repeat(var(--gds-c), 1fr) }
-  &[columns="17"] { --gds-c: 17; --gds-grid-col: repeat(var(--gds-c), 1fr) }
-  &[columns="18"] { --gds-c: 18; --gds-grid-col: repeat(var(--gds-c), 1fr) }
-  &[columns="19"] { --gds-c: 19; --gds-grid-col: repeat(var(--gds-c), 1fr) }
-  &[columns="20"] { --gds-c: 20; --gds-grid-col: repeat(var(--gds-c), 1fr) }
-  &[columns="21"] { --gds-c: 21; --gds-grid-col: repeat(var(--gds-c), 1fr) }
-  &[columns="22"] { --gds-c: 22; --gds-grid-col: repeat(var(--gds-c), 1fr) }
-  &[columns="23"] { --gds-c: 23; --gds-grid-col: repeat(var(--gds-c), 1fr) }
-  &[columns="24"] { --gds-c: 24; --gds-grid-col: repeat(var(--gds-c), 1fr) }
-}
-
-/* Justify */
-/* prettier-ignore */
-gds-grid {
+  /* Justify */
+  /* prettier-ignore */
+  gds-grid {
   &[justify="start"]    { justify-items: start }
   &[justify="end"]      { justify-items: end }
   &[justify="center"]   { justify-items: center }
@@ -115,19 +92,19 @@ gds-grid {
   &[align="around"]     { align-items: space-around }
   &[align="evenly"]     { align-items: space-evenly }
 }
-/* 
+  /* 
 grid-template-columns: repeat(auto-fill, minmax(auto, 1fr))
 grid-auto-columns: max-content;
 grid-template-columns: repeat(auto-fill, minmax(max-content, 1fr));  
 */
 
-/*
+  /*
  Spaning columns (1-24)
  Attribute: span
  Example: span="8"
 */
-/* prettier-ignore */
-gds-grid > gds-cell {
+  /* prettier-ignore */
+  gds-grid > gds-cell {
   &[span^="1"]  { --gds-grid-col-start: 1   }
   &[span^="2"]  { --gds-grid-col-start: 2   }
   &[span^="3"]  { --gds-grid-col-start: 3   }
@@ -154,9 +131,9 @@ gds-grid > gds-cell {
   &[span^="24"] { --gds-grid-col-start: 24  }
 }
 
-/* span=...+width, span=...-end */
-/* prettier-ignore */
-gds-grid > gds-cell {
+  /* span=...+width, span=...-end */
+  /* prettier-ignore */
+  gds-grid > gds-cell {
   &[span$="+1"],  &[span="1"]                  { --gds-grid-col-end: 1  }
   &[span$="+2"],  &[span$="-1"],  &[span="2"]  { --gds-grid-col-end: 2  }
   &[span$="+3"],  &[span$="-2"],  &[span="3"]  { --gds-grid-col-end: 3  }
@@ -183,8 +160,8 @@ gds-grid > gds-cell {
   &[span$="+24"], &[span$="-23"], &[span="24"] { --gds-grid-col-end: 24 }
 }
 
-/* prettier-ignore */
-gds-grid > gds-cell { 
+  /* prettier-ignore */
+  gds-grid > gds-cell { 
   &[span]        { grid-column-end: span var(--gds-grid-col-end) }
 
   &[span*="+"],
@@ -195,4 +172,5 @@ gds-grid > gds-cell {
   &[span*=".."] { grid-column-end: var(--gds-grid-col-end) }
 
   &[span="row"] { grid-column: 1 / -1 } 
+}
 }

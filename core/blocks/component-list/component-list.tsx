@@ -16,7 +16,7 @@ export default function ComponentList({ title }: { title: string }) {
       {title && <h2>{title}</h2>}
       <Grid
         columns={3}
-        mobile={1}
+        mobile={2}
         tablet={1}
         gapInline="medium"
         gapBlock="medium"
