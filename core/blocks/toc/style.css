@@ -1,6 +1,15 @@
 aside.toc {
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+  max-height: 100vh;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   span {
     font-size: 14px;
@@ -14,6 +23,42 @@ aside.toc {
     flex-direction: column;
     font-size: 14px;
     position: relative;
+    user-select: none;
+
+    details {
+      margin-top: 2ex;
+      margin-bottom: 1ex;
+      summary {
+        appearance: none;
+        list-style: none;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        a[data-level="2"] {
+          margin: 0;
+        }
+
+        .disclosure {
+          min-width: 24px;
+          min-height: 24px;
+          aspect-ratio: 1/1;
+          border-radius: 200px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+
+          &:hover {
+            background-color: var(--gds-sys-color-state-layers-state-black);
+          }
+        }
+      }
+
+      &[open] summary svg {
+        transform: scaleY(-1);
+      }
+    }
 
     a {
       --_inline-padding: 2ch;

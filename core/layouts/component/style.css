@@ -164,8 +164,9 @@
           padding-block-start: 40px;
           position: sticky;
           top: 130px;
-          min-width: 200px;
-          max-width: 200px;
+          min-width: 220px;
+          max-width: 220px;
+          padding-right: 24px;
         }
 
         h2 {
