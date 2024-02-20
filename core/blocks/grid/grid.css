@@ -34,6 +34,7 @@ gds-grid {
       auto-fill,
       minmax(max(var(--gds-grid-col-width), var(--gds-grid-col-width-max)), 1fr)
     );
+    text-wrap: balance;
   }
 }
 
