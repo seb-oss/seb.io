@@ -1,7 +1,7 @@
 footer.main-footer {
   grid-area: footer;
   border-top: 1px solid var(--gds-sys-color-stroke-stroke-variant2);
-  /* padding-block: var(--gds-gap-l); */
+  /* padding-block: var(--gds-gap-lg); */
 
   button.cookie-preferences {
     background: none;

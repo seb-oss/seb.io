@@ -6,8 +6,6 @@
       grid-template-areas: "sidebar content";
       grid-template-columns: max-content;
       grid-template-rows: max-content;
-      inline-size: 100%;
-      max-inline-size: var(--max-width-xxl);
     }
   }
 }

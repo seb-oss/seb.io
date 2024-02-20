@@ -3,7 +3,9 @@
 import React from "react"
 import useGridDebug from "@/utils/grid-debug/grid-debug"
 
-import "@/core/blocks/grid/grid.css"
+import "@/core/blocks/grid/css/grid.css"
+import "@/core/blocks/grid/css/debug.css"
+import "@/core/blocks/grid/css/responsive.css"
 
 type GridGapSize = "small" | "medium" | "large"
 type GridJustify = "start" | "end" | "center" | "between" | "around" | "evenly"
@@ -15,6 +17,8 @@ type GridProps = {
   gapInline?: GridGapSize
   paddingBlock?: GridGapSize
   paddingInline?: GridGapSize
+  mobile?: number
+  tablet?: number
   columns: number
   fluid?: boolean
   justify?: GridJustify
@@ -27,6 +31,8 @@ export default function Grid({
   gapInline,
   paddingBlock,
   paddingInline,
+  mobile,
+  tablet,
   columns = 12,
   fluid,
   justify,
@@ -45,6 +51,8 @@ export default function Grid({
       padding-block={paddingBlock}
       padding-inline={paddingInline}
       columns={columns.toString()}
+      {...(mobile !== undefined ? { mobile: mobile.toString() } : {})}
+      {...(tablet !== undefined ? { tablet: tablet.toString() } : {})}
       fluid={fluid}
       justify={justify}
       align={align}

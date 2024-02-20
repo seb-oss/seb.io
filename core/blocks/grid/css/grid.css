@@ -1,8 +1,12 @@
+/* @import "debug.css"; */
+/* @import "responsive.css"; */
+
 :root {
   --gds-grid-col: repeat(4, 1fr);
   --gds-grid-col-start: 1;
   --gds-grid-col-end: -1;
   --gds-debug-color: hsla(241, 100%, 66%, 0.4);
+  --gds-debug-color-container: rgba(255, 82, 197, 0.4);
   --gds-grid-col-gap: 0px;
 }
 
@@ -41,25 +45,25 @@ gds-grid {
 /* Spacings and gaps */
 /* prettier-ignore */
 gds-grid {
-  &[gap-inline="small"]      { --gds-grid-col-gap: var(--gds-gap-s) }
-  &[gap-inline="medium"]     { --gds-grid-col-gap: var(--gds-gap-m) }
-  &[gap-inline="large"]      { --gds-grid-col-gap: var(--gds-gap-l) }
-  &[gap-block="small"]      { --gds-grid-row-gap: var(--gds-gap-s) }
-  &[gap-block="medium"]     { --gds-grid-row-gap: var(--gds-gap-m) }
-  &[gap-block="large"]      { --gds-grid-row-gap: var(--gds-gap-l) }
-  &[padding-block="small"]    { padding-block: var(--gds-gap-s) }
-  &[padding-block="medium"]   { padding-block: var(--gds-gap-m) }
-  &[padding-block="large"]    { padding-block: var(--gds-gap-l) }
-  &[padding-inline="small"]    { padding-inline: var(--gds-gap-s) }
-  &[padding-inline="medium"]   { padding-inline: var(--gds-gap-m) }
-  &[padding-inline="large"]    { padding-inline: var(--gds-gap-l) }
+  &[gap-inline="small"]      { --gds-grid-col-gap: var(--gds-gap-sm) }
+  &[gap-inline="medium"]     { --gds-grid-col-gap: var(--gds-gap-md) }
+  &[gap-inline="large"]      { --gds-grid-col-gap: var(--gds-gap-lg) }
+  &[gap-block="small"]      { --gds-grid-row-gap: var(--gds-gap-sm) }
+  &[gap-block="medium"]     { --gds-grid-row-gap: var(--gds-gap-md) }
+  &[gap-block="large"]      { --gds-grid-row-gap: var(--gds-gap-lg) }
+  &[padding-block="small"]    { padding-block: var(--gds-gap-sm) }
+  &[padding-block="medium"]   { padding-block: var(--gds-gap-md) }
+  &[padding-block="large"]    { padding-block: var(--gds-gap-lg) }
+  &[padding-inline="small"]    { padding-inline: var(--gds-gap-sm) }
+  &[padding-inline="medium"]   { padding-inline: var(--gds-gap-md) }
+  &[padding-inline="large"]    { padding-inline: var(--gds-gap-lg) }
 }
 
 /* prettier-ignore */
 gds-grid > gds-cell {
-  &[padding="small"]    { padding: var(--gds-gap-s) }
-  &[padding="medium"]   { padding: var(--gds-gap-m) }
-  &[padding="large"]    { padding: var(--gds-gap-l) }
+  &[padding="small"]    { padding: var(--gds-gap-sm) }
+  &[padding="medium"]   { padding: var(--gds-gap-md) }
+  &[padding="large"]    { padding: var(--gds-gap-lg) }
 
   /* Add centering vercial and horizontal options */
   /* Add aspect ratio options */
@@ -181,45 +185,14 @@ gds-grid > gds-cell {
 
 /* prettier-ignore */
 gds-grid > gds-cell { 
-  &[span]                                    { grid-column-end: span var(--gds-grid-col-end) }
-  &[span*="+"], &[span*="-"], &[span*=".."]  { grid-column-start: var(--gds-grid-col-start)  }
-  &[span*="-"], &[span*=".."]                { grid-column-end: var(--gds-grid-col-end)      }
-  &[span="row"]                              { grid-column: 1 / -1 } 
-}
+  &[span]        { grid-column-end: span var(--gds-grid-col-end) }
 
-/* Debug */
-gds-grid {
-  &[debug] {
-    counter-set: gds-cell;
-    outline: 1px dashed var(--gds-debug-color);
-    outline-offset: 4px;
+  &[span*="+"],
+  &[span*="-"],
+  &[span*=".."]  { grid-column-start: var(--gds-grid-col-start) }
 
-    & > * {
-      outline: 1px dashed var(--gds-debug-color);
-      position: relative;
+  &[span*="-"],
+  &[span*=".."] { grid-column-end: var(--gds-grid-col-end) }
 
-      &::before {
-        content: counter(gds-cell);
-        color: #fff;
-        font-weight: bold;
-        display: flex;
-        padding: 2px 4px;
-        border-radius: 2px;
-        align-items: center;
-        justify-content: center;
-        background-color: var(--gds-debug-color);
-        counter-increment: gds-cell;
-        position: absolute;
-        top: 4px;
-        right: 4px;
-        font-size: 10px;
-        text-align: right;
-        width: 2ch;
-      }
-
-      &:nth-child(n + 10)::before {
-        content: counter(gds-cell);
-      }
-    }
-  }
+  &[span="row"] { grid-column: 1 / -1 } 
 }

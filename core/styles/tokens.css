@@ -219,24 +219,19 @@
       --gds-ls-normal: normal;
       --gds-ls-narrow: -0.04ch;
 
-      /* Breking points */
-      --breakpoint-sm: 36rem; /*  576px  */
-      --breakpoint-md: 48rem; /*  768px  */
-      --breakpoint-lg: 62rem; /*  992px  */
-      --breakpoint-xl: 75rem; /*  1200px */
-
-      /* Max Widths */
-      --max-width: 100%;
-      --max-width-sm: 36rem; /*  576px  */
-      --max-width-md: 48rem; /*  768px  */
-      --max-width-lg: 62rem; /*  992px  */
-      --max-width-xl: 75rem; /*  1200px */
-      --max-width-xxl: 100rem; /*  1440px */
+      /* Breaking Points / Max Widths */
+      /* These should come from token package: break points */
+      --gds-bp-mobile: 425px;
+      --gds-bp-tablet: 768px;
+      --gds-bp-desktop-sm: 1024px;
+      --gds-bp-desktop-md: 1440px;
+      --gds-bp-desktop-lg: 2560px;
 
       /* Gaps */
-      --gds-gap-s: 20px;
-      --gds-gap-m: 40px;
-      --gds-gap-l: 60px;
+      /* These should come from token package: sizes */
+      --gds-gap-sm: 24px;
+      --gds-gap-md: 48px;
+      --gds-gap-lg: 96px;
     }
 
     @media (prefers-color-scheme: dark) {
