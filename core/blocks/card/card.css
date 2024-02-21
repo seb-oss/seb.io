@@ -8,17 +8,6 @@
   border-radius: 12px;
   transition: var(--transition);
 
-  figure {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: auto;
-    aspect-ratio: 16 / 9;
-    border-radius: 8px !important;
-    padding: 20px;
-  }
-
   .gds-card-title {
     text-decoration: underline;
     text-underline-offset: 2px;
@@ -28,7 +17,6 @@
     background-color: var(--gds-sys-color-container-container-dim1);
   }
 
-  /* Variants */
   &.gds-card-cta {
     flex-direction: row;
     justify-content: space-between;

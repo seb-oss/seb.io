@@ -1,7 +1,5 @@
 @layer grid, grid.desktop, grid.tablet, grid.mobile, grid.debug;
 
-@import "./debug.css" layer(grid.debug);
-
 @layer grid {
   :root {
     --gds-grid-col: repeat(4, 1fr);

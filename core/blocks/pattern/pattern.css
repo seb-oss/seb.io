@@ -44,6 +44,13 @@ figure.preview {
     font-size: 14px;
   }
 
+  &.custom {
+    aspect-ratio: 16 / 9;
+    max-height: var(--gds-pattern-max-height);
+    width: 100%;
+    max-width: 100%;
+  }
+
   /* Only for the demo */
   button {
     display: flex;

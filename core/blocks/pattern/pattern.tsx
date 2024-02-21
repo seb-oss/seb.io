@@ -1,6 +1,6 @@
-import React, { ReactNode } from "react"
+import React, { ReactNode, useEffect, useRef } from "react"
 
-import "./style.css"
+import "./pattern.css"
 
 interface PatternProps {
   children?: ReactNode
@@ -17,29 +17,35 @@ export default function Pattern({
 }: PatternProps) {
   const style = height
     ? {
-        maxBlockSize: `${height}px`,
-        minBlockSize: `${height}px`,
-        aspectRatio: "initial",
-        width: "auto",
-        height: "auto",
-        padding: "48px",
+        "--gds-pattern-max-height": `${height}px`,
       }
     : {}
 
+  const figureRef = useRef<HTMLElement | null>(null)
+
+  useEffect(() => {
+    if (height && figureRef.current) {
+      figureRef.current.classList.add("custom")
+    }
+  }, [height])
+
   return (
     <>
-      {/* <figure className="preview" data-caption={caption} style={style}>
-        {content ? < dangerouslySetInnerHTML={{ __html: content }} /> : children}
-      </figure> */}
       {content ? (
         <figure
+          ref={figureRef}
           className="preview"
           data-caption={caption}
-          style={style}
+          style={style as React.CSSProperties}
           dangerouslySetInnerHTML={{ __html: content }}
         />
       ) : (
-        <figure className="preview" data-caption={caption} style={style}>
+        <figure
+          ref={figureRef}
+          className="preview"
+          data-caption={caption}
+          style={style as React.CSSProperties}
+        >
           {children}
         </figure>
       )}
