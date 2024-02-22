@@ -5,7 +5,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { allComponents, Component } from "content"
 
-import "./style.css"
+import "./toc.css"
 
 interface Heading {
   slug: string

@@ -14,10 +14,10 @@
         max-width: calc(1180px + (var(--_padding) * 2));
       }
 
-      aside {
+      /* aside {
         position: sticky;
         top: 120px;
-      }
+      } */
 
       header {
         width: 100%;
@@ -160,14 +160,14 @@
           }
         }
 
-        aside {
+        /* aside {
           padding-block-start: 40px;
           position: sticky;
           top: 130px;
           min-width: 220px;
           max-width: 220px;
           padding-right: 24px;
-        }
+        } */
 
         h2 {
           font-size: 24px;

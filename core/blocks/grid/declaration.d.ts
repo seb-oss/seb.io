@@ -16,6 +16,7 @@ declare namespace JSX {
     interface GdsCellProps extends React.HTMLAttributes<HTMLElement> {
       span?: string;
       padding?: string;
+      cell?: string;
     }
   
     interface IntrinsicElements {
