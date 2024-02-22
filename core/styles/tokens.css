@@ -212,6 +212,7 @@
       /* Font weights */
       --gds-fw-light: 300;
       --gds-fw-regular: 400;
+      --gds-fw-book: 450;
       --gds-fw-medium: 500;
       --gds-fw-bold: 700;
 
@@ -229,6 +230,7 @@
 
       /* Gaps */
       /* These should come from token package: sizes */
+      --gds-gap-none: 0;
       --gds-gap-sm: 24px;
       --gds-gap-md: 48px;
       --gds-gap-lg: 96px;
