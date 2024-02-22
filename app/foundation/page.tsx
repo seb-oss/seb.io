@@ -100,7 +100,7 @@ export default function Foundation() {
         gapInline="medium"
         align="start"
       >
-        <Cell span="9">
+        <Cell span="10">
           <Grid columns={1} gapBlock="large">
             <Hero
               heading="Foundation"
@@ -309,7 +309,7 @@ export default function Foundation() {
             </Grid>
           </Grid>
         </Cell>
-        <Cell span="3">
+        <Cell span="2">
           <TOC headings={tocHeading} component={"About"} />
         </Cell>
       </Grid>
