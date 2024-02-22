@@ -9,7 +9,7 @@ import Footer from "@/core/blocks/footer/footer"
 import Header from "@/core/blocks/header/header"
 import Article from "@/core/layouts/article/article"
 import Main from "@/core/layouts/main/main"
-import SEBSAnsSerif from "@/utils/fonts/fonts"
+import Fonts from "@/utils/fonts/fonts"
 import { ThemeProvider } from "@/utils/theme/provider"
 
 export default function RootLayout({
@@ -52,9 +52,11 @@ export default function RootLayout({
     }
   }, [])
 
+  Fonts()
+
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={SEBSAnsSerif.className}>
+      <body>
         <ThemeProvider
           attribute="theme"
           defaultTheme="system"
