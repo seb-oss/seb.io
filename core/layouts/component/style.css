@@ -14,11 +14,6 @@
         max-width: calc(1180px + (var(--_padding) * 2));
       }
 
-      /* aside {
-        position: sticky;
-        top: 120px;
-      } */
-
       header {
         width: 100%;
         display: flex;
@@ -185,7 +180,6 @@
         h3,
         h4 {
           position: relative;
-          font-weight: 600;
           margin-block-start: 24px;
         }
 
