@@ -1,4 +1,4 @@
-import SEBSAnsSerif from "@/utils/fonts/seb-sans-serif"
+import SEBSAnsSerif from "@/utils/fonts/SEBSansSerif"
 
 export default function Fonts() {
   if ("adoptedStyleSheets" in document) {
