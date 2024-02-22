@@ -185,3 +185,28 @@ p {
     color: var(--gds-sys-color-content-content-secondary);
   }
 }
+
+.book-font {
+  font-weight: 450;
+  font-size: 40px;
+}
+
+.bold-font {
+  font-weight: 700;
+  font-size: 40px;
+}
+
+.medium-font {
+  font-weight: 500;
+  font-size: 40px;
+}
+
+.regular-font {
+  font-weight: 400;
+  font-size: 40px;
+}
+
+.light-font {
+  font-weight: 300;
+  font-size: 40px;
+}

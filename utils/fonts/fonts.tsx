@@ -14,12 +14,12 @@ const SEBSansSerif = localFont({
     },
     {
       path: "../../public/fonts/SEBSansSerif-Book.woff2",
-      weight: "400",
+      weight: "450",
       style: "normal",
     },
     {
       path: "../../public/fonts/SEBSansSerif-BookItalic.woff2",
-      weight: "400",
+      weight: "450",
       style: "italic",
     },
     {
