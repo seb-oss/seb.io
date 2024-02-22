@@ -50,9 +50,8 @@ export default function RootLayout({
         clearTimeout(timer)
       }
     }
+    Fonts()
   }, [])
-
-  Fonts()
 
   return (
     <html lang="en" suppressHydrationWarning>
