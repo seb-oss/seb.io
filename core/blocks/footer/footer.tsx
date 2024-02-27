@@ -1,8 +1,8 @@
 import Link from "next/link"
-
-import "./style.css"
-
+import Flex from "@/core/blocks/flex/flex"
 import Grid from "@/core/blocks/grid/grid"
+
+import "@/core/blocks/footer/footer.css"
 
 export default function Footer() {
   const year = new Date().getFullYear()
@@ -57,14 +57,7 @@ export default function Footer() {
             </ul>
           </nav>
         </Grid>
-        <Grid
-          columns={2}
-          mobile={1}
-          gapBlock="small"
-          justify="between"
-          contentInline="auto"
-          gapInline="small"
-        >
+        <Flex justify="between" wrap="wrap">
           <span>{text}</span>
           <button
             type="button"
@@ -73,7 +66,7 @@ export default function Footer() {
           >
             Cookie preferences
           </button>
-        </Grid>
+        </Flex>
       </Grid>
     </footer>
   )

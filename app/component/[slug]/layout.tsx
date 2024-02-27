@@ -2,6 +2,7 @@
 
 import { notFound, usePathname } from "next/navigation"
 import Badge from "@/core/blocks/badge/badge"
+import Flex from "@/core/blocks/flex/flex"
 import Cell from "@/core/blocks/grid/cell"
 import Grid from "@/core/blocks/grid/grid"
 import Pattern from "@/core/blocks/pattern/pattern"
@@ -84,15 +85,10 @@ export default function ComponentLayout({
                 <h1>{title}</h1>
                 <p>{summary}</p>
               </div>
-              <Grid
-                columns={2}
-                contentInline="auto"
-                gapInline="small"
-                justify="start"
-              >
+              <Flex wrap="wrap" gap="small">
                 <Badge title="Status" label={status} />
                 <Tags title="Tags" tags={tagsArray} max={3} />
-              </Grid>
+              </Flex>
             </Grid>
           </gds-cell>
           <gds-cell span="2">
