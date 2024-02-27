@@ -14,6 +14,7 @@ type GridGapSize = "small" | "medium" | "large"
 type GridJustify = "start" | "end" | "center" | "between" | "around" | "evenly"
 type GridAlign = "start" | "end" | "center"
 type ContentInline = "auto" | "max-width"
+type InlineSize = "full" | "max-content"
 
 type GridProps = {
   children: React.ReactNode
@@ -28,6 +29,7 @@ type GridProps = {
   fluid?: boolean
   justify?: GridJustify
   align?: GridAlign
+  inlineSize?: InlineSize
 }
 
 export default function Grid({
@@ -43,6 +45,7 @@ export default function Grid({
   fluid,
   justify,
   align,
+  inlineSize,
 }: GridProps) {
   if (columns < 1 || columns > 24) {
     throw new Error("The columns prop must be between 1 and 24.")
@@ -63,6 +66,7 @@ export default function Grid({
       fluid={fluid}
       justify={justify}
       align={align}
+      inline-size={inlineSize}
     >
       {children}
     </gds-grid>

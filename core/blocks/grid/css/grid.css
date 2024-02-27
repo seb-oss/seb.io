@@ -46,7 +46,10 @@
       grid-auto-columns: auto;
       grid-auto-flow: column;
       grid-template-columns: none;
-      flex-wrap: wrap;
+    }
+
+    &[inline-size="max-content"] {
+      max-width: max-content;
     }
   }
 }

@@ -113,7 +113,7 @@ export default function ComponentLayout({
         <Grid columns={12} gapInline="medium" paddingBlock="medium">
           <Cell span="10">
             {/* <Grid gapBlock="small" columns={1} className="content"> */}
-            <Grid gapBlock="small" columns={1}>
+            <Grid gapBlock="medium" columns={1}>
               {children}
             </Grid>
           </Cell>

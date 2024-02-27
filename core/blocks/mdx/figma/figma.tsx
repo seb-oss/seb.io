@@ -5,13 +5,13 @@ import { usePathname } from "next/navigation"
 import { allComponents } from "@/.contentlayer/generated"
 import Pattern from "@/core/blocks/pattern/pattern"
 
-interface FigmaSVGProps {
+interface FigmaProps {
   caption?: string
   node?: string
   height?: string
 }
 
-export default function FigmaSVG({ caption, node, height }: FigmaSVGProps) {
+export default function Figma({ caption, node, height }: FigmaProps) {
   const slug = usePathname()
   const component = allComponents.find(
     (component) => component.url_path === slug
@@ -21,13 +21,5 @@ export default function FigmaSVG({ caption, node, height }: FigmaSVGProps) {
     (svg_node: any) => svg_node.node === node
   )
 
-  // <Pattern caption={caption} height={height}>
-  // <div dangerouslySetInnerHTML={{ __html: svgSource?.svg }} />
-  // </Pattern>
-
-  return (
-    <Pattern caption={caption} height={height} content={svgSource?.svg}>
-      {/* <div dangerouslySetInnerHTML={{ __html: svgSource?.svg }} /> */}
-    </Pattern>
-  )
+  return <Pattern caption={caption} height={height} content={svgSource?.svg} />
 }

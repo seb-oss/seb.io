@@ -30,7 +30,7 @@ export default function Pattern({
   }, [height])
 
   return (
-    <>
+    <div>
       {content ? (
         <figure
           ref={figureRef}
@@ -50,6 +50,6 @@ export default function Pattern({
         </figure>
       )}
       {caption && <span dangerouslySetInnerHTML={{ __html: caption }} />}
-    </>
+    </div>
   )
 }
