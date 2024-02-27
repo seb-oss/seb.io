@@ -1,10 +1,8 @@
 "use client"
 
 import * as React from "react"
-import { useEffect, useState } from "react"
-import Image from "next/image"
+import Spacer from "@/core/blocks/spacer/spacer"
 import { useMDXComponent } from "next-contentlayer/hooks"
-import { useTheme } from "next-themes"
 
 import Pattern from "../pattern/pattern"
 import Col from "./col/col"
@@ -30,6 +28,7 @@ const components = {
   Refs,
   SE,
   Pattern,
+  Spacer,
 }
 
 export function Mdx({

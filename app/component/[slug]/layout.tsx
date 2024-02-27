@@ -2,8 +2,10 @@
 
 import { notFound, usePathname } from "next/navigation"
 import Badge from "@/core/blocks/badge/badge"
+import Cell from "@/core/blocks/grid/cell"
 import Grid from "@/core/blocks/grid/grid"
 import Pattern from "@/core/blocks/pattern/pattern"
+import Spacer from "@/core/blocks/spacer/spacer"
 import Taber from "@/core/blocks/taber"
 import Tags from "@/core/blocks/tags-list/tags"
 import TOC from "@/core/blocks/toc/toc"
@@ -21,7 +23,6 @@ export default function ComponentLayout({
 }) {
   const { slug } = params
   const pathName = usePathname()
-  // const [isCoreOutLoaded, setIsCoreOutLoaded] = useState(false)
 
   const getComponent = (path: string) =>
     allComponents.find(
@@ -83,9 +84,14 @@ export default function ComponentLayout({
                 <h1>{title}</h1>
                 <p>{summary}</p>
               </div>
-              <Grid columns={2}>
+              <Grid
+                columns={2}
+                contentInline="auto"
+                gapInline="small"
+                justify="start"
+              >
                 <Badge title="Status" label={status} />
-                <Tags title="Tags" tags={tagsArray} max={1} />
+                <Tags title="Tags" tags={tagsArray} max={3} />
               </Grid>
             </Grid>
           </gds-cell>
@@ -104,10 +110,15 @@ export default function ComponentLayout({
           </gds-cell>
         </Grid>
         <Taber component={url_path} />
-        <article>
-          <div className="content">{children}</div>
-          {tocComponent}
-        </article>
+        <Grid columns={12} gapInline="medium" paddingBlock="medium">
+          <Cell span="10">
+            {/* <Grid gapBlock="small" columns={1} className="content"> */}
+            <Grid gapBlock="small" columns={1}>
+              {children}
+            </Grid>
+          </Cell>
+          <Cell span="2">{tocComponent}</Cell>
+        </Grid>
         <footer>
           Last updated: <br />
           <time dateTime={last_edited} title="Last updated">

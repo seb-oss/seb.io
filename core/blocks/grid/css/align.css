@@ -2,12 +2,12 @@
   /* Justify */
   /* prettier-ignore */
   gds-grid {
-    &[justify="start"]    { justify-items: start }
-    &[justify="end"]      { justify-items: end }
-    &[justify="center"]   { justify-items: center }
-    &[justify="between"]  { justify-items: space-between }
-    &[justify="around"]   { justify-items: space-around }
-    &[justify="evenly"]   { justify-items: space-evenly }
+    &[justify="start"]    { justify-content: start }
+    &[justify="end"]      { justify-content: end }
+    &[justify="center"]   { justify-content: center }
+    &[justify="between"]  { justify-content: space-between }
+    &[justify="around"]   { justify-content: space-around }
+    &[justify="evenly"]   { justify-content: space-evenly }
     &[align="start"]      { align-items: start }
     &[align="end"]        { align-items: end }
     &[align="center"]     { align-items: center }

@@ -5,13 +5,15 @@ import useGridDebug from "@/utils/grid-debug/grid-debug"
 
 import "@/core/blocks/grid/css/grid.css"
 import "@/core/blocks/grid/css/responsive.css"
-import "@/core/blocks/grid/css/debug.css"
+import "@/core/blocks/grid/css/span.css"
 import "@/core/blocks/grid/css/space.css"
 import "@/core/blocks/grid/css/align.css"
+import "@/core/blocks/grid/css/debug.css"
 
 type GridGapSize = "small" | "medium" | "large"
 type GridJustify = "start" | "end" | "center" | "between" | "around" | "evenly"
 type GridAlign = "start" | "end" | "center"
+type ContentInline = "auto" | "max-width"
 
 type GridProps = {
   children: React.ReactNode
@@ -19,6 +21,7 @@ type GridProps = {
   gapInline?: GridGapSize
   paddingBlock?: GridGapSize
   paddingInline?: GridGapSize
+  contentInline?: ContentInline
   mobile?: number
   tablet?: number
   columns: number
@@ -34,6 +37,7 @@ export default function Grid({
   paddingBlock,
   paddingInline,
   mobile,
+  contentInline,
   tablet,
   columns = 12,
   fluid,
@@ -52,6 +56,7 @@ export default function Grid({
       gap-inline={gapInline}
       padding-block={paddingBlock}
       padding-inline={paddingInline}
+      content-inline={contentInline}
       columns={columns.toString()}
       {...(mobile !== undefined ? { mobile: mobile.toString() } : {})}
       {...(tablet !== undefined ? { tablet: tablet.toString() } : {})}
