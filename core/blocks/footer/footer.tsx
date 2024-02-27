@@ -57,7 +57,7 @@ export default function Footer() {
             </ul>
           </nav>
         </Grid>
-        <Grid columns={3} justify="between">
+        <Grid columns={3} mobile={1} gapBlock="small" justify="between">
           <span>{text}</span>
           <button
             type="button"

@@ -7,8 +7,6 @@ export default function Fonts() {
       `:root { --gds-font-family: ${SEBSAnsSerif.style.fontFamily}; }`
     )
     document.adoptedStyleSheets = [...document.adoptedStyleSheets, sheet]
-  } else {
-    console.warn("Constructable Stylesheets are not supported in this browser.")
   }
 
   return

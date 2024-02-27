@@ -1,10 +1,11 @@
-// import type { Metadata } from "next"
 import Head from "next/head"
 import { notFound } from "next/navigation"
 import Script from "next/script"
 import { Mdx } from "@/core/blocks/mdx"
-import { allComponents, Component, allDocuments } from "content"
+import { allComponents, Component } from "content"
 import type { Metadata, ResolvingMetadata } from 'next'
+
+import "./page.css"
 
 export const dynamic = "force-static"
 

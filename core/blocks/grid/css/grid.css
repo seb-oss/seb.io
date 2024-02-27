@@ -1,4 +1,4 @@
-@layer grid, grid.desktop, grid.tablet, grid.mobile, grid.debug;
+@layer grid, grid.desktop, grid.tablet, grid.mobile, grid.space, grid.align, grid.debug;
 
 @layer grid {
   :root {
@@ -16,6 +16,7 @@
     grid-template-columns: var(--gds-grid-col);
     grid-column-gap: var(--gds-grid-col-gap);
     grid-row-gap: var(--gds-grid-row-gap);
+    text-wrap: balance;
 
     & > gds-cell {
       height: 100%;
@@ -43,7 +44,7 @@
 
   /* Spacings and gaps */
   /* prettier-ignore */
-  gds-grid {
+  /* gds-grid {
     &[gap-inline="small"]      { --gds-grid-col-gap: var(--gds-gap-sm) }
     &[gap-inline="medium"]     { --gds-grid-col-gap: var(--gds-gap-md) }
     &[gap-inline="large"]      { --gds-grid-col-gap: var(--gds-gap-lg) }
@@ -56,7 +57,7 @@
     &[padding-inline="small"]    { padding-inline: var(--gds-gap-sm) }
     &[padding-inline="medium"]   { padding-inline: var(--gds-gap-md) }
     &[padding-inline="large"]    { padding-inline: var(--gds-gap-lg) }
-  }
+  } */
 
   /* prettier-ignore */
   gds-grid > gds-cell {
@@ -71,15 +72,13 @@
 
   /* Justify */
   /* prettier-ignore */
-  gds-grid {
+  /*   gds-grid {
     &[justify="start"]    { justify-items: start }
     &[justify="end"]      { justify-items: end }
     &[justify="center"]   { justify-items: center }
     &[justify="between"]  { justify-items: space-between }
     &[justify="around"]   { justify-items: space-around }
     &[justify="evenly"]   { justify-items: space-evenly }
-
-    /* Align */
     &[align="start"]      { align-items: start }
     &[align="end"]        { align-items: end }
     &[align="center"]     { align-items: center }
@@ -87,6 +86,8 @@
     &[align="around"]     { align-items: space-around }
     &[align="evenly"]     { align-items: space-evenly }
   }
+ */
+
   /* 
 
   grid-template-columns: repeat(auto-fill, minmax(auto, 1fr))

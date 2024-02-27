@@ -46,7 +46,13 @@ export default function RessourcesList({
   return (
     <section className="resources-list">
       {title && <h2>{title}</h2>}
-      <Grid columns={3} gapInline="medium" gapBlock="medium">
+      <Grid
+        columns={3}
+        mobile={1}
+        tablet={1}
+        gapInline="medium"
+        gapBlock="medium"
+      >
         {resources.map((resource, index) => (
           <Card
             key={index}

@@ -35,7 +35,7 @@ export default function Home() {
         />
         <ComponentList title="Components" />
         <RessourcesList title="Resources" />
-        <Grid columns={2}>
+        <Grid columns={2} tablet={1} mobile={1} gapBlock="small">
           <h2>Empowering designers and developers</h2>
           <p className="gds-fs-headline-small color-secondary">
             A framework with accessibility and usability rooted at its core,

@@ -1,0 +1,18 @@
+@layer grid.align {
+  /* Justify */
+  /* prettier-ignore */
+  gds-grid {
+    &[justify="start"]    { justify-items: start }
+    &[justify="end"]      { justify-items: end }
+    &[justify="center"]   { justify-items: center }
+    &[justify="between"]  { justify-items: space-between }
+    &[justify="around"]   { justify-items: space-around }
+    &[justify="evenly"]   { justify-items: space-evenly }
+    &[align="start"]      { align-items: start }
+    &[align="end"]        { align-items: end }
+    &[align="center"]     { align-items: center }
+    &[align="between"]    { align-items: space-between }
+    &[align="around"]     { align-items: space-around }
+    &[align="evenly"]     { align-items: space-evenly }
+  }
+}
