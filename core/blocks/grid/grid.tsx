@@ -7,6 +7,7 @@ import "@/core/blocks/grid/css/grid.css"
 import "@/core/blocks/grid/css/responsive.css"
 import "@/core/blocks/grid/css/debug.css"
 import "@/core/blocks/grid/css/space.css"
+import "@/core/blocks/grid/css/align.css"
 
 type GridGapSize = "small" | "medium" | "large"
 type GridJustify = "start" | "end" | "center" | "between" | "around" | "evenly"

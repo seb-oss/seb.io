@@ -1,13 +1,13 @@
 "use client"
 
 import { notFound, usePathname } from "next/navigation"
+import Badge from "@/core/blocks/badge/badge"
 import Grid from "@/core/blocks/grid/grid"
 import Pattern from "@/core/blocks/pattern/pattern"
 import Taber from "@/core/blocks/taber"
-import Tags from "@/core/blocks/tags/tags"
+import Tags from "@/core/blocks/tags-list/tags"
 import TOC from "@/core/blocks/toc/toc"
 import Trail from "@/core/blocks/trail/trail"
-import Layout from "@/core/layouts/component"
 import Content from "@/core/layouts/content/content"
 import { allComponents } from "content"
 import { format, parseISO } from "date-fns"
@@ -78,16 +78,16 @@ export default function ComponentLayout({
         />
         <Grid columns={6} tablet={2} mobile={1} gapBlock="medium">
           <gds-cell span="4" className="content">
-            <div className="intro">
-              <h1>{title}</h1>
-              <p>{summary}</p>
-            </div>
-            <div className="details">
-              <div title="Status">
-                <div className="status">{status}</div>
+            <Grid columns={1} gapBlock="small">
+              <div>
+                <h1>{title}</h1>
+                <p>{summary}</p>
               </div>
-              <Tags title="Tags" tags={tagsArray} max={1} />
-            </div>
+              <Grid columns={2}>
+                <Badge title="Status" label={status} />
+                <Tags title="Tags" tags={tagsArray} max={1} />
+              </Grid>
+            </Grid>
           </gds-cell>
           <gds-cell span="2">
             <Pattern>
