@@ -11,7 +11,13 @@ export default function Footer() {
 
   return (
     <footer className="main-footer" padding-block="large">
-      <Grid columns={1} gapBlock="large" paddingInline="medium">
+      <Grid
+        columns={1}
+        mobile={2}
+        tablet={3}
+        gapBlock="large"
+        paddingInline="medium"
+      >
         <h2>Green Design System</h2>
         <Grid columns={5} justify="start" fluid>
           <nav>
@@ -57,7 +63,7 @@ export default function Footer() {
             </ul>
           </nav>
         </Grid>
-        <Flex justify="between" wrap="wrap">
+        <Flex justify="between" wrap="wrap" directionMobile="column">
           <span>{text}</span>
           <button
             type="button"

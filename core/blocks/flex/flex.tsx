@@ -17,6 +17,10 @@ type FlexProps = {
   direction?: FlexDirection
   gap?: FlexGapSize
   inlineSize?: FlexInlineSize
+  directionTablet?: FlexDirection
+  directionMobile?: FlexDirection
+
+  // padding
 }
 
 export default function Flex({
@@ -25,6 +29,8 @@ export default function Flex({
   align,
   wrap,
   direction,
+  directionTablet,
+  directionMobile,
   gap,
 }: FlexProps) {
   let className = "gds-flex"
