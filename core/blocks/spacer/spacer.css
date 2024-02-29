@@ -3,15 +3,15 @@
   align-items: center;
 
   &.gds-spacer-large {
-    block-size: var(--gds-gap-lg);
+    block-size: var(--gds-gap-xxxl);
   }
 
   &.gds-spacer-medium {
-    block-size: var(--gds-gap-md);
+    block-size: var(--gds-gap-xxl);
   }
 
   &.gds-spacer-small {
-    block-size: var(--gds-gap-sm);
+    block-size: var(--gds-gap-l);
   }
 
   hr {

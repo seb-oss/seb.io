@@ -7,7 +7,7 @@ aside.toc {
   scrollbar-width: none;
   -ms-overflow-style: none;
   position: sticky;
-  top: calc(var(--header-height) + var(--gds-gap-md));
+  top: calc(var(--header-height) + var(--gds-gap-xxl));
 
   &::-webkit-scrollbar {
     display: none;
@@ -119,6 +119,6 @@ aside.toc {
 }
 
 main:has(.taber) .toc {
-  margin-block-start: var(--gds-gap-md);
-  top: calc(var(--header-height) + var(--gds-gap-md) + var(--gds-gap-md));
+  margin-block-start: var(--gds-gap-xxl);
+  top: calc(var(--header-height) + var(--gds-gap-xxl) + var(--gds-gap-xxl));
 }

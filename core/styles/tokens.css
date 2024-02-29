@@ -230,10 +230,19 @@
 
       /* Gaps */
       /* These should come from token package: sizes */
-      --gds-gap-none: 0;
-      --gds-gap-sm: 24px;
-      --gds-gap-md: 48px;
-      --gds-gap-lg: 96px;
+      /* --gds-gap-none: 0;
+      --gds-gap-n-l: 24px;
+      --gds-gap-n-xxl: 48px;
+      --gds-gap-n-xxxl: 96px;  */
+
+      --gds-gap-none: 0px;
+      --gds-gap-xs: 4px;
+      --gds-gap-s: 8px;
+      --gds-gap-m: 16px;
+      --gds-gap-l: 24px;
+      --gds-gap-xl: 32px;
+      --gds-gap-xxl: 48px;
+      --gds-gap-xxxl: 96px;
     }
 
     @media (prefers-color-scheme: dark) {

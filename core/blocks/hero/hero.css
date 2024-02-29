@@ -6,7 +6,7 @@
   justify-content: flex-end;
   padding-block-end: 0;
   max-width: 100ch;
-  gap: var(--gds-gap-md);
+  gap: var(--gds-gap-xxl);
 
   @media screen and (min-height: 2000px) and (orientation: portrait) {
     min-height: 50vh;

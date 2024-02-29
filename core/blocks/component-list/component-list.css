@@ -1,5 +1,5 @@
 .component-list {
   display: flex;
   flex-direction: column;
-  gap: var(--gds-gap-sm);
+  gap: var(--gds-gap-l);
 }

@@ -5,9 +5,11 @@ import rehypePrettyCode from "rehype-pretty-code"
 import rehypeSlug from "rehype-slug"
 import remarkGfm from "remark-gfm"
 import { rehypePrettyCodeOptions } from "./utils/theme/code"
-
 import * as documentTypes from "./utils/content/types"
 import { contentDirPath } from "./utils/content/utils"
+import React from "react"
+
+
 
 export default makeSource({
   contentDirPath,
@@ -18,24 +20,7 @@ export default makeSource({
       rehypeSlug,
       [
         rehypePrettyCode,
-        // {
-        //   onVisitLine(node: { children: string | any[] }) {
-        //     if (node.children.length === 0) {
-        //       node.children = [{ type: "text", value: " " }]
-        //     }
-        //   },
-        //   onVisitHighlightedLine(node: {
-        //     properties: { className: string[] }
-        //   }) {
-        //     node.properties.className.push("line--highlighted")
-        //   },
-        //   onVisitHighlightedWord(node: {
-        //     properties: { className: string[] }
-        //   }) {
-        //     node.properties.className = ["word--highlighted"]
-        //   },
-        // },
-        rehypePrettyCodeOptions
+        rehypePrettyCodeOptions,
       ],
       [
         rehypeAutolinkHeadings,
@@ -44,12 +29,13 @@ export default makeSource({
           properties: {
             className: ["anchor"],
           },
+        
         },
-      ]
+      ],
+      
     ],
   },
   onSuccess: async (importData) => {
     const { allDocuments } = await importData()
-    // await validateDuplicateIds(allDocuments)
   },
 })

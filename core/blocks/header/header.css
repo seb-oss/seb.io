@@ -18,7 +18,7 @@ header.main {
   z-index: 5;
   max-block-size: var(--header-height);
   block-size: var(--header-height);
-  padding-inline: var(--gds-gap-sm);
+  padding-inline: var(--gds-gap-l);
   grid-area: header;
 
   .logo {

@@ -68,13 +68,13 @@
 }
 
 .gds-flex-gap-small {
-  gap: var(--gds-gap-sm);
+  gap: var(--gds-gap-l);
 }
 
 .gds-flex-gap-medium {
-  gap: var(--gds-gap-md);
+  gap: var(--gds-gap-xxl);
 }
 
 .gds-flex-gap-large {
-  gap: var(--gds-gap-lg);
+  gap: var(--gds-gap-xxxl);
 }
