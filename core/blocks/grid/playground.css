@@ -47,6 +47,10 @@
     }
 
     padding: 24px;
+
+    gds-grid {
+      max-width: 900px;
+    }
   }
 
   aside {
@@ -76,6 +80,14 @@
         border-radius: 4px;
         padding: 8px 12px;
         appearance: none;
+      }
+
+      .thecheck {
+        display: flex;
+        flex-direction: row;
+        gap: 1ch;
+        user-select: none;
+        font-size: 14px;
       }
     }
   }

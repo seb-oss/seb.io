@@ -14,6 +14,7 @@ export default function GridPlayground(): JSX.Element {
   const [paddingBlock, setPaddingBlock] = useState<GridAttribute>("large")
   const [gapInline, setGapInline] = useState<GridAttribute>("large")
   const [gapBlock, setGapBlock] = useState<GridAttribute>("large")
+  const [isFluid, setFluid] = useState(false)
 
   const handleColumnsChange = (e: ChangeEvent<HTMLSelectElement>): void => {
     setColumns(Number(e.target.value))
@@ -38,20 +39,25 @@ export default function GridPlayground(): JSX.Element {
   const handleGapBlockChange = (e: ChangeEvent<HTMLSelectElement>): void => {
     setGapBlock(e.target.value as GridAttribute)
   }
-
+  const handleFluidChange = (e: ChangeEvent<HTMLInputElement>): void => {
+    setFluid(e.target.checked)
+  }
   return (
     <div className="grid-play">
       <Pattern>
         <Grid
           columns={columns}
-          paddingInline={paddingInline}
+          tablet={8}
+          mobile={4}
+          paddingInline={paddingBlock}
           paddingBlock={paddingBlock}
           gapInline={gapInline}
-          gapBlock={gapBlock}
+          gapBlock={gapInline}
+          {...(isFluid ? { fluid: true } : {})}
         >
           {Array.from({ length: columns }, (_, i) => (
             <div className="column" key={i}>
-              <h2>Column {i + 1}</h2>
+              <h2>COL:{i + 1}</h2>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -80,8 +86,8 @@ export default function GridPlayground(): JSX.Element {
           <strong>columns</strong>.
         </p>
         <div className="options">
-          <label>
-            <input type="checkbox" /> Fluid
+          <label className="thecheck">
+            <input type="checkbox" onChange={handleFluidChange} /> Fluid
           </label>
 
           <label>
@@ -96,7 +102,7 @@ export default function GridPlayground(): JSX.Element {
           </label>
           <label>
             <span>Gap</span>
-            <select value={paddingInline} onChange={handlePaddingInlineChange}>
+            <select value={gapInline} onChange={handleGapInlineChange}>
               <option value="small">Small</option>
               <option value="medium">Medium</option>
               <option value="large">Large</option>

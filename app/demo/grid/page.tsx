@@ -11,7 +11,9 @@ export const metadata: Metadata = {
 export default function GridPage() {
   return (
     <Content layout="content">
-      <GridPlayground />
+      <Grid columns={1} paddingInline="small" paddingBlock="small">
+        <GridPlayground />
+      </Grid>
       {1 > 2 ? (
         <Grid
           columns={4}

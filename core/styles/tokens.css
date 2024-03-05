@@ -243,6 +243,9 @@
       --gds-gap-xl: 32px;
       --gds-gap-xxl: 48px;
       --gds-gap-xxxl: 96px;
+
+      /* Add this on tokens  */
+      --gds-paragraph-max: 80ch;
     }
 
     @media (prefers-color-scheme: dark) {
