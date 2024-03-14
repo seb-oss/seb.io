@@ -1,11 +1,10 @@
 {
   "name": "seb-io",
   "author": {
-    "name": "Astrit",
-    "email": "am@astrit.co",
-    "url": "https://astrit.co",
-    "twitter": "@astritmalsija",
-    "github": "astrit"
+    "name": "Green Design System",
+    "email": "greendesignsystem@seb.se",
+    "url": "https://seb.io",
+    "github": "sebgroup"
   },
   "version": "0.1.0",
   "private": true,
