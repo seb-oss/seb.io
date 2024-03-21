@@ -188,7 +188,7 @@
       --gds-fs-label-overline: 0.875rem; /* 14px / 16px = .875rem */
 
       /* Line heights */
-      --gds-lh-display-large: 1.1905; /* 98/82 */
+      --gds-lh-display-large: 1.0976; /* 82/98 */
       --gds-lh-display-medium: 1.25; /* 80/64 */
       --gds-lh-display-small: 1.3077; /* 52/40 */
       --gds-lh-headline-large: 1.25; /* 40/32 */
@@ -197,8 +197,8 @@
       --gds-lh-title-large: 1.1071; /* 28/22 */
       --gds-lh-title-medium: 1.5; /* 24/16 */
       --gds-lh-title-small: 1.4286; /* 20/14 */
-      --gds-lh-body-large: 1.25; /* 20/16 */
-      --gds-lh-body-medium: 1.4286; /* 20/14 */
+      --gds-lh-body-large: 1.5; /* 16/24 */
+      --gds-lh-body-medium: 1.4286; /* 14/20 */
       --gds-lh-body-small: 1.3333; /* 16/12 */
       --gds-lh-label-large: 1.25; /* 20/16 */
       --gds-lh-label-medium: 1.4286; /* 20/14 */
