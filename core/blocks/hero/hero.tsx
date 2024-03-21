@@ -7,12 +7,14 @@ export default function Hero({
   preamble,
 }: {
   heading: string
-  preamble: string
+  preamble?: string
 }) {
   return (
     <div className="hero">
-      <h1>{heading}</h1>
-      <p className="gds-fs-headline-large color-secondary">{preamble}</p>
+      <h1 className="gds-fs-display-large">{heading}</h1>
+      {preamble && (
+        <p className="gds-fs-headline-large color-secondary">{preamble}</p>
+      )}
     </div>
   )
 }
