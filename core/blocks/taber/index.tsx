@@ -1,6 +1,6 @@
 "use client"
 
-import "./style.css"
+import "./taber.css"
 
 import React, { useRef } from "react"
 import Link from "next/link"

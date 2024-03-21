@@ -1,5 +1,5 @@
 @layer core {
-  @layer reset {
+  @layer layout.reset {
     * {
       box-sizing: border-box;
       padding: 0;
@@ -35,6 +35,7 @@
     svg {
       display: block;
       max-width: 100%;
+      height: auto;
     }
 
     input,
@@ -70,8 +71,20 @@
     }
 
     /* ::marker {
-      content: "—";
+      content: "•";
       display: none;
     } */
+
+    svg {
+      &:not(.preview &) {
+        height: 1lh;
+        width: auto;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+    }
   }
 }

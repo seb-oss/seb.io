@@ -94,14 +94,26 @@ export const Component = defineDocumentType(() => ({
 
           const images = response.data.images
           const imageUrl = Object.values(images)[0] as string
-          const svgResponse = await axios.get(imageUrl)
 
-          return {
-            node: node,
-            svg: svgResponse.data,
-          }
+          return fetch(imageUrl)
+            .then((response) => response.text())
+            .then((svgData) => {
+              const nodeIdWithHyphen = node?.replace(":", "-") // Replace the colon with a hyphen
+              return {
+                node: nodeIdWithHyphen,
+                svg: svgData,
+                url: imageUrl,
+              }
+            })
+            .catch((error) => {
+              // console.error(`Error fetching Figma SVG`, error)
+              return {
+                node: node,
+                svg: "",
+              }
+            })
         } catch (error) {
-          console.error("Error fetching Figma hero SVG:")
+          // console.error("Error fetching Figma hero SVG:")
           return {
             node: node,
             svg: "",
@@ -113,46 +125,56 @@ export const Component = defineDocumentType(() => ({
       type: "json",
       resolve: async (doc) => {
         const regXHeader = /node="(?<node>.+?)"/g
-        let nodes: { node: string | undefined; svg: any }[] = []
+        const nodes = Array.from(doc.body.raw.matchAll(regXHeader)).map(
+          (match) => match.groups?.node
+        )
 
         try {
-          nodes = await Promise.all(
-            Array.from(doc.body.raw.matchAll(regXHeader)).map(async (match) => {
-              const groups = match.groups
-              const node = groups?.node
-
-              try {
-                const response = await axios.get(
-                  `https://api.figma.com/v1/images/${figmaProjectId}/?ids=${node}&format=svg`,
-                  {
-                    headers: {
-                      "X-Figma-Token": figmaAccessKey,
-                    },
-                  }
-                )
-
-                const images = response.data.images
-                const imageUrl = Object.values(images)[0] as string
-                const svgResponse = await axios.get(imageUrl)
-
-                return {
-                  node: node,
-                  svg: svgResponse.data,
-                }
-              } catch (error) {
-                console.error(`Error fetching Figma SVG`)
-                return {
-                  node: node,
-                  svg: "",
-                }
-              }
-            })
+          const response = await axios.get(
+            `https://api.figma.com/v1/images/${figmaProjectId}/?ids=${nodes.join(
+              ","
+            )}&format=svg`,
+            {
+              headers: {
+                "X-Figma-Token": figmaAccessKey,
+              },
+            }
           )
-        } catch (error) {
-          console.error("Error processing Figma SVGS:")
-        }
 
-        return nodes
+          const images = response.data.images
+          // console.log("images", images)
+
+          const fetchPromises = Object.entries(images).map(
+            ([node, imageUrl]) => {
+              return fetch(imageUrl as string)
+                .then((response) => response.text())
+                .then((svgData) => {
+                  const nodeIdWithHyphen = node.replace(":", "-") // Replace the colon with a hyphen
+                  return {
+                    node: nodeIdWithHyphen,
+                    svg: svgData,
+                    url: imageUrl,
+                  }
+                })
+                .catch((error) => {
+                  // console.error(`Error fetching Figma SVG`, error)
+                  return {
+                    node: node,
+                    svg: "",
+                  }
+                })
+            }
+          )
+
+          const svgData = await Promise.all(fetchPromises)
+          return svgData
+        } catch (error) {
+          // console.error("Error processing Figma SVGS:")
+          return nodes.map((node) => ({
+            node: node,
+            svg: "",
+          }))
+        }
       },
     },
   },

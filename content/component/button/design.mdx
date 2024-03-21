@@ -7,175 +7,143 @@ date: 2023-12-22
 ## Design
 
 Each button type has fully rounded corners. This creates a cohesive and consistent visual language within our design system. The differentiation in colour, border, and background helps users to easily distinguish between primary, secondary, and tertiary actions, contributing to a more intuitive and user-friendly interface.
-<Row>
-<Col>
-    <FigmaSVG 
-        node="258-2977" 
-        caption="A primary button has a solid container."
-    />
-</Col>
-<Col>
-    <FigmaSVG 
-        node="258-2986" 
-        caption="A secondary button has a transparent container and 1 px border."
-    />
-</Col>
-<Col>
-    <FigmaSVG 
-        node="258-2989" 
-        caption="A tertiary button has transparent container and no border."
-    />
-</Col>
-</Row>
+<Grid columns={3}>
+<Figma node="258-2977" caption="A primary button has a solid container." />
+<Figma node="258-2986" caption="A secondary button has a transparent container and 1 px border." />
+<Figma node="258-2989" caption="A tertiary button has transparent container and no border." />
+</Grid>
 
-<hr />
+<Spacer size="medium" decorated />
 
-<Row>
-<Col>
+<Grid columns={2}>
 
+<div>
 ## Anatomy
 
 A button consists of a container, a text, and an optional leading or trailing element (icon). The anatomy of a button in our design system includes various visual and functional elements that work together to create a cohesive and user-friendly interface. Here is a breakdown of the key components:
+</div>
 
-</Col>
-<Col>
-    <FigmaSVG 
-        node="258-3056" 
-        caption="Container, text, leading and trailing element."
-    />
-</Col>
-</Row>
 
-<Row>
-<Col>
-    <FigmaSVG node="264-6654" caption="Text" />
-   
-    *Purpose*
+<Figma node="258-3056" caption="Container, text, leading and trailing element." />
+</Grid>
 
-    Displays the primary action or information associated with the button.
+<Grid columns={3}>
+    <div>
+        <Figma node="264-6654" caption="Text" />
 
-    *Attributes*
+        *Purpose*
 
-    Font size, colour, and style are essential for readability and visual hierarchy.
-</Col>
-<Col>
-    <FigmaSVG node="264-6656" caption="Container" />
+        Displays the primary action or information associated with the button.
 
-    *Purpose*
+        *Attributes*
 
-    Forms the overall shape of the button and contains its elements.
+        Font size, colour, and style are essential for readability and visual hierarchy.
+    </div>
+    <div>
+        <Figma node="264-6656" caption="Container" />
 
-    *Attributes*
+        *Purpose*
 
-    Background colour or style, border-radius and dimensions.
-    
-</Col>
-<Col>
-    <FigmaSVG node="264-6658" caption="Border" />
- 
-    *Purpose*
+        Forms the overall shape of the button and contains its elements.
 
-    Defines the outer edge of the button, providing a visual separation from the surrounding elements.
+        *Attributes*
 
-    *Attributes*
+        Background colour or style, border-radius and dimensions.
+    </div>
+    <div>
+        <Figma node="264-6658" caption="Border" />
 
-    Thickness, colour, and style.
-    
-</Col>
-</Row>
-<Row>
-<Col>
-    <FigmaSVG node="264-7238" caption="Leading element" />
-    
-    *Purpose*
+        *Purpose*
 
-    Provides additional context or visual cues to users before they interact with the button.
+        Defines the outer edge of the button, providing a visual separation from the surrounding elements.
 
-    *Attributes*
+        *Attributes*
 
-    Size, colour, and alignment within the button.
-</Col>
-<Col>
-    <FigmaSVG node="264-7241" caption="Trailing element" />
+        Thickness, colour, and style.
+    </div> 
+    <div>
+        <Figma node="264-7238" caption="Leading element" />
+        
+        *Purpose*
 
-    *Purpose*
+        Provides additional context or visual cues to users before they interact with the button.
 
-    Serves a similar purpose to a leading element but is positioned on the right side of the button.
+        *Attributes*
 
-    *Attributes*
+        Size, colour, and alignment within the button.
+    </div>
+    <div>
+        <Figma node="264-7241" caption="Trailing element" />
 
-    Size, colour, and alignment within the button.
-    
-</Col>
-<Col>
-    <FigmaSVG node="264-7245" caption="Spacing/Padding" />
-    
-    *Purpose*
+        *Purpose*
 
-    Determines the distance between the button's content (text, icon) and its container's edges.
+        Serves a similar purpose to a leading element but is positioned on the right side of the button.
 
-    *Attributes*
+        *Attributes*
 
-    Ensure adequate padding for touch targets and visual balance.
-    
-</Col>
-</Row>
-<Row>
-<Col>
-    <FigmaSVG node="264-7314" caption="State indicators" />
-    
-    *Purpose*
+        Size, colour, and alignment within the button.
+    </div>
+    <div>
+        <Figma node="264-7245" caption="Spacing/Padding" />
 
-    Communicate the button's current state (e.g. hovered, pressed).
+        *Purpose*
 
-    *Attributes*
+        Determines the distance between the button's content (text, icon) and its container's edges.
 
-    Colour changes, subtle animations, or other visual cues.
-</Col>
-<Col>
-    <FigmaSVG node="264-7319" caption="Accessibility features" />
-  
-    *Purpose*
+        *Attributes*
 
-    Ensures the button is usable by everyone, including those with disabilities.
+        Ensure adequate padding for touch targets and visual balance.
+    </div>
+    <div>
+        <Figma node="264-7314" caption="State indicators" />
 
-    *Attributes*
+        *Purpose*
 
-    ARIA attributes, focus styles, and sufficient colour contrast.
-    
-</Col>
-<Col> </Col>
-</Row>
+        Communicate the button's current state (e.g. hovered, pressed).
 
-<hr />
+        *Attributes*
+
+        Colour changes, subtle animations, or other visual cues.
+    </div>
+    <div>
+        <Figma node="264-7319" caption="Accessibility features" />
+
+        *Purpose*
+
+        Ensures the button is usable by everyone, including those with disabilities.
+
+        *Attributes*
+
+        ARIA attributes, focus styles, and sufficient colour contrast.
+    </div>
+</Grid>
+
+<Spacer size="medium" decorated />
 
 ## Leading and trailing elements
 
 An icon positioned at the beginning is known as a leading element, the one at the end of the text is referred to as a trailing element. Both types of elements share common purposes, offering visual cues and improving the user interface. 
 
-<Row>
-    <Col>
-    
-    ### Leading element
-    
-    Use leading elements to support the button text. 
-    Some examples could be a trash can icon + text *Delete*, 
-    a search icon + text *Search* and arrow to bottom icon + text *Download*.    
+<Grid columns={2}>
+<div>
+### Leading element
 
-    </Col>
-    <Col> <FigmaSVG node="266-7387" caption="Leading elements that support the button text." /></Col>
-</Row>
+Use leading elements to support the button text. 
+Some examples could be a trash can icon + text *Delete*, 
+a search icon + text *Search* and arrow to bottom icon + text *Download*. 
+</div>
+
+<Figma node="266-7387" caption="Leading elements that support the button text." />
+</Grid>
 
 
-<Row>
-    <Col>
-    
-    ### Trailing element
-    
-    Use trailing element as an affordance of what will happen when you interact with the button. For example, a button that leads the user forward in a flow, an arrow icon is a good choice.    
-    
-    </Col>
-    <Col> <FigmaSVG node="266-7448" caption="The trailing element gives a hint on what is about to happen on click." /></Col>
-</Row>
+<Grid columns={2}>
+<div>
+### Trailing element
+
+Use trailing element as an affordance of what will happen when you interact with the button. For example, a button that leads the user forward in a flow, an arrow icon is a good choice.
+</div>
+<Figma node="266-7448" caption="The trailing element gives a hint on what is about to happen on click." />
+</Grid>
 
 

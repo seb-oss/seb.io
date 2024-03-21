@@ -1,53 +1,13 @@
-import Link from "next/link"
-import Pattern from "@/core/blocks/pattern/pattern"
-import { allComponents, Component } from "content"
-
-function ComponentCard(component: Component) {
-  return (
-    <Link href={component.url_path}>
-      {component.preview?.trim() ?? "" ? (
-        <Pattern height="240">
-          <div
-            dangerouslySetInnerHTML={{
-              __html: component.preview ?? "",
-            }}
-          />
-        </Pattern>
-      ) : (
-        <Pattern height="240">
-          <div
-            dangerouslySetInnerHTML={{ __html: component.figma_hero_svg.svg }}
-          />
-        </Pattern>
-      )}
-
-      <div>{component.title}</div>
-      <p>{component.summary}</p>
-    </Link>
-  )
-}
+import ComponentList from "@/core/blocks/component-list/component-list"
+import Grid from "@/core/blocks/grid/grid"
+import Content from "@/core/layouts/content/content"
 
 export default function Components() {
-  const filteredComponents = allComponents.filter(
-    (component) => component._raw.sourceFileName === "index.mdx"
-  )
-
-  const components = filteredComponents.sort((a, b) =>
-    a.title.localeCompare(b.title)
-  )
-
   return (
-    <div className="layout core">
-      <section className="home-components">
-        <h2>
-          <Link href="/components">Components</Link>
-        </h2>
-        <div className="component-list">
-          {components.map((component, idx) => (
-            <ComponentCard key={idx} {...component} />
-          ))}
-        </div>
-      </section>
-    </div>
+    <Content layout="content">
+      <Grid columns={1} paddingBlock="large" paddingInline="large">
+        <ComponentList title="Components" />
+      </Grid>
+    </Content>
   )
 }

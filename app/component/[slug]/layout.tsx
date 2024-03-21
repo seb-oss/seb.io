@@ -1,13 +1,17 @@
 "use client"
 
-import { useState } from "react"
 import { notFound, usePathname } from "next/navigation"
-import Script from "next/script"
+import Badge from "@/core/blocks/badge/badge"
+import Flex from "@/core/blocks/flex/flex"
+import Cell from "@/core/blocks/grid/cell"
+import Grid from "@/core/blocks/grid/grid"
 import Pattern from "@/core/blocks/pattern/pattern"
-import Taber from "@/core/blocks/taber-v2"
+import Spacer from "@/core/blocks/spacer/spacer"
+import Taber from "@/core/blocks/taber"
+import Tags from "@/core/blocks/tags-list/tags"
 import TOC from "@/core/blocks/toc/toc"
 import Trail from "@/core/blocks/trail/trail"
-import Layout from "@/core/layouts/component"
+import Content from "@/core/layouts/content/content"
 import { allComponents } from "content"
 import { format, parseISO } from "date-fns"
 
@@ -20,7 +24,6 @@ export default function ComponentLayout({
 }) {
   const { slug } = params
   const pathName = usePathname()
-  // const [isCoreOutLoaded, setIsCoreOutLoaded] = useState(false)
 
   const getComponent = (path: string) =>
     allComponents.find(
@@ -65,63 +68,60 @@ export default function ComponentLayout({
     }
   }
 
-  // const tagsArray = tags ? tags.split(", ") : []
-  const MAX_VISIBLE_TAGS = 3
   const tagsArray = tags ? tags.split(", ") : []
-  const extraTagsCount = Math.max(0, tagsArray.length - MAX_VISIBLE_TAGS)
 
   return (
-    <Layout key={global_id}>
-      <Trail home={"Home"} separator={<span> / </span>} activeClass="active" />
-      <header>
-        <div className="content">
-          <div className="intro">
-            <h1>{title}</h1>
-            <p>{summary}</p>
-          </div>
-          <div className="details">
-            <div title="Status">
-              <div className="status">{status}</div>
-            </div>
-            <div title="Tags">
-              <menu>
-                {tagsArray.slice(0, MAX_VISIBLE_TAGS).map((tag, index) => (
-                  <div key={tag}>{tag}</div>
-                ))}
-                {extraTagsCount > 0 && (
-                  <div className="more">
-                    <svg viewBox="0 0 18 4">
-                      <path d="M11 2C11 3.10417 10.1042 4 9 4C7.89583 4 7 3.10417 7 2C7 0.895833 7.89583 0 9 0C10.1042 0 11 0.895833 11 2ZM16 0C14.8958 0 14 0.895833 14 2C14 3.10417 14.8958 4 16 4C17.1042 4 18 3.10417 18 2C18 0.895833 17.1042 0 16 0ZM2 0C0.895833 0 0 0.895833 0 2C0 3.10417 0.895833 4 2 4C3.10417 4 4 3.10417 4 2C4 0.895833 3.10417 0 2 0Z" />
-                    </svg>
-                  </div>
-                )}
-              </menu>
-            </div>
-          </div>
-        </div>
-        <Pattern>
-          {preview?.trim() ?? "" ? (
-            <div
-              dangerouslySetInnerHTML={{
-                __html: `${preview}`,
-              }}
-            />
-          ) : (
-            <div dangerouslySetInnerHTML={{ __html: figma_hero_svg.svg }} />
-          )}
-        </Pattern>
-      </header>
-      <Taber component={url_path} />
-      <article>
-        <div className="content">{children}</div>
-        {tocComponent}
-      </article>
-      <footer>
-        Last updated: <br />
-        <time dateTime={last_edited} title="Last updated">
-          {format(parseISO(last_edited), "d LLL, yyyy '/' HH:mm")}
-        </time>
-      </footer>
-    </Layout>
+    <Content layout="component" key={global_id}>
+      <Grid columns={1} paddingBlock="medium" paddingInline="medium">
+        <Trail
+          home={"Home"}
+          separator={<span> / </span>}
+          activeClass="active"
+        />
+        <Grid columns={6} tablet={2} mobile={1} gapBlock="medium">
+          <gds-cell span="4" className="content">
+            <Grid columns={1} gapBlock="small">
+              <div>
+                <h1>{title}</h1>
+                <p>{summary}</p>
+              </div>
+              <Flex wrap="wrap" gap="small">
+                <Badge title="Status" label={status} />
+                <Tags title="Tags" tags={tagsArray} max={3} />
+              </Flex>
+            </Grid>
+          </gds-cell>
+          <gds-cell span="2">
+            <Pattern>
+              {preview?.trim() ?? "" ? (
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: `${preview}`,
+                  }}
+                />
+              ) : (
+                <div dangerouslySetInnerHTML={{ __html: figma_hero_svg.svg }} />
+              )}
+            </Pattern>
+          </gds-cell>
+        </Grid>
+        <Taber component={url_path} />
+        <Grid columns={12} gapInline="medium" paddingBlock="medium">
+          <Cell span="10">
+            {/* <Grid gapBlock="small" columns={1} className="content"> */}
+            <Grid gapBlock="medium" columns={1}>
+              {children}
+            </Grid>
+          </Cell>
+          <Cell span="2">{tocComponent}</Cell>
+        </Grid>
+        <footer>
+          Last updated: <br />
+          <time dateTime={last_edited} title="Last updated">
+            {format(parseISO(last_edited), "d LLL, yyyy '/' HH:mm")}
+          </time>
+        </footer>
+      </Grid>
+    </Content>
   )
 }

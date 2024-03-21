@@ -1,21 +1,36 @@
 import { type Options } from "rehype-pretty-code"
 import { visit } from "unist-util-visit"
 
-// div.BLOCK > pre.PRE > code.CODE
-const BLOCK =
-  "overflow-hidden rounded-lg bg-rose-100/5 shadow-surface-elevation-low ring-1 ring-rose-100/[3%] ring-inset"
-const TITLE =
-  "mb-0.5 rounded-md bg-rose-100/10 px-3 py-1 font-mono text-xs text-rose-100/70 shadow-sm"
-const PRE = "overflow-x-auto py-2 text-[13px] leading-6 [color-scheme:dark]"
-const CODE =
-  "grid [&>span]:border-l-4 [&>span]:border-l-transparent [&>span]:pl-2 [&>span]:pr-3"
-const INLINE_BLOCK =
-  "whitespace-nowrap border border-rose-200/10 px-1.5 py-px text-[12px] rounded-full bg-white/5 whitespace-nowrap text-rose-300/90"
+const BLOCK = ""
+const TITLE = ""
+const PRE = ""
+const CODE = ""
+const INLINE_BLOCK = ""
 const INLINE_CODE = ""
-const NUMBERED_LINES =
-  "[counter-reset:line] before:[&>span]:mr-3 before:[&>span]:inline-block before:[&>span]:w-4 before:[&>span]:text-right before:[&>span]:text-white/20 before:[&>span]:![content:counter(line)] before:[&>span]:[counter-increment:line]"
-const HIGHLIGHTED_LINE =
-  "!border-l-rose-300/70 bg-rose-200/10 before:!text-white/70"
+const NUMBERED_LINES = ""
+
+interface CustomOptions extends Options {
+  copyButton: boolean
+  plugins?: Function[] // Include the plugins property
+}
+
+function addCopyButton() {
+  return (tree: any) => {
+    visit(tree, "code", (node) => {
+      node.children.push({
+        type: "element",
+        tagName: "button",
+        properties: {
+          className: ["copy-button"],
+          onclick: `navigator.clipboard.writeText(${JSON.stringify(
+            node.children.map((child: { value: any }) => child.value).join("\n")
+          )}).then(() => alert('Code copied!')).catch((error) => console.error('Error copying code: ', error))`,
+        },
+        children: [{ type: "text", value: "Copy" }],
+      })
+    })
+  }
+}
 
 export function rehypePrettyCodeClasses() {
   return (tree: any) => {
@@ -101,24 +116,19 @@ export function rehypePrettyCodeClasses() {
   }
 }
 
-export const rehypePrettyCodeOptions: Partial<Options> = {
+// Update rehypePrettyCodeOptions to use CustomOptions
+export const rehypePrettyCodeOptions: Partial<CustomOptions> = {
   theme: "one-dark-pro",
-  //   theme: JSON.parse(vercelLightTheme),
   tokensMap: {
-    // VScode command palette: Inspect Editor Tokens and Scopes
-    // https://github.com/Binaryify/OneDark-Pro/blob/47c66a2f2d3e5c85490e1aaad96f5fab3293b091/themes/OneDark-Pro.json
     fn: "entity.name.function",
     objKey: "meta.object-literal.key",
   },
   onVisitLine(node) {
-    // Prevent lines from collapsing in `display: grid` mode, and
-    // allow empty lines to be copy/pasted
     if (node.children.length === 0) {
       node.children = [{ type: "text", value: " " }]
     }
     node.properties.className = [""]
   },
-  //   onVisitHighlightedLine(node) {
-  //     node.properties.className.push(HIGHLIGHTED_LINE)
-  //   },
+  copyButton: true,
+  plugins: [addCopyButton], // Include your custom plugins here
 }

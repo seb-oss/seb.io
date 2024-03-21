@@ -12,11 +12,8 @@
 
     li {
       text-transform: capitalize;
+      list-style: none;
       text-underline-offset: 3px;
-
-      /* &:not(.active) {
-        opacity: 0.8;
-      } */
 
       &.active {
         a {

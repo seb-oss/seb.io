@@ -16,7 +16,7 @@ All values we measure need to pass in order to give a check on the accessibility
 - Focus: Passed
 - Screen reader: Passed
 
-{/* To be done: 
+{ /* To be done: 
 =======
 | Values to measure      | Status       |
 | ---------------------- | ------------ |
@@ -40,14 +40,10 @@ Uses default navigation: trigger on key-up with space, trigger on key-down with 
 - Ensure buttons have discernible label text. If the button has no visible text, the label attribute must be used to provide an accessible label.
 - If there are multiple buttons with the same text, such as *Apply*, the label attribute can be used to give each button a distinct label, such as *Apply for A, Apply for B*, etc.
 
-<Row>
-<Col>
-    <FigmaSVG node="259-4131" caption="Buttons with accessible labels." />
-</Col>
-<Col>
-    <FigmaSVG node="259-4140" caption="Icon buttons with accessible labels, label attributes." />
-</Col>
-</Row>
+<Grid columns={2} >
+    <Figma node="259-4131" caption="Buttons with accessible labels." />
+    <Figma node="259-4140" caption="Icon buttons with accessible labels, label attributes." />
+</Grid>
 
 #### Code examples for labelling
 
@@ -56,11 +52,11 @@ Uses default navigation: trigger on key-up with space, trigger on key-down with 
 <gds-button>Label text</gds-button>
 
 <!-- gds-button with unique label. Label attribute overrides visible text. -->
-<gds-button label=”Apply for A”>Apply</gds-button>
+<gds-button label="Apply for A">Apply</gds-button>
 
 <!-- gds-button with only visible icon. Label attribute must be provided,
      since there is no visible text. -->
-<gds-button label=”Close menu”>  <gds-icon name=”x”></gds-icon></gds-button>
+<gds-button label="Close menu">  <gds-icon name="x"></gds-icon></gds-button>
 ```
 ## Resources
 
