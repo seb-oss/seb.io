@@ -74,7 +74,7 @@ export default function Writing() {
                 </p>
                 <p>
                   This is particularly important in texts aimed at customers.
-                  Mistakes affect the reader's concentration on the content and
+                  Mistakes affect the reader&apos;s concentration on the content and
                   understanding of the text. Because our texts are correct, our
                   credibility with customers and other visitors (=potential
                   customers) increases.
@@ -82,7 +82,7 @@ export default function Writing() {
                 <Spacer size="medium" decorated />
                 <h2 id="written-id">Written ID – our tone of voice</h2>
                 <p>
-                  SEB's Written ID is our guiding light, and it forms the basis
+                  SEB&apos;s Written ID is our guiding light, and it forms the basis
                   for all our communication, including UX writing. Our
                   communication must show that we live and operate according to
                   our language keys:
