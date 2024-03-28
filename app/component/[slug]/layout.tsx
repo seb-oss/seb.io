@@ -72,17 +72,17 @@ export default function ComponentLayout({
 
   return (
     <Content layout="component" key={global_id}>
-      <Grid columns={1} paddingBlock="medium" paddingInline="medium">
+      <Grid columns={1} paddingBlock="small" paddingInline="small">
         <Trail
           home={"Home"}
           separator={<span> / </span>}
           activeClass="active"
         />
-        <Grid columns={6} tablet={2} mobile={1} gapBlock="medium">
+        <Grid columns={6} tablet={2} mobile={1} gapBlock="small">
           <gds-cell span="4" className="content">
             <Grid columns={1} gapBlock="small">
               <div>
-                <h1>{title}</h1>
+                <h1 className="gds-fs-headline-large">{title}</h1>
                 <p>{summary}</p>
               </div>
               <Flex wrap="wrap" gap="small">
@@ -106,12 +106,10 @@ export default function ComponentLayout({
           </gds-cell>
         </Grid>
         <Taber component={url_path} />
-        <Grid columns={12} gapInline="medium" paddingBlock="medium">
+        <Grid columns={12} gapInline="small" paddingBlock="small">
           <Cell span="10">
             {/* <Grid gapBlock="small" columns={1} className="content"> */}
-            <Grid gapBlock="medium" columns={1}>
-              {children}
-            </Grid>
+            <div className="gds-prose">{children}</div>
           </Cell>
           <Cell span="2">{tocComponent}</Cell>
         </Grid>

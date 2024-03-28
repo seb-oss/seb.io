@@ -143,7 +143,7 @@ export default function Writing() {
                 <ul>
                   <li>
                     Consistent – we strive to use the same word for the same
-                    item, action, or object.{" "}
+                    item, action, or object.
                   </li>
                   <li>
                     Educational – we make an effort to be brief and pedagogic.
@@ -177,8 +177,18 @@ export default function Writing() {
                   will pay the invoice before you send the translation document.
                 </p>
                 <ul>
-                  <li>Språkkonsulterna: info@sprakkonsulterna.se </li>
-                  <li>Lionbridge:jakob.nordby@lionbridge.com </li>
+                  <li>
+                    Språkkonsulterna:
+                    <a href="mailto:info@sprakkonsulterna.se">
+                      info@sprakkonsulterna.se
+                    </a>
+                  </li>
+                  <li>
+                    Lionbridge:
+                    <a href="mailto:jakob.nordby@lionbridge.com">
+                      jakob.nordby@lionbridge.com
+                    </a>
+                  </li>
                 </ul>
                 <p>
                   When you need help with tone-of-voice, instructions,

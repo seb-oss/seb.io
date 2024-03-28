@@ -1,5 +1,48 @@
 @layer core {
   @layer typography {
+    h1 {
+      font-size: var(--gds-fs-display-large);
+      line-height: var(--gds-lh-display-large);
+      font-weight: 450;
+    }
+
+    h2 {
+      font-size: var(--gds-fs-headline-medium);
+      line-height: var(--gds-lh-headline-medium);
+      font-weight: 450;
+    }
+
+    h3 {
+      font-size: var(--gds-fs-title-large);
+      line-height: var(--gds-lh-title-large);
+      font-weight: 450;
+    }
+
+    /* Lists */
+
+    ul {
+      margin-block-end: var(--gds-gap-m);
+    }
+
+    li + li {
+      margin-block-start: var(--gds-gap-s);
+    }
+
+    /* Paragraphs */
+
+    p {
+      font-size: var(--gds-fs-body-large);
+      line-height: var(--gds-lh-body-large);
+      margin-block-end: 1rem;
+
+      &.color-secondary {
+        color: var(--gds-sys-color-content-content-secondary);
+      }
+    }
+
+    strong {
+      font-weight: 500;
+    }
     .heading-medium {
       font-size: 1.75rem;
       font-style: normal;
@@ -37,10 +80,8 @@
 }
 
 /* 
-
-Add font sizes 
-
-*/
+ *  Add font sizes 
+ */
 
 .gds-fs-display-large {
   font-size: var(--gds-fs-display-large);
