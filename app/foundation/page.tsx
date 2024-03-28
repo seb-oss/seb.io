@@ -10,7 +10,6 @@ import Stack from "@/core/blocks/stack"
 import TOC from "@/core/blocks/toc/toc"
 import MetallicSurfaceImage from "public/content/metallic-surface.jpg"
 import CirclesImage from "public/content/tonality-circles.jpg"
-import { Col, Row } from "react-flexbox-grid"
 
 import "./style.css"
 

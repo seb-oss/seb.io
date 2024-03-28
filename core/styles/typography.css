@@ -164,24 +164,53 @@ Add font sizes
 
 /* Heading */
 
-h1,
-.h1 {
-  font-size: var(--gds-fs-display-large);
-  line-height: var(--gds-lh-display-large);
-}
+.gds-prose {
+  h1 {
+    font-size: var(--gds-fs-display-large);
+    line-height: var(--gds-lh-display-large);
+    font-weight: 450;
+    margin-block-end: var(--gds-gap-xxl);
+  }
 
-h2,
-.h2 {
-  font-size: var(--gds-fs-headline-medium);
-  line-height: var(--gds-lh-headline-medium);
-}
+  h2 {
+    font-size: var(--gds-fs-headline-medium);
+    line-height: var(--gds-lh-headline-medium);
+    font-weight: 450;
+    margin-block-start: var(--gds-gap-xxxl);
+    margin-block-end: var(--gds-gap-l);
+  }
 
-/* Paragraphs */
-p {
-  font-size: var(--gds-fs-body-large);
-  line-height: var(--gds-lh-body-large);
+  h3 {
+    font-size: var(--gds-fs-title-large);
+    line-height: var(--gds-lh-title-large);
+    font-weight: 450;
+    margin-block-start: var(--gds-gap-xxl);
+    margin-block-end: var(--gds-gap-m);
+  }
 
-  &.color-secondary {
-    color: var(--gds-sys-color-content-content-secondary);
+  /* Lists */
+
+  ul {
+    margin-block-end: var(--gds-gap-m);
+  }
+
+  li + li {
+    margin-block-start: var(--gds-gap-s);
+  }
+
+  /* Paragraphs */
+
+  p {
+    font-size: var(--gds-fs-body-large);
+    line-height: var(--gds-lh-body-large);
+    margin-block-end: 1rem;
+
+    &.color-secondary {
+      color: var(--gds-sys-color-content-content-secondary);
+    }
+  }
+
+  strong {
+    font-weight: 500;
   }
 }
