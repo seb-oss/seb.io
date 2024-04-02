@@ -1,71 +1,72 @@
-"use client";
-import "./style.css";
-import { useEffect, useState } from "react";
-import { compareDesc, format, parseISO } from "date-fns";
-import { allMembers, Member } from "content";
-import { Toaster, toast } from "sonner"
+"use client"
 
-function Member(member: Member) {
-  const firstName = member.name.split(" ")[0];
-  const department = member.department;
+import "./style.css"
+
+import { useEffect, useState } from "react"
+import { allMembers, Member } from "content"
+import { compareDesc, format, parseISO } from "date-fns"
+import { toast, Toaster } from "sonner"
+
+function MemberFunc(member: Member) {
+  const firstName = member.name.split(" ")[0]
+  const department = member.department
   const [position, setPosition] = useState({
     randomX: -100,
     randomY: -100,
-  });
+  })
   // const range = [30, 80];
-  const range = [50, 60];
+  const range = [50, 60]
   const lightness =
-    Math.floor(Math.random() * (range[1] - range[0] + 1)) + range[0];
+    Math.floor(Math.random() * (range[1] - range[0] + 1)) + range[0]
 
   // const lightness = Math.floor(Math.random() * 51) + 33;
   // const lightness = Math.floor(Math.random() * 31) + 88;
 
   const uniqueDepartments = Array.from(
     new Set(allMembers.map((m) => m.department))
-  );
+  )
 
   const hue = Math.floor(
     (uniqueDepartments.indexOf(department) / uniqueDepartments.length) * 258
-  );
+  )
 
   // const saturation = Math.floor(
   //   (uniqueDepartments.indexOf(department) / uniqueDepartments.length) * 100
   // );
 
-  const saturation = Math.floor(Math.random() * 200);
+  const saturation = Math.floor(Math.random() * 200)
 
-  const color = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+  const color = `hsl(${hue}, ${saturation}%, ${lightness}%)`
 
   useEffect(() => {
-    const heroElement = document.querySelector(".hero") as HTMLElement;
-    const width = heroElement?.offsetWidth ?? 0;
-    const height = heroElement?.offsetHeight ?? 0;
+    const heroElement = document.querySelector(".hero") as HTMLElement
+    const width = heroElement?.offsetWidth ?? 0
+    const height = heroElement?.offsetHeight ?? 0
     const intervalId = setInterval(() => {
       setPosition((prevPosition) => {
-        const randomX = Math.floor(Math.random() * width);
-        const randomY = Math.floor(Math.random() * height);
-        return { randomX, randomY };
-      });
-    }, Math.random() * 1000 + 2000); // Update position with a random interval between 3 and 8 seconds
+        const randomX = Math.floor(Math.random() * width)
+        const randomY = Math.floor(Math.random() * height)
+        return { randomX, randomY }
+      })
+    }, Math.random() * 1000 + 2000) // Update position with a random interval between 3 and 8 seconds
 
     return () => {
-      clearInterval(intervalId);
-    };
-  }, []);
+      clearInterval(intervalId)
+    }
+  }, [])
 
   const cursorStyle = {
     "--color": color,
     "--top": `${position.randomY}px`,
     "--left": `${position.randomX}px`,
-  } as React.CSSProperties;
+  } as React.CSSProperties
 
   return (
     <div className="cursor" data-dep={department} style={cursorStyle}>
       {firstName}
     </div>
-  );
+  )
 }
-
 
 function Install() {
   const [isCopied, setIsCopied] = useState(false)
@@ -99,13 +100,10 @@ function Install() {
   )
 }
 
-
 export default function Hero() {
   const team = allMembers.sort((a, b) =>
     compareDesc(new Date(a.name), new Date(b.name))
-  );
-
-
+  )
 
   return (
     <>
@@ -133,7 +131,7 @@ export default function Hero() {
 
         <div className="cursors">
           {team.map((member, idx) => (
-            <Member key={idx} {...member} />
+            <MemberFunc key={idx} {...member} />
           ))}
         </div>
       </figure>
@@ -149,23 +147,23 @@ export default function Hero() {
         </section>
       </div> */}
       <div className="create">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="14"
-            height="14"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <polyline points="4 17 10 11 4 5"></polyline>
-            <line x1="12" y1="19" x2="20" y2="19"></line>
-          </svg>
-          <code>npm i green</code>
-          <Install />
-        </div>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <polyline points="4 17 10 11 4 5"></polyline>
+          <line x1="12" y1="19" x2="20" y2="19"></line>
+        </svg>
+        <code>npm i green</code>
+        <Install />
+      </div>
     </>
-  );
+  )
 }

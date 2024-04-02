@@ -1,9 +1,9 @@
+import type { Metadata, ResolvingMetadata } from "next"
 import Head from "next/head"
 import { notFound } from "next/navigation"
 import Script from "next/script"
 import { Mdx } from "@/mdx"
 import { allComponents, Component } from "content"
-import type { Metadata, ResolvingMetadata } from 'next'
 
 import "./page.css"
 
@@ -18,7 +18,6 @@ export const generateStaticParams = (): any => {
     slug: component.url_path.replace("/component/", ""),
   }))
 }
-
 
 export async function generateMetadata(
   { params }: Props,
@@ -40,7 +39,11 @@ export async function generateMetadata(
   }
 }
 
-export default function Component({ params }: { params: { slug: string } }) {
+export default function ComponentPage({
+  params,
+}: {
+  params: { slug: string }
+}) {
   const { slug } = params
 
   const component = allComponents.find(
@@ -55,18 +58,18 @@ export default function Component({ params }: { params: { slug: string } }) {
 
   return (
     <>
-     <script
+      <script
         type="application/ld+json"
         suppressHydrationWarning
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'Thing',
+            "@context": "https://schema.org",
+            "@type": "Thing",
             description: component.summary,
             url: `https://seb.io/component/${slug}`,
             author: {
-              '@type': 'Company',
-              name: 'SEB',
+              "@type": "Company",
+              name: "SEB",
             },
           }),
         }}
