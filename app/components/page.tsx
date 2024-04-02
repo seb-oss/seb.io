@@ -1,6 +1,6 @@
-import ComponentList from "@/core/blocks/component-list/component-list"
-import Grid from "@/core/blocks/grid/grid"
-import Content from "@/core/layouts/content/content"
+import ComponentList from "@/component-list/component-list"
+import Grid from "@/grid/grid"
+import Content from "&/content/content"
 
 export default function Components() {
   return (

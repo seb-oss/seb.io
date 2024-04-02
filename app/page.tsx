@@ -1,9 +1,9 @@
 import type { Metadata } from "next"
-import ComponentList from "@/core/blocks/component-list/component-list"
-import Grid from "@/core/blocks/grid/grid"
-import Hero from "@/core/blocks/hero/hero"
-import RessourcesList from "@/core/blocks/resources-list/resources-list"
-import Content from "@/core/layouts/content/content"
+import ComponentList from "@/component-list/component-list"
+import Grid from "@/grid/grid"
+import Hero from "@/hero/hero"
+import RessourcesList from "@/resources-list/resources-list"
+import Content from "&/content/content"
 
 import "./page.css"
 

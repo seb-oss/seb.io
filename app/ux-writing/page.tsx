@@ -1,17 +1,17 @@
 "use client"
 
-import Hero from "@/core/blocks/hero/hero"
-import Stack from "@/core/blocks/stack"
-import TOC from "@/core/blocks/toc/toc"
+import Hero from "@/hero/hero"
+import Stack from "@/stack"
+import TOC from "@/toc/toc"
 import { Col, Row } from "react-flexbox-grid"
 
 import "./style.css"
 
 import Link from "next/link"
-import Cell from "@/core/blocks/grid/cell"
-import Grid from "@/core/blocks/grid/grid"
-import Spacer from "@/core/blocks/spacer/spacer"
-import Content from "@/core/layouts/content/content"
+import Cell from "@/grid/cell"
+import Grid from "@/grid/grid"
+import Spacer from "@/spacer/spacer"
+import Content from "&/content/content"
 
 const tocHeading = [
   {
@@ -74,16 +74,16 @@ export default function Writing() {
                 </p>
                 <p>
                   This is particularly important in texts aimed at customers.
-                  Mistakes affect the reader&apos;s concentration on the content and
-                  understanding of the text. Because our texts are correct, our
-                  credibility with customers and other visitors (=potential
+                  Mistakes affect the reader&apos;s concentration on the content
+                  and understanding of the text. Because our texts are correct,
+                  our credibility with customers and other visitors (=potential
                   customers) increases.
                 </p>
                 <Spacer size="medium" decorated />
                 <h2 id="written-id">Written ID – our tone of voice</h2>
                 <p>
-                  SEB&apos;s Written ID is our guiding light, and it forms the basis
-                  for all our communication, including UX writing. Our
+                  SEB&apos;s Written ID is our guiding light, and it forms the
+                  basis for all our communication, including UX writing. Our
                   communication must show that we live and operate according to
                   our language keys:
                 </p>

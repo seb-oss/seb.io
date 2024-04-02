@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
-import Grid from "@/core/blocks/grid/grid"
-import Content from "@/core/layouts/content/content"
+import Grid from "@/grid/grid"
+import Content from "&/content/content"
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://seb.io/demo/grid-fluid"),

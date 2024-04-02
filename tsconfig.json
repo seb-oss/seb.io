@@ -20,8 +20,12 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"],
-      "content": ["./.contentlayer/generated"]
+      "content": ["./.contentlayer/generated"],
+      "@/*": ["./design/blocks/*"],
+      "#/*": ["./design/styles/*"],
+      "&/*": ["./design/layouts/*"],
+      "m/*": ["./design/mdx/*"],
+      "$/*": ["./utils/*"],
     }
   },
   "include": [

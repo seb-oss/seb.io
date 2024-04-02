@@ -3,14 +3,14 @@
 import { useEffect, useState } from "react"
 import type { Metadata } from "next"
 import Script from "next/script"
-import Alert from "@/core/blocks/alert/aler"
-import Consent from "@/core/blocks/consent/consent"
-import Footer from "@/core/blocks/footer/footer"
-import Header from "@/core/blocks/header/header"
-import Article from "@/core/layouts/article/article"
-import Main from "@/core/layouts/main/main"
-import Fonts from "@/utils/fonts/fonts"
-import { ThemeProvider } from "@/utils/theme/provider"
+import Alert from "@/alert/aler"
+import Consent from "@/consent/consent"
+import Footer from "@/footer/footer"
+import Header from "@/header/header"
+import Article from "&/article/article"
+import Main from "&/main/main"
+import Fonts from "$/fonts/fonts"
+import { ThemeProvider } from "$/theme/provider"
 
 export default function RootLayout({
   children,

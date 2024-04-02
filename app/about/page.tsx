@@ -2,17 +2,17 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { Accordion, AccordionItem } from "@/core/blocks/accordion"
-import Hero from "@/core/blocks/hero/hero"
-import Spacing from "@/core/blocks/spacing"
-import Stack from "@/core/blocks/stack"
-import TOC from "@/core/blocks/toc/toc"
+import { Accordion, AccordionItem } from "@/accordion"
+import Hero from "@/hero/hero"
+import Spacing from "@/spacing"
+import Stack from "@/stack"
+import TOC from "@/toc/toc"
 import { Col, Row } from "react-flexbox-grid"
 
 import "./style.css"
 
-import Grid from "@/core/blocks/grid/grid"
-import Content from "@/core/layouts/content/content"
+import Grid from "@/grid/grid"
+import Content from "&/content/content"
 import WoodsCabinImage from "public/content/woods-cabin.png"
 
 const tocHeading = [

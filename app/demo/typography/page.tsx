@@ -1,4 +1,4 @@
-import Content from "@/core/layouts/content/content"
+import Content from "&/content/content"
 
 import "./page.css"
 

@@ -4,8 +4,8 @@ import {
   allChangelogs,
   Changelog,
 } from "content";
-import Layout from "@/core/layouts/changelog";
-import { Mdx } from "@/core/blocks/mdx";
+import Layout from "&/changelog";
+import { Mdx } from "@/mdx";
 
 function ChangelogCard(changelog: Changelog) {
 

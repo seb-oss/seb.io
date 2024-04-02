@@ -1,4 +1,4 @@
-import Layout from "@/core/layouts/status"
+import Layout from "&/status"
 
 export default function Status() {
   return (

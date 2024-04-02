@@ -1,7 +1,7 @@
 import type { Metadata, ResolvingMetadata } from "next"
 import { notFound } from "next/navigation"
 import Script from "next/script"
-import { Mdx } from "@/core/blocks/mdx"
+import { Mdx } from "@/mdx"
 import { allComponents } from "content"
 
 type Props = {

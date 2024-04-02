@@ -2,19 +2,19 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { Accordion, AccordionItem } from "@/core/blocks/accordion"
-import Grid from "@/core/blocks/grid/grid"
-import Hero from "@/core/blocks/hero/hero"
-import Spacing from "@/core/blocks/spacing"
-import Stack from "@/core/blocks/stack"
-import TOC from "@/core/blocks/toc/toc"
+import { Accordion, AccordionItem } from "@/accordion"
+import Grid from "@/grid/grid"
+import Hero from "@/hero/hero"
+import Spacing from "@/spacing"
+import Stack from "@/stack"
+import TOC from "@/toc/toc"
 import MetallicSurfaceImage from "public/content/metallic-surface.jpg"
 import CirclesImage from "public/content/tonality-circles.jpg"
 
 import "./style.css"
 
-import Cell from "@/core/blocks/grid/cell"
-import Content from "@/core/layouts/content/content"
+import Cell from "@/grid/cell"
+import Content from "&/content/content"
 
 const tocHeading = [
   {
