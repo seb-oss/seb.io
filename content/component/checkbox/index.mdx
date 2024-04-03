@@ -53,15 +53,17 @@ Checkboxes are typically grouped with a theme label above and the possible optio
     ### Indeterminate state
     
     Used when the checkbox's state is partially selected, often for parent-child relationships in nested checkboxes.
+    
+    **Behaviour of indeterminate checkboxes**
+    - If some children are selected, the indeterminate state is visible on the parent.
+    - If all children are selected, the selected state is visual on the parent.
+    - If a parent checkbox is selected while unselected or in the indeterminate state, all children will be selected.
+    - If the parent is deselected all children will be deselected.
   </div>
   <Figma node="1337-6288" caption="Nested checkboxes with a indeterminate parent" />
 </Grid>
 
-## Behaviour
-- If some children are selected, the indeterminate state is visible on the parent.
-- If all children are selected, the selected state is visual on the parent.
-- If a parent checkbox is selected while unselected or in the indeterminate state, all children will be selected.
-- If the parent is deselected all children will be deselected.
+
 
 
 
