@@ -1,8 +1,6 @@
 import type { Metadata } from "next"
 import Image from "next/image"
 import Grid from "@/grid/grid"
-import GridPlayground from "@/grid/playground"
-import Content from "&/content/content"
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://seb.io/demo/enkla-lanet"),
@@ -13,7 +11,8 @@ export default function EnklaLanet() {
   return (
     <div>
       <h1>Demo: Enkla lanet</h1>
-      <p>Detta är enkla lanet</p>
+      <p>WARNING: This is a demo only!</p>
+
       <Grid columns={2}>
         <div>
           <Image
