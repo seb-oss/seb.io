@@ -14,7 +14,8 @@
     "start": "next start",
     "lint": "next lint",
     "export": "next export",
-    "bundle-playground": "vite build -c utils/playground-elements/vite.config.js"
+    "bundle-playground": "vite build -c utils/playground-elements/vite.config.js",
+    "new": "node utils/create/create.js"
   },
   "dependencies": {
     "@floating-ui/dom": "^1.6.2",
