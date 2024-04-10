@@ -33,7 +33,7 @@ date: ${new Date().toISOString().split("T")[0]}
 title: ${title}
 summary: ${title} Summary
 date: ${new Date().toISOString().split("T")[0]}
-global_id: ${buttonName}
+global_id: ${buttonName}index
 status: work in progress
 tags: 
 node: 
