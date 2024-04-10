@@ -1,5 +1,3 @@
-// createButton.js
-
 const fs = require("fs")
 const path = require("path")
 
@@ -21,6 +19,10 @@ const files = ["accessibility", "code", "index", "ux-text"]
 
 files.forEach((file) => {
   let title = file.charAt(0).toUpperCase() + file.slice(1)
+  if (file === "ux-text") {
+    title = "UX text"
+  }
+
   let frontmatter = `---
 title: ${title}
 global_id: ${buttonName}${file}
