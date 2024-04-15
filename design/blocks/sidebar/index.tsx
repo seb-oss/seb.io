@@ -1,7 +1,7 @@
 import React, { KeyboardEvent, useContext, useRef } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import Dev from "$/dev/dev"
+import Dev, { isDev } from "$/dev/dev"
 import { allComponents, Component } from "content"
 
 import "./style.css"
@@ -30,9 +30,9 @@ export default function Sidebar({
     )
   }
 
-  const components = filteredComponents.sort((a, b) =>
-    a.title.localeCompare(b.title)
-  )
+  const components = filteredComponents
+    .filter((component) => !(component.private && !isDev))
+    .sort((a, b) => a.title.localeCompare(b.title))
 
   const Arrow = () => {
     return (

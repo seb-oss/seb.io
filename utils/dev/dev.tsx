@@ -1,8 +1,8 @@
 import { ReactNode } from "react"
 
-const Dev = ({ children }: { children: ReactNode }) => {
-  const isDev = process.env.NEXT_PUBLIC_DEV_ENV === "true"
+export const isDev = process.env.NEXT_PUBLIC_DEV_ENV === "true"
 
+const Dev = ({ children }: { children: ReactNode }) => {
   if (!isDev) {
     return null
   }
