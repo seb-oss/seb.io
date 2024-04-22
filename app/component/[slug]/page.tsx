@@ -3,7 +3,8 @@ import Head from "next/head"
 import { notFound } from "next/navigation"
 import Script from "next/script"
 import { Mdx } from "@/mdx"
-import { allComponents, Component } from "content"
+import isDev from "$/dev/dev"
+import { allComponents } from "content"
 
 import "./page.css"
 
@@ -25,9 +26,15 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const { slug } = params
 
-  const component = allComponents.find(
-    (component) => component.url_path === "/component/" + slug
-  )
+  const component = allComponents.find((component) => {
+    if (component.url_path !== "/component/" + slug) {
+      return false
+    }
+    if (component.private && !isDev) {
+      return false
+    }
+    return true
+  })
 
   if (!component) {
     notFound()
