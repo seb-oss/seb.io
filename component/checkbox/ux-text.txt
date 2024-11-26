@@ -1,0 +1,70 @@
+2:I[6107,["6861","static/chunks/6861-91b5a6371ca3a069.js","3850","static/chunks/3850-8e5a6ee9d3f7fb6f.js","1550","static/chunks/app/component/%5Bslug%5D/ux-text/page-cd2a14535414c440.js"],"Mdx"]
+4:I[5092,[],""]
+6:I[2023,[],""]
+7:I[5053,["3384","static/chunks/3384-587610ceb05cbd61.js","303","static/chunks/303-eee607300307a2f3.js","6861","static/chunks/6861-91b5a6371ca3a069.js","8162","static/chunks/app/component/%5Bslug%5D/layout-061d3ab9c9658133.js"],"default",1]
+8:I[8369,["3384","static/chunks/3384-587610ceb05cbd61.js","9055","static/chunks/9055-f3da2ecab9c16b99.js","6861","static/chunks/6861-91b5a6371ca3a069.js","3185","static/chunks/app/layout-d86a0a97ea8e7679.js"],"default",1]
+9:I[4779,["3384","static/chunks/3384-587610ceb05cbd61.js","6861","static/chunks/6861-91b5a6371ca3a069.js","2453","static/chunks/2453-2c5c39a9779dbaac.js","1931","static/chunks/app/page-c8695d22c68881c3.js"],"GdsFlex"]
+a:I[4779,["3384","static/chunks/3384-587610ceb05cbd61.js","6861","static/chunks/6861-91b5a6371ca3a069.js","2453","static/chunks/2453-2c5c39a9779dbaac.js","1931","static/chunks/app/page-c8695d22c68881c3.js"],"GdsContainer"]
+b:I[4779,["3384","static/chunks/3384-587610ceb05cbd61.js","6861","static/chunks/6861-91b5a6371ca3a069.js","2453","static/chunks/2453-2c5c39a9779dbaac.js","1931","static/chunks/app/page-c8695d22c68881c3.js"],"GdsText"]
+c:I[1967,["3384","static/chunks/3384-587610ceb05cbd61.js","9160","static/chunks/app/not-found-be7b2e8598ca29ac.js"],"default"]
+3:T2179,var Component=(()=>{var m=Object.create;var c=Object.defineProperty;var f=Object.getOwnPropertyDescriptor;var g=Object.getOwnPropertyNames;var v=Object.getPrototypeOf,w=Object.prototype.hasOwnProperty;var b=(i,n)=>()=>(n||i((n={exports:{}}).exports,n),n.exports),y=(i,n)=>{for(var o in n)c(i,o,{get:n[o],enumerable:!0})},h=(i,n,o,s)=>{if(n&&typeof n=="object"||typeof n=="function")for(let t of g(n))!w.call(i,t)&&t!==o&&c(i,t,{get:()=>n[t],enumerable:!(s=f(n,t))||s.enumerable});return i};var x=(i,n,o)=>(o=i!=null?m(v(i)):{},h(n||!i||!i.__esModule?c(o,"default",{value:i,enumerable:!0}):o,i)),k=i=>h(c({},"__esModule",{value:!0}),i);var u=b((q,d)=>{d.exports=_jsx_runtime});var I={};y(I,{default:()=>N,frontmatter:()=>D});var e=x(u()),D={title:"UX Text",date:new Date(17121024e5)};function p(i){let n=Object.assign({h2:"h2",a:"a",span:"span",p:"p",ul:"ul",li:"li",strong:"strong",h3:"h3"},i.components),{Grid:o,Do:s,Figma:t,SE:a,Dont:r}=n;return s||l("Do",!0),r||l("Dont",!0),t||l("Figma",!0),o||l("Grid",!0),a||l("SE",!0),(0,e.jsxs)(e.Fragment,{children:[(0,e.jsxs)(n.h2,{id:"ux-text",children:[(0,e.jsx)(n.a,{className:"anchor",href:"#ux-text",children:(0,e.jsx)(n.span,{className:"icon icon-link"})}),"UX text"]}),`
+`,(0,e.jsx)(n.p,{children:"Write checkbox labels so that the customers can easily understand what it means to check the box or leave it blank. It can be difficult when customers must check an individual stand-alone checkbox, for example, that they accept the terms or want to receive news and offers by e-mail. Or when they should be able to turn a setting on or off and it is essential that they actively take a stand on the choice. (If there is a default option that almost everyone will choose, use a toggle instead.)"}),`
+`,(0,e.jsx)(n.p,{children:"The label and options must also be adapted to suit each other. If the field label is a yes or no question, the answer options should be yes and no and nothing else. Since the user can only choose one of these options, use radio buttons instead."}),`
+`,(0,e.jsx)(n.p,{children:"Furthermore, remember to write consistent options. Decide if the options should"}),`
+`,(0,e.jsxs)(n.ul,{children:[`
+`,(0,e.jsx)(n.li,{children:"consist of complete sentences beginning with uppercase and ending with a full stop"}),`
+`,(0,e.jsx)(n.li,{children:"constitute one continuing sentence beginning with lowercase and only the last point ending with a full stop"}),`
+`]}),`
+`,(0,e.jsx)(n.p,{children:(0,e.jsx)(n.strong,{children:"or"})}),`
+`,(0,e.jsxs)(n.ul,{children:[`
+`,(0,e.jsx)(n.li,{children:"a single word or a couple of words and no full stop."}),`
+`]}),`
+`,(0,e.jsxs)(n.h2,{id:"negations",children:[(0,e.jsx)(n.a,{className:"anchor",href:"#negations",children:(0,e.jsx)(n.span,{className:"icon icon-link"})}),"Negations"]}),`
+`,(0,e.jsxs)(n.h3,{id:"avoid-negations-and-use-the-i-form",children:[(0,e.jsx)(n.a,{className:"anchor",href:"#avoid-negations-and-use-the-i-form",children:(0,e.jsx)(n.span,{className:"icon icon-link"})}),"Avoid negations and use the I-form"]}),`
+`,(0,e.jsx)(n.p,{children:"Avoid negations such as Do not send me more e-mails in the checkbox label, as this would mean that users have to check the box to prevent something from happening. Also, do not use questions like Do you want newsletters from us? The convention is to use the I-form for this type of checkbox."}),`
+`,(0,e.jsxs)(o,{columns:"2",gap:"s",children:[(0,e.jsxs)("div",{children:[(0,e.jsx)(n.p,{children:(0,e.jsx)(n.strong,{children:"Do"})}),(0,e.jsx)(s,{children:(0,e.jsx)(t,{node:"1368-980"})}),(0,e.jsxs)(n.ul,{children:[`
+`,(0,e.jsxs)(n.li,{children:[`
+`,(0,e.jsx)(a,{children:"Ja tack, jag vill ha f\xF6rtur p\xE5 exklusiva erbjudanden och nyheter via mejl."}),`
+`]}),`
+`,(0,e.jsx)(n.li,{children:"Yes please, I want to get priority on exclusive offers and news by e-mail."}),`
+`]})]}),(0,e.jsxs)("div",{children:[(0,e.jsx)(n.p,{children:(0,e.jsx)(n.strong,{children:"Don't"})}),(0,e.jsx)(r,{children:(0,e.jsx)(t,{node:"1368-982"})}),(0,e.jsxs)(n.ul,{children:[`
+`,(0,e.jsxs)(n.li,{children:[`
+`,(0,e.jsx)(a,{children:"Vill du ha exklusiva erbjudanden och nyheter via mejl?"}),`
+`]}),`
+`,(0,e.jsx)(n.li,{children:"Do you want to get priority on exclusive offers and news by e-mail?"}),`
+`,(0,e.jsxs)(n.li,{children:[`
+`,(0,e.jsx)(a,{children:"Ja tack, jag vill inte missa exklusiva erbjudanden och nyheter via mejl."}),`
+`]}),`
+`,(0,e.jsx)(n.li,{children:"Yes please, I do not want to miss out on preference on exclusive offers and news by e-mail."}),`
+`]})]})]}),`
+`,(0,e.jsxs)(n.h2,{id:"accepting-the-terms",children:[(0,e.jsx)(n.a,{className:"anchor",href:"#accepting-the-terms",children:(0,e.jsx)(n.span,{className:"icon icon-link"})}),"Accepting the terms"]}),`
+`,(0,e.jsxs)(n.h3,{id:"when-the-user-accepts-terms-use-i-form-and-avoid-a-question",children:[(0,e.jsx)(n.a,{className:"anchor",href:"#when-the-user-accepts-terms-use-i-form-and-avoid-a-question",children:(0,e.jsx)(n.span,{className:"icon icon-link"})}),"When the user accepts terms, use I-form and avoid a question"]}),`
+`,(0,e.jsxs)(o,{columns:"2",gap:"s",children:[(0,e.jsxs)("div",{children:[(0,e.jsx)(n.p,{children:(0,e.jsx)(n.strong,{children:"Do"})}),(0,e.jsx)(s,{children:(0,e.jsx)(t,{node:"1368-1091"})}),(0,e.jsxs)(n.ul,{children:[`
+`,(0,e.jsxs)(n.li,{children:[`
+`,(0,e.jsx)(a,{children:"Jag har l\xE4st informationen och granskat de uppgifter jag fyllt i. Jag f\xF6rs\xE4krar att de \xE4r riktiga."}),`
+`]}),`
+`,(0,e.jsx)(n.li,{children:"I have read the information and reviewed what I entered in the form. I ensure that everything is correct."}),`
+`]})]}),(0,e.jsxs)("div",{children:[(0,e.jsx)(n.p,{children:(0,e.jsx)(n.strong,{children:"Don't"})}),(0,e.jsx)(r,{children:(0,e.jsx)(t,{node:"1368-1093"})}),(0,e.jsxs)(n.ul,{children:[`
+`,(0,e.jsxs)(n.li,{children:[`
+`,(0,e.jsx)(a,{children:"F\xF6rs\xE4krar du att du l\xE4st informationen och granskat de uppgifter du fyllt i? F\xF6rs\xE4krar du att de \xE4r riktiga?"}),`
+`]}),`
+`,(0,e.jsx)(n.li,{children:"Have you read the information and reviewed what was entered in the form? Can you ensure that everything is correct?"}),`
+`]})]})]}),`
+`,(0,e.jsxs)(n.h2,{id:"multiple-options",children:[(0,e.jsx)(n.a,{className:"anchor",href:"#multiple-options",children:(0,e.jsx)(n.span,{className:"icon icon-link"})}),"Multiple options"]}),`
+`,(0,e.jsx)(n.p,{children:"Decide if the options should consist of complete sentences beginning with uppercase and ending with a full stop, constitute one continuing sentence beginning with lowercase and only the last point ending with a full stop or a single word or a couple of words and no full stop. Provide clear instructions that the user can select multiple options. The label and options must also be adapted to suit each other. If the field label is a yes or no question, the answer options should be yes and no and nothing else."}),`
+`,(0,e.jsx)(n.p,{children:(0,e.jsx)(n.strong,{children:"Do"})}),`
+`,(0,e.jsxs)(n.ul,{children:[`
+`,(0,e.jsx)(n.li,{children:"Provide clear instructions that the user can select multiple options."}),`
+`,(0,e.jsx)(n.li,{children:"The label and options must also be adapted to suit each other. If the field label is a yes or no question, the answer options should be yes and no and nothing else."}),`
+`]}),`
+`,(0,e.jsxs)(o,{columns:"2",gap:"s",gapBlock:"small",children:[(0,e.jsx)("div",{children:(0,e.jsx)(s,{children:(0,e.jsx)(t,{node:"1368-1162"})})}),(0,e.jsx)("div",{children:(0,e.jsx)(r,{children:(0,e.jsx)(t,{node:"1368-1164"})})}),(0,e.jsx)("div",{children:(0,e.jsx)(s,{children:(0,e.jsx)(t,{node:"1368-1217"})})}),(0,e.jsx)("div",{children:(0,e.jsx)(r,{children:(0,e.jsx)(t,{node:"1368-1218"})})})]}),`
+`,(0,e.jsxs)(n.h2,{id:"options-texts",children:[(0,e.jsx)(n.a,{className:"anchor",href:"#options-texts",children:(0,e.jsx)(n.span,{className:"icon icon-link"})}),"Options texts"]}),`
+`,(0,e.jsx)(n.p,{children:(0,e.jsx)(n.strong,{children:"Do"})}),`
+`,(0,e.jsxs)(n.ul,{children:[`
+`,(0,e.jsx)(n.li,{children:"Write option texts that are consistent."}),`
+`]}),`
+`,(0,e.jsxs)(o,{columns:"2",gap:"s",children:[(0,e.jsx)("div",{children:(0,e.jsx)(r,{children:(0,e.jsx)(t,{node:"1368-1222"})})}),(0,e.jsx)("div",{children:(0,e.jsx)(r,{children:(0,e.jsx)(t,{node:"1368-1223"})})})]})]})}function j(i={}){let{wrapper:n}=i.components||{};return n?(0,e.jsx)(n,Object.assign({},i,{children:(0,e.jsx)(p,i)})):p(i)}var N=j;function l(i,n){throw new Error("Expected "+(n?"component":"object")+" `"+i+"` to be defined: you likely forgot to import, pass, or provide it.")}return k(I);})();
+;return Component;5:["slug","checkbox","d"]
+0:["G5sSn2v8B6Vv9ZORGI28M",[[["",{"children":["component",{"children":[["slug","checkbox","d"],{"children":["ux-text",{"children":["__PAGE__?{\"slug\":\"checkbox\"}",{}]}]}]}]},"$undefined","$undefined",true],["",{"children":["component",{"children":[["slug","checkbox","d"],{"children":["ux-text",{"children":["__PAGE__",{},[["$L1",["$","$L2",null,{"code":"$3","globals":{}}],[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/3193eebeef4f1a40.css","precedence":"next","crossOrigin":"$undefined"}]]],null],null]},[null,["$","$L4",null,{"parallelRouterKey":"children","segmentPath":["children","component","children","$5","children","ux-text","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L6",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[[null,["$","$L7",null,{"children":["$","$L4",null,{"parallelRouterKey":"children","segmentPath":["children","component","children","$5","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L6",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}],"params":{"slug":"checkbox"}}]],null],null]},[null,["$","$L4",null,{"parallelRouterKey":"children","segmentPath":["children","component","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L6",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/70c29b3a1e45ed98.css","precedence":"next","crossOrigin":"$undefined"}]],["$","$L8",null,{"children":["$","$L4",null,{"parallelRouterKey":"children","segmentPath":["children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L6",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":["$","$L9",null,{"flex-direction":"column","gap":"4xl","children":[["$","$La",null,{"children":[["$","$Lb",null,{"font-size":"display-2xl","children":"404"}],["$","$Lb",null,{"tag":"h1","children":"Page Not Found"}]]}],["$","$Lc",null,{"href":"/","children":"Go back"}]]}],"notFoundStyles":[]}],"params":{}}]],null],null],["$Ld",null]]]]
+d:[["$","meta","0",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","1",{"charSet":"utf-8"}],["$","title","2",{"children":"UX text - Checkbox — Green Design System"}],["$","meta","3",{"name":"description","content":"A checkbox is a form element that allows users to select one or multiple options from a list."}],["$","meta","4",{"name":"next-size-adjust"}]]
+1:null
