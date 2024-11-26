@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[7429],{7429:function(e,s,l){l.r(s);var n=l(7573),t=l(4779),u=l(7242);s.default=()=>(0,n.jsxs)(t.id,{children:[(0,n.jsx)(u.p$,{slot:"lead"}),"Link Text"]})}}]);

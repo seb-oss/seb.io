@@ -1,0 +1,86 @@
+2:I[6107,["6861","static/chunks/6861-e39dd8ced06313b2.js","3850","static/chunks/3850-8e5a6ee9d3f7fb6f.js","8985","static/chunks/app/component/%5Bslug%5D/page-3264484e8c10ebf9.js"],"Mdx"]
+4:I[5053,["3384","static/chunks/3384-587610ceb05cbd61.js","303","static/chunks/303-eee607300307a2f3.js","6861","static/chunks/6861-e39dd8ced06313b2.js","8162","static/chunks/app/component/%5Bslug%5D/layout-061d3ab9c9658133.js"],"default",1]
+5:I[5092,[],""]
+7:I[2023,[],""]
+8:I[8369,["3384","static/chunks/3384-587610ceb05cbd61.js","9055","static/chunks/9055-f3da2ecab9c16b99.js","6861","static/chunks/6861-e39dd8ced06313b2.js","3185","static/chunks/app/layout-d86a0a97ea8e7679.js"],"default",1]
+9:I[4779,["3384","static/chunks/3384-587610ceb05cbd61.js","6861","static/chunks/6861-e39dd8ced06313b2.js","2453","static/chunks/2453-2c5c39a9779dbaac.js","1931","static/chunks/app/page-c8695d22c68881c3.js"],"GdsFlex"]
+a:I[4779,["3384","static/chunks/3384-587610ceb05cbd61.js","6861","static/chunks/6861-e39dd8ced06313b2.js","2453","static/chunks/2453-2c5c39a9779dbaac.js","1931","static/chunks/app/page-c8695d22c68881c3.js"],"GdsContainer"]
+b:I[4779,["3384","static/chunks/3384-587610ceb05cbd61.js","6861","static/chunks/6861-e39dd8ced06313b2.js","2453","static/chunks/2453-2c5c39a9779dbaac.js","1931","static/chunks/app/page-c8695d22c68881c3.js"],"GdsText"]
+c:I[1967,["3384","static/chunks/3384-587610ceb05cbd61.js","9160","static/chunks/app/not-found-a82165777f0c42df.js"],"default"]
+3:T31fc,var Component=(()=>{var p=Object.create;var s=Object.defineProperty;var m=Object.getOwnPropertyDescriptor;var b=Object.getOwnPropertyNames;var f=Object.getPrototypeOf,g=Object.prototype.hasOwnProperty;var y=(i,e)=>()=>(e||i((e={exports:{}}).exports,e),e.exports),k=(i,e)=>{for(var o in e)s(i,o,{get:e[o],enumerable:!0})},l=(i,e,o,t)=>{if(e&&typeof e=="object"||typeof e=="function")for(let a of b(e))!g.call(i,a)&&a!==o&&s(i,a,{get:()=>e[a],enumerable:!(t=m(e,a))||t.enumerable});return i};var v=(i,e,o)=>(o=i!=null?p(f(i)):{},l(e||!i||!i.__esModule?s(o,"default",{value:i,enumerable:!0}):o,i)),w=i=>l(s({},"__esModule",{value:!0}),i);var h=y((I,d)=>{d.exports=_jsx_runtime});var z={};k(z,{default:()=>T,frontmatter:()=>x});var n=v(h()),x={title:"Button",summary:"Buttons are an essential element of interaction design. Their primary role is to help people take actions quickly.",date:new Date(17032032e5),tags:"forms, button"};function u(i){let e=Object.assign({h2:"h2",a:"a",span:"span",p:"p",h3:"h3",ul:"ul",li:"li",strong:"strong"},i.components),{Grid:o,Figma:t,GdsDivider:a,Do:c}=e;return c||r("Do",!0),t||r("Figma",!0),a||r("GdsDivider",!0),o||r("Grid",!0),(0,n.jsxs)(n.Fragment,{children:[(0,n.jsxs)(e.h2,{id:"overview",children:[(0,n.jsx)(e.a,{className:"anchor",href:"#overview",children:(0,n.jsx)(e.span,{className:"icon icon-link"})}),"Overview"]}),`
+`,(0,n.jsx)(e.p,{children:"A button serve as an interactive element that enables users to perform an action or make a choice with a simple click or tap. To decide which kind of button/buttons and putting them in the right order is key to make sure users know how to take the right action. A good rule of thumb is to use only one primary action in each context."}),`
+`,(0,n.jsxs)(e.h2,{id:"buttons",children:[(0,n.jsx)(e.a,{className:"anchor",href:"#buttons",children:(0,n.jsx)(e.span,{className:"icon icon-link"})}),"Buttons"]}),`
+`,(0,n.jsx)(e.p,{children:"We have a group of different buttons used for specific purposes."}),`
+`,(0,n.jsxs)(o,{columns:"1; s{2} m{3}",gap:"s",children:[(0,n.jsx)(t,{node:"227-1446",caption:"Default button"}),(0,n.jsx)(t,{node:"227-1455",caption:"Icon button"}),(0,n.jsx)(t,{node:"227-1458",caption:"Floating action button"}),(0,n.jsx)(t,{node:"227-9028",caption:"Split button"}),(0,n.jsx)(t,{node:"227-9030",caption:"Next and back button"})]}),`
+`,(0,n.jsxs)(e.h3,{id:"default-button",children:[(0,n.jsx)(e.a,{className:"anchor",href:"#default-button",children:(0,n.jsx)(e.span,{className:"icon icon-link"})}),"Default button"]}),`
+`,(0,n.jsx)(e.p,{children:"The default button is our most used button. It comes in primary, secondary and tertiary, and the sizes small, medium and large."}),`
+`,(0,n.jsx)(e.p,{children:"The default button can be used as the positive, negative and inverted type."}),`
+`,(0,n.jsxs)(o,{columns:"1; s{2}",gap:"s",children:[(0,n.jsx)(t,{node:"227-15292",caption:"Primary, secondary and tertiary"}),(0,n.jsx)(t,{node:"227-15605",caption:"Positive and negative"})]}),`
+`,(0,n.jsx)(a,{size:"4xl",opacity:"0.2"}),`
+`,(0,n.jsxs)(e.h3,{id:"icon-button",children:[(0,n.jsx)(e.a,{className:"anchor",href:"#icon-button",children:(0,n.jsx)(e.span,{className:"icon icon-link"})}),"Icon button"]}),`
+`,(0,n.jsx)(e.p,{children:"When there is space, the icon button should always be grouped with a text label. This text provides additional context for users who may not understand the icon alone. If space is not available the icon need to be self explanatory, and have a tooltip function explaining the action."}),`
+`,(0,n.jsx)(e.p,{children:"The icon button comes in primary, secondary, and tertiary. In the sizes small, medium, and large. The icon button also comes as a tonal in two sets. One tonal in grey, used mostly on our container colour. And a few custom tonal combinations, used on custom combination cards. For example our alert ribbons."}),`
+`,(0,n.jsx)(e.p,{children:"The icon button can be used as the positive, negative and inverted type also when the context needs it."}),`
+`,(0,n.jsxs)(o,{columns:"1; s{2} m{3}",gap:"s",children:[(0,n.jsx)(t,{node:"227-1363",caption:"Icon button \u2013 default and positive"}),(0,n.jsx)(t,{node:"227-1372",caption:"Tonal and custom tonal"}),(0,n.jsx)(t,{node:"227-1375",caption:"Tonal custom combinations on alert ribbon"})]}),`
+`,(0,n.jsx)(a,{size:"4xl",opacity:"0.2"}),`
+`,(0,n.jsxs)(o,{columns:"1; s{2}",gap:"s",children:[(0,n.jsxs)("div",{children:[(0,n.jsxs)(e.h3,{id:"floating-action-button",children:[(0,n.jsx)(e.a,{className:"anchor",href:"#floating-action-button",children:(0,n.jsx)(e.span,{className:"icon icon-link"})}),"Floating action button"]}),(0,n.jsx)(e.p,{children:"Only used for functions central to the user experience, such as support and help features that needs to be accessible at all times."}),(0,n.jsx)(e.p,{children:"The button is always floating visible in the users viewport, typically in the lower right corner. This button can be used with an icon only."}),(0,n.jsx)(e.p,{children:"Used only as primary."})]}),(0,n.jsx)(t,{node:"227-17491",caption:"Floating action button"})]}),`
+`,(0,n.jsx)(a,{size:"4xl",opacity:"0.2"}),`
+`,(0,n.jsxs)(e.h3,{id:"split-button",children:[(0,n.jsx)(e.a,{className:"anchor",href:"#split-button",children:(0,n.jsx)(e.span,{className:"icon icon-link"})}),"Split button"]}),`
+`,(0,n.jsx)(e.p,{children:"The split button always has a primary action. This action is most likely to be used by the customer as the default action.When users click on the primary action, it triggers this action directly, such as submitting a form, confirming a selection, or initiating a process."}),`
+`,(0,n.jsx)(e.p,{children:"The users can click on the dropdown arrow to reveal a dropdown menu providing secondary or additional options."}),`
+`,(0,n.jsx)(e.p,{children:"The split button comes in both primary and secondary."}),`
+`,(0,n.jsxs)(o,{columns:"1; s{2}",gap:"s",children:[(0,n.jsx)(t,{node:"227-18284",caption:"Split button \u2013 primary and secondary"}),(0,n.jsx)(t,{node:"574-5488",caption:"Split button \u2013 active with dropdown"})]}),`
+`,(0,n.jsxs)(e.h3,{id:"next-and-back-button",children:[(0,n.jsx)(e.a,{className:"anchor",href:"#next-and-back-button",children:(0,n.jsx)(e.span,{className:"icon icon-link"})}),"Next and back button"]}),`
+`,(0,n.jsx)(e.p,{children:"Used inside flows to signal the direction forward or backward."}),`
+`,(0,n.jsx)(e.p,{children:"Back button comes in both primary and secondary state depending on what suits the content. The next button comes as primary only."}),`
+`,(0,n.jsxs)(o,{columns:"1; s{2} m{3}",gap:"s",children:[(0,n.jsx)(t,{node:"227-18340",caption:"Next button"}),(0,n.jsx)(t,{node:"227-18349",caption:"Back button \u2013 primary"}),(0,n.jsx)(t,{node:"227-18352",caption:"Back button \u2013 secondary"})]}),`
+`,(0,n.jsx)(a,{size:"4xl",opacity:"0.2"}),`
+`,(0,n.jsxs)(e.h2,{id:"variants",children:[(0,n.jsx)(e.a,{className:"anchor",href:"#variants",children:(0,n.jsx)(e.span,{className:"icon icon-link"})}),"Variants"]}),`
+`,(0,n.jsxs)(e.ul,{children:[`
+`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(e.strong,{children:"Default"}),": The preferred choice of button in most contexts."]}),`
+`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(e.strong,{children:"Positive"}),": To be decided."]}),`
+`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(e.strong,{children:"Negative"}),": Use for the actions that may be harmful or destructive. A good example is deleting"]}),`
+`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(e.strong,{children:"Tonal"}),": Only used internal in other components (to match a background)."]}),`
+`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(e.strong,{children:"Inverted"}),": Used to place on other than the normal backgrounds (typically darker tones)."]}),`
+`]}),`
+`,(0,n.jsx)(t,{node:"232-2274",caption:"Button variants",height:"300"}),`
+`,(0,n.jsx)(a,{size:"4xl",opacity:"0.2"}),`
+`,(0,n.jsxs)(o,{columns:"1; s{2}",gap:"s",children:[(0,n.jsxs)(e.h2,{id:"hierarchy",children:[(0,n.jsx)(e.a,{className:"anchor",href:"#hierarchy",children:(0,n.jsx)(e.span,{className:"icon icon-link"})}),"Hierarchy"]}),(0,n.jsx)(e.p,{children:"It's critical to find the right balance of what buttons to use. It's up to us as designers to guide and inform the users to take the right action."}),(0,n.jsxs)(e.ul,{children:[`
+`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(e.strong,{children:"Primary buttons"})," require the most attention from your users."]}),`
+`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(e.strong,{children:"Secondary buttons"}),", as the name says, is the second most likely choice."]}),`
+`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(e.strong,{children:"Tertiary buttons"})," are used for less used or unwanted actions that is still relevant to find."]}),`
+`]}),(0,n.jsx)(t,{node:"232-3072",caption:"From the top \u2013 primary, secondary, tertiary"})]}),`
+`,(0,n.jsx)(a,{size:"4xl",opacity:"0.2"}),`
+`,(0,n.jsxs)(e.h2,{id:"button-sizes",children:[(0,n.jsx)(e.a,{className:"anchor",href:"#button-sizes",children:(0,n.jsx)(e.span,{className:"icon icon-link"})}),"Button sizes"]}),`
+`,(0,n.jsx)(e.p,{children:"The default button and icon button comes in a few different sizes. 32, 40 and 48 px."}),`
+`,(0,n.jsxs)(o,{columns:"1; s{2} m{3}",gap:"s",children:[(0,n.jsx)(t,{node:"232-3342",caption:"Small \u2013 used in confined spaces, like tables."}),(0,n.jsx)(t,{node:"232-3344",caption:"Medium \u2013 the default size. When in doubt, go for medium."}),(0,n.jsx)(t,{node:"232-3346",caption:"Large \u2013 only used in large areas like a hero."})]}),`
+`,(0,n.jsx)(a,{size:"4xl",opacity:"0.2"}),`
+`,(0,n.jsxs)(e.h2,{id:"placements-right-left-or-stacked",children:[(0,n.jsx)(e.a,{className:"anchor",href:"#placements-right-left-or-stacked",children:(0,n.jsx)(e.span,{className:"icon icon-link"})}),"Placements, right, left or stacked?"]}),`
+`,(0,n.jsx)(e.p,{children:"A general rule is to always strive to place buttons in connection to the items they control."}),`
+`,(0,n.jsxs)(e.h3,{id:"desktop-placements",children:[(0,n.jsx)(e.a,{className:"anchor",href:"#desktop-placements",children:(0,n.jsx)(e.span,{className:"icon icon-link"})}),"Desktop placements"]}),`
+`,(0,n.jsxs)(e.ul,{children:[`
+`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(e.strong,{children:"Left:"})," In overviews and widgets, the user tends to read from top to bottom, therefore the buttons are kept to the left."]}),`
+`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(e.strong,{children:"Right:"})," Modals and flows move the user from left to right, therefore the buttons are placed to the right."]}),`
+`]}),`
+`,(0,n.jsxs)(o,{columns:"1; s{2}",gap:"s",children:[(0,n.jsx)(t,{node:"489-7502",caption:"Placement left"}),(0,n.jsx)(t,{node:"232-3505",caption:"Placement right"})]}),`
+`,(0,n.jsxs)(e.h3,{id:"in-a-mobile-device",children:[(0,n.jsx)(e.a,{className:"anchor",href:"#in-a-mobile-device",children:(0,n.jsx)(e.span,{className:"icon icon-link"})}),"In a mobile device"]}),`
+`,(0,n.jsxs)(e.ul,{children:[`
+`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(e.strong,{children:"One button"}),", use the full width of the content area."]}),`
+`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(e.strong,{children:"Two buttons"}),", aim to place them side by side. It is allowed to stack them if needed."]}),`
+`,(0,n.jsxs)(e.li,{children:[(0,n.jsx)(e.strong,{children:"Three buttons"}),', consider the need for all of them. "cancel or close" might be x in the top right corner. Worst case scenario: place  two buttons side by side and one tertiary button under.']}),`
+`]}),`
+`,(0,n.jsxs)(o,{columns:"1; s{2}",gap:"s",children:[(0,n.jsx)(t,{node:"489-7723",caption:"One button in mobile"}),(0,n.jsx)(t,{node:"489-7651",caption:"Side by side in mobile"})]}),`
+`,(0,n.jsx)(a,{size:"4xl",opacity:"0.2"}),`
+`,(0,n.jsxs)(e.h2,{id:"wait-time-after-button-pressed",children:[(0,n.jsx)(e.a,{className:"anchor",href:"#wait-time-after-button-pressed",children:(0,n.jsx)(e.span,{className:"icon icon-link"})}),"Wait-time after button pressed."]}),`
+`,(0,n.jsx)(e.p,{children:"To be explored."}),`
+`,(0,n.jsx)(a,{size:"4xl",opacity:"0.2"}),`
+`,(0,n.jsxs)(e.h2,{id:"dos-and-donts",children:[(0,n.jsx)(e.a,{className:"anchor",href:"#dos-and-donts",children:(0,n.jsx)(e.span,{className:"icon icon-link"})}),"Do\u2019s and don\u2019ts"]}),`
+`,(0,n.jsx)(e.p,{children:(0,n.jsx)(e.strong,{children:"Do"})}),`
+`,(0,n.jsxs)(e.ul,{children:[`
+`,(0,n.jsx)(e.li,{children:"Only use one primary action in the same context of several actions."}),`
+`]}),`
+`,(0,n.jsx)(o,{columns:"1; s{2}",gap:"s",children:(0,n.jsx)(c,{children:(0,n.jsx)(t,{node:"312-3091"})})})]})}function N(i={}){let{wrapper:e}=i.components||{};return e?(0,n.jsx)(e,Object.assign({},i,{children:(0,n.jsx)(u,i)})):u(i)}var T=N;function r(i,e){throw new Error("Expected "+(e?"component":"object")+" `"+i+"` to be defined: you likely forgot to import, pass, or provide it.")}return w(z);})();
+;return Component;6:["slug","button","d"]
+0:["paMEdIhgTPfn07uZmdLF6",[[["",{"children":["component",{"children":[["slug","button","d"],{"children":["__PAGE__?{\"slug\":\"button\"}",{}]}]}]},"$undefined","$undefined",true],["",{"children":["component",{"children":[["slug","button","d"],{"children":["__PAGE__",{},[["$L1",[["$","script",null,{"type":"application/ld+json","suppressHydrationWarning":true,"dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@type\":\"Thing\",\"description\":\"Buttons are an essential element of interaction design. Their primary role is to help people take actions quickly.\",\"url\":\"https://seb.io/component/button\",\"author\":{\"@type\":\"Company\",\"name\":\"SEB\"}}"}}],null,["$","$L2",null,{"code":"$3","globals":{"slug":"button"}}]],[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/3193eebeef4f1a40.css","precedence":"next","crossOrigin":"$undefined"}]]],null],null]},[[null,["$","$L4",null,{"children":["$","$L5",null,{"parallelRouterKey":"children","segmentPath":["children","component","children","$6","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L7",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}],"params":{"slug":"button"}}]],null],null]},[null,["$","$L5",null,{"parallelRouterKey":"children","segmentPath":["children","component","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L7",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]],null]},[[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/70c29b3a1e45ed98.css","precedence":"next","crossOrigin":"$undefined"}]],["$","$L8",null,{"children":["$","$L5",null,{"parallelRouterKey":"children","segmentPath":["children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L7",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":["$","$L9",null,{"flex-direction":"column","gap":"4xl","children":[["$","$La",null,{"children":[["$","$Lb",null,{"font-size":"display-2xl","children":"404"}],["$","$Lb",null,{"tag":"h1","children":"Page Not Found"}]]}],["$","$Lc",null,{"href":"/","children":"Go back"}]]}],"notFoundStyles":[]}],"params":{}}]],null],null],["$Ld",null]]]]
+d:[["$","meta","0",{"name":"viewport","content":"width=device-width, initial-scale=1"}],["$","meta","1",{"charSet":"utf-8"}],["$","title","2",{"children":"Button — Green Design System"}],["$","meta","3",{"name":"description","content":"Buttons are an essential element of interaction design. Their primary role is to help people take actions quickly."}],["$","meta","4",{"name":"next-size-adjust"}]]
+1:null
