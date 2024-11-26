@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[2840],{2801:function(i,e,n){n.r(e);var s=n(7573),t=n(4779),a=n(7242);e.default=()=>(0,s.jsxs)(s.Fragment,{children:[(0,s.jsx)(t.cC,{variant:"notice",children:"Badge"}),(0,s.jsxs)(t.cC,{variant:"positive",notification:!0,children:["999 ",(0,s.jsx)(a.iU,{slot:"trail"})]})]})}}]);
