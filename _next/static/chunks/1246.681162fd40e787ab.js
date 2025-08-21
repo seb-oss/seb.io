@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[1246],{1246:function(e,n,s){s.r(n);var l=s(7573),r=s(4779);n.default=()=>(0,l.jsxs)(r.hS,{children:[(0,l.jsx)(r.x$,{value:"1",children:"Dropdown"}),(0,l.jsx)(r.x$,{value:"2",children:"Dropdwon Item"})]})}}]);

@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[9408],{9408:function(s,e,l){l.r(e);var a=l(7573),c=l(4779),r=l(7242);e.default=()=>(0,a.jsxs)(c.c2,{children:[(0,a.jsx)(r.bl,{slot:"lead"}),"Primary"]})}}]);

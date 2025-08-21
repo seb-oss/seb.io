@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[5600],{5600:function(e,l,s){s.r(l);var i=s(7573),n=s(4779);l.default=()=>(0,i.jsxs)(n.nN,{value:"filter",label:"Pick news channel",children:[(0,i.jsx)(n.uf,{value:"filter",children:"Filter"}),(0,i.jsx)(n.uf,{value:"chips",children:"Chips"})]})}}]);

@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[5497],{5497:function(r,e,n){n.r(e);var s=n(7573),a=n(4779);e.default=()=>(0,s.jsx)(a.GdsContainer,{padding:"2xl 4xl",background:"secondary","border-radius":"s s 0 0",border:"0 0 4xs/secondary 0",children:"Container"})}}]);
