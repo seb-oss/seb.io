@@ -1,0 +1,1 @@
+.card{--staggering:calc((sibling-index() - 1) * 64ms);transition:all 1s cubic-bezier(.65,.05,.36,1) var(--staggering);@starting-style{opacity:0;translate:0 40px}}.card-snippet{&>*{transition:all .42s;transition-delay:64ms;@starting-style{opacity:0;translate:0 -8px}}}

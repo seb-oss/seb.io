@@ -1,1 +1,0 @@
-self.__SSG_MANIFEST=new Set(["\u002F[...slug]","\u002Fcomponent\u002F[slug]","\u002Fcomponent\u002F[slug]\u002Faccessibility","\u002Fcomponent\u002F[slug]\u002Fcode","\u002Fcomponent\u002F[slug]\u002Fux-text","\u002Fcomponents\u002F[tag]","\u002Ftemplate\u002F[slug]"]);self.__SSG_MANIFEST_CB&&self.__SSG_MANIFEST_CB()
