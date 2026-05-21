@@ -1,0 +1,1 @@
+.content-fade{transition:all .48s;@starting-style{opacity:0;translate:0 4px}}.preview-fade{transition:opacity .64s,transform .64s;transition-delay:.2s;@starting-style{opacity:0;translate:4px 0}}.fade-in-up{transition:all .64s;transition-delay:.2s;@starting-style{opacity:0;translate:4px 4px}}
