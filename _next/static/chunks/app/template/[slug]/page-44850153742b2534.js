@@ -1,1 +1,0 @@
-(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[9703],{8664:(e,n,l)=>{"use strict";function s(e){let{slug:n}=e;return null}l.d(n,{TemplateClient:()=>s})},32092:(e,n,l)=>{Promise.resolve().then(l.bind(l,8664))}},e=>{e.O(0,[587,18,7358],()=>e(e.s=32092)),_N_E=e.O()}]);
